@@ -1,0 +1,137 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%				COMMANDS
+%
+% \singlespace     = start single spacing (0.165in between lines)
+% \doublespace     = start double spacing (0.330in between lines)
+% \CHAPTER{}       = chapter heading
+% \TOPPER{}        = heading for such things as Acknowledgments, TOC, etc.
+% \APPENDIX{}      = appendix header
+% \SECTION{}       = section header
+% \SUBSECTION{}    = subsection header
+% \SUBSUBSECTION{} = subsubsection header
+%
+% The left hand margin is set up for 1.5 inches, and the text length is
+% set up for 9 inches.  Extra space above and below the equations is
+% removed.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\singlespace}{\setlength{\baselineskip}{0.165in}}
+\newcommand{\doublespace}{\setlength{\baselineskip}{0.33in}}
+\newcommand{\hi}{H I}
+% Print out...
+%\setlength{\oddsidemargin}{0.75in}
+%
+% Online submission
+\setlength{\oddsidemargin}{0.0in}
+%\setlength{\textheight}{7.5in} - I added
+\setlength{\topmargin}{-1cm}
+%\setlength{\textheight}{8.5in} original
+\setlength{\textheight}{8.5in}
+\setlength{\textwidth}{6.5in}
+\addtolength{\abovedisplayskip}{-1em}
+\addtolength{\abovedisplayshortskip}{-1em}
+\pagestyle{myheadings}
+
+\newcommand{\CHAPTER}[1]{%
+\refstepcounter{chapter}%
+\addcontentsline{toc}{chapter}{\thechapter . #1}%
+%%\addcontentsline{toc}{chapter}{\protect\numberline{\thechapter}#1}%
+\newpage%
+\pagestyle{myheadings}
+\thispagestyle{plain}%
+\singlespace%
+\begin{center}% 
+%%\textbf{CHAPTER~\thechapter}\\%
+%%\textbf{\thechapter}\\%
+\LARGE
+\textbf{\thechapter}%
+%%\vspace{2em}%
+\textbf{. #1}\\%
+\normalsize
+\end{center}%
+\doublespace%
+\vspace{2em}
+\singlespace}
+
+
+\newcommand{\TOPPER}[1]{%
+\addcontentsline{toc}{chapter}{#1}%
+\newpage%
+\pagestyle{plain}%
+\begin{center}% 
+\LARGE
+\textbf{#1}\\%
+\normalsize
+\end{center}%
+\vspace{2em}
+\singlespace}
+
+\newcommand{\NOTOPPER}[1]{%
+\addcontentsline{toc}{chapter}{#1}%
+\newpage%
+\pagestyle{plain}%
+\vspace{2em}%
+\singlespace}
+
+\newcommand{\REFVIT}[1]{%
+\newpage%
+\thispagestyle{plain}%
+\begin{center}% 
+\textbf{#1}\\%
+\end{center}%
+\vspace{2em}}
+
+\newcommand{\APPENDIX}[1]{%
+\refstepcounter{chapter}%
+\addcontentsline{toc}{chapter}{\protect\numberline{\thechapter}}%
+\newpage%
+\pagestyle{myheadings}
+\thispagestyle{plain}%
+\singlespace%
+\begin{center}% 
+\LARGE
+\textbf{APPENDIX A: #1}\\%
+%%\textbf{APPENDIX~\thechapter: #1}\\%
+%%\vspace{2em}%
+%%\textbf{#1}\\%
+\normalsize
+\end{center}%
+\doublespace%
+\vspace{2em}}
+
+\newcommand{\SECTION}[1]{%
+\refstepcounter{section}%
+\addcontentsline{toc}{section}{\protect\numberline{\thesection}#1}%
+{\vspace{1em} \noindent \Large \textbf{\thesection~#1}\par \normalsize \vspace{1em}}}
+
+\newcommand{\SUBSECTION}[1]{%
+\refstepcounter{subsection}%
+\addcontentsline{toc}{subsection}{\protect\numberline{\thesubsection}#1}%
+{\vspace{1em} \noindent \normalsize \textbf{\thesubsection~#1}\par \vspace{1em}}}
+
+\newcommand{\SUBSUBSECTION}[1]{%
+\refstepcounter{subsubsection}%
+\addcontentsline{toc}{subsubsection}{\protect\numberline{\thesubsubsection}#1}%
+{\vspace{1em} \noindent \normalsize \textbf{\thesubsubsection~#1}\par \vspace{1em}}}
+
+\def\contentsname{\normalsize \centerline{\textbf{TABLE OF CONTENTS}}}%
+
+\newcommand{\gtrsim}{\mathrel{\hbox{\rlap{\hbox{\lower4pt\hbox{$\sim$}}}\hbox{$>$}}}}
+\newcommand{\lesssim}{\mathrel{\hbox{\rlap{\hbox{\lower4pt\hbox{$\sim$}}}\hbox{$<$}}}}
+\newcommand{\sq}{\hbox{\rlap{$\sqcap$}$\sqcup$}}
+\newcommand{\arcdeg}{\hbox{$^\circ$}}
+\newcommand{\arcmin}{\hbox{$^\prime$}}
+\newcommand{\arcsec}{\hbox{$^{\prime\prime}$}}
+\newcommand{\sun}{\hbox{$\odot$}}
+\newcommand{\earth}{\hbox{$\oplus$}}
+
+%% FIX THE G_DAMN TABLE OF CONTENTS SO THE FONTS ARE ALL THE SAME FREAKING SIZE
+\renewcommand{\cftchapfont}{\normalfont}
+
+%% And make sure the page numbers are all the same font...
+\renewcommand{\cftchappagefont}{\normalfont}
+
+%% Make the dots the same size regardless of entry type
+\renewcommand{\cftdot}{\normalfont.}
+
