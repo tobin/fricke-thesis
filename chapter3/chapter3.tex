@@ -1,4 +1,54 @@
-\CHAPTER{Signal Processing for Binary inspirals in LIGO data}
+\CHAPTER{DC Readout - Theory of Operation}
 \label{chapter3}
 \doublespace
+\SECTION{Introduction}
 
+The basic problem is to detect optical phase.  Detectors are generally
+much too slow to detect the optical field \emph{amplitude} directly (a
+laser wavelength of 1064 nm corresponds to about 3 THz).  Instead,
+photodetectors measure the field \emph{power}, averaged over some
+interval (typically MHz).  To sense the optical phase, we turn to
+interference.  By providing a second optical field--a \emph{local
+  oscillator}--as a phase reference, phase perturbations of the signal
+beam are converted to power fluctuations at the photodiode.  
+
+If the local oscillator is at the same optical frequency as the signal
+beam, then the photocurrent directly mimics the phase perturbations of
+the signal; this is \emph{homodyne detection}, or direct conversion.
+If, on the other hand, the local oscillator offset slightly in
+frequency, the signal will appear as amplitude modulation on the
+photodiode signal.  This is \emph{heterodyne detection}.
+
+There is also the question of how to get the local oscillator to the
+detection photodiode, and how to guarantee that it is sufficiently
+stable in phase, and well-matched to the spatial distribution of the
+signal beam.  One approach is to specially pipe the local oscillator
+to the detection port, combine the signal and local oscillator via a
+beamsplitter, and detect the two emerging beams on photodiodes, adding
+the resulting signals electronically.  This scheme, balanced homodyne
+detection, is depicted in \checkme{a figure}.
+
+The problem is elegantly addressed in the current gravitational wave
+detectors by having the local oscillator signal resonate in the the
+interferometer, or a portion of it.
+
+\SECTION{Heterodyne detection}
+
+In the context of coupling lasers to resonant cavities, heterodyne
+detection is known as the Pound-Drever-Hall technique.  The canonical
+reference is~\cite{Drever1983Laser}, while \cite{Black2001Introduction} provides a pedagogical introduction.
+
+\SECTION{Homodyne detection}
+
+\SECTION{Comparison}
+
+In addition to mitigating technical difficulties of RF detection,
+homodyne detection confers a fundamental improvement in SNR by up to a
+factor of ??. The extra noise in heterodyne detection can be
+considered either a result of time dependence in the average power
+leading to correlations in the shot
+noise\cite{Niebauer1991Nonstationary}, or the simple fact that
+demodulation introduces noises from around $2f_{mod}$, giving
+an extra dose of shot noise.  A more sophisticated analysis ascribes
+this noise to the two heterodyne demodulation quadratures acting as
+non-commuting quantum operators\cite{Buonanno2003Quantum}.
