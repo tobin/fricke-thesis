@@ -32,11 +32,68 @@ The problem is elegantly addressed in the current gravitational wave
 detectors by having the local oscillator signal resonate in the the
 interferometer, or a portion of it.
 
+\SECTION{Interferometer Sensing and Control}
+
+The laser light incident on the interferometer is phase-modulated at
+several frequencies, producing optical sidebands on the laser carrier.
+Light extracted from the interferometer at its various ports is
+incident on photodiodes; the photodiode signals are demodulated to
+produce signals.
+
 \SECTION{Heterodyne detection}
 
 In the context of coupling lasers to resonant cavities, heterodyne
 detection is known as the Pound-Drever-Hall technique.  The canonical
-reference is~\cite{Drever1983Laser}, while \cite{Black2001Introduction} provides a pedagogical introduction.
+reference is~\cite{Drever1983Laser}, while
+\cite{Black2001Introduction} provides a pedagogical introduction.
+
+\SUBSECTION{The Pound-Drever-Hall technique}
+
+The phase modulation may be expanded in terms of sidebands using the
+Jacobi-Anger expansion:\footnote{This expansion comes from the 
+generating function 
+$\exp\{\frac{1}{2} z \left(t - t^{-1}\right)\} = \sum_{m=-\infty}^\infty t^m J_m(z)$ with $t = \exp \{i \omega t'\}$}
+
+\begin{equation}
+\begin{array}{rcll}
+\exp\{i\Gamma\cos\Omega t\} & = &\sum_{n=-\infty}^{\infty} \left(i^n\right) & J_n(\Gamma) \exp\{i n \Omega t\} \\
+\exp\{i\Gamma\sin\Omega t\} & = & \sum_{n=-\infty}^{\infty} & J_n(\Gamma) \exp\{i n \Omega t\}
+\end{array}
+\end{equation}
+
+Upon reflection from a cavity the phases of the carrier and the two
+sidebands will be rotated.  This phase rotation converts the phase
+modulation to amplitude modulation, which is observed by the
+photodiodes.  Typically, the carrier is held on resonance, where there
+is a very large change in reflected phase for a small change of
+detuning; the sidebands, on the other hand, are typically far from
+resonance and experience very little phase change.
+
+The reflectivity of a lossless Fabry-Perot cavity is:
+\begin{equation}
+r_c = \frac{r_1 - r_2 \exp i2\phi}{1 - r_1 r_2 \exp i 2\phi}
+\end{equation}
+
+Suppose the carrier and upper and lower sidebands are incident upon this
+cavity, and the reflection from the cavity is incident on a photodiode.
+If the cavity length is $L$ and the optical frequency is $\nu$ then
+$\phi = (2\pi)(L/c)\nu$.  The sideband detunings are offset from this by
+$\pm(2\pi)(L/c)\Omega$.  So, as a function of detuning, we have:
+%
+\begin{equation}
+E_r = J_0 r_c(\phi) 
++ J_1 r_c(\phi - (2\pi L/c)\Omega) 
++ J_1 r_c(\phi + (2\pi L/c)\Omega)
+\end{equation}
+
+...
+
+Now consider a Michelson interferometer where the arms have lengths
+$L_{\{x,y\}}$.  The field at the output port (at a given frequency) is:
+%
+\begin{equation}
+E_{AS} = E_0 \frac{1}{2} \left( e^{2 i L_{x} \nu /c} + e^{2 i L_{y} \nu / c} \right) 
+\end{equation}
 
 \SECTION{Homodyne detection}
 
