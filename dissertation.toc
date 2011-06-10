@@ -1,30 +1,64 @@
-\contentsline {chapter}{Dedication}{iv}
-\contentsline {chapter}{Acknowledgments}{v}
-\contentsline {chapter}{Tables}{vi}
-\contentsline {chapter}{Figures}{vii}
-\contentsline {chapter}{1. Introduction}{1}
-\contentsline {section}{\numberline {1.1}Gravitational Waves}{1}
-\contentsline {section}{\numberline {1.2}Sources of Gravitational Waves}{1}
-\contentsline {section}{\numberline {1.3}Inspiral Searches}{1}
-\contentsline {chapter}{2. The LIGO detector}{2}
-\contentsline {section}{\numberline {2.1}Science Runs}{2}
-\contentsline {section}{\numberline {2.2}LIGO Scientific Collaboration}{2}
-\contentsline {subsection}{\numberline {2.2.1}DATA}{2}
-\contentsline {subsection}{\numberline {2.2.2}NOISE}{2}
-\contentsline {subsubsection}{\numberline {2.2.2.1}SEISMIC MOTION}{3}
-\contentsline {subsubsection}{\numberline {2.2.2.2}SHOT NOISE}{4}
-\contentsline {subsubsection}{\numberline {2.2.2.3}RADIATION PRESSURE}{4}
-\contentsline {subsubsection}{\numberline {2.2.2.4}THERMAL NOISE}{5}
-\contentsline {chapter}{3. Signal Processing for Binary inspirals in LIGO data}{6}
-\contentsline {chapter}{4. S4 MACHO Search}{7}
-\contentsline {section}{\numberline {4.1}TBD}{7}
-\contentsline {subsection}{\numberline {4.1.1}TBD}{7}
-\contentsline {chapter}{5. Single IFO S4 Search}{8}
-\contentsline {section}{\numberline {5.1}TBD}{8}
-\contentsline {subsection}{\numberline {5.1.1}TBD}{8}
-\contentsline {chapter}{6. Future Work}{9}
-\contentsline {section}{\numberline {6.1}TBD}{9}
-\contentsline {subsection}{\numberline {6.1.1}TBD}{9}
-\contentsline {chapter}{7. Conclusionns}{10}
-\contentsline {section}{\numberline {7.1}TBD}{10}
-\contentsline {subsection}{\numberline {7.1.1}TBD}{10}
+\contentsline {chapter}{Dedication}{iv}{section*.1}
+\contentsline {chapter}{Acknowledgments}{v}{section*.1}
+\contentsline {chapter}{Tables}{vi}{section*.1}
+\contentsline {chapter}{Figures}{vii}{section*.1}
+\contentsline {chapter}{1. Introduction}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Gravitational Waves}{1}{section.1.1}
+\contentsline {section}{\numberline {1.2}The Hulse-Taylor Pulsar}{3}{section.1.2}
+\contentsline {section}{\numberline {1.3}Sources of Gravitational Waves}{3}{section.1.3}
+\contentsline {section}{\numberline {1.4}Detectors}{5}{section.1.4}
+\contentsline {subsection}{\numberline {1.4.1}Laser interferometers}{6}{subsection.1.4.1}
+\contentsline {subsection}{\numberline {1.4.2}Other detectors}{6}{subsection.1.4.2}
+\contentsline {section}{\numberline {1.5}The Future}{7}{section.1.5}
+\contentsline {section}{\numberline {1.6}This Dissertation}{8}{section.1.6}
+\contentsline {chapter}{2. The LIGO detector}{9}{chapter.2}
+\contentsline {section}{\numberline {2.1}Arms, cavities, etc}{9}{section.2.1}
+\contentsline {section}{\numberline {2.2}Interferometer Sensing and Control}{9}{section.2.2}
+\contentsline {section}{\numberline {2.3}The Pound-Drever-Hall technique}{9}{section.2.3}
+\contentsline {section}{\numberline {2.4}Summary of changes made for Enhanced LIGO}{9}{section.2.4}
+\contentsline {section}{\numberline {2.5}History of the noise during Enhanced LIGO}{10}{section.2.5}
+\contentsline {section}{\numberline {2.6}Future directions}{10}{section.2.6}
+\contentsline {chapter}{3. DC Readout - Theory of Operation}{11}{chapter.3}
+\contentsline {section}{\numberline {3.1}Introduction}{11}{section.3.1}
+\contentsline {section}{\numberline {3.2}Interferometer Sensing and Control}{11}{section.3.2}
+\contentsline {section}{\numberline {3.3}Heterodyne detection}{12}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}The Pound-Drever-Hall technique}{12}{subsection.3.3.1}
+\contentsline {section}{\numberline {3.4}Homodyne detection}{13}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Calculation of the optical gain}{13}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}Calculation of the optical gain}{14}{subsection.3.4.2}
+\contentsline {subsubsection}{Better expression for $P_{AS}$}{16}{section*.2}
+\contentsline {section}{\numberline {3.5}Comparison}{16}{section.3.5}
+\contentsline {chapter}{4. Output Mode Cleaner}{18}{chapter.4}
+\contentsline {section}{\numberline {4.1}Introuction}{18}{section.4.1}
+\contentsline {section}{\numberline {4.2}Physical design of the cavity}{18}{section.4.2}
+\contentsline {section}{\numberline {4.3}Requirements}{18}{section.4.3}
+\contentsline {section}{\numberline {4.4}Length control}{19}{section.4.4}
+\contentsline {section}{\numberline {4.5}Input beam control (ASC)}{19}{section.4.5}
+\contentsline {section}{\numberline {4.6}Automatic gain control}{19}{section.4.6}
+\contentsline {section}{\numberline {4.7}Residual fluctuations}{19}{section.4.7}
+\contentsline {section}{\numberline {4.8}Optical characterization}{19}{section.4.8}
+\contentsline {subsection}{\numberline {4.8.1}Mode scan}{19}{subsection.4.8.1}
+\contentsline {subsection}{\numberline {4.8.2}Scattering}{20}{subsection.4.8.2}
+\contentsline {section}{\numberline {4.9}Interferometer lock acquisition}{20}{section.4.9}
+\contentsline {section}{\numberline {4.10}Beam diverter}{20}{section.4.10}
+\contentsline {chapter}{5. DC readout - evaluation}{21}{chapter.5}
+\contentsline {section}{\numberline {5.1}Noise couplings - modeled and measured}{21}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}Laser frequency noise}{21}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.2}Laser intensity noise}{21}{subsection.5.1.2}
+\contentsline {subsection}{\numberline {5.1.3}Oscillator amplitude noise}{21}{subsection.5.1.3}
+\contentsline {subsection}{\numberline {5.1.4}Oscillator phase noise}{21}{subsection.5.1.4}
+\contentsline {subsection}{\numberline {5.1.5}Beam jitter noise}{22}{subsection.5.1.5}
+\contentsline {subsection}{\numberline {5.1.6}Electronics noise}{22}{subsection.5.1.6}
+\contentsline {subsection}{\numberline {5.1.7}Optical spring}{22}{subsection.5.1.7}
+\contentsline {subsection}{\numberline {5.1.8}Nonlinearity of the DC error signal}{22}{subsection.5.1.8}
+\contentsline {section}{\numberline {5.2}Noise budget}{22}{section.5.2}
+\contentsline {section}{\numberline {5.3}Optical gain}{22}{section.5.3}
+\contentsline {chapter}{6. Advanced LIGO}{23}{chapter.6}
+\contentsline {section}{\numberline {6.1}TBD}{23}{section.6.1}
+\contentsline {subsection}{\numberline {6.1.1}TBD}{23}{subsection.6.1.1}
+\contentsline {chapter}{7. Appendix}{24}{chapter.7}
+\contentsline {section}{\numberline {7.1}The difference between PM and AM}{24}{section.7.1}
+\contentsline {section}{\numberline {7.2}Optical phase conventions}{24}{section.7.2}
+\contentsline {section}{\numberline {7.3}The optical spring}{24}{section.7.3}
+\contentsline {section}{\numberline {7.4}Control theory basics}{25}{section.7.4}
+\contentsline {section}{\numberline {7.5}References}{25}{section.7.5}

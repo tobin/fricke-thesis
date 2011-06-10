@@ -1,5 +1,91 @@
-\CHAPTER{S4 MACHO Search}
+\CHAPTER{Output Mode Cleaner}
 \label{chapter4}
 \doublespace
-\SECTION{TBD}
-\SUBSECTION{TBD}
+\SECTION{Introuction}
+The interferometer has many degrees of freedom (both longitudinal and
+angular).  We elect only to use DC readout for the DARM degree of
+freedom and continue to use heterodyne readout for (most of) the other
+degrees of freedom.  Therefore we still require the sidebands to sense
+these degrees of freedom, so we can't simply turn them off.  Instead
+we introduce an \emph{output mode cleaner} at the output port in order
+to remove them there.
+
+\SECTION{Physical design of the cavity}
+
+The output mode cleaner (OMC) consists of a four-mirror bowtie cavity
+with a finesse of approximately 350. The cavity optics and detection
+photodiodes are attached to tombstones which are bonded to a glass
+slab. This entire optical bench is suspended by a double pendulum,
+which in turn rests on an active seismic isolation platform, all of
+which is contained within the vacuum envelope. For convenience the
+chamber containing the OMC is isolated from the rest of the LIGO vacuum
+envelope via a septum window, allowing the independent venting of
+this chamber for easier access.
+
+The output of the OMC is split via a 50/50 beamsplitter and directed
+onto two high-quantum-efficiency InGaAs photodiodes. The two photodiode
+signals allow the formation of sum and difference signals, the difference
+providing a diagnostic `nullstream'.
+
+\SECTION{Requirements}
+
+
+The OMC is required to sufficiently filter the light present at the
+output port such that contributions from the RF sidebands and higher-order
+spatial modes become negligible. To exclude the RF sidebands, the
+cavity length is chosen such that the RF sideband frequencies are
+anti-resonant in the cavity, which yields minimum transmission.
+
+\SECTION{Length control}
+\SECTION{Input beam control (ASC)}
+\SECTION{Automatic gain control}
+\SECTION{Residual fluctuations}
+\SECTION{Optical characterization}
+\SUBSECTION{Mode scan}
+
+With the interferometer controlled using the heterodyne readout, the
+Output Mode Cleaner can be used as a mode analyzer cavity by varying
+the cavity length by at least a free-spectral-range. Because this
+range is more than the fast PZT actuator, this is accomplished by
+putting a large step into the thermal actuator. These mode scans can
+address questions such as:
+\begin{itemize}
+\item How well aligned is the OMC?
+\item How well mode-matched is the OMC?
+\item How much carrier power is at the output port compared to sideband
+power?
+\item How well balanced are the RF sidebands?
+\item How much junk light is present at the output port?
+\item Are there any nasty modes near the 00 mode that will sneak through?
+\item The horizontal/vertical mode separation
+\end{itemize}
+The mode scan cannot, by itself, distinguish carrier mode light from
+the arms vs carrier mode junk light.
+
+
+\SUBSECTION{Scattering}
+
+
+\SECTION{Interferometer lock acquisition}
+
+Initial lock acquisition of the Enhanced LIGO interferometers is the
+same as in Initial LIGO. Once the interferometer is locked using the
+heterodyne readout schemes, a DARM offset is introduced to allow carrier
+light to be transmitted to the output port. The Output Mode Cleaner
+is then locked to this carrier light. Once the OMC is locked to the
+carrier, control of DARM is transferred to the DC readout system.
+After this transition, a few other changes are made to engage the
+OMC alignment servoes and to put the readout electronics into low
+noise mode. At this point the interferometer has reached its operation
+configuration and astrophysical data-taking ({}``science mode'')
+begins.
+
+
+\SECTION{Beam diverter}
+
+When the interferometer loses lock, the stored power must be dumped
+somewhere. Typically, due to the presence of the power recycling mirror,
+the stored power comes out the output port. This high-power transient
+is sufficiently strong to burn the detection photodiodes. In order
+to prevent this, one of the steering mirrors is used as a fast shutter.
+It is able to zero the transmission through the OMC in approx 2 ms.

@@ -97,6 +97,136 @@ E_{AS} = E_0 \frac{1}{2} \left( e^{2 i L_{x} \nu /c} + e^{2 i L_{y} \nu / c} \ri
 
 \SECTION{Homodyne detection}
 
+DC readout creates a homodyne local oscillator by putting a small
+offset into the Michelson or DARM degree of freedom, moving the
+interferometer slightly off of the DARM fringe at DC.  In this
+``fringe'' view, the operation is very simple to understand: moving
+off of the null point introduces a non-zero first derivative.  The
+limitation of this view is that it is awkward to include
+frequency-dependent effects, such as the finite storage time of the
+arms.
+
+The true beauty of this technique is that the laser carrier that does
+leak out of the output port has been filtered by the combined action of
+the power recycling cavity and the arm cavities.  Although by moving
+off of the dark fringe we do subject ourselves to some first-order
+coupling of common-mode noises, this filtering action (combined with
+having a sufficiently quiet laser to start with) reduces these noises
+below the fundamental noise floor of the detector.  
+
+As long as the DARM offset is sufficiently small, the degradation of
+power recycling is negligible.
+
+\SUBSECTION{Calculation of the optical gain}
+
+To the extent that the introduction of DC offset simply creates a
+nonzero carrier field at the output port and does not otherwise affect
+the interferometer dynamics, the frequency response of the
+interferometer is the same in DC readout as in heterodyne readout,
+except for an overall scaling. This can be seen by considering the
+sideband picture (see Figure \checkme{figure}) and is borne out
+by the following derivation.
+
+
+
+\subsection{Calculation of the optical gain}
+
+To the extent that the introduction of DC offset simply creates a
+nonzero carrier field at the output port and does not otherwise affect
+the interferometer dynamics, the frequency response of the interferometer
+is the same in DC readout as in heterodyne readout, except for an
+overall scaling. This can be seen by considering the sideband picture
+(see Figure \ref{fig:sideband-picture}) and is borne out by the following
+derivation.%
+
+The optical gain for slow variations of the differential arm length
+can be found by calculating the power at the output port as a function
+of differential arm displacement and taking the derivative. The frequency
+response within the detection band is put in by hand. (Is there a
+nice way to do this in a frequency-dependent manner?)
+
+The amplitude transmission coefficient of a Michelson interferometer
+is:
+
+\begin{equation}
+t_{M}=\frac{1}{2}\left(r_{x}\left(\phi_{x}\right)-r_{y}\left(\phi_{y}\right)\right)\end{equation}
+where $r_{x}$ and $r_{y}$ are the amplitude reflectivity coefficients
+of the arms with detunings $\phi_{x}$ and $\phi_{y}$. 
+
+We adopt a change of variable $\phi_{-}=\phi_{x}-\phi_{y}$, $\phi_{+}=\frac{1}{2}\left(\phi_{x}+\phi_{y}\right)$.
+
+For an interferometer with perfectly reflective arms, we have\begin{equation}
+t_{M}=\frac{1}{2}\left(e^{i\phi_{x}}-e^{i\phi_{y}}\right)=\frac{1}{2}\left(e^{+i\phi/2}-e^{-i\phi/2}\right)=i\sin\frac{\phi_{-}}{2}\end{equation}
+The power at the output port is \begin{equation}
+P_{AS}=P_{BS}\sin^{2}\left(\frac{\phi_{-}}{2}\right)\end{equation}
+
+
+The differential phase is equal to the wavenumber $k=(2\pi)/\lambda$
+multiplied by the differential displacement $x$ multiplied by the
+phase gain of the cavity and an additional factor of two, since a
+simple displacement of an end mirror causes 2x path length change.
+For a cavity with amplitude reflectivity $r_{c}(\phi)$, this phase
+multiplier is:\[
+M(\phi)=\mathrm{Im\ }\frac{1}{r_{c}(\phi)}\frac{\partial}{\partial\phi}r_{c}(\phi)=\text{Im\ }\frac{r_{c}'}{r_{c}}\]
+
+
+giving:\[
+\phi_{-}=2kMx_{-}\]
+
+
+So the output power is\begin{equation}
+P_{AS}=P_{BS}\sin^{2}kMx_{-}\end{equation}
+ The optical gain at for slow differential motion is simply the derivative
+of $P_{AS}$. Here we assume that the change of $P_{BS}$ and the
+phase gain $M$ are negligible: \begin{equation}
+S_{DC}=\frac{dP_{AS}}{dx_{-}}=P_{BS}2kM\cos()\sin()\end{equation}
+For convenience we can write this in terms of $P_{AS}$:\begin{equation}
+S_{DC}=2\sqrt{P_{BS}P_{AS}}Mk\cos\left(kMx_{-}\right)\end{equation}
+The cosine term is very near unity and can be neglected. We write
+the power at the beamsplitter in terms of the carrier amplitude recycling
+gain $g_{CR}$ and the power at the input to the interferometer: $P_{BS}=g_{CR}^{2}P_{IN}$.
+So we get:\begin{equation}
+S_{DC}=2\sqrt{P_{IN}P_{AS}}g_{CR}(\Delta x)M(k\Delta x+\omega)\end{equation}
+Figure \ref{fig:freq-resp-optical-gain} compares this analytic expression
+to results obtained via a numerical modelling with Optickle. Agreement
+within the LIGO detection band is excellent.
+
+
+\subsubsection{Better expression for $P_{AS}$}
+
+We can substitute $\phi=\phi_{x}=-\phi_{y}$ since we're interested
+in differential motion of the arms, and substitute the Fabry-Perot
+reflection coefficient:
+
+\begin{equation}
+r_{c}(\phi)=\frac{r_{1}-r_{2}e^{i2\phi}}{1-r_{1}r_{2}e^{i2\phi}}\end{equation}
+where $\phi=kx$ is the one-way phase accumulated in the arm, $r_{1}$
+is the reflectivity of the ITM, and $r_{2}$ is the reflectivity of
+the ETM.
+
+Working out $t_{M}$ for differential arm displacement, we find:
+
+\begin{equation}
+t_{M}=ir_{2}g^{2}\frac{\sin2\phi}{1+F\sin^{2}\phi}\end{equation}
+where $g$ is the amplitude gain of the arm cavities and F is their
+coefficient of finesse. Taking the modulus-squared of this, and then
+multiplying by the incident power, we get the power at the output
+port:
+
+\begin{equation}
+P_{AS}(\phi)=P_{BS}(\phi)R_{2}\frac{g^{4}}{\left(1+F\sin^{2}\phi\right)^{2}}\sin\phi\cos\phi\end{equation}
+
+
+\emph{{[}steps omitted{]}}
+
+Taking the derivative with respect to $\delta x$, we find the optical
+gain, in Watts/meter, as:
+
+\begin{equation}
+S_{DC}\approx2\sqrt{P_{IN}P_{AS}}g_{cr}r_{cp}k\label{eq:dc-readout-optical-gain}\end{equation}
+
+
+
 \SECTION{Comparison}
 
 In addition to mitigating technical difficulties of RF detection,

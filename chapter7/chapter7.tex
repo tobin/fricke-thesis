@@ -1,5 +1,57 @@
-\CHAPTER{Conclusionns}
+\CHAPTER{Appendix}
 \label{chapter7}
 \doublespace
-\SECTION{TBD}
-\SUBSECTION{TBD}
+\SECTION{The difference between PM and AM}
+\label{sec:am-vs-pm}
+%
+Suppose we have a signal consisting of a carrier (at frequency $\omega$ and
+with unit amplitude) and two sidebands, of amplitudes $a$ (lower) and $b$
+(upper), separated from the carrier by a frequency $\Omega$:
+%
+\begin{equation}
+E(t) = \left(1 + a \exp(-i \Omega t) + b \exp(i \Omega t)\right)
+\exp(i \omega t)
+\end{equation}
+%
+To find the power in this signal, we take the
+modulus squared, $P = E^*E$ where * is the complex conjugate:
+%
+\begin{equation}
+\begin{split}
+P = & \left(1 + |a|^2 + |b|^2\right) \\
+    & + \left(a^* + b\right) \exp(-i \Omega t) + \left(a + b^*\right) \exp(i \Omega t) \\
+    & + \left(ab^*\right) \exp(-2 i \Omega t) + \left(a^*b\right) \exp(2 i \Omega t)
+\end{split}
+\end{equation}
+%
+The condition for the $1\Omega$ variation in the power to vanish is
+$a=-b*$, i.e. the real parts of the amplitudes of the sidebands must
+be opposite, and the imaginary parts must be equal. So we can extract
+the amplitude and phase modulation indicies:
+%
+\begin{equation}
+\begin{split}
+m_{AM} &= (a + b^*)\\
+m_{PM} &= (a - b^*)
+\end{split}
+\end{equation}
+
+What is the condition for the $2\Omega$ signal to vanish? With just
+two sidebands, it will always be present (though at second order in
+the sideband amplitude). In true phase modulation, the $2\Omega$
+signal is cancelled by the interaction of (the infinite number of)
+higher-order sidebands. As best I can tell, there is no simple
+arrangement of this cancellation other than via a magical property of
+the Bessel functions.
+
+\SECTION{Optical phase conventions}
+\SECTION{The optical spring}
+\SECTION{Control theory basics}
+
+Operation of the LIGO detectors relies crucially on feedback control
+systems.  In general, the response of the optical plant is very
+nonlinear; in order to produce a valid readout, the plant must be held
+very close to its operating point.
+
+\SECTION{References}
+\cite{Quetschke2007Complex}

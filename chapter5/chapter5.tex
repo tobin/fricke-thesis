@@ -1,5 +1,68 @@
-\CHAPTER{Single IFO S4 Search}
+\CHAPTER{DC readout - evaluation}
 \label{chapter5}
 \doublespace
-\SECTION{TBD}
-\SUBSECTION{TBD}
+\SECTION{Noise couplings - modeled and measured}
+
+The coupling of noises from the laser source and RF oscillators to the
+gravitational wave readout channel differ considerably in RF and DC
+readouts.  In addition, DC readout with an OMC is generally much more
+sensitive to beam motion (jitter).  These couplings are of primary
+interest in designing the optical readout of a gravitational wave
+detector.
+
+\SUBSECTION{Laser frequency noise}
+\SUBSECTION{Laser intensity noise}
+\SUBSECTION{Oscillator amplitude noise}
+%
+Reduced coupling of noises from the RF oscillator is one of the motivations
+for implementing DC readout. Despite not relying on the sidebands
+directly, behavior of the RF oscillator is still able to sneak into
+the DC readout. 
+
+One coupling path is conversion of Oscillator AM to laser intensity
+AM via the RF modulator. The sideband RIN per oscillator AM is given
+by \[
+2\Gamma_{0}\frac{J_{1}'(\Gamma_{0})}{J_{1}(\Gamma_{0})}=\Gamma_{0}\frac{J_{0}-J_{2}}{J_{1}}\]
+(see Livingston elog 2010-07-15, {}``sideband RIN per oscillator
+AM calculation,'' ).
+
+Measured coupling is shown in figure \ref{fig:oscillator-AM-coupling-measured}.
+
+
+\SUBSECTION{Oscillator phase noise}
+%
+Oscillator phase noise sneaks in via some dirt effect. Look at how
+much better it is in DC readout!
+
+Measured coupling of oscillator phase noise to the readout channel
+is shown in figure \ref{fig:oscillator-PM-coupling-measured}.
+
+\SUBSECTION{Beam jitter noise}
+%
+Beam jitter noise is perhaps the most important new noise source in
+DC readout and is tied to alignment of the OMC, which has proved to
+be one of the most subtle new issues. The output mode cleaner converts
+motion of the input beam into variations in transmission. The resulting
+variation in the transmitted light level is indistinguishable from
+DARM motion.
+
+\SUBSECTION{Electronics noise}
+%
+The DC readout system provides a quantum-limited readout at $\sim100$
+Hz. Careful engineering ensures that we are not limited by electronics
+thermal noise or $1/f$ flicker noise.
+
+\SUBSECTION{Optical spring}
+%
+Detuning the arm cavities from their resonance introduces a big optical
+spring. This doesn't seem to have any measurable effect.
+
+\SUBSECTION{Nonlinearity  of the DC error signal}
+%
+Although we operate sufficiently far from the dark fringe that the
+linear coupling of residual DARM motion to output power is dominant,
+sufficiently large motion could produce second-order coupling. Fortunately,
+this turns out to be totally negligible.
+
+\SECTION{Noise budget}
+\SECTION{Optical gain}
