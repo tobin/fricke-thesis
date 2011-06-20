@@ -1,0 +1,148 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_title "Jacobi-Anger identities"
+\pdf_author "Tobin Fricke"
+\pdf_subject "math"
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+Jacobi Anger identities
+\end_layout
+
+\begin_layout Standard
+Starting with the generating function
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://dlmf.nist.gov/10.12
+\backslash
+#E1
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ for the Bessel functions
+\begin_inset Formula 
+\[
+e^{\frac{1}{2}z\left(t-\frac{1}{t}\right)}=\sum_{n=-\infty}^{\infty}t^{n}J_{n}\left(z\right)
+\]
+
+\end_inset
+
+we can substitute 
+\begin_inset Formula $z=\Gamma$
+\end_inset
+
+ and 
+\begin_inset Formula $t=e^{i\Omega t}$
+\end_inset
+
+ (or 
+\begin_inset Formula $z=-i\Gamma$
+\end_inset
+
+ and 
+\begin_inset Formula $t=ie^{i\Omega t}$
+\end_inset
+
+) to get the cosine (or sine) form of the Jacobi-Anger identities:
+\begin_inset Formula 
+\begin{alignat*}{2}
+e^{i\Gamma\cos\Omega t} & =\sum_{n=0}^{\infty}i^{n} & J_{n}\left(\Gamma\right)e^{in\Omega t}\\
+e^{i\Gamma\sin\Omega t} & =\sum_{n=0}^{\infty} & J_{n}\left(\Gamma\right)e^{in\Omega t}
+\end{alignat*}
+
+\end_inset
+
+These expressions show how phase modulation with modulation depth 
+\begin_inset Formula $\Gamma$
+\end_inset
+
+ is represented by a superposition of all harmonics of the modulation frequency
+ 
+\begin_inset Formula $\Omega$
+\end_inset
+
+.
+\end_layout
+
+\end_body
+\end_document

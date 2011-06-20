@@ -1,0 +1,322 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+Laser and Oscillator noise couplings to DC readout
+\end_layout
+
+\begin_layout Standard
+The four main noises whose transfer functions are changed by DC readout
+ are laser amplitude and frequency noise, and RF oscillator amplitude and
+ phase noise.
+ The canonical reference describing the couplings of these noises is the
+ indispensible 
+\begin_inset Quotes eld
+\end_inset
+
+Frequency response of the LIGO interferometer
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "LigoFreqResponse97"
+
+\end_inset
+
+, incorporating materials from Jordan Camp's note 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Camp1996Frequency"
+
+\end_inset
+
+.
+ Rob Ward's paper 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Ward2008DC"
+
+\end_inset
+
+ and thesis 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "RobWardThesis"
+
+\end_inset
+
+ provide discussion of the DC readout case.
+\end_layout
+
+\begin_layout Section*
+Conventions
+\end_layout
+
+\begin_layout Standard
+The primary modulation is done by a cosine.
+ The sine quadrature is 
+\begin_inset Quotes eld
+\end_inset
+
+Q
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+A periodic table of the sidebands
+\end_layout
+
+\begin_layout Section*
+Oscillator AM
+\end_layout
+
+\begin_layout Standard
+Amplitude modulation of the signal from the RF oscillator produces a time-varyin
+g modulation depth in the EOM.
+ The amount of power that is transferred from the carrier into the RF sidebands
+ becomes time-varying.
+ 
+\end_layout
+
+\begin_layout Standard
+If the beam out of the EOM were directly incident on a photodiode, the photodiod
+e would, of course, see no power variations--the an increase in sideband
+ power is directly compensated by a decrease in carrier.
+ This is the nature of phase modulation.
+ 
+\end_layout
+
+\begin_layout Standard
+The interferometer passes the carrier and sideband field differently to
+ the output port.
+ The carrier sees the double-cavity pole, while the sideband sees a large
+ attenuation by the OMC.
+ This destroys the perfect cancellation and creates a coupling from oscillator
+ AM to power seen at the OMC photodiode.
+ 
+\end_layout
+
+\begin_layout Standard
+There is a cross-over around 100 Hz.
+ Below this, carrier AM dominates over sideband AM at the OMC PD; above,
+ the residual sideband field is the dominant effect.
+\end_layout
+
+\begin_layout Subsection*
+Relation to laser AM
+\end_layout
+
+\begin_layout Standard
+Given this mechanism, it would seem simple to relate the Oscillator AM coupling
+ to the Laser AM coupling.
+\end_layout
+
+\begin_layout Standard
+The power in the carrier is given by 
+\begin_inset Formula $J_{0}\left(\Gamma\right)^{2}$
+\end_inset
+
+.
+ Take the derivative to see how carrier power changes with respect to changes
+ in modulation depth: 
+\begin_inset Formula $\frac{\partial}{\partial\Gamma}J_{0}\left(\Gamma\right)^{2}=2J_{0}\left(\Gamma\right)\frac{\partial}{\partial\Gamma}J{}_{0}\left(\Gamma\right)=-2J_{0}J_{1}$
+\end_inset
+
+.
+ To convert this to 
+\begin_inset Quotes eld
+\end_inset
+
+relative intensity noise
+\begin_inset Quotes erd
+\end_inset
+
+, we have to divide by the DC power in the field, which is 
+\begin_inset Formula $J_{0}^{2}$
+\end_inset
+
+ for the carrier and 
+\begin_inset Formula $J_{1}^{2}$
+\end_inset
+
+ for each RF sideband.
+ Suppose our AM has the form 
+\begin_inset Formula $\Gamma=\Gamma_{0}\left(1+m\right)$
+\end_inset
+
+.
+ Then the 
+\begin_inset Quotes eld
+\end_inset
+
+RIN per AM
+\begin_inset Quotes erd
+\end_inset
+
+ is 
+\begin_inset Formula $-2J_{1}/J_{0}$
+\end_inset
+
+ for the carrier and 
+\begin_inset Formula $2J_{0}/J_{1}$
+\end_inset
+
+ for each sidebands.
+ Divide by two to get 
+\begin_inset Quotes eld
+\end_inset
+
+AM per Oscillator AM
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Oscillator AM transfers power back and forth between the carrier and the
+ sidebands.
+ Because the carrier and the sidebands don't have equal power to begin with,
+ the effective 
+\begin_inset Quotes eld
+\end_inset
+
+AM
+\begin_inset Quotes erd
+\end_inset
+
+ induced on the sideband and carrier are different.
+\end_layout
+
+\begin_layout Section*
+Phase modulation of phase modulation
+\end_layout
+
+\begin_layout Standard
+Phase modulation on the RF oscillator source leads to 
+\begin_inset Quotes eld
+\end_inset
+
+phase modulation of phase modulation.
+\begin_inset Quotes erd
+\end_inset
+
+ This has no effect on the laser carrier, i.e.
+ pm of pm does not produce any audio-frequency sidebands around the carrier.
+ Instead, it produces phase modulation around the RF sidebands.
+ Thus, direct coupling of oscillator PM must come via the RF sidebands.
+ Moreover, we need some asymmetry or dispersion that will turn the phase
+ modulation into amplitude modulation for it to be seen by the photodiode.
+\end_layout
+
+\begin_layout Standard
+This dispersion could come from the OMC or from reflection off of the arm
+ cavities.
+ Reflection off of the arm cavities is the dominant effect, since the arm's
+ FSR is so much smaller than the OMC's.
+\end_layout
+
+\begin_layout Standard
+BUT, assuming the RF sidebands are anti-resonant in the arms, any phase
+ dispersion on AF pm sidebands of the RF sidebands will be equal and opposite,
+ which does nothing.
+\end_layout
+
+\begin_layout Standard
+There is a zero at zero; looks like a pole at 0.7 MHz.
+\end_layout
+
+\begin_layout Standard
+The phase noise coupling is approximately the same for a PRMI, so the arms
+ are not involved.
+ Is it the Schnupp assy, then? Or the PRC?
+\end_layout
+
+\begin_layout Standard
+The PRC should be perfectly on resonance for the sideband.
+ So there should be no common-mode phase rotation for the sideband.
+ Unless it isn't.
+ How to check that the PRC resonates?
+\end_layout
+
+\begin_layout Standard
+Nope, it's still there even without the RM.
+ So that leaves the Schnupp assy.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "../tobin"
+options "plain"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
