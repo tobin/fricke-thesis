@@ -1,0 +1,202 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Subsection*
+Analyzing Op-Amp circuits
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/inverting-amp.pdf
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Inverting amplifier configuration
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The inverting amplifier configuration is shown in Figure 1.
+ The transfer function of this circuit is
+\begin_inset Formula 
+\[
+H\equiv\frac{v_{out}}{v_{in}}=-\frac{Z_{2}}{Z_{1}}
+\]
+
+\end_inset
+
+.
+ By choosing the (frequency-dependent) impedances 
+\begin_inset Formula $Z_{1}$
+\end_inset
+
+and 
+\begin_inset Formula $Z_{2}$
+\end_inset
+
+ we can determine the transfer function of the filter.
+ A simple configuration of two resistors and a capacitor, as shown, allows
+ one to implement two poles and two zeros.
+ The functionality is easy to understand intuitively: The path containing
+ a single resistor sets the impedance at DC.
+ The parallel path containing a resistor and a capacitor in series becomes
+ active at high frequency.
+\end_layout
+
+\begin_layout Standard
+The transfer function is:
+\begin_inset Formula 
+\[
+H(s)=\frac{R_{2B}}{R_{1B}}\frac{\omega_{p1}\omega_{p2}}{\omega_{z1}\omega_{z2}}\frac{\left(s-\omega_{z1}\right)\left(s-\omega_{z2}\right)}{\left(s-\omega_{p1}\right)\left(s-\omega_{p2}\right)}
+\]
+
+\end_inset
+
+where the poles and zeros are given by:
+\begin_inset Formula 
+\begin{align*}
+\omega_{z1} & =\left(\left(R_{1A}+R_{1B}\right)C_{1}\right)^{-1} & w_{z2} & =\left(R_{2A}C_{2}\right)^{-1}\\
+w_{p1} & =\left(R_{1A}C_{1}\right)^{-1} & \omega_{z2} & =\left(\left(R_{2A}+R_{2B}\right)C_{2}\right)^{-1}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For an ideal op-amp, 
+\begin_inset Formula $R_{bias}$
+\end_inset
+
+ would do nothing, since no current flows into the ideal op-amp's input.
+ A real op-amp has some bias current 
+\begin_inset Formula $i_{B}$
+\end_inset
+
+ going into the inputs.
+ The resistor 
+\begin_inset Formula $R_{bias}$
+\end_inset
+
+ is chosen to be equal to the DC source impedance (
+\begin_inset Formula $R_{1B}||R_{2B}$
+\end_inset
+
+) seen by the other input in order to turn this bias current into a common-mode
+ voltage.
+\end_layout
+
+\begin_layout Subsection*
+Noise
+\end_layout
+
+\begin_layout Standard
+In front-end electronics, we care not just about the transfer function of
+ the active filter, but also the noise performance.
+ The purpose of the first active filter in a readout chain is to boost the
+ signal above the noise level of all downstream electronics while itself
+ adding negligible noise.
+\end_layout
+
+\begin_layout Standard
+Although noise is added at many points within a sequence of amplifiers,
+ it is often most convenient to quote noise as 
+\begin_inset Quotes eld
+\end_inset
+
+input-referred noise
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\end_body
+\end_document
