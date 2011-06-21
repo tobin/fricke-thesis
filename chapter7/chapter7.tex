@@ -1,6 +1,6 @@
 \CHAPTER{Appendix}
 \label{chapter7}
-\doublespace
+\onehalfspace
 \SECTION{The difference between PM and AM}
 \label{sec:am-vs-pm}
 %
@@ -43,6 +43,18 @@ signal is cancelled by the interaction of (the infinite number of)
 higher-order sidebands. As best I can tell, there is no simple
 arrangement of this cancellation other than via a magical property of
 the Bessel functions.
+
+\SECTION{Only the signal field matters}
+
+Suppose we have two electric fields incident on a photodiode: the
+signal field $A_s$ and the local oscillator field $A_{LO}$.  The power
+seen by the photodiode is
+$$ \left| A_s + A_{LO} \right|^2 = 
+   |A_s|^2 + |A_{LO}|^2 + 2 \mathrm{ Re } {A_s}^*A_{LO}$$
+In the small-signal regime, $|A_s| << |A_{LO}|$.  The signal on the
+photodiode is proportional to $A_s A_{LO}$ while the shot noise is
+proportional to $\sqrt{|A_s|^2+|A_{LO}|^2}\approx A_{LO}$.  
+  The detected SNR is independent of the local oscillator strength.
 
 \SECTION{Optical phase conventions}
 \SECTION{The optical spring}
