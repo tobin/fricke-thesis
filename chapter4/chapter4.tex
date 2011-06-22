@@ -10,6 +10,13 @@ these degrees of freedom, so we can't simply turn them off.  Instead
 we introduce an \emph{output mode cleaner} at the output port in order
 to remove them there.
 
+\SECTION{General theory of mode cleaners}
+
+Critically-coupled resonant cavities act as optical filters, allowing
+the resonant mode to be transmitted while all orthogonal modes are
+highly attenuated.  These cavities can be not only
+frequency-selective, but also select a single spatial mode.
+
 \SECTION{Physical design of the cavity}
 
 The output mode cleaner (OMC) consists of a four-mirror bowtie cavity
@@ -36,11 +43,67 @@ spatial modes become negligible. To exclude the RF sidebands, the
 cavity length is chosen such that the RF sideband frequencies are
 anti-resonant in the cavity, which yields minimum transmission.
 
-\SECTION{Length control}
+\SECTION{Length control (LSC)}
+
+The cavity length is locked through dither locking.  The fast PZT
+actuator is dithered at 10 kHz and this signal is synchronously
+demodulated in the transmitted light.  The bandwidth of the servo is
+about 100 Hz.
+
 \SECTION{Input beam control (ASC)}
+
+Aligning the input beam to the OMC is a significant problem.  The OMC
+can only clean the mode insofar as we can tell what mode we want to
+keep.
+
+Several OMC alignment schemes were implemented and utilized.
+
+The simplest alignment control simply uses the two QPDs mounted on the
+OMC breadboard.  This has the advantage of being very robust and not
+requiring that the OMC already be locked, and so it is ideal for
+initial alignment of the OMC before locking the cavity.  The QPD
+alignment, however, has no notion of the ideal DC pointing of the beam
+and is sensitive not just to the carrier, but also the RF sidebands.
+
+A second alignment scheme is to dither the two steering mirrors each
+in pitch and yaw, demodulate the OMC transmitted signal at these
+frequencies, and feed back to the mirrors.  This produces an alignment
+system which maximizes power transmitted through the OMC.  Because
+this is a quadratic point, linear beam jitter coupling is nulled.
+
+Junk light, however, will lead the dither alignment astray.
+
+RF Wavefront sensing.  We did not really consider this.
+
+AF IM WFS.  The same OMC length dither which is used to lock the cavity
+length produces an audio-frequency sidebands of the OMC mode in
+reflection.  The beats between this light and the light rejected from
+the OMC on a pair of photodiodes can be used to produce alignment
+error signals.
+
+Beacon dither.  
+
+SNR dither.  Nicolas's scheme.
+
 \SECTION{Automatic gain control}
+
+The optical gain of the interferometer naturally varies slowly as
+alignment drifts and the thermal state of the mirrors changes.  The
+over-all loop gain must be kept within a few dB of its nominal value
+in order for the loop to remain stable.
+
+Before S6 this was done by periodically running a script which
+measured the loop gain and adjusted a digital gain to bring it to
+nominal.
+
+The flexibility of the realtime code generator allowed us to implement
+an automatic gain control servo directly in the OMC front-end.  This
+was a nice convenience. 
+
 \SECTION{Residual fluctuations}
+
 \SECTION{Optical characterization}
+
 \SUBSECTION{Mode scan}
 
 With the interferometer controlled using the heterodyne readout, the
