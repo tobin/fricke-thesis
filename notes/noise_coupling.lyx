@@ -107,6 +107,15 @@ key "Camp1996Frequency"
 \end_inset
 
 .
+ Kentaro's paper 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Somiya2006Frequency"
+
+\end_inset
+
+ includes comprehensive discussion of laser noise couplings in DC and RF
+ readouts both for power- and dual-recycled interferometers.
  Rob Ward's paper 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -121,7 +130,7 @@ key "RobWardThesis"
 
 \end_inset
 
- provide discussion of the DC readout case.
+ also provide discussion.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -1332,6 +1341,95 @@ The RF sidebands have a phase of
  
 \end_layout
 
+\begin_layout Standard
+\begin_inset Graphics
+	filename figures/AMPMphasors.pdf
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Audio-frequency signals (those relevant in DC readout) are made when secondary,
+ audio-frequency sidebands beat against their parent RF sideband.
+ 
+\end_layout
+
+\begin_layout Section*
+Laser AM
+\end_layout
+
+\begin_layout Standard
+The laser AM noise coupling is the easiest to understand.
+ In DC readout, we introduce a static DARM offset to allow some laser carrier
+ to be transmitted to the `dark' port.
+ Any amplitude modulation of the carrier below the coupled-cavity pole will
+ be transmitted too.
+ The coupled-cavity pole kicks in near 1 Hz, attenuating the transmission
+ of laser AM above that frequency by 
+\begin_inset Formula $\sim1/f$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Laser AM also produces amplitude modulation of the RF sidebands.
+ These are not filtered by the coupled-cavity pole, and the transmission
+ of the sidebands to the dark port is high.
+ AM on the RF sidebands gets all the way to the output port, where they
+ are stopped by the Output Mode Cleaner.
+\end_layout
+
+\begin_layout Standard
+The transmission of SB AM to the AS port is essentially flat, while the
+ transmission of carrier AM falls at 
+\begin_inset Formula $1/f$
+\end_inset
+
+ above the cc pole.
+ At some point, these curves will cross.
+ Here the contributions have an opportunity to destructively interfere,
+ creating a notch.
+\end_layout
+
+\begin_layout Itemize
+What is the PRC cavity pole seen by the sidebands?
+\end_layout
+
+\begin_layout Itemize
+What about higher order modes?
+\end_layout
+
+\begin_layout Standard
+AM noise also creates technical radiation pressure noise.
+ We ignore that here, but consider it below, as a displacement noise.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename figures/srcam_contributions.pdf
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Laser frequency noise
+\end_layout
+
+\begin_layout Standard
+Frequency noise (or phase noise, which is the same thing), is not seen by
+ a photodiode, which sees only power.
+ For frequency noise to couple to DC readout, it must be converted to AM
+ by the interferometer--there must be some dispersion.
+\end_layout
+
 \begin_layout Section*
 Oscillator AM
 \end_layout
@@ -1455,7 +1553,11 @@ AM
 \end_layout
 
 \begin_layout Section*
-Phase modulation of phase modulation
+Oscillator 
+\begin_inset Formula $\Phi$
+\end_inset
+
+M: Phase modulation of phase modulation
 \end_layout
 
 \begin_layout Standard
@@ -1508,6 +1610,10 @@ The PRC should be perfectly on resonance for the sideband.
 \begin_layout Standard
 Nope, it's still there even without the RM.
  So that leaves the Schnupp assy.
+\end_layout
+
+\begin_layout Section*
+Other noise couplings that are modified by the static DARM offset
 \end_layout
 
 \begin_layout Section*
@@ -1572,7 +1678,7 @@ With arm cavities held on resonance (as in RF readout), the displacements
 \begin_inset Formula $\text{AM\to\text{radiation pressure\to\text{DARM}}}$
 \end_inset
 
-coupling path.
+ coupling path.
 \end_layout
 
 \begin_layout Standard
