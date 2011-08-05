@@ -1,6 +1,33 @@
 \CHAPTER{Appendix}
 \label{chapter7}
 \onehalfspace
+\SECTION{Cavity stuff}
+A pole-zero map of the cavity amplitude reflectivity transfer function is shown in Fig.\~ref{fig:cavpzmap}.
+
+\begin{figure}[b]
+\includegraphics{figures/cavitypzmap.pdf}
+\caption{\label{fig:cavpzmap} Pole-zero map of the cavity amplitude
+  reflectivity.
+  Poles are designated with $\times$ and zeros with
+  $\circ$; $r_1$ is the amplitude reflectivity of the input coupler,
+  and $r_2$ is the amplitude reflectivity of the output coupler.
+  Losses can be lumped into $r_2$.  Notice that the free spectral
+  range (angular frequency $\omega_{\textrm{fsr}}$) sets the scale of
+  the entire diagram, and the function is periodic in $i\omega$: there
+  is an infinite line of poles and an infinite line of zeros.  Two
+  limiting cases are worth considering: (1) A critically-coupled
+  cavity has $r_1=r_2$, which brings the line of zeros onto the
+  imaginary axis. On resonance, $i\omega$ travels through these zeros
+  and the cavity reflectivity vanishes.  This models the desired
+  behavior of mode cleaner cavities. (2) A maximally over-coupled
+  cavity has $r_2=1$, in which case the line of poles and line of
+  zeros are equally spaced from the imaginary axis.  This models the
+  LIGO arm cavities.  
+  The cavity's amplitude transmission has the same poles as the
+  reflectivity but no zeros.
+}
+\end{figure}
+
 \SECTION{The difference between PM and AM}
 \label{sec:am-vs-pm}
 %
@@ -74,7 +101,27 @@ quantum mechanics.
 Operation of the LIGO detectors relies crucially on feedback control
 systems.  In general, the response of the optical plant is very
 nonlinear; in order to produce a valid readout, the plant must be held
-very close to its operating point.
+very close to its operating point.  The use of feedback control allows
+us to attain linear response from an otherwise very nonlinear machine.
+
+Here is a basic diagram of a feedback system:
+
+Algebraically, one can derive a relationship giving the transfer function
+of the closed-loop system in the Laplace domain:
+
+\SECTION{The Antenna Pattern}
+\SECTION{Shot Noise}
+The root-mean-square of a Poisson process with current $I$ and quantum
+$q$ measured over a bandwidth of $\Delta f$ is 
+$$\sigma = \sqrt{2 q I \Delta f}$$ 
+Here $I$ could be the electric current in Amps (=Coulombs/second) and
+$q$ the charge of an electron.  For light incident on a photodiode,
+the photon shot noise can be considered as an energy current, with
+$I\leftarrow P$ being the DC power, and $q\leftarrow h\nu$ being the
+energy per photon.
+
+The amplitude spectral density of this process is white, with
+amplitude $\sqrt{2qI}$ in units of [I] per square root of Hz.
 
 \SECTION{References}
 \cite{Quetschke2007Complex}
