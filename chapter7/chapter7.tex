@@ -110,6 +110,28 @@ Algebraically, one can derive a relationship giving the transfer function
 of the closed-loop system in the Laplace domain:
 
 \SECTION{The Antenna Pattern}
+
+Gravitational waves come in two polarizations; for waves impinging
+from a given direction, the second polarization represents an ellipse
+of oscillating transverse strains rotated 45 degrees relative to the
+first.  
+
+Fundamentally, a Michelson interferometer is sensitive to two
+polarizations of gravitational waves.  However, as seen in FIXME, we
+elect to throw away sensitivity to one polarization in return for
+common-mode noise immunity in the second polarization.
+
+Although the waves come in two polarizations, one should note that
+there is no globally consistent notion of \emph{the} $h_+$ and
+$h_\times$ polarizations.  This is forbidden by the Hairy Ball
+theorem.  
+
+For a single detector, we can identify $h_+$ as the polarization
+that shows up in DARM, and $h_\times$ as the polarization that would
+show up in CARM.  Immediately (again due to the hairy ball theorem) we
+see that there must be nulls in the sensitivity pattern of a single
+interferometer.
+
 \SECTION{Shot Noise}
 The root-mean-square of a Poisson process with current $I$ and quantum
 $q$ measured over a bandwidth of $\Delta f$ is 
@@ -122,6 +144,13 @@ energy per photon.
 
 The amplitude spectral density of this process is white, with
 amplitude $\sqrt{2qI}$ in units of [I] per square root of Hz.
+
+So, for power $P$, the shot noise amplitude spectral density is 
+\begin{equation}
+\text{shot noise ASD} = \sqrt{2 h\nu P}\quad [\text{Watts}/\sqrt{\text{Hz}]}
+\label{eq:shotnoise-asd}
+\end{equation}
+for a relative intensity noise of $\sqrt{2 h\nu/P}$.
 
 \SECTION{References}
 \cite{Quetschke2007Complex}

@@ -6,13 +6,15 @@
 \newcommand{\cftchapfont}{\normalfont}
 \newcommand{\cftchappagefont}{\normalfont}
 \newcommand{\cftdot}{\normalfont.}
-\usepackage{subfig}
+\usepackage{textcomp}
+\usepackage{verbatim}
+
+\newcommand{\micron}{\textmu{}m} 
+\newcommand{\Finesse}{$\mathcal{F}$}
 
 \include{lsu_formats}
 \newcommand\checkme[1]{\textcolor{red}{\textbf{#1}}}
 \begin{document}
 \pagestyle{myheadings}
-\include{chapter5/chapter5}
-\bibliographystyle{plainurl}
-\bibliography{tobin}
+\include{chapter4/chapter4}
 \end{document}

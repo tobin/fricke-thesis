@@ -1,6 +1,6 @@
-\CHAPTER{DC Readout - Theory of Operation}
+\CHAPTER{DC Readout}
 \label{chapter3}
-\doublespace
+%\doublespace
 \SECTION{Introduction}
 
 The basic problem is to detect optical phase.  Detectors are generally
@@ -119,16 +119,6 @@ power recycling is negligible.
 
 \SUBSECTION{Calculation of the optical gain}
 
-To the extent that the introduction of DC offset simply creates a
-nonzero carrier field at the output port and does not otherwise affect
-the interferometer dynamics, the frequency response of the
-interferometer is the same in DC readout as in heterodyne readout,
-except for an overall scaling. This can be seen by considering the
-sideband picture (see Figure \checkme{figure}) and is borne out
-by the following derivation.
-
-
-
 \subsection{Calculation of the optical gain}
 
 To the extent that the introduction of DC offset simply creates a
@@ -223,9 +213,47 @@ Taking the derivative with respect to $\delta x$, we find the optical
 gain, in Watts/meter, as:
 
 \begin{equation}
-S_{DC}\approx2\sqrt{P_{IN}P_{AS}}g_{cr}r_{cp}k\label{eq:dc-readout-optical-gain}\end{equation}
+S_{DC}\approx2\sqrt{P_{IN}P_{AS}}g_{cr}r_{cp}k\label{eq:dc-readout-optical-gain}
+\end{equation}
 
 
+\SECTION{Offse}
+
+Optical gain and shot noise level both scale like the square root of
+the power at the detection port (for small offsets).  Thus the
+detection SNR is relatively insensitive to the particular offest.
+
+
+\SECTION{Heterodyne shot noise}
+
+The shot noise limit in homodyne detection is easy to calculate.  The
+power incident on the photodiode is approximately constant.  The noise
+is spectrally white at a level given by the formula.
+
+The shot noise level in a heterodyne readout is a more subtle matter,
+as illustrated by the number of publications on the topic:
+\cite{Niebauer1991Nonstationary, Lyons2000Shot, Mio1992Observation, Meers1991Modulation}.
+
+\begin{figure}
+\includegraphics[width=\columnwidth]{figures/cyclostationary-timeseries.pdf}
+\includegraphics[width=\columnwidth]{figures/cyclostationary-timeseries2.pdf}
+\caption{\label{fig:cyclostationary-shot-noise} \textbf{(a)} Model of
+  shot noise in the presence of sinusoidal power modulation, as occurs
+  in optical heterodyne detection.  The photodiode sees a power
+  modulation at $2f_{mod}$ (white) due to the beat between the upper
+  and lower modulation sidebands at $f_{carrier} \pm f_{mod}$.
+  The gray levels represent the $1\sigma,\ 2\sigma,
+  \cdots, 5\sigma$ ranges for a Poisson distribution.  The blue dots
+  are a sample realization of this noise. \textbf{(b)} Subtracting the
+  mean from (a) leaves only the noise; its bursty nature is obvious.
+  Shown in black and red are the I and Q demodulation waveforms,
+  respectively.  It is clear that the in-phase demodulation (I)
+  samples regions of the time series with higher variance than the
+  quadrature phase (Q).  This leads to a higher variance (shot noise
+  level) in the I signal and a lower one in the Q signal relative to
+  what one would expect from a na\"ive assumption based on the average
+  power considered over a whole period of the waveform.}
+\end{figure}
 
 \SECTION{Comparison}
 
@@ -240,7 +268,7 @@ an extra dose of shot noise.  A more sophisticated analysis ascribes
 this noise to the two heterodyne demodulation quadratures acting as
 non-commuting quantum operators\cite{Buonanno2003Quantum}.
 
-\begin{figure}[t]
+\begin{figure}
 \centerline{\includegraphics[width=\columnwidth]{figures/residualDARM.pdf}}
 \caption{\label{fig:residual-DARM}Residual DARM}
 \end{figure}

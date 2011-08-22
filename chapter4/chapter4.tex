@@ -1,14 +1,16 @@
 \CHAPTER{Output Mode Cleaner}
 \label{chapter4}
-\doublespace
-\SECTION{Introuction}
-The interferometer has many degrees of freedom (both longitudinal and
-angular).  We elect only to use DC readout for the DARM degree of
-freedom and continue to use heterodyne readout for (most of) the other
-degrees of freedom.  Therefore we still require the sidebands to sense
-these degrees of freedom, so we can't simply turn them off.  Instead
-we introduce an \emph{output mode cleaner} at the output port in order
-to remove them there.
+%\doublespace
+\SECTION{Introduction}
+Any fields present on the detection photodiode other than the signal
+field and the local oscillator will lead to additional shot noise but
+no additional signal: a degredation of SNR.  The additional fields can
+be either distinct in frequency (such as the RF sidebands when using
+DC readout) or in spatial mode. 
+
+To remove these spurious fields, we employ an optical filter cavity at
+the interferometer's output. This is the \emph{output mode cleaner}
+(OMC).
 
 \SECTION{General theory of mode cleaners}
 
@@ -16,6 +18,43 @@ Critically-coupled resonant cavities act as optical filters, allowing
 the resonant mode to be transmitted while all orthogonal modes are
 highly attenuated.  These cavities can be not only
 frequency-selective, but also select a single spatial mode.
+
+\begin{figure}[t]
+\centerline{\includegraphics[width=\columnwidth]{figures/as_spot.png}}
+\caption{\label{fig:as-spot}Image of the beam spot at the output port taken using a CCD
+  camera. Although this image is saturated in the central portion, it
+  shows the messy junk light surrounding the central gaussian beam.
+  This includes contributions from both the carrier and the 25 MHz
+  sidebands.}
+\end{figure}
+
+\SECTION{Eigenmodes}
+
+A phase-front that returns to its original state after making a
+round-trip through the optical cavity will interfere constructively
+with itself, resonating in the cavity.  The set of such amplitude
+distributions which are stable in the cavity and do not mix with one
+another are collectively the \emph{eigenmodes} of the cavity.  The
+eigenmodes of a cavity made with spherical mirrors are parametrized by
+either the Hermite-Gauss or Laguerre Gauss modes.  These are the
+energy eigenfunctions of the quantum harmonic oscillator.
+
+The Hermite-Gauss modes are given by:
+
+\begin{equation}
+E_{nm}(x,y) = E_0 
+\sqrt{ 
+  \frac{2}{\pi w n! m! 2^n 2^m}
+}
+\exp \left\{-\frac{x^2+y^2}{w^2}\right\}
+H_m\left( \frac{\sqrt{2}x}{w} \right)
+H_n\left( \frac{\sqrt{2}y}{w} \right)
+\end{equation}
+
+\begin{figure}
+\includegraphics[width=\columnwidth]{figures/hgmodes.pdf}
+\caption{Hermite-Gauss modes. Positive amplitude is indicated in red and negative amplitude in blue.}
+\end{figure}
 
 \SECTION{Physical design of the cavity}
 
@@ -34,14 +73,86 @@ onto two high-quantum-efficiency InGaAs photodiodes. The two photodiode
 signals allow the formation of sum and difference signals, the difference
 providing a diagnostic `nullstream'.
 
-\SECTION{Requirements}
+%% Cavity properties [Table]
+% These values are all from Sam's document T080144:
+% https://dcc.ligo.org/cgi-bin/private/DocDB/ShowDocument?docid=5416
+\begin{table}
+\centering
+\begin{tabular}{l l l l l}
+\hline 
+parameter          & design      & H1          & L1            & units   \\                    
+\hline
+perimeter ($p$)    & 1.042       & 1.077       & 1.016         & m       \\
+beam waist ($w$)   & 477         & 496         & 463           & \micron \\
+Finesse (\Finesse) & 400         & 360         & 360           &         \\
+FSR                & 287.7       & 278.3       & 295.2         & MHz     \\  % fsr = c/p
+cavity pole        & 360         & 390         & 410           & kHz     \\  % f_c = fsr/(2F)
+g-factor           & 0.739       & 0.725       & 0.722         &         \\
+HOM freq shift     & 69.4        & 67.2        & 71.8          & MHz     \\
+transmission       & 1           & $\geq$0.95  & $\geq$0.90    &         \\
+\hline
+\end{tabular}
+\caption{Designed and measured properties of the Hanford and Livingston output mode cleaners.}
+\label{tab:OMCproperties}
+\end{table}
 
+\SECTION{Requirements}
 
 The OMC is required to sufficiently filter the light present at the
 output port such that contributions from the RF sidebands and higher-order
 spatial modes become negligible. To exclude the RF sidebands, the
 cavity length is chosen such that the RF sideband frequencies are
 anti-resonant in the cavity, which yields minimum transmission.
+
+\SECTION{Choosing the OMC finesse}
+
+All things being equal, we want the best possible filtering capability
+from the OMC.  
+
+The transmission of a lossless critically-coupled cavity is given by
+\begin{equation}
+T = \frac{1}{1 + \frac{4}{\pi^2}\mathcal{F}^2\sin^2\phi}
+\end{equation}
+where $\mathcal{F}$ is the cavity finesse and $\phi$ is the cavity's
+detuning from resonance.  Since the cavity will be locked to resonance
+for the laser carrier, to find the attenuation of other modes, we set
+$\phi$ to the detuning of these modes.
+
+The maximum attenuation of a mode is given by $(4/\pi^2)\mathcal{F^2}$.
+
+After filtering by the OMC, we want the shot noise contributions from
+unneeded modes to be negligible, and the contribution from noises on
+these fields to also be negligible.  Almost any cavity would be
+sufficient to reduce excess shot noise contributions.  The need for a
+high finesse OMC comes from the need to eliminate audio frequency
+noises carried on the RF sidebands and higher-order spatial modes.
+
+\begin{comment}
+ h = 6.626068e-34;
+ c = 299792458;
+ lambda = 1064e-9;
+ nu = c / lambda;
+ P = 100e-3;
+ shotnoise_RIN = sqrt(2*h*nu/P)
+\end{comment}
+
+Consider the contribution of intensity noise on the RF sidebands.  Any
+residual intensity noise on the RF sidebands will contribute directly
+to the DC readout signal.  Assume that the carrier has about 100 mW
+power and that the RF sidebands have about the same amount of power,
+and assume that the laser intensity noise is $10^{-7}$ RIN.  The shot
+noise RIN on 100 mW is (per equation~\ref{eq:shotnoise-asd})
+$\sqrt{2h\nu/P} \approx 2\times10^{-9}$.  Thus we need to attenuate
+the RF sidebands by at least a factor of 100.
+
+The RF sidebands will not be exactly anti-resonant in the cavity but
+will actually lie at about $0.1 fsr$ away from the carrier.  Thus the
+attenuation is diminished by approximately $\sin^{-2} (0.1 \pi)
+\approx 10$.  So we need attenuation of 1000.  But we really want at
+least a factor of 10 margin, so we'll want maximum attenuation of
+10000. This means we need a finesse of at least 160.
+
+
 
 \SECTION{Length control (LSC)}
 
@@ -149,6 +260,19 @@ configuration and astrophysical data-taking ({}``science mode'')
 begins.
 
 
+\begin{figure}
+\includegraphics[width=\columnwidth]{figures/L1LSC.png}
+\caption{The control screen for the Length Sensing and Control
+  subsystem at Livingston.  The control screen depicts signal flow in
+  a generally left-to-right manner.  Photodiodes at the anti-symmetric
+  (AS), pick-off (PO), and reflected (REFL) ports are indicated on the
+  extreme left.  These signals are combined via an input matrix to
+  form the DARM, MICH, PRC, and CARM degrees of freedom.  These
+  signals are processed through an array of filter banks defining the
+  control filters.  Finally, the signals pass through an output matrix
+  and are then directed to the individual optics.}
+\end{figure}
+
 \SECTION{Beam diverter}
 
 When the interferometer loses lock, the stored power must be dumped
@@ -157,3 +281,13 @@ the stored power comes out the output port. This high-power transient
 is sufficiently strong to burn the detection photodiodes. In order
 to prevent this, one of the steering mirrors is used as a fast shutter.
 It is able to zero the transmission through the OMC in approx 2 ms.
+
+\SECTION{The Front End}
+
+\begin{quote}
+\emph{Be exhorted:} you really can predict the noise floor accurately--to
+accept a noisy front end is one of the stupidest and most expensive
+mistakes you can make in designing sensitive optical
+instruments. Measure it, and make sure you can explain every half
+decibel. -- Phil Hobbs, \emph{Building Electro-Optical Systems} \cite{Hobbs2009Building}
+\end{quote}
