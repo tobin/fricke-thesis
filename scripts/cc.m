@@ -17,8 +17,8 @@ L_rc  = 9;
 fsr_arm = c/(2*L_arm);
 fsr_rc  = c/(2*L_rc);
 
-phi_arm = omega / fsr_arm;
-phi_rc  = omega / fsr_rc;
+phi_arm = (1/2) * omega / fsr_arm;   % one-way phase
+phi_rc  = (1/2) * omega / fsr_rc;
 
 r_arm = (r1 - r2 *     exp(2i*phi_arm)) ./ (1 - r1 * r2    * exp(2i*phi_arm));
 
@@ -34,12 +34,7 @@ finesse_rc = -pi / log(r3*r3);
 
 fcc_rana = fc_arm / finesse_rc 
 
-fcc =    -fsr_arm * log((r1 - r3)/(1-r1*r3)*r2) / (2*pi);  % Malik 4.82
-
-fcc = fcc / 2  % ?
-
-[B,A] = invfreqs(r_rc, omega, 1, 2);
-[z,p,k] = tf2zpk(B,A);
+fcc =    -fsr_arm * log((r1 - r3)/(1-r1*r3)*r2) / (2*pi)   % Malik 4.82
 
 s = 1i*omega;
 %subplot(2,1,1);
