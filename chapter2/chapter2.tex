@@ -10,7 +10,7 @@ The purpose of the LIGO detectors is to measure the infinitessimal
 oscillations of spacetime imparted by far-away astrophysical
 processes.  Through clever design and careful engineering, these
 machines are capable of resolving these tiny perturbations from the
-much louder sea of noise on the surface of the Earth.  \the\columnwidth
+much louder sea of noise on the surface of the Earth.
 
 As we have seen, a passing gravitational wave modulates the optical
 path length of light passing through it, as marked by inertial test
@@ -20,6 +20,20 @@ tell the difference between phase perturbations due to the
 gravitational wave and phase perturbations inflicted by our light
 source.  We need to eliminate sources of phase variations that would
 be louder than the effect we wish to measure.  
+
+\begin{itemize}
+\item We approximate inertial test masses by hanging the optics as
+  pendula.  These act as inertial masses above the pendulum resonance.
+\item We build a Michelson interferometer for its common-mode noise
+  rejection.  This is nicely compatible with the tensor action of
+  gravitational waves.
+\item To enhance the effect from a passing gravitational wave, we make
+  the arms as long as possible.  To further enhance the response, we
+  have the light travel this path many times, by using resonant cavities.
+\item To increase the optical response to a gravitational wave, we
+  increase the light power in the interferometer by using power
+  recycling.
+\end{itemize}
 
 \SECTION{A single cavity}
 
@@ -46,6 +60,7 @@ t_c := & \frac{E_t}{E_0} =
 r_c := & \frac{E_r}{E_0} = 
          \frac{r_1 - \left({r_1}^2 + {t_1}^2\right)r_2 \exp{i2\phi}}
               {1 - r_1 r_2 \exp i2\phi}
+\label{eq:cavity-reflectivity}
 \end{align}
 %
 where $\phi$ is the phase accumulated by the field as it travels from
@@ -60,9 +75,26 @@ zeros):
 r_c(s) = \mathop{\Huge{\Pi}}\limits_{n=-\infty}^{\infty} \frac {s-z_n} {s-p_n}
 \end{equation}
 
-For a gravitational wave detector, we might choose $r_2=1$.
+For the arms of a gravitational wave detector, we set $r_2$ as close
+to unity as possible.  We are interested in the phase of the reflected
+field. 
+ 
+Recall that the phase at frequency $\omega$ imparted by a pole at
+frequency $\omega_0$ is $\tan^{-1}\left(-\omega/\omega_0\right)$; a
+zero at the same frequency subtracts this same phase.  For a maximally
+over-coupled cavity (i.e. with $r_2 = 1$), the cavity pole and cavity
+zero are equal and opposite, so contribute equal phase ($\tan^{-1}$ is odd).
 
-We are interested in the phase of the reflected field.  This is easy to find.
+Changing the one-way phase of the arm by $\phi$ results in a phase 
+change of
+\begin{equation}
+\phi_r = 2 \tan^{-1} \left( 2 f_{fsr} \frac{\phi}{\omega_0} \right)
+\end{equation}
+where $\omega_0$ is the cavity pole.  Taking the derivative, we find the \emph{phase gain}:
+\begin{equation}
+  \frac{d \phi_r}{d \phi} = 2 \left[1 + \left(\frac{2 f_{fsr} \phi}{\omega_0}\right)^2 \right]^{-1} \frac{2 f_{fsr}}{\omega_0}
+\end{equation}
+The phase gain on resonance is $2 f_{fsr} / \omega_0 \approx 140$. This phase gain decreases as we detune the cavity further from resonance, but it is not seriously diminished until the cavity detuning approaches the cavity pole.
 
 \SECTION{A Michelson}
 \begin{figure}
@@ -134,6 +166,31 @@ the rest of the interferometer makes this cavity critically coupled;
 ideally all of the laser carrier is coupled into the interferometer
 and very little is reflected.  Most of the light stays in the
 interferometer until it is lost to scattering or absorption.
+
+\SECTION{The coupled cavity pole}
+
+We can consider the Fabry-Perot Michelson, or, really, any assembly of
+mirrors as a single compound mirror with a complex-valued,
+frequency-dependent reflectivity.  In particular, we can model the
+power-recycled Fabry-Perot Michelson as a three mirror cavity.
+
+The dynamics of three-mirror cavities are treated comprehensively in
+chapter 4 of Malik's thesis~\cite{Rakhmanov2000Dynamics}.
+
+To find the transfer function of the coupled cavity, we can simply
+substitute the cavity reflectivity function $r_c(\phi)$ given in
+equation~\ref{eq:cavity-reflectivity} into itself.  
+
+To find the cavity pole of the combined cavity, a good approximation
+results if we first compute the reflectivity of the shorter cavity on
+resonance, and substitute this into the expression for the cavity pole.
+We get:
+
+\begin{equation}
+f_{cc} \approx \frac{1}{2\pi} f_{fsr} \log \left(\frac{r_3 - r_1}{1 - r_1 r_3} r_3\right)
+\end{equation}
+
+
 
 \SECTION{Interferometer Sensing and Control}
 
