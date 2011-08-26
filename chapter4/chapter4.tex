@@ -10,7 +10,7 @@ DC readout) or in spatial mode.
 
 To remove these spurious fields, we employ an optical filter cavity at
 the interferometer's output. This is the \emph{output mode cleaner}
-(OMC).
+(OMC).  
 
 \SECTION{General theory of mode cleaners}
 
@@ -19,8 +19,73 @@ the resonant mode to be transmitted while all orthogonal modes are
 highly attenuated.  These cavities can be not only
 frequency-selective, but also select a single spatial mode.
 
+Gaussian beams and higher-order modes accumulate phase slightly faster
+than plane waves.  The extra phase (beyond the $\phi=kz$ expected for
+a plane wave) is the Guoy phase.  It accumulates most rapidly as a
+beam goes through a focus (waist). A Gaussian beam accumulates
+$180^o$ as one moves from $z=-\infty$ to $z=+\infty$ through the
+waist; a higher-order Hermite Gauss mode accumulates more.  The Guoy
+phase shift as a function of beam axis coordinate is given by
+%
+\begin{equation}
+\phi_g(z) = \left(1 + n + m\right) \tan^{-1} \left( \frac{z - z_0}{z_R} \right)
+\label{eq:guoy-phase}
+\end{equation}
+%
+where $z$ is the coordinate along the beam axis, $z_0$ is the location
+of the waist, $z_R$ is the Rayleigh range of the beam, and $n$ and $m$
+are the mode indices of the Hermite Gauss mode.
+
+A two-mirror symmetric cavity of length $L$ with mirrors of radius of
+curvature $R$ has a $g$-factor of $g = 1 - L/R$; from this we can
+calculate the Rayleigh range of the mode in the cavity:
+
+\begin{equation}
+z_R = \frac{L}{2}\sqrt{\frac{1 + g}{1 - g}}
+\end{equation}
+
+\begin{align}
+\phi^{cav}_n & =  \left(n+1/2\right)\left(\tan^{-1} (L/2)/z_R - \tan^{-1} (-L/2)/z_R\right) \\
+            & = \left(n+1/2\right)\cos^{-1} g
+\end{align}
+
+The higher order modes have the same wavefront curvature as the lowest
+order gaussian mode.  They differ only in experiencing the extra Guoy
+phase.  The result is that higher order modes resonate at a slightly
+different (shorter) cavity length than the fundamental mode of the
+same frequency.
+
+For resonance to occur, the total phase shift from one mirror to the
+other, including both the plane wave propagation phase
+$kL=\pi\nu/\nu_0$ and the Guoy phase shift, must be a multiple of
+$\pi$ (so that the roundtrip phase is a multiple of $2\pi$):
+%
+\begin{equation}
+kL - 2\left(m+n+1\right)\cos^{-1} g = \pi(q+1),
+\quad q\in\mathbb{Z}
+\end{equation}
+
+For the special case of $L = 2 z_R$, the increase in the Guoy phase as
+$m$ or $n$ is increased is exactly $\pi$ radians.  For this special
+case--a \emph{confocal cavity}--all of the spatial modes at a given
+frequency resonate simultaneously.  For a mode cleaner cavity, we want
+precisely the opposite; we will carefully choose the cavity geometry
+to separate higher-order spatial modes from the fundamental mode of
+the laser carrier.
+
+We can express the additional Guoy phase shift of higher order modes
+as an equivalent frequency shift that would allow them to resonate at
+the same cavity length as the carrier.  The effective frequency shift is
+%
+\begin{equation}
+\Delta\nu = \frac{2}{\pi} \nu_0 \cos^{-1} g
+\label{eq:hom-frequency-shift}
+\end{equation}
+%
+where $\nu_0$ is the free spectral range.
+
 \begin{figure}[t]
-\centerline{\includegraphics[width=\columnwidth]{figures/as_spot.png}}
+\centerline{\includegraphics[width=0.5\columnwidth]{figures/as_spot.png}}
 \caption{\label{fig:as-spot}Image of the beam spot at the output port taken using a CCD
   camera. Although this image is saturated in the central portion, it
   shows the messy junk light surrounding the central gaussian beam.
@@ -36,8 +101,9 @@ with itself, resonating in the cavity.  The set of such amplitude
 distributions which are stable in the cavity and do not mix with one
 another are collectively the \emph{eigenmodes} of the cavity.  The
 eigenmodes of a cavity made with spherical mirrors are parametrized by
-either the Hermite-Gauss or Laguerre Gauss modes.  These are the
-energy eigenfunctions of the quantum harmonic oscillator.
+either the Hermite-Gauss or Laguerre Gauss modes.  (The same functions
+also describe the energy eigenfunctions of the quantum harmonic
+oscillator.)
 
 The Hermite-Gauss modes are given by:
 
@@ -55,6 +121,7 @@ H_n\left( \frac{\sqrt{2}y}{w} \right)
 \includegraphics[width=\columnwidth]{figures/hgmodes.pdf}
 \caption{Hermite-Gauss modes. Positive amplitude is indicated in red and negative amplitude in blue.}
 \end{figure}
+
 
 \SECTION{Physical design of the cavity}
 
@@ -118,7 +185,7 @@ detuning from resonance.  Since the cavity will be locked to resonance
 for the laser carrier, to find the attenuation of other modes, we set
 $\phi$ to the detuning of these modes.
 
-The maximum attenuation of a mode is given by $(4/\pi^2)\mathcal{F^2}$.
+The maximum attenuation of a mode is given by $(4/\pi^2)\mathcal{F}^2$.
 
 After filtering by the OMC, we want the shot noise contributions from
 unneeded modes to be negligible, and the contribution from noises on
@@ -156,15 +223,67 @@ least a factor of 10 margin, so we'll want maximum attenuation of
 
 \SECTION{Length control (LSC)}
 
-The cavity length is locked through dither locking.  The fast PZT
-actuator is dithered at 10 kHz and this signal is synchronously
-demodulated in the transmitted light.  The bandwidth of the servo is
-about 100 Hz.
+The cavity length must be controlled to maintain the resonance of the
+laser carrier.  To sense the mismatch between the laser carrier and
+the cavity length, we modulate the cavity length by a small
+displacement at high (audio) frequency and monitor the transmitted light
+intensity for a signal at the same frequency.  Cavity transmission is
+a quadratic function of the frequency/length mismatch; if the
+modulation is perfectly symmetric around the point of peak
+transmission, there will be no linear coupling.  Effectively, we sense
+the first derivative of the transmission with respect to cavity
+length.  
+
+\begin{figure}[t]
+\centerline{\includegraphics[width=0.5\columnwidth]{figures/ditherdoodle.pdf}
+\hfill
+\includegraphics[width=0.5\columnwidth]{figures/ditherdoodle.pdf}}
+\caption{\label{fig:dither-doodle}Cartoon view of dither locking}
+\end{figure}
+
+\subsubsection{Modeling the dither locking}
+
+Suppose $f(x)$ is a function we wish to maximize; in this case, $f$
+gives the power transmitted through the OMC as a function of length
+offset.  We let $x = x_0 + A \cos\omega t$, where $A$ is the amplitude
+of the dither and $\omega$ is its frequency.  We can expand $f$ as a
+power series around $x_0$: 
+\begin{align}
+f(x) &\approx f(x_0) + f'(x_0)\left(x - x_0\right) + f''(x_0)\left(x-x_0\right)^2 + \cdots \\
+     &\approx f(x_0) + f'(x_0)A\cos\omega t        + f''(x_0)A\cos^2\omega t + \cdots
+\end{align}
+%
+The amplitude of the $\cos\omega t$ term is proportional to the first
+derivative of $f$ at the current operating point.  (There are also
+contributions from higher derivatives, but we assume the lower
+derivatives dominate.)
+
+\subsubsection{Noise limits}
+
+Suppose the OMC has coefficient of finesse $F$ and $P$ watts on the
+photodiode.  The dither amplitude is $A$ and dither frequency is
+$\omega$.  What is the sensing noise limit?
+
+The background is Gaussian white shot noise, equally distributed into
+the two demodulation quadratures.  So the noise floor of the
+demodulated signal is $(1/\sqrt{2})\sqrt{2 h \nu P}$.
+
+The transmission of the OMC goes like $T(x) = 1/\left(1 + Fx^2\right)$
+which has first derivative $T'(x) = 2 F x / \left(1 + F x^2\right)^2 =
+- 2 F x + O(x^2)$.  Thus the optical gain is $-2 F A$ watts per meter.
+
+The fast PZT actuator is dithered at 10 kHz and this signal is
+synchronously demodulated in the transmitted light.  The bandwidth of
+the servo is about 100 Hz.
 
 \SECTION{Input beam control (ASC)}
 
+In addition to controlling the cavity length to keep the carrier
+resonant, we must control the pointing of the beam incident on the
+OMC.
+
 Aligning the input beam to the OMC is a significant problem.  The OMC
-can only clean the mode insofar as we can tell what mode we want to
+can only clean the mode insofar as we can identify the mode we want to
 keep.
 
 Several OMC alignment schemes were implemented and utilized.
@@ -248,7 +367,7 @@ interferometer, and interfere with the other fields there.
 \SECTION{Interferometer lock acquisition}
 
 Initial lock acquisition of the Enhanced LIGO interferometers is the
-same as in Initial LIGO. Once the interferometer is locked using the
+same as in Initial LIGO\cite{Evans2002Lock}. Once the interferometer is locked using the
 heterodyne readout schemes, a DARM offset is introduced to allow carrier
 light to be transmitted to the output port. The Output Mode Cleaner
 is then locked to this carrier light. Once the OMC is locked to the
