@@ -1,6 +1,21 @@
-\CHAPTER{DC readout - evaluation}
+\CHAPTER{DC readout performance and noise couplings}
 \label{chapter5}
 %\doublespace
+
+The coupling of noises from the laser source and RF oscillators to the
+gravitational wave readout channel differ considerably in RF and DC
+readouts.  In addition, DC readout with an OMC is generally much more
+sensitive to beam motion (jitter).  These couplings are of primary
+interest in designing the optical readout of a gravitational wave
+detector.
+
+Furthermore we should verify that the touted sensitivity improvements
+of DC readout are realized.
+
+In this chapter, I will sketch the technique for calculating expected
+noise couplings analytically and numerically, and I will present
+measurements of these noise coupling measurements made on the two
+Enhanced LIGO interferometers.
 
 \SECTION{Sensitivity}
 
@@ -12,27 +27,83 @@ answer is a resounding yes.  Given the input power and other known
 parameters of the interferometer, the noise floor is accurately
 modeled.
 
-\SUBSECTION{Shot noise limited sensitivity}
+The shot-noise-limited sensitivity of a power-recycled interferometer
+is given by a small number of parameters:
 
-The predicted curve is produced by dividing the shot noise level
-(spectral density $\sqrt{h (c/\lambda) P_AS}$ by the optical gain
+\begin{itemize}
+\item the length of the arm cavities ($L = 3995$ m)\\
+or, equivalently, the free spectral range ($\nu_0 = c/(2L)$)
+\item the input power to the interferometer ($P_{IN}$)
+\item the power recycling gain ($g_{cr}^2$)
+\item the arm cavity finesse ($\mathcal{F} = 220$)
+\item the input and output efficiency ($\epsilon$)
+\item the laser wavelength ($\lambda = 1064\times10^{-9}$ m)
+\end{itemize}
+where we lump all losses due to absorption, scattering, or imperfect
+mode-matching, and the photodiode quantum efficiency, into the efficiency
+$\epsilon$.
 
-$$\sqrt{2 P_{IN} P_{AS}} g_{cr} r_{cp}
-\left(\frac{2\pi}{\lambda}\right) \left| \frac{1}{1 +
-  i\frac{f}{f_c}}\right|$$ while accounting for the various
-inefficiencies in the system (listed in table XX).
+The predicted curve is produced by dividing the amplitude spectral density of
+the shot noise on the detection photodiode ($A_{shot})$ by the optical gain of
+the interferometer ($S_{DC}$). The optical gain is (as derived earlier) simply
+the derivative of the power at the output port with respect to changes in
+differential arm length, evaluated at the operating DARM offset.
+%
+\begin{align}
+A_{shot}(f) &= \sqrt{2 h (c/\lambda) P_{AS}} \\
+S_{DC}(f) &= 2 \sqrt{\epsilon P_{IN} P_{AS}}\ g_{cr}^2\ r_{cp}\ \left(1 + i f/f_c\right)^{-1}
+\end{align}
+%
+where $f_c = \nu_0 / (2\mathcal{F})$ is the cavity pole, $h$ is Planck's
+constant, and $c$ is the speed of light.  This expression for $S_{DC}$ is in the single-pole
+approximation, which is valid for frequencies much lower than the arm cavities'
+free spectral range ($f\ll \nu_0)$, and for frequencies above the test mass
+suspension's pendulum resonance (which may be increased due to radiation
+pressue).
 
-The Hanford detector was able to operate at a much higher input power,
-and has a better power recycling gain than the Livingston detector.
-However, mode-matching of the OMC to the arm cavity mode was only
-$\sim70\%$, limiting the performance.
+Combining these two expressions gives the noise floor due to shot noise,
+calibrated in meters; dividing by $L$ gives the noise floor in strain:
+%
+\begin{align}
+x_{shot}(f) & = \sqrt{\frac{h c}{2\ \lambda\ \epsilon\ P_{IN}}}\ \frac{1}{g_{cr}^2\ r_{cp}}
+\ \left|1 + i \frac{f}{f_c}\right| \\
+h_{shot}(f) &= (1/L)\ x_{shot}(f)
+\label{eq:expected-shot-noise}
+\end{align}
+%
+The shot noise seen at the photodiode has a white spectrum; the entire shape of
+the shot noise when calibrated as a displacement or strain comes from the
+calibration (i.e. the optical gain) which in turn is shaped only by the cavity
+pole.  Interferometers using signal recycling will have a more complicated
+response function.
+
+\subsection{Measured and expected sensitivity}
+The measured detector noise floors, calibrated as a displacement amplitude
+spectral density ($m/\sqrt{\text{Hz}}$), along with the expected performance
+based on equation~\ref{eq:expected-shot-noise} and measured detector parameters,
+are depicted in figure~\ref{fig:shot-noise-limited-sensitivity}.  The measured
+spectra were taken near the time of the detectors' highest inspiral ranges in
+summer 2010.  The parameters used in the model are given in
+table~\ref{tab:ifo-properties}.  
+
+The comparison reveals that the achieved performance is as expected.  However,
+some comments are in order: The H1 detector was able to operate with about twice
+as much input power as the L1 detector, and had a power recycling gain
+approximately 40\% better than L1's; from this we would expect considerably
+better shot noise level at H1.  However, the H1 detector also experienced
+anomalously low transmission of the arm cavity mode through the output mode
+cleaner which contributed to a power efficiency ($\epsilon$) much lower than
+desired.  The poor OMC transmission was due to some combination of poor
+mode-matching, and high cavity losses which appeared near the end of the science
+run.  These anomalous losses are not understood and are, as of the time of
+writing, under active investigation.  
 
 \begin{figure}
 \subfloat[Hanford][Hanford]{
-  \includegraphics[width=0.48\columnwidth]{chapter5/figures/H1-962268780.pdf}
+  \includegraphics[width=0.45\columnwidth]{chapter5/figures/H1-962268780.pdf}
 }
 \subfloat[Livingston][Livingston]{
-  \includegraphics[width=0.48\columnwidth]{chapter5/figures/L1-965543700.pdf}
+  \includegraphics[width=0.45\columnwidth]{chapter5/figures/L1-965543700.pdf}
 }
 \caption{\label{fig:shot-noise-limited-sensitivity}Shot noise limited sensitivity of the Livingston and Hanford detectors.}
 \end{figure}
@@ -61,18 +132,55 @@ PD quantum efficiency       & 0.98           &             \\
 \hline
 \end{tabular}
 \caption{Designed and measured properties of the Hanford and Livingston interferometers.}
-\label{tab:IFOproperties}
+\label{tab:ifo-properties}
 \end{table}
 
 
 \SECTION{Laser and Oscillator noise couplings}
 
-The coupling of noises from the laser source and RF oscillators to the
-gravitational wave readout channel differ considerably in RF and DC
-readouts.  In addition, DC readout with an OMC is generally much more
-sensitive to beam motion (jitter).  These couplings are of primary
-interest in designing the optical readout of a gravitational wave
-detector.
+
+For the purpose of computing the frequency response of the interferometer and
+the expected laser and oscillator noise couplings, it is convenient to regard
+the electric field at any given location in the interferometer as a comb of
+discrete spectral lines.  Generically, we refer to any spectral line as a
+`sideband'.  The sidebands are divided into radio-frequency (RF) sidebands and
+audio-frequency (AF) sidebands. The distinction is not actually the frequency of
+the lines but their magnitude; RF sidebands have some finite amplitude, while
+audio-frequency sidebands are infinitessimal.  When the electric field is
+incident upon a photodiode, the photodiode will see a beat signal between every
+pair of sidebands.  In our formalism we make the approximation that the product
+of any two audio-frequency sidebands is zero.  Audio-frequency sidebands are
+used simply as test fields to evaluate linear transfer functions.  They produce
+signals at PDs by beating against the finite-amplitude RF sidebands.
+
+As detailed in the preceeding chapter, the state of the LIGO interferometer is
+determined by sampling the electric field at various ports using photodiodes.
+Pairs of RF sidebands at several distinct frequencies are introduced at the
+input to the interferometer; interference between these various fields allows
+the state of the interferometer to be determined.  Around the laser carrier,
+there are two pairs of RF sidebands, each produced through phase modulation: the
+\emph{resonant sideband} at $\sim$25 MHz, which enters the interferometer and
+emerges at the output port; and the \emph{non-resonant sideband} at $\sim$61
+MHz, which is mostly reflected by the power recycling mirror.
+
+For an intuitive understanding of the noise couplings to DC readout, we will
+consider only the resonant sideband, an ignore the residual non-resonant
+sideband.  In numerical simulations, both are included.  The arrangement of RF
+sidebands is depicted in figure~\ref{fig:af-sidebands}.
+
+Sidebands are typically created in pairs around a modulated the parent field;
+and, when incident on a photodiode, they are most conveniently treated in pairs
+too.  Instead of considering the amplitudes of upper and lower sidebands
+separately, we can instead use a basis where we quantify the sidebands as some
+amount of amplitude modulation (AM) and some amount of phase modulation.
+
+
+\begin{figure}[]
+\includegraphics[width=\columnwidth]{figures/af_sidebands.pdf}
+\label{fig:af-sidebands}
+\caption{Schematic diagram of the laser carrier and RF sidebands, and their
+  associated audio-frequency sidebands.}
+\end{figure}
 
 \SUBSECTION{Laser noises}
 
@@ -101,10 +209,12 @@ detector.
 
 \SUBSECTION{Oscillator noises}
 %
-Reduced coupling of noises from the RF oscillator is one of the motivations
-for implementing DC readout. Despite not relying on the sidebands
-directly, behavior of the RF oscillator is still able to sneak into
-the DC readout. 
+Reduced coupling of noises from the RF oscillator is one of the
+motivations for implementing DC readout. Despite not relying on the RF
+sidebands directly, behavior of the RF oscillator is still able to
+enter into the DC readout signal through control loop cross-couplings,
+leakage of RF sideband power through the OMC, and amplitude modulation
+of the laser carrier induced via AM on the RF oscillator.
 
 \begin{figure*}
 % Oscillator AM
@@ -132,10 +242,11 @@ the DC readout.
 
 One coupling path is conversion of Oscillator AM to laser intensity
 AM via the RF modulator. The sideband RIN per oscillator AM is given
-by \[
-2\Gamma_{0}\frac{J_{1}'(\Gamma_{0})}{J_{1}(\Gamma_{0})}=\Gamma_{0}\frac{J_{0}-J_{2}}{J_{1}}\]
-(see Livingston elog 2010-07-15, {}``sideband RIN per oscillator
-AM calculation,'' ).
+by 
+\begin{equation}
+2\Gamma_{0}\frac{J_{1}'(\Gamma_{0})}{J_{1}(\Gamma_{0})}=\Gamma_{0}\frac{J_{0}-J_{2}}{J_{1}}
+\end{equation}
+%(see Livingston elog 2010-07-15, {}``sideband RIN per oscillator AM calculation,'' ).
 
 Measured coupling is shown in figure \ref{fig:oscillator-AM-coupling-measured}.
 
@@ -158,6 +269,8 @@ motion of the input beam into variations in transmission. The resulting
 variation in the transmitted light level is indistinguishable from
 DARM motion.
 
+
+
 \SECTION{Electronics noise}
 %
 The DC readout system provides a quantum-limited readout at $\sim100$
@@ -168,6 +281,29 @@ thermal noise or $1/f$ flicker noise.
 %
 Detuning the arm cavities from their resonance introduces a big optical
 spring. This doesn't seem to have any measurable effect.
+
+\begin{equation}
+k_{opt}\approx\frac{64\mathcal{F}^{2}g^{2}P_{IN}}{c\lambda^{2}}\left(\delta x\right) 
+\end{equation}
+
+\SECTION{Technical radiation pressure noise}
+
+Amplitude noise on the input laser field produces modulation radiation
+pressure on the optics, in particular in the arm cavities.  If the arm
+cavities were identical, this coupling would be entirely common mode.
+However, once the arms are differentially detuned, the radiation
+pressure noise attains a differential component.
+
+We can treat the radiation pressure noise as a displacement noise.
+
+Suppose the arm cavities are initially identical, with all 
+suspensions having resonant frequency $\omega_0$.  The optical spring
+shifts this resonance to $\omega_0 \pm \delta\omega$.
+
+The intensity noise to displacement transfer function is
+\begin{equation}
+  P_{IN} {g_{rc}}^2 {g_{cav}}^2 \frac{1}{s_{cc}} 
+\end{equation}
 
 \SECTION{Nonlinearity  of the DC error signal}
 %
