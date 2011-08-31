@@ -174,7 +174,6 @@ too.  Instead of considering the amplitudes of upper and lower sidebands
 separately, we can instead use a basis where we quantify the sidebands as some
 amount of amplitude modulation (AM) and some amount of phase modulation.
 
-
 \begin{figure}[]
 \includegraphics[width=\columnwidth]{figures/af_sidebands.pdf}
 \label{fig:af-sidebands}
@@ -184,10 +183,55 @@ amount of amplitude modulation (AM) and some amount of phase modulation.
 
 \SUBSECTION{Laser noises}
 
+The Michelson-based design of laser interferometer gravitational wave detectors
+is attractive due to its high common mode noise rejection.  A Michelson
+interferometer with identical arms would completely isolate the output port from
+common-mode noises (i.e. noise introduced at the input port).  Any asymmetries
+between the arms will introduce couplings of noises at the input port to the
+output port.  Some such asymmetries are unintentional, such as the difference in
+finesse or reflectivity of the arms; intentional DARM and MICH asymmetries are
+introduced in order to allow the local oscillator (RF or carrier) to read the
+output port.
+
+\subsubsection{Laser intensity noise}
+
+Coupling of laser intensity noise to the output port is one of the easiest
+couplings to understand.  The dominant mechanims (in the absence of radiation
+pressure effects) are:
+%
+\begin{itemize}
+\item Below the coupled-cavity pole ($f_{cc}\approx 1$ Hz), carrier power
+  fluctuations are transmitted directly to the output port, attenuated only by
+  the ratio $P_{AS}/P_{IN}$.  Above the coupled cavity pole, transmission of AM
+  on the carrier is attenuated by $1/f$.
+\item The resonant RF sidebands and any modulation they carry reaches the output
+  port attenuated only slightly, since the Michelson is arranged (via the
+  Schnupp asymmetry) to conduct the RF sidebands to the output port.  Because
+  the RF sidebands are not resonant in the arms, noise on the RF sidebands is
+  not attenuated by the coupled-cavity pole; instead they see a much lower
+  finesse power recycling cavity and transmission is essentially flat in the
+  band of interest.  Once reaching the output port, however, the RF sidebands
+  are strongly attenuated by the OMC.
+\end{itemize}
+At low frequency, the carrier contribution dominates; at higher frequency the
+residual RF sidebands dominate.
+
+Laser intensity noise creates a varying radiation pressure force in the arm
+cavities, which in turn causes displacement noise.  To distinguish this effect
+from the inherent \emph{quantum} radiation pressure
+noise\cite{Caves1980QuantumMechanical}, we refer to this as \emph{technical}
+radiation pressure noise.  For identical arm cavities, the effect would be
+entirely common mode.  Differences in arm cavity finesse and (especially) the
+intentional differential detuning of the arm cavities produce a (potentially
+large\cite{ChaibiOptomechanical}) coupling of technical radiation pressure noise
+to DARM.
+
+\subsubsection{Laser frequency noise}
+
 \begin{figure*}[]
 % Laser AM
-\subfloat[Laser amplitude noise coupling (L1)][Laser amplitude noise coupling (L1)]{
-  \includegraphics[]{figures/laserAM-L1.pdf}
+\subfloat[Laser amplitude noise coupling (L1)][Laser amplitude noise coupling
+  (L1)]{ \includegraphics[]{figures/laserAM-L1.pdf}
   \label{fig:laser-AM}
 }
 \subfloat[Laser amplitude noise coupling (H1)][Laser amplitude noise coupling (H1)]{
@@ -240,22 +284,34 @@ of the laser carrier induced via AM on the RF oscillator.
 \caption{\label{noise-couplings}Oscillator and laser noise couplings to the gravitational wave readout channel, calibrated in equivalent displacement (meters).  Solid lines are the results of a frequency-domain, plane-wave model; dotted lines are linear transfer function measurements.  Color represents the DARM offset, with warm colors for positive offsets and cool colors for negative offsets.  Measurements and models for RF readout are in green.}
 \end{figure*}
 
-One coupling path is conversion of Oscillator AM to laser intensity
-AM via the RF modulator. The sideband RIN per oscillator AM is given
-by 
+\subsubsection{Oscillator AM}
+
+Amplitude fluctuations of the RF oscillator produce a fluctuating modulation
+depth; when the RF oscillator signal fluctuates upwards, more power is diverted
+from the carrier into the RF sidebands.  The result is somewhat similar to laser
+AM, except that carrier AM and RF AM are anti-correlated instead of correlated.
+
+Unlike laser AM, oscillator AM does not produce equal relative intensity noise
+(RIN) variations of the carrier and sidebands; this is simply because oscillator
+AM results in equal and opposite changes of power in the carrier and sideband
+rather than linear scalings of both.  The sideband RIN per oscillator AM is
+given by
 \begin{equation}
-2\Gamma_{0}\frac{J_{1}'(\Gamma_{0})}{J_{1}(\Gamma_{0})}=\Gamma_{0}\frac{J_{0}-J_{2}}{J_{1}}
+\frac{\text{SB RIN}}{\text{OSC AM}}=2\Gamma_{0}\frac{J_{1}'(\Gamma_{0})}{J_{1}(\Gamma_{0})}=\Gamma_{0}\frac{J_{0}-J_{2}}{J_{1}}
 \end{equation}
 %(see Livingston elog 2010-07-15, {}``sideband RIN per oscillator AM calculation,'' ).
+where $\Gamma_0$ is the nominal modulation depth, $J_n(z)$ is the $n$th Bessel
+function, and $J_n'(z)=(\partial/\partial z)J_n(z)$ is the derivative of the Bessel function.
 
 Measured coupling is shown in figure \ref{fig:oscillator-AM-coupling-measured}.
 
+\subsubsection{Oscillator phase noise}
 
-
-\SUBSECTION{Oscillator phase noise}
-%
-Oscillator phase noise sneaks in via some dirt effect. Look at how
-much better it is in DC readout!
+Phase noise on the RF oscillator produces phase noise on the resulting RF
+sidebands, but does not affect the laser carrier.  Its direct coupling to DC
+readout is therefore quite small; to couple to DC readout, the phase noise
+sidebands must be converted to AM through Michelson asymmetries, and then
+survive attentuation by the OMC.
 
 Measured coupling of oscillator phase noise to the readout channel
 is shown in figure \ref{fig:oscillator-PM-coupling-measured}.
