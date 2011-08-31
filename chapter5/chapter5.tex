@@ -329,14 +329,35 @@ DARM motion.
 
 \SECTION{Electronics noise}
 %
-The DC readout system provides a quantum-limited readout at $\sim100$
-Hz. Careful engineering ensures that we are not limited by electronics
-thermal noise or $1/f$ flicker noise.
+An optical power of 100 mW on the readout photodiodes will produce a
+photocurrent of $i = q_e\lambda/(hc)\cdot 100\text{ mW } = 86\text{ mA}$, which
+in turn has a shot noise floor of $\sqrt{2 q_e i}\approx 500 \text{
+  pA}/\sqrt{\text{Hz}}$.  Across $100\ \Omega$ transimpedance, this becomes $50
+\text{ nV}/\sqrt{\text{Hz}}$.  The noise floor of the readout electronics must
+be below this level and not be polluted by any baseband $1/f$ flicker noise.
+
+The main strategy is to aggressively amplify the electronic signal as close to
+the photodiodes as possible, so that noises added downstream become
+insignificant.  To eliminate even triboelectric effects, the first preamp stages
+are placed in-vacuum.  The in-vacuum preamps consist of active filter stages
+with two zeros at 8 Hz and two poles at 80 Hz, for a factor of 100 amplification
+at 100 Hz.  This is followed by two more pole-zero pairs in satellite amplifiers
+on the floor outside the vacuum chamber, for a total gain of 10,000 before the
+long run to the racks.
+
+\begin{comment}
+h = 6.626068e-34;
+c = 299792458;
+lambda = 1064e-9;
+qe = 1.60217646e-19;
+I = qe * lambda / (h * c)
+sqrt(2* qe * I)
+\end{comment}
 
 \SECTION{Optical spring}
 %
 Detuning the arm cavities from their resonance introduces a big optical
-spring. This doesn't seem to have any measurable effect.
+spring.
 
 \begin{equation}
 k_{opt}\approx\frac{64\mathcal{F}^{2}g^{2}P_{IN}}{c\lambda^{2}}\left(\delta x\right) 
@@ -379,7 +400,9 @@ analog system.  However, it is important to remember that the
 underlying system operates on quantized values in discrete time in
 order to avoid being caught by surprise by ``digital noises''.
 
-1. Finite, non-deterministic execution time
-2. ADC bit noise
-3. Floating point dynamic range
-4. Synchronized communications
+\begin{itemize}
+\item Finite, non-deterministic execution time
+\item ADC bit noise
+\item Floating point dynamic range
+\item Synchronized communications
+\end{itemize}
