@@ -2,10 +2,31 @@
 \label{chapter7}
 \onehalfspace
 \SECTION{Cavity stuff}
-A pole-zero map of the cavity amplitude reflectivity transfer function is shown in Fig.\~ref{fig:cavpzmap}.
+A pole-zero map of the cavity amplitude reflectivity transfer function is shown in Fig.~\ref{fig:cavpzmap}.
 
-\begin{figure}[b]
-\includegraphics{figures/cavitypzmap.pdf}
+\begin{comment}
+ c = 299792458;
+ L = 3995;
+ fsr = c / (2 * L);
+ fc = 85;
+ lambda = 1064e-9;
+ lambda * fc / fsr
+\end{comment}
+
+Using $\delta \nu / \nu = \delta L / L$ we can express the cavity pole
+as a length:
+\[
+\delta L = \lambda \left(\delta nu / \nu_0\right) = (1064 nm)  (85 Hz / 37 kHz) \approx 2.4 nm 
+\]
+
+\begin{equation}
+\mathcal{F} = \frac{1}{2} \frac{\nu_0}{f_c}
+\end{equation}
+
+where $\mathcal{F}$ is the finesse, $F$ is the coefficient of finesse, $\nu_0$ is the free spectral range, $f_c$ is the cavity pole, $L$ is the cavity length.
+
+\begin{figure}
+\centering\includegraphics{figures/cavitypzmap.pdf}
 \caption{\label{fig:cavpzmap} Pole-zero map of the cavity amplitude
   reflectivity.
   Poles are designated with $\times$ and zeros with
@@ -86,6 +107,28 @@ proportional to $\sqrt{|A_s|^2+|A_{LO}|^2}\approx A_{LO}$.
 \SECTION{Optical phase conventions}
 \SECTION{The optical spring}
 \SECTION{Gaussian beams}
+
+The general picture of Gaussian beams is shown here:
+
+It is convenient to introduce teh complex beam parameter $q$.  In terms of $q$:
+\begin{equation}
+\frac{1}{q(z)} = \frac{1}{R(z)} - i \frac{\lambda}{\pi w^2(z)}
+\end{equation}
+where $R(z)$ is the radius of curvature of the phase fronts at a
+position $z$ along the optical axis, and $w(z)$ is the spot size at
+that location.  We can also write:
+$q(z) = i z_R + (z - z_0)$.
+
+For a mode to resonate in an optical cavity, the spherical surface of
+the mirrors must match the spherical phase front of the beam at the
+location of the mirror.
+
+Suppose mirror 1 has curvature $R_1$ and coordinate $z_1$, and
+similarly for mirror 2.  We would like to solve for the waist location
+and Rayleigh range.
+
+References: Kogelnik and Li \cite{Kogelnik1966Laser}, Siegman \cite{Siegman1990Lasers}.
+
 \SECTION{Laser modes}
 
 The eigenmodes of an optical cavity formed from spherical lenses are
