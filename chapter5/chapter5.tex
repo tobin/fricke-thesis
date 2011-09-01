@@ -99,12 +99,8 @@ run.  These anomalous losses are not understood and are, as of the time of
 writing, under active investigation.  
 
 \begin{figure}
-\subfloat[Hanford][Hanford]{
-  \includegraphics[width=0.45\columnwidth]{chapter5/figures/H1-962268780.pdf}
-}
-\subfloat[Livingston][Livingston]{
-  \includegraphics[width=0.45\columnwidth]{chapter5/figures/L1-965543700.pdf}
-}
+\includegraphics[width=\columnwidth]{figures/L1-965543700-thesis.pdf}
+\includegraphics[width=\columnwidth]{figures/H1-962268780-thesis.pdf}
 \caption{\label{fig:shot-noise-limited-sensitivity}Shot noise limited sensitivity of the Livingston and Hanford detectors.}
 \end{figure}
 
@@ -136,8 +132,7 @@ PD quantum efficiency       & 0.98           &             \\
 \end{table}
 
 
-\SECTION{Laser and Oscillator noise couplings}
-
+\SECTION{Laser and oscillator noise coupling mechanisms}
 
 For the purpose of computing the frequency response of the interferometer and
 the expected laser and oscillator noise couplings, it is convenient to regard
@@ -213,8 +208,20 @@ pressure effects) are:
   band of interest.  Once reaching the output port, however, the RF sidebands
   are strongly attenuated by the OMC.
 \end{itemize}
-At low frequency, the carrier contribution dominates; at higher frequency the
-residual RF sidebands dominate.
+At low frequency, the carrier contribution dominates; at higher
+frequency the residual RF sidebands dominate.  This is depicted in
+figure~\ref{fig:laser-AM-contributions}.
+
+\begin{figure}
+\includegraphics[width=\columnwidth]{notes/figures/srcam_contributions.pdf}
+\caption{\label{fig:laser-AM-contributions}Direct contributions of
+  amplitude modulation of the laser carrier and RF sidebands to DC
+  readout, in the absence of radiation pressure.  The carrier
+  contribution is shaped by the coupled cavity pole.  The RF
+  contribution is due to residual off-resonance transmission through
+  the OMC.  Interference between the two coupling mechanisms creates a
+  dip in the total coupling at the crossover frequency.}
+\end{figure}
 
 Laser intensity noise creates a varying radiation pressure force in the arm
 cavities, which in turn causes displacement noise.  To distinguish this effect
@@ -228,29 +235,6 @@ to DARM.
 
 \subsubsection{Laser frequency noise}
 
-\begin{figure*}[]
-% Laser AM
-\subfloat[Laser amplitude noise coupling (L1)][Laser amplitude noise coupling
-  (L1)]{ \includegraphics[]{figures/laserAM-L1.pdf}
-  \label{fig:laser-AM}
-}
-\subfloat[Laser amplitude noise coupling (H1)][Laser amplitude noise coupling (H1)]{
-  \includegraphics[]{figures/laserAM-H1.pdf}
-  \label{fig:laser-AM-H1}
-}
-
-% Laser FM
-\subfloat[Laser frequency noise coupling (L1)][Laser frequency noise coupling (L1)]{
-  \includegraphics[]{figures/laserFM-L1.pdf}
-  \label{fig:laser-FM}
-}
-\subfloat[Laser frequency noise coupling (H1)][Laser frequency noise coupling (H1)]{
-  \includegraphics[]{figures/laserFM-H1.pdf}
-  \label{fig:laser-FM-H1}
-}
-\end{figure*}
-
-
 \SUBSECTION{Oscillator noises}
 %
 Reduced coupling of noises from the RF oscillator is one of the
@@ -259,30 +243,6 @@ sidebands directly, behavior of the RF oscillator is still able to
 enter into the DC readout signal through control loop cross-couplings,
 leakage of RF sideband power through the OMC, and amplitude modulation
 of the laser carrier induced via AM on the RF oscillator.
-
-\begin{figure*}
-% Oscillator AM
-\subfloat[Oscillator amplitude noise coupling (L1)][Oscillator amplitude noise coupling (L1)]{
-  \includegraphics[]{figures/oscAM-L1.pdf}
-  \label{fig:osc-AM}
-}
-\subfloat[Oscillator amplitude noise coupling (H1)][Oscillator amplitude noise coupling (H1)]{
-  \includegraphics[]{figures/oscAM-H1.pdf}
-  \label{fig:osc-AM-H1}
-}
-
-% Oscillator PM
-\subfloat[Oscillator phase noise coupling (L1)][Oscillator phase noise coupling (L1)]{
-  \includegraphics[]{figures/oscPM-L1.pdf}
-  \label{fig:osc-PM}
-}
-\subfloat[Oscillator phase noise coupling (H1)][Oscillator phase noise coupling (H1)]{
-  \includegraphics[]{figures/oscPM-H1.pdf}
-  \label{fig:osc-PM-H1}
-}
-
-\caption{\label{noise-couplings}Oscillator and laser noise couplings to the gravitational wave readout channel, calibrated in equivalent displacement (meters).  Solid lines are the results of a frequency-domain, plane-wave model; dotted lines are linear transfer function measurements.  Color represents the DARM offset, with warm colors for positive offsets and cool colors for negative offsets.  Measurements and models for RF readout are in green.}
-\end{figure*}
 
 \subsubsection{Oscillator AM}
 
@@ -313,8 +273,105 @@ readout is therefore quite small; to couple to DC readout, the phase noise
 sidebands must be converted to AM through Michelson asymmetries, and then
 survive attentuation by the OMC.
 
-Measured coupling of oscillator phase noise to the readout channel
-is shown in figure \ref{fig:oscillator-PM-coupling-measured}.
+\section{Laser and oscillator noise coupling measurements}
+
+Laser and oscillator noise couplings were measured at both the H1 and
+L1 detectors\footnote{Measurements at Hanford were made by Nicol\'as
+  Smith.}, at a selection of DARM offsets.  In this section I explain
+how the measurements were made and discuss the results.
+
+\subsection{Laser noise coupling measurements}
+
+The LIGO laser source contains an intensity stabilization servo (ISS)
+which reduces the relative intensity noise (RIN) of the laser power
+before the laser enters the interferometer.  Injecting an excitation
+into the error point of this servo impresses intensity noise onto the
+beam.  The laser intensity noise coupling was measured by taking
+synchronous swept-sine transfer functions from a monitor photodiode
+just after the ISS and the DARM readout.
+
+\begin{figure}[]   % Laser AM
+\includegraphics[]{figures/laserAM-L1.pdf}
+\includegraphics[]{figures/laserAM-H1.pdf}
+\caption{Laser intensity noise coupling to DARM.
+  Solid lines are the results of a frequency-domain, plane-wave model; dotted lines are linear transfer function measurements.  Color represents the DARM offset, with warm colors for positive offsets and cool colors for negative offsets.  The upper plot is Livingston; the lower one is Hanford.}
+\end{figure}
+
+The laser frequency is stabilized to the mean length of the two arms
+(CARM) by a high-bandwidth analog servo, the common mode servo.
+Frequency modulation can be induced by injecting into the error point
+of this servo.  Unlike with the ISS, there is no separate witness
+sensor to provide a direct measurement of the induced laser frequency
+modulation.  Instead we must make a calibration of the common mode
+servo error point.  The frequency noise coupling is to be calibrated
+in terms of Hz of frequency noise \emph{before} the stabilizing action
+of the common mode servo, so we must account for the suppression of
+the loop.  The calibration was done by porting the calibration of DARM
+to CARM, as follows:
+
+\begin{enumerate}
+\item Drive the position of one of the end test masses (ETMs) with a
+  sinusoidal modulation at some probe frequency ($f=7300$ Hz was
+  used).  In the absence of loops, this would produce equal DARM and
+  CARM motion.
+\item Measure the response in the DARM and CARM readouts.  The CARM
+  readout channel is REFL\_I, which senses the mismatch between the
+  laser carrier frequency and the CARM length.
+\item Apply the DARM calibration.  This includes compensation for the
+  DARM control loop.
+\item Compensate for the frequency noise suppression of the common
+  mode loop by multiplying by $1+G$ where $G$ is the (complex) open
+  loop gain of the common mode loop at the probe frequency.
+\item Equate the calibrated DARM and loop-corrected CARM.  This gives
+  a calibration for CARM in meters at the probe frequency.
+\item Multiply by $\delta\nu/\delta L = \nu/L = c/(\lambda L)$ to
+  convert from meters to Hz.
+\item Assume a model for the CARM to REFL\_I transfer function to
+  propagate the calibration to other frequencies.  This transfer
+  function is simply the coupled-cavity pole\cite[eq. 3.5]{RanaThesis}.
+\end{enumerate}
+
+\begin{figure}
+\includegraphics[]{figures/laserFM-L1.pdf}
+\includegraphics[]{figures/laserFM-H1.pdf}
+\caption{Laser frequency noise coupling to DARM}
+\end{figure}
+
+\subsection{Oscillator noise coupling measurements}
+
+To measure oscillator noise couplings we temporarily switched the
+source of the 25 MHz oscillator from the Wenzel crystal oscillator to
+a general purpose (IFR 2023A) RF function generator, which accepts
+phase and amplitude modulation inputs.  The measurements were made by
+connecting a spare DAC output to the modulation input of the IFR
+function generator and then taking synchronous swept-sine transfer
+functions from the modulation drive to the DC readout with the
+interferometer in its running configuration.
+
+To calibrate the oscillator AM transfer function, we configured the
+interferometer optics (by misaligning unneeded mirrors) to send a
+fraction of the input light directly to the OMC and locked the OMC to
+one of the RF sidebands.  Taking the transfer function in this
+configuration allowed a direct measurement of the AM imposed on the RF
+sidebands\footnote{Thank you to Robert Ward for suggesting the
+  technique.}.  To calibrate the oscillator PM transfer function, a
+curve with the same shape as the AM calibration was used, but with the
+DC value determined by the front panel setting of the phase modulation
+depth on the function generator.  This was checked separately at a few
+individual frequencies by connecting the output of the function
+generator directly to an RF spectrum analyzer.
+
+\begin{figure} % Oscillator AM
+\includegraphics[]{figures/oscAM-L1.pdf}
+\includegraphics[]{figures/oscAM-H1.pdf}
+\caption{\label{fig:osc-AM}Oscillator amplitude noise coupling to DARM}
+\end{figure}
+
+\begin{figure} % Oscillator PM
+\includegraphics[]{figures/oscPM-L1.pdf}
+\includegraphics[]{figures/oscPM-H1.pdf}
+\caption{\label{fig:osc-PM}Oscillator phase noise coupling to DARM.}
+\end{figure}
 
 \SECTION{Beam jitter noise}
 %
@@ -389,7 +446,6 @@ linear coupling of residual DARM motion to output power is dominant,
 sufficiently large motion could produce second-order coupling. Fortunately,
 this turns out to be totally negligible.
 
-\SECTION{Noise budget}
 \SECTION{Optical gain}
 
 \SECTION{Digital effects}
