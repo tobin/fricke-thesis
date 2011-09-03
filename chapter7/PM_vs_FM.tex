@@ -1,0 +1,22 @@
+There is not really any difference between phase modulation and frequency modulation.
+Frequency modulation with modulation depth $m_{\text{FM}}$
+{[}Hz{]} at a frequency $f$ {[}Hz{]} has the form
+\begin{align}
+y(t) &=\exp\left\{ i\omega t\right\} \exp\left\{ i\int_{0}^{t}2\pi\ m_{\text{FM}}\ \Re\left\{ e^{i2\pi ft'}\right\} \ dt'\right\} 
+\intertext{where $\omega$ [radians/second] is the carrier frequency. We
+can simply do the integral and get:}
+y(t) &=\exp\left\{ i\omega t\right\} \exp\left\{ i\ \frac{1}{f}\ m_{\text{FM}}\ \Re\left\{ ie^{i2\pi ft}\right\} \right\} 
+\end{align}
+which is just phase modulation at frequency $f$ {[}Hz{]} with modulation
+depth $(i/f)m_\text{FM}$ (in radians).
+%\[
+%\frac{d}{dt}\left(\frac{1}{f}m_{\text{FM}}\sin2\pi ft\right)=2\pi\ m_{FM}\cos2\pi ft
+%\]
+The relation between phase modulation and frequency modulation is therefore:
+\[
+m_{\text{PM}}=\left(\frac{i}{f}\right)m_{\text{FM}}
+\]
+The $i$ signifies a phase shift of 90 degrees in the modulation (turning
+$\cos$ to $\sin$).
+
+

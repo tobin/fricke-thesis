@@ -1,7 +1,6 @@
-\CHAPTER{Appendix}
+\chapter{Appendix}
 \label{chapter7}
-\onehalfspace
-\SECTION{Cavity stuff}
+\section{Cavity stuff}
 A pole-zero map of the cavity amplitude reflectivity transfer function is shown in Fig.~\ref{fig:cavpzmap}.
 
 \begin{comment}
@@ -27,7 +26,7 @@ where $\mathcal{F}$ is the finesse, $F$ is the coefficient of finesse, $\nu_0$ i
 
 \begin{figure}
 \centering\includegraphics{figures/cavitypzmap.pdf}
-\caption{\label{fig:cavpzmap} Pole-zero map of the cavity amplitude
+\caption[Pole-zero map of Fabry-Perot cavity reflectivity]{\label{fig:cavpzmap} Pole-zero map of the cavity amplitude
   reflectivity.
   Poles are designated with $\times$ and zeros with
   $\circ$; $r_1$ is the amplitude reflectivity of the input coupler,
@@ -49,7 +48,7 @@ where $\mathcal{F}$ is the finesse, $F$ is the coefficient of finesse, $\nu_0$ i
 }
 \end{figure}
 
-\SECTION{The difference between PM and AM}
+\section{The difference between PM and AM}
 \label{sec:am-vs-pm}
 %
 Suppose we have a signal consisting of a carrier (at frequency $\omega$ and
@@ -92,7 +91,10 @@ higher-order sidebands. As best I can tell, there is no simple
 arrangement of this cancellation other than via a magical property of
 the Bessel functions.
 
-\SECTION{Only the signal field matters}
+\section{The difference between PM and FM}
+\input{chapter7/PM_vs_FM.tex}
+
+\section{Only the signal field matters}
 
 Suppose we have two electric fields incident on a photodiode: the
 signal field $A_s$ and the local oscillator field $A_{LO}$.  The power
@@ -104,12 +106,12 @@ photodiode is proportional to $A_s A_{LO}$ while the shot noise is
 proportional to $\sqrt{|A_s|^2+|A_{LO}|^2}\approx A_{LO}$.  
   The detected SNR is independent of the local oscillator strength.
 
-\SECTION{Optical phase conventions}
-\SECTION{The optical spring}
+\section{Optical phase conventions}
+\section{The optical spring}
 
 \input{chapter7/optical-spring.tex}
 
-\SECTION{Gaussian beams}
+\section{Gaussian beams}
 
 The general picture of Gaussian beams is shown here:
 
@@ -132,7 +134,7 @@ and Rayleigh range.
 
 References: Kogelnik and Li \cite{Kogelnik1966Laser}, Siegman \cite{Siegman1990Lasers}.
 
-\SECTION{Laser modes}
+\section{Laser modes}
 
 The eigenmodes of an optical cavity formed from spherical lenses are
 the Hermite-Gauss (if the cavity has rectangular symmetry) or
@@ -142,7 +144,7 @@ polynomial.  These are exactly the same familes of functions as the
 energy eigenstate wavefunctions of the simple harmonic oscillator in
 quantum mechanics.
 
-\SECTION{Control theory basics}
+\section{Control theory basics}
 
 Operation of the LIGO detectors relies crucially on feedback control
 systems.  In general, the response of the optical plant is very
@@ -155,7 +157,7 @@ Here is a basic diagram of a feedback system:
 Algebraically, one can derive a relationship giving the transfer function
 of the closed-loop system in the Laplace domain:
 
-\SECTION{The Antenna Pattern}
+\section{The Antenna Pattern}
 
 Gravitational waves come in two polarizations; for waves impinging
 from a given direction, the second polarization represents an ellipse
@@ -178,7 +180,7 @@ show up in CARM.  Immediately (again due to the hairy ball theorem) we
 see that there must be nulls in the sensitivity pattern of a single
 interferometer.
 
-\SECTION{Shot Noise}
+\section{Shot Noise}
 The root-mean-square of a Poisson process with current $I$ and quantum
 $q$ measured over a bandwidth of $\Delta f$ is 
 $$\sigma = \sqrt{2 q I \Delta f}$$ 
@@ -198,5 +200,5 @@ So, for power $P$, the shot noise amplitude spectral density is
 \end{equation}
 for a relative intensity noise of $\sqrt{2 h\nu/P}$.
 
-\SECTION{References}
+\section{References}
 \cite{Quetschke2007Complex}

@@ -1,53 +1,89 @@
-\CHAPTER{DC Readout}
+\chapter{DC Readout}
 \label{chapter3}
-%\doublespace
-\SECTION{Introduction}
+\section{Introduction}
 
-The basic problem is to detect optical phase.  Detectors are generally
-much too slow to detect the optical field \emph{amplitude} directly (a
-laser wavelength of 1064 nm corresponds to about 300 THz).  Instead,
-photodetectors measure the field \emph{power}, averaged over some
-interval (typically MHz).  To sense the optical phase, we turn to
-interference.  By providing a second optical field--a \emph{local
-  oscillator}--as a phase reference, phase perturbations of the signal
-beam are converted to power fluctuations at the photodiode.  
+The basic problem is to detect optical phase. Photodetectors are
+generally much too slow to detect the optical field \emph{amplitude}
+directly (a laser wavelength of 1064 nm corresponds to about 300 THz).
+Instead, photodetectors measure the field \emph{power}, averaged over
+some interval (typically $\lesssim 10^{-9}$ s).  
 
+As a concrete example, the optical field at the output of a Michelson
+interferometer goes like $E_{AS} = E_0 \sin k\Delta x$.  A simple
+photodiode detector, which measures the squared magnitude of the
+electric field, is not able to distinguish between positive and
+negative excursions of $\Delta x$.  We need to arrange for our
+detector be sensitive not just to the magnitude of $E_{AS}$ but also
+its sign.
+
+To sense this optical phase, we turn to interference.  By providing a
+second optical field--a \emph{local oscillator}--as a phase reference,
+phase perturbations of the signal beam are converted to power
+fluctuations at the photodiode.
+
+The local oscillator field may be at the same optical frequency as the
+signal field, or it may be offset by a fixed frequency difference.
 If the local oscillator is at the same optical frequency as the signal
 beam, then the photocurrent directly mimics the phase perturbations of
 the signal; this is \emph{homodyne detection}, or direct conversion.
-If, on the other hand, the local oscillator offset slightly in
+If, on the other hand, the local oscillator is offset slightly in
 frequency, the signal will appear as amplitude modulation on the
 photodiode signal.  This is \emph{heterodyne detection}.
 
 There is also the question of how to get the local oscillator to the
 detection photodiode, and how to guarantee that it is sufficiently
-stable in phase, and well-matched to the spatial distribution of the
+stable in phase and well-matched to the spatial distribution of the
 signal beam.  One approach is to specially pipe the local oscillator
 to the detection port, combine the signal and local oscillator via a
 beamsplitter, and detect the two emerging beams on photodiodes, adding
 the resulting signals electronically.  This scheme, balanced homodyne
 detection, is depicted in \checkme{a figure}.
 
-The problem is elegantly addressed in the current gravitational wave
-detectors by having the local oscillator signal resonate in the the
-interferometer, or a portion of it.
+The major difficulty of balanced homodyne detection is to bring the
+local oscillator signal (which typically originates with the same
+laser source as the field being measured) without introducing
+excessive phase noise.  The problem is elegantly addressed in the
+current gravitational wave detectors by having the local oscillator
+signal resonate in the the interferometer, or a portion of it.
 
-\SECTION{Interferometer Sensing and Control}
+\section{Heterodyne detection}
 
-The laser light incident on the interferometer is phase-modulated at
-several frequencies, producing optical sidebands on the laser carrier.
-Light extracted from the interferometer at its various ports is
-incident on photodiodes; the photodiode signals are demodulated to
-produce signals.
+The initial LIGO detectors were designed to use, as much as possible,
+proven technologies.  The proven technique for sensing the
+length/frequency mismatch of an optical cavity was the
+Pound-Drever-Hall (PDH)
+technique\cite{Drever1983Laser,Black2001Introduction}, sometimes
+called reflection-locking, which can be used to lock the frequency of
+a laser to the length of a cavity, or vice versa.
 
-\SECTION{Heterodyne detection}
+In the basic PDH setup, the laser light incident on a resonant cavity
+is first phase-modulated at a frequency well outside of the bandwidth
+of the cavity, such that the sidebands are nearly anti-resonant in the
+cavity when the carrier is resonant.  For small perturbations (in
+laser frequency or cavity length) around this point, the phase of the
+reflected carrier changes quickly, while the phase of the reflected
+sideband field changes more slowly.  The reflected sideband field may
+therefore be used as a local oscillator by which to measure the
+carrier phase.
 
-In the context of coupling lasers to resonant cavities, heterodyne
-detection is known as the Pound-Drever-Hall technique.  The canonical
-reference is~\cite{Drever1983Laser}, while
-\cite{Black2001Introduction} provides a pedagogical introduction.
+\begin{figure}
+\includegraphics{figures/fields-picture.pdf}
+\caption[Frequency-domain fields in DC and RF readouts]{Depiction of
+  the fields in DC and RF readouts.  (a) In RF readout, the laser
+  carrier is suppressed by operating the Michelson on a dark fringe
+  for the carrier.  Differential phase modulation in the arms becomes
+  amplitude modulation of the (suppressed) carrier, depicted as the
+  audio-frequency sidebands at $\pm f_{gw}$.  The photodiode sees a
+  beat between the GW signal and the RF sidebands.  In homodyne
+  readout, a carrier-frequency local oscillator is introduced--in DC
+  readout this is done by introducing a microscopic asymmetry between
+  the two arms.  The RF sidebands are no longer needed and are removed
+  by the output mode cleaner.  The GW-induced sidebands appear as
+  amplitude modulation on the carrier, which is sensed directly by the
+  photodiodes.}
+\end{figure}
 
-\SUBSECTION{The Pound-Drever-Hall technique}
+\subsection{The Pound-Drever-Hall technique}
 
 The phase modulation may be expanded in terms of sidebands using the
 Jacobi-Anger expansion:\footnote{This expansion comes from the 
@@ -95,7 +131,7 @@ $L_{\{x,y\}}$.  The field at the output port (at a given frequency) is:
 E_{AS} = E_0 \frac{1}{2} \left( e^{2 i L_{x} \nu /c} + e^{2 i L_{y} \nu / c} \right) 
 \end{equation}
 
-\SECTION{Homodyne detection}
+\section{Homodyne detection}
 
 DC readout creates a homodyne local oscillator by putting a small
 offset into the Michelson or DARM degree of freedom, moving the
@@ -116,8 +152,6 @@ below the fundamental noise floor of the detector.
 
 As long as the DARM offset is sufficiently small, the degradation of
 power recycling is negligible.
-
-\SUBSECTION{Calculation of the optical gain}
 
 \subsection{Calculation of the optical gain}
 
@@ -216,15 +250,13 @@ gain, in Watts/meter, as:
 S_{DC}\approx2\sqrt{P_{IN}P_{AS}}g_{cr}r_{cp}k\label{eq:dc-readout-optical-gain}
 \end{equation}
 
-
-\SECTION{Offse}
+\section{Offset}
 
 Optical gain and shot noise level both scale like the square root of
 the power at the detection port (for small offsets).  Thus the
 detection SNR is relatively insensitive to the particular offest.
 
-
-\SECTION{Heterodyne shot noise}
+\section{Heterodyne shot noise}
 
 The shot noise limit in homodyne detection is easy to calculate.  The
 power incident on the photodiode is approximately constant.  The noise
@@ -237,7 +269,7 @@ as illustrated by the number of publications on the topic:
 \begin{figure}
 \includegraphics[width=\columnwidth]{figures/cyclostationary-timeseries.pdf}
 \includegraphics[width=\columnwidth]{figures/cyclostationary-timeseries2.pdf}
-\caption{\label{fig:cyclostationary-shot-noise} \textbf{(a)} Model of
+\caption[Illustration of cyclo-stationary shot noise]{\label{fig:cyclostationary-shot-noise} \textbf{(a)} Model of
   shot noise in the presence of sinusoidal power modulation, as occurs
   in optical heterodyne detection.  The photodiode sees a power
   modulation at $2f_{mod}$ (white) due to the beat between the upper
@@ -255,7 +287,7 @@ as illustrated by the number of publications on the topic:
   power considered over a whole period of the waveform.}
 \end{figure}
 
-\SECTION{Comparison}
+\section{Comparison}
 
 In addition to mitigating technical difficulties of RF detection,
 homodyne detection confers a fundamental improvement in SNR by up to a
@@ -270,5 +302,14 @@ non-commuting quantum operators\cite{Buonanno2003Quantum}.
 
 \begin{figure}
 \centerline{\includegraphics[width=\columnwidth]{figures/residualDARM.pdf}}
-\caption{\label{fig:residual-DARM}Residual DARM}
+\caption[Residual DARM motion]{\label{fig:residual-DARM}Residual DARM}
 \end{figure}
+
+\section{Interferometer Sensing and Control}
+
+The laser light incident on the interferometer is phase-modulated at
+several frequencies, producing optical sidebands on the laser carrier.
+Light extracted from the interferometer at its various ports is
+incident on photodiodes; the photodiode signals are demodulated to
+produce signals.
+

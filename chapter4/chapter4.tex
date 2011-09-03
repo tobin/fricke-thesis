@@ -1,18 +1,16 @@
-\CHAPTER{Output Mode Cleaner}
+\chapter{Output Mode Cleaner}
 \label{chapter4}
-%\doublespace
-\SECTION{Introduction}
+\section{Introduction}
 Any fields present on the detection photodiode other than the signal
 field and the local oscillator will lead to additional shot noise but
 no additional signal: a degredation of SNR.  The additional fields can
-be either distinct in frequency (such as the RF sidebands when using
-DC readout) or in spatial mode. 
+be either distinct in frequency or in spatial mode. 
 
 To remove these spurious fields, we employ an optical filter cavity at
 the interferometer's output. This is the \emph{output mode cleaner}
 (OMC).  
 
-\SECTION{General theory of mode cleaners}
+\section{General theory of mode cleaners}
 
 Critically-coupled resonant cavities act as optical filters, allowing
 the resonant mode to be transmitted while all orthogonal modes are
@@ -86,14 +84,14 @@ where $\nu_0$ is the free spectral range.
 
 \begin{figure}[t]
 \centerline{\includegraphics[width=0.5\columnwidth]{figures/as_spot.png}}
-\caption{\label{fig:as-spot}Image of the beam spot at the output port taken using a CCD
-  camera. Although this image is saturated in the central portion, it
-  shows the messy junk light surrounding the central gaussian beam.
-  This includes contributions from both the carrier and the 25 MHz
-  sidebands.}
+\caption[Beam spot at anti-symmetric port]{\label{fig:as-spot}Image of
+  the beam spot at the output port taken using a CCD camera. Although
+  this image is saturated in the central portion, it shows the messy
+  junk light surrounding the central gaussian beam.  This includes
+  contributions from both the carrier and the 25 MHz sidebands.}
 \end{figure}
 
-\SECTION{Eigenmodes}
+\section{Eigenmodes}
 
 A phase-front that returns to its original state after making a
 round-trip through the optical cavity will interfere constructively
@@ -119,11 +117,11 @@ H_n\left( \frac{\sqrt{2}y}{w} \right)
 
 \begin{figure}
 \includegraphics[width=\columnwidth]{figures/hgmodes.pdf}
-\caption{Hermite-Gauss modes. Positive amplitude is indicated in red and negative amplitude in blue.}
+\caption[Hermite-Gauss TEM modes]{Hermite-Gauss modes. Positive amplitude is indicated in red and negative amplitude in blue.}
 \end{figure}
 
 
-\SECTION{Physical design of the cavity}
+\section{Physical design of the cavity}
 
 The output mode cleaner (OMC) consists of a four-mirror bowtie cavity
 with a finesse of approximately 350. The cavity optics and detection
@@ -163,7 +161,7 @@ transmission       & 1           & $\geq$0.95  & $\geq$0.90    &         \\
 \label{tab:OMCproperties}
 \end{table}
 
-\SECTION{Requirements}
+\section{Requirements}
 
 The OMC is required to sufficiently filter the light present at the
 output port such that contributions from the RF sidebands and higher-order
@@ -171,7 +169,7 @@ spatial modes become negligible. To exclude the RF sidebands, the
 cavity length is chosen such that the RF sideband frequencies are
 anti-resonant in the cavity, which yields minimum transmission.
 
-\SECTION{Choosing the OMC finesse}
+\section{Choosing the OMC finesse}
 
 All things being equal, we want the best possible filtering capability
 from the OMC.  
@@ -221,7 +219,7 @@ least a factor of 10 margin, so we'll want maximum attenuation of
 
 
 
-\SECTION{Length control (LSC)}
+\section{Length control (LSC)}
 
 The cavity length must be controlled to maintain the resonance of the
 laser carrier.  To sense the mismatch between the laser carrier and
@@ -238,7 +236,7 @@ length.
 \centerline{\includegraphics[width=0.5\columnwidth]{figures/ditherdoodle.pdf}
 \hfill
 \includegraphics[width=0.5\columnwidth]{figures/ditherdoodle.pdf}}
-\caption{\label{fig:dither-doodle}Cartoon view of dither locking}
+\caption[Cartoon view of dither locking]{\label{fig:dither-doodle}Cartoon view of dither locking}
 \end{figure}
 
 \subsubsection{Modeling the dither locking}
@@ -276,11 +274,17 @@ The fast PZT actuator is dithered at 10 kHz and this signal is
 synchronously demodulated in the transmitted light.  The bandwidth of
 the servo is about 100 Hz.
 
-\SECTION{Input beam control (ASC)}
+\section{Input beam control (ASC)}
 
 In addition to controlling the cavity length to keep the carrier
 resonant, we must control the pointing of the beam incident on the
 OMC.
+
+The decomposition of a given optical field into Hermite-Gauss
+eigenmodes is dependent upon a choice of origin and spot size.  The
+OMC cavity will select the projection of the incident field onto its
+eigenmode.  The optics directing the interferometer output beam to the
+OMC
 
 Aligning the input beam to the OMC is a significant problem.  The OMC
 can only clean the mode insofar as we can identify the mode we want to
@@ -303,6 +307,19 @@ this is a quadratic point, linear beam jitter coupling is nulled.
 
 Junk light, however, will lead the dither alignment astray.
 
+\begin{figure}
+\includegraphics{figures/dithermax.pdf}
+\caption[Modal decomposition of a displaced Gaussian]{The sum of a gaussian and a first-order higher order mode
+  resembles a displaced gaussian.  A basic dither alignment scheme,
+  which maximizes the power transmitted through the OMC, would
+  operate near point B, rather than point A.}
+\end{figure}
+
+\begin{figure}
+\includegraphics{figures/drumhead-dither.pdf}
+\caption[Drumhead dither system]{Drumhead dither}
+\end{figure}
+
 RF Wavefront sensing.  We did not really consider this.
 
 AF IM WFS.  The same OMC length dither which is used to lock the cavity
@@ -315,7 +332,7 @@ Beacon dither.
 
 SNR dither.  Nicolas's scheme.
 
-\SECTION{Automatic gain control}
+\section{Automatic gain control}
 
 The optical gain of the interferometer naturally varies slowly as
 alignment drifts and the thermal state of the mirrors changes.  The
@@ -330,33 +347,34 @@ The flexibility of the realtime code generator allowed us to implement
 an automatic gain control servo directly in the OMC front-end.  This
 was a nice convenience. 
 
-\SECTION{Residual fluctuations}
+\section{Residual fluctuations}
 
-\SECTION{Optical characterization}
+\section{Optical characterization}
 
-\SUBSECTION{Mode scan}
+\subsection{Mode scan}
 
 With the interferometer controlled using the heterodyne readout, the
 Output Mode Cleaner can be used as a mode analyzer cavity by varying
 the cavity length by at least a free-spectral-range. Because this
 range is more than the fast PZT actuator, this is accomplished by
-putting a large step into the thermal actuator. These mode scans can
-address questions such as:
-\begin{itemize}
-\item How well aligned is the OMC?
-\item How well mode-matched is the OMC?
-\item How much carrier power is at the output port compared to sideband
-power?
-\item How well balanced are the RF sidebands?
-\item How much junk light is present at the output port?
-\item Are there any nasty modes near the 00 mode that will sneak through?
-\item The horizontal/vertical mode separation
-\end{itemize}
-The mode scan cannot, by itself, distinguish carrier mode light from
-the arms vs carrier mode junk light.
+putting a large step into the thermal actuator.
+%%  These mode scans can
+%% address questions such as:
+%% \begin{itemize}
+%% \item How well aligned is the OMC?
+%% \item How well mode-matched is the OMC?
+%% \item How much carrier power is at the output port compared to sideband
+%% power?
+%% \item How well balanced are the RF sidebands?
+%% \item How much junk light is present at the output port?
+%% \item Are there any nasty modes near the 00 mode that will sneak through?
+%% \item The horizontal/vertical mode separation
+%% \end{itemize}
+%% The mode scan cannot, by itself, distinguish carrier mode light from
+%% the arms vs carrier mode junk light.
 
 
-\SUBSECTION{Scattering}
+\subsection{Scattering}
 
 From the output port, the interferometer appears almost perfectly
 reflective.  Any light scattered by the output optics at a small angle
@@ -364,7 +382,7 @@ could scatter into the interferometer mode, reflect off of the
 interferometer, and interfere with the other fields there.
 
 
-\SECTION{Interferometer lock acquisition}
+\section{Interferometer lock acquisition}
 
 Initial lock acquisition of the Enhanced LIGO interferometers is the
 same as in Initial LIGO\cite{Evans2002Lock}. Once the interferometer is locked using the
@@ -381,7 +399,7 @@ begins.
 
 \begin{figure}
 \includegraphics[width=\columnwidth]{figures/L1LSC.png}
-\caption{The control screen for the Length Sensing and Control
+\caption[Length Sensing and Control (LSC) control screen]{The control screen for the Length Sensing and Control
   subsystem at Livingston.  The control screen depicts signal flow in
   a generally left-to-right manner.  Photodiodes at the anti-symmetric
   (AS), pick-off (PO), and reflected (REFL) ports are indicated on the
@@ -392,7 +410,7 @@ begins.
   and are then directed to the individual optics.}
 \end{figure}
 
-\SECTION{Beam diverter}
+\section{Beam diverter}
 
 When the interferometer loses lock, the stored power must be dumped
 somewhere. Typically, due to the presence of the power recycling mirror,
@@ -401,7 +419,7 @@ is sufficiently strong to burn the detection photodiodes. In order
 to prevent this, one of the steering mirrors is used as a fast shutter.
 It is able to zero the transmission through the OMC in approx 2 ms.
 
-\SECTION{The Front End}
+\section{The Front End}
 
 \begin{quote}
 \emph{Be exhorted:} you really can predict the noise floor accurately--to
