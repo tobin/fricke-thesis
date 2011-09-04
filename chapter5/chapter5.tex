@@ -1,6 +1,5 @@
-\CHAPTER{DC readout performance and noise couplings}
+\chapter{DC readout performance and noise couplings}
 \label{chapter5}
-%\doublespace
 
 The coupling of noises from the laser source and RF oscillators to the
 gravitational wave readout channel differ considerably in RF and DC
@@ -17,7 +16,7 @@ noise couplings analytically and numerically, and I will present
 measurements of these noise coupling measurements made on the two
 Enhanced LIGO interferometers.
 
-\SECTION{Sensitivity}
+\section{Sensitivity}
 
 The primary figure of merit of a gravitational wave detector is its
 noise floor, calibrated as a strain spectral density.  When evaluating
@@ -127,12 +126,12 @@ DC-readout path pickoff     & 0.953          & 0.972       \\
 PD quantum efficiency       & 0.98           &             \\
 \hline
 \end{tabular}
-\caption{Designed and measured properties of the Hanford and Livingston interferometers.}
+\caption[Interferometer properties (designed and measured)]{Designed and measured properties of the Hanford and Livingston interferometers.}
 \label{tab:ifo-properties}
 \end{table}
 
 
-\SECTION{Laser and oscillator noise coupling mechanisms}
+\section{Laser and oscillator noise coupling mechanisms}
 
 For the purpose of computing the frequency response of the interferometer and
 the expected laser and oscillator noise couplings, it is convenient to regard
@@ -176,7 +175,7 @@ amount of amplitude modulation (AM) and some amount of phase modulation.
   associated audio-frequency sidebands.}
 \end{figure}
 
-\SUBSECTION{Laser noises}
+\subsection{Laser noises}
 
 The Michelson-based design of laser interferometer gravitational wave detectors
 is attractive due to its high common mode noise rejection.  A Michelson
@@ -235,8 +234,8 @@ to DARM.
 
 \subsubsection{Laser frequency noise}
 
-\SUBSECTION{Oscillator noises}
-%
+\subsection{Oscillator noises}
+
 Reduced coupling of noises from the RF oscillator is one of the
 motivations for implementing DC readout. Despite not relying on the RF
 sidebands directly, behavior of the RF oscillator is still able to
@@ -373,8 +372,8 @@ generator directly to an RF spectrum analyzer.
 \caption[Oscillator phase noise coupling (measured)]{\label{fig:osc-PM}Oscillator phase noise coupling to DARM.}
 \end{figure}
 
-\SECTION{Beam jitter noise}
-%
+\section{Beam jitter noise}
+
 Beam jitter noise is perhaps the most important new noise source in
 DC readout and is tied to alignment of the OMC, which has proved to
 be one of the most subtle new issues. The output mode cleaner converts
@@ -384,8 +383,8 @@ DARM motion.
 
 
 
-\SECTION{Electronics noise}
-%
+\section{Electronics noise}
+
 An optical power of 100 mW on the readout photodiodes will produce a
 photocurrent of $i = q_e\lambda/(hc)\cdot 100\text{ mW } = 86\text{ mA}$, which
 in turn has a shot noise floor of $\sqrt{2 q_e i}\approx 500 \text{
@@ -411,7 +410,7 @@ I = qe * lambda / (h * c)
 sqrt(2* qe * I)
 \end{comment}
 
-\SECTION{Optical spring}
+\section{Optical spring}
 %
 Detuning the arm cavities from their resonance introduces a big optical
 spring.
@@ -420,7 +419,7 @@ spring.
 k_{opt}\approx\frac{64\mathcal{F}^{2}g^{2}P_{IN}}{c\lambda^{2}}\left(\delta x\right) 
 \end{equation}
 
-\SECTION{Technical radiation pressure noise}
+\section{Technical radiation pressure noise}
 
 Amplitude noise on the input laser field produces modulation radiation
 pressure on the optics, in particular in the arm cavities.  If the arm
@@ -439,16 +438,14 @@ The intensity noise to displacement transfer function is
   P_{IN} {g_{rc}}^2 {g_{cav}}^2 \frac{1}{s_{cc}} 
 \end{equation}
 
-\SECTION{Nonlinearity  of the DC error signal}
-%
+\section{Nonlinearity  of the DC error signal}
+
 Although we operate sufficiently far from the dark fringe that the
 linear coupling of residual DARM motion to output power is dominant,
 sufficiently large motion could produce second-order coupling. Fortunately,
 this turns out to be totally negligible.
 
-\SECTION{Optical gain}
-
-\SECTION{Digital effects}
+\section{Digital effects}
 
 The realtime digital signal processing system through which our
 control systems are implemented provide the illusion of a continuous,
@@ -462,3 +459,5 @@ order to avoid being caught by surprise by ``digital noises''.
 \item Floating point dynamic range
 \item Synchronized communications
 \end{itemize}
+
+\section{Conclusion}
