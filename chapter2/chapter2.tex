@@ -203,11 +203,11 @@ r_c \equiv & \frac{E_r}{E_0} =
 \label{eq:cavity-reflectivity}
 \end{align}
 %
-where $\phi$ is the phase accumulated by the field as it travels from
+where $\phi=(2\pi/\lambda)L$ is the phase accumulated by the field as it travels from
 the first mirror to the second mirror.  This phase depends on both the
-laser wavelength and the distance between the mirrors:\footnote{There is an additional contribution to the phase, the Guoy phase shift, due to geometric effects; this is described in chapter 4.}
+laser wavelength and the distance between the mirrors:\footnote{There is an additional contribution to the phase, the Guoy phase shift, due to geometric effects; this is described in chapter 4.  Also note that some references use the \emph{round-trip} phase rather than the \emph{one-way} phase used here.}
 \begin{align}
-\phi  & = 2\pi \nu / \nu_0 \\
+\phi  & = \pi (\nu / \nu_0) \\
 \nu_0 & = c/(2L)
 \end{align}
 where $\nu=c/\lambda$ is the laser frequency, $L$ is the cavity
@@ -219,19 +219,89 @@ It is often useful to write the cavity reflectivity in the form of a
 rational transfer function,
 \begin{equation}
 r_c(s) = \prod_{n=-\infty}^{\infty} \frac {s-z_n} {s-p_n}
+\label{eq:rational-function}
 \end{equation}
-where $s=i\omega$.  Substitute $\phi=$.
+where $s=i\omega$, $\{z_n\}$ are the zeroes of $r_c(s)$, and $\{p_n\}$
+are the poles.  To find the poles and zeroes, make the substitution
+$\phi=-is/(2\nu_0)$ and solve for the zeroes of the numerator and
+denominator of equation~\ref{eq:cavity-reflectivity} separately.  We find:
+\begin{align}
+p_n &= - \omega_{fsr} \left(\log\left(r_1 r_2\right) +  i n\right)  & \forall n\in \mathbb{Z}\\
+z_n &= + \omega_{fsr} \left(\log\left(r_1/r_2\right) +  i n\right)  & \forall n\in \mathbb{Z}\\
+\end{align}
+where $\omega_{fsr}=2\pi\nu_0$.
+
+Because this function is periodic in $i\omega$, we can in many
+circumstances regard the laser carrier as having a frequency
+$\nu=0$ rather than $\nu = n\nu_0$ for some very large $n$.
+
+\begin{figure}
+\centering\includegraphics{figures/cavitypzmap.pdf}
+\caption[Pole-zero map of Fabry-Perot cavity reflectivity]{\label{fig:cavpzmap} Pole-zero map of the cavity amplitude
+  reflectivity.
+  Poles are designated with $\times$ and zeros with
+  $\circ$; $r_1$ is the amplitude reflectivity of the input coupler,
+  and $r_2$ is the amplitude reflectivity of the output coupler.
+  Losses can be lumped into $r_2$.  Notice that the free spectral
+  range (angular frequency $\omega_{\textrm{fsr}}$) sets the scale of
+  the entire diagram, and the function is periodic in $i\omega$: there
+  is an infinite line of poles and an infinite line of zeros.  Two
+  limiting cases are worth considering: (1) A critically-coupled
+  cavity has $r_1=r_2$, which brings the line of zeros onto the
+  imaginary axis. On resonance, $i\omega$ travels through these zeros
+  and the cavity reflectivity vanishes.  This models the desired
+  behavior of mode cleaner cavities. (2) A maximally over-coupled
+  cavity has $r_2=1$, in which case the line of poles and line of
+  zeros are equally spaced from the imaginary axis.  This models the
+  LIGO arm cavities.  
+  The cavity's amplitude transmission has the same poles as the
+  reflectivity but no zeros.
+}
+\end{figure}
 
 \subsection{phase gain}
-For the arms of a gravitational wave detector, we set $r_2$ as close
-to unity as possible.  We are interested in the phase of the reflected
-field. 
- 
+Our interest in using Fabry-Perot cavities as the arms of a
+gravitational wave detector is in having the light traverse the length
+of the arm multiple times, multiplying the effect of any optical path
+length perturbations caused by a GW.  We can derive the magnitude of
+this \emph{phase gain} by examining how the phase of the light reflected from
+the cavity changes as the intra-cavity phase $\phi$ changes, for small
+variations from resonance.
+
+Suppose $z(t)=A(t) \exp\{i \phi(t)\}$ is an arbitrary complex-valued
+function with amplitude $A(t)$ and phase $\phi(t)$. By taking the
+logarithm before taking the derivative, we can separate the amplitude
+and phase:
+%
+\begin{equation}
+\frac{\partial}{\partial t} \log z(t) = \left(\frac{\partial}{\partial t} \log A(t)\right) + i \left(\frac{\partial}{\partial t} \phi(t)\right)
+= \frac{1}{z(t)} \frac{\partial}{\partial t} z(t)
+\end{equation}
+%
+This gives us an expression for the rate of change of the phase of a function:
+%
+\begin{equation}
+\frac{\partial}{\partial t} \arg z(t) = \text{Im} \frac{1}{z(t)} \frac{\partial}{\partial t} z(t)
+\end{equation}
+
+We can find the phase gain of a Fabry-Perot cavity by applying this expression to the cavity reflectivity as a function of intra-cavity phase, $r_c(\phi)$:
+\begin{equation}
+\text{phase gain} = \text{Im\ } \frac{r_c'}{r_c}
+\end{equation}
+where $r_c'(\phi)\equiv(\partial/\partial\phi)r_c(\phi)$.  Furthermore, because the derivative of the amplitude of $r_c$ vanishes on resonance, we can simply take the magnitude of $r_c'/r_c$ rather than the imaginary part.
+
+Another way to calculate the phase gain is to use the rational transfer function expression, equation~\ref{eq:rational-function}.  To model the situation near resonance, we need only consider the nearest pole and zero:
+\[
+r_c(s) \approx \frac{s - z_0}{s - p_0}
+ = \frac{s - \omega_{fsr}\log \left(r_1 / r_2\right)}
+        {s + \omega_{fsr}\log \left(r_1 \cdot r_2\right)}
+\]
 Recall that the phase at frequency $\omega$ imparted by a pole at
-frequency $\omega_0$ is $\tan^{-1}\left(-\omega/\omega_0\right)$; a
-zero at the same frequency subtracts this same phase.  For a maximally
+frequency $\omega_0$ is $\arctan\left(-\omega/\omega_0\right)$; a zero
+at the same frequency subtracts this same phase.  For a maximally
 over-coupled cavity (i.e. with $r_2 = 1$), the cavity pole and cavity
-zero are equal and opposite, so contribute equal phase ($\tan^{-1}$ is odd).
+zero are equal and opposite, so contribute equal phase ($\arctan$ is
+odd).  Use $\omega = 2\nu_0\phi$ to express the detuning phase $\phi$ as an equivalent detuning frequency.
 
 Changing the one-way phase of the arm by $\phi$ results in a phase 
 change of
@@ -244,7 +314,51 @@ where $\omega_0$ is the cavity pole.  Taking the derivative, we find the \emph{p
 \end{equation}
 The phase gain on resonance is $2 f_{fsr} / \omega_0 \approx 140$. This phase gain decreases as we detune the cavity further from resonance, but it is not seriously diminished until the cavity detuning approaches the cavity pole.
 
-\subsection{power buildup}
+\subsection{intra-cavity power buildup}
+
+The power buildup in the cavity is given by 
+\begin{equation}
+\frac{P_+}{P_{IN}} = \frac{|E_+|^2}{|E_0|^2} = \frac{ T_1}{1 - 2 r_1 r_2 \cos 2\phi+\left(r_1 r_2\right)^2 }
+\end{equation} 
+which may be re-written (using the identity $\cos2\phi = 1 -
+2\sin^2\phi$) as
+\begin{equation}
+\label{cavity_buildup_eq}
+\frac{P_+}{P_{IN}} = \frac{g^2}{1 + F \sin^2 \phi} 
+\text{  with  } F = \frac{4 r_1 r_2}{(1 - r_1 r_2)^2}
+\text{  and  } g = \frac{t_1}{1-r_1 r_2}
+\end{equation} 
+where $F$ is the \emph{coefficient of finesse} and $g$ is the
+\emph{amplitude gain}.
+
+The form of this expression is often referred to in the literature as
+an Airy function, though it is distinct from the well-known special
+function of the same name.  Making the small angle approximation
+$\sin\phi\approx\phi$ we see that each resonance is locally Lorentzian.
+
+\subsection{finesse ($\mathcal{F}$)}
+The tightness of the resonance is quantified as the
+\emph{finesse} ($\mathcal{F}$), which is defined as the ratio of the
+cavity free spectral range to the full-width-half-max of the
+resonance,
+\begin{equation}
+\mathcal{F} \equiv \frac{\nu_0}{\nu_{\mathrm{FWHM}}}
+= \frac{1}{2}\frac{\nu_0}{f_c}
+\end{equation}
+%
+where the FWHM is given by twice the cavity pole ($f_c$).  The finesse is related to the coefficient of finesse ($F$) by
+%
+\begin{equation}
+\mathcal{F} = \frac{\pi}{2} \frac{1}{{\sqrt{\arcsin (1/F)}}} \approx \frac{\pi}{2}\sqrt{F}
+\end{equation}where the approximation holds for high-finesse cavities.
+
+The finesse ($\mathcal{F}$) of an optical cavity is analogous to
+the quality factor (Q) of an oscillator. The Q factor is the ratio
+of the frequency of an oscillator to its full-width-half-max bandwidth;
+to compute finesse, the free spectral range (spacing between resonances)
+is used instead of the oscillator frequency.
+
+
 
 \subsection{coupling}
 
