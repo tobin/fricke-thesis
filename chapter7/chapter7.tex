@@ -24,29 +24,6 @@ as a length:
 
 where $\mathcal{F}$ is the finesse, $F$ is the coefficient of finesse, $\nu_0$ is the free spectral range, $f_c$ is the cavity pole, $L$ is the cavity length.
 
-\begin{figure}
-\centering\includegraphics{figures/cavitypzmap.pdf}
-\caption[Pole-zero map of Fabry-Perot cavity reflectivity]{\label{fig:cavpzmap} Pole-zero map of the cavity amplitude
-  reflectivity.
-  Poles are designated with $\times$ and zeros with
-  $\circ$; $r_1$ is the amplitude reflectivity of the input coupler,
-  and $r_2$ is the amplitude reflectivity of the output coupler.
-  Losses can be lumped into $r_2$.  Notice that the free spectral
-  range (angular frequency $\omega_{\textrm{fsr}}$) sets the scale of
-  the entire diagram, and the function is periodic in $i\omega$: there
-  is an infinite line of poles and an infinite line of zeros.  Two
-  limiting cases are worth considering: (1) A critically-coupled
-  cavity has $r_1=r_2$, which brings the line of zeros onto the
-  imaginary axis. On resonance, $i\omega$ travels through these zeros
-  and the cavity reflectivity vanishes.  This models the desired
-  behavior of mode cleaner cavities. (2) A maximally over-coupled
-  cavity has $r_2=1$, in which case the line of poles and line of
-  zeros are equally spaced from the imaginary axis.  This models the
-  LIGO arm cavities.  
-  The cavity's amplitude transmission has the same poles as the
-  reflectivity but no zeros.
-}
-\end{figure}
 
 \section{The difference between PM and AM}
 \label{sec:am-vs-pm}
@@ -107,6 +84,52 @@ proportional to $\sqrt{|A_s|^2+|A_{LO}|^2}\approx A_{LO}$.
   The detected SNR is independent of the local oscillator strength.
 
 \section{Optical phase conventions}
+
+In writing down the relationships between optical field amplitudes
+upon reflection from or transmission through a mirror, we must first
+choose a phase convention. What happens to the phase of the field upon
+reflection? Upon transmission? For a real mirror, made up of many
+layers of dielectric coating on both sides of a thick substrate, and
+given particular reference points at which to compute the fields, the
+phases upon reflection and transmission depend on all of this
+structure. But for tractability, and for no real loss of modeling
+fidelity, we can discard the particulars as unknown `microscopic
+phase' and adopt instead an idealized model of a mirror that has the
+right power reflectivity and transmission and does not violate
+conservation of energy. There are two such conventions in common
+use. We can call them the ``engineers' convention'' and the
+``physicists' convention.''
+
+In the physics convention, transmission through a mirror conveys no
+phase; reflection from one direction is real and positive ($+r$),
+but reflection from the other direction gives a minus sign ($-r$).
+The physics convention essentially models a mirror as a single dielectric
+boundary.
+
+\[
+S_{physics}=\left(\begin{array}{cc}
+t & r\\
+-r & t
+\end{array}\right)
+\]
+
+
+In the engineering convention, reflection from either side of a mirror
+has the same real, positive reflectivity ($+r$), but transmission
+through the mirror gives a phase of 90 degrees, a coefficient of $it$:
+
+\[
+S_{engineering}=\left(\begin{array}{cc}
+it & r\\
+r & it
+\end{array}\right)
+\]
+
+The (initial) LIGO test masses actually have amplitude reflectivity
+coefficients close to $-1$ at the high-reflectivity (HR) side, so
+that the electric field on the surface of the optic on the high-power
+side is very near zero.%
+
 \section{The optical spring}
 
 \input{chapter7/optical-spring.tex}
@@ -199,6 +222,13 @@ So, for power $P$, the shot noise amplitude spectral density is
 \label{eq:shotnoise-asd}
 \end{equation}
 for a relative intensity noise of $\sqrt{2 h\nu/P}$.
+
+\section{Noise analysis of opamp circuits}
+
+\begin{figure}
+\includegraphics[width=\columnwidth]{notes/figures/inverting-amp.pdf}
+\caption{\label{fig:inverting-amp}Basic active filter in the inverting amplifier configuration.} 
+\end{figure}
 
 \section{References}
 \cite{Quetschke2007Complex}
