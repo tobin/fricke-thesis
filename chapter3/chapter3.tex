@@ -1,78 +1,71 @@
 \chapter{DC Readout}
 \label{chapter3}
-\section{Introduction}
 
-The basic problem is to detect optical phase. Photodetectors are
-generally much too slow to detect the optical field \emph{amplitude}
-directly (a laser wavelength of 1064 nm corresponds to about 300 THz).
-Instead, photodetectors measure the field \emph{power}, averaged over
-some interval (typically $\lesssim 10^{-9}$ s).  
+The initial LIGO detectors used RF heterodyne detection, inspired by
+the Pound-Drever-Hall technique, to sense all interferometer length
+degrees of freedom and most angular degrees of freedom.  During
+Enhanced LIGO, the sensing of the gravitational wave channel (DARM)
+was changed to a form of homodyne detection called DC readout.  In
+this chapter I explain the motivation for and theory behind DC
+readout.
 
-As a concrete example, the optical field at the output of a Michelson
-interferometer goes like $E_{AS} = E_0 \sin k\Delta x$.  A simple
-photodiode detector, which measures the squared magnitude of the
-electric field, is not able to distinguish between positive and
-negative excursions of $\Delta x$.  We need to arrange for our
-detector be sensitive not just to the magnitude of $E_{AS}$ but also
-its sign.
+\section{Principle of DC readout}
+A homodyne readout system differs from a heterodyne system by using a
+local oscillator at the same (optical) frequency as the field we wish
+to measure.  In DC readout we bring this 
 
-To sense this optical phase, we turn to interference.  By providing a
-second optical field--a \emph{local oscillator}--as a phase reference,
-phase perturbations of the signal beam are converted to power
-fluctuations at the photodiode.
+DC readout creates a homodyne local oscillator by putting a small
+offset into the Michelson or DARM degree of freedom, moving the
+interferometer slightly off of the DARM fringe at DC.  In this
+``fringe'' view, the operation is very simple to understand: moving
+off of the null point introduces a non-zero first derivative.  
 
-The local oscillator field may be at the same optical frequency as the
-signal field, or it may be offset by a fixed frequency difference.
-If the local oscillator is at the same optical frequency as the signal
-beam, then the photocurrent directly mimics the phase perturbations of
-the signal; this is \emph{homodyne detection}, or direct conversion.
-If, on the other hand, the local oscillator is offset slightly in
-frequency, the signal will appear as amplitude modulation on the
-photodiode signal.  This is \emph{heterodyne detection}.
+The true beauty of this technique is that it exploits the filtering
+action of the compound interferometer to produce the local oscillator;
+any fluctuations in the amplitude or frequency of the input laser
+field are attenuated by the coupled cavity pole before reaching the
+output port.
 
-There is also the question of how to get the local oscillator to the
-detection photodiode, and how to guarantee that it is sufficiently
-stable in phase and well-matched to the spatial distribution of the
-signal beam.  One approach is to specially pipe the local oscillator
-to the detection port, combine the signal and local oscillator via a
-beamsplitter, and detect the two emerging beams on photodiodes, adding
-the resulting signals electronically.  This scheme, balanced homodyne
-detection, is depicted in \checkme{a figure}.
+\section{Motivation for DC readout}
 
-The major difficulty of balanced homodyne detection is to bring the
-local oscillator signal (which typically originates with the same
-laser source as the field being measured) without introducing
-excessive phase noise.  The problem is elegantly addressed in the
-current gravitational wave detectors by having the local oscillator
-signal resonate in the the interferometer, or a portion of it.
+Some of the motivations of DC readout and an output mode cleaner are:
 
-\section{Heterodyne detection}
-
-The initial LIGO detectors were designed to use, as much as possible,
-proven technologies.  The proven technique for sensing the
-length/frequency mismatch of an optical cavity was the
-Pound-Drever-Hall (PDH)
-technique\cite{Drever1983Laser,Black2001Introduction}, sometimes
-called reflection-locking, which can be used to lock the frequency of
-a laser to the length of a cavity, or vice versa.
-
-In the basic PDH setup, the laser light incident on a resonant cavity
-is first phase-modulated at a frequency well outside of the bandwidth
-of the cavity, such that the sidebands are nearly anti-resonant in the
-cavity when the carrier is resonant.  For small perturbations (in
-laser frequency or cavity length) around this point, the phase of the
-reflected carrier changes quickly, while the phase of the reflected
-sideband field changes more slowly.  The reflected sideband field may
-therefore be used as a local oscillator by which to measure the
-carrier phase.
+\begin{itemize}
+\item The filtering action of the compound interferometer produces an
+  extremely quiet local oscillator.  This reduces the coupling of
+  laser noises to the readout.
+\item Contributions from noise on the electronic oscillator used to
+  create the RF sidebands are greatly reduced.
+\item The shot-noise-limited sensitivity of homodyne detection is
+  inherently better than that of heterodyne detection, for a fixed
+  amount of power on the detection photodiodes, by a factor of at
+  least $\sqrt{3/2}$.
+\item The shot noise level may be further reduced through the
+  injection of squeezed quantum vacuum.  This is much more technically
+  feasible with homodyne detection than heterodyne detection.  This
+  has recently been demonstrated at the GEO600 detector and a
+  prototype implementation is underway at Hanford.
+\item In DC readout, the signal field and the local oscillator are
+  guaranteed to have perfect spatial overlap, since they come from the
+  same place.  By contrast, in the conventional heterodyne
+  arrangement, the RF fields and the carrier are resonant in different
+  cavities and may occupy slightly different spatial modes.  This
+  leads to a reduction of shot-noise-limited SNR.  (However, an output
+  mode cleaner can be used to force good overlap in either case.)
+\item The output mode cleaner greatly decreases the amount of power
+  that must be detected by the detection photodiodes by removing
+  spurious higher order modes.  
+  
+\end{itemize}
 
 \begin{figure}
 \includegraphics{figures/fields-picture.pdf}
-\caption[Frequency-domain fields in DC and RF readouts]{Depiction of
-  the fields in DC and RF readouts.  (a) In RF readout, the laser
-  carrier is suppressed by operating the Michelson on a dark fringe
-  for the carrier.  Differential phase modulation in the arms becomes
-  amplitude modulation of the (suppressed) carrier, depicted as the
+\caption[Frequency-domain fields in DC and RF
+  readouts]{\label{fig:sideband-picture}Depiction of the fields in DC
+  and RF readouts.  (a) In RF readout, the laser carrier is suppressed
+  by operating the Michelson on a dark fringe for the carrier.
+  Differential phase modulation in the arms becomes amplitude
+  modulation of the (suppressed) carrier, depicted as the
   audio-frequency sidebands at $\pm f_{gw}$.  The photodiode sees a
   beat between the GW signal and the RF sidebands.  In homodyne
   readout, a carrier-frequency local oscillator is introduced--in DC
@@ -83,75 +76,6 @@ carrier phase.
   photodiodes.}
 \end{figure}
 
-\subsection{The Pound-Drever-Hall technique}
-
-The phase modulation may be expanded in terms of sidebands using the
-Jacobi-Anger expansion:\footnote{This expansion comes from the 
-generating function 
-$\exp\{\frac{1}{2} z \left(t - t^{-1}\right)\} = \sum_{m=-\infty}^\infty t^m J_m(z)$ with $t = \exp \{i \omega t'\}$}
-
-\begin{equation}
-\begin{array}{rcll}
-\exp\{i\Gamma\cos\Omega t\} & = &\sum_{n=-\infty}^{\infty} \left(i^n\right) & J_n(\Gamma) \exp\{i n \Omega t\} \\
-\exp\{i\Gamma\sin\Omega t\} & = & \sum_{n=-\infty}^{\infty} & J_n(\Gamma) \exp\{i n \Omega t\}
-\end{array}
-\end{equation}
-
-Upon reflection from a cavity the phases of the carrier and the two
-sidebands will be rotated.  This phase rotation converts the phase
-modulation to amplitude modulation, which is observed by the
-photodiodes.  Typically, the carrier is held on resonance, where there
-is a very large change in reflected phase for a small change of
-detuning; the sidebands, on the other hand, are typically far from
-resonance and experience very little phase change.
-
-The reflectivity of a lossless Fabry-Perot cavity is:
-\begin{equation}
-r_c = \frac{r_1 - r_2 \exp i2\phi}{1 - r_1 r_2 \exp i 2\phi}
-\end{equation}
-
-Suppose the carrier and upper and lower sidebands are incident upon this
-cavity, and the reflection from the cavity is incident on a photodiode.
-If the cavity length is $L$ and the optical frequency is $\nu$ then
-$\phi = (2\pi)(L/c)\nu$.  The sideband detunings are offset from this by
-$\pm(2\pi)(L/c)\Omega$.  So, as a function of detuning, we have:
-%
-\begin{equation}
-E_r = J_0 r_c(\phi) 
-+ J_1 r_c(\phi - (2\pi L/c)\Omega) 
-+ J_1 r_c(\phi + (2\pi L/c)\Omega)
-\end{equation}
-
-...
-
-Now consider a Michelson interferometer where the arms have lengths
-$L_{\{x,y\}}$.  The field at the output port (at a given frequency) is:
-%
-\begin{equation}
-E_{AS} = E_0 \frac{1}{2} \left( e^{2 i L_{x} \nu /c} + e^{2 i L_{y} \nu / c} \right) 
-\end{equation}
-
-\section{Homodyne detection}
-
-DC readout creates a homodyne local oscillator by putting a small
-offset into the Michelson or DARM degree of freedom, moving the
-interferometer slightly off of the DARM fringe at DC.  In this
-``fringe'' view, the operation is very simple to understand: moving
-off of the null point introduces a non-zero first derivative.  The
-limitation of this view is that it is awkward to include
-frequency-dependent effects, such as the finite storage time of the
-arms.
-
-The true beauty of this technique is that the laser carrier that does
-leak out of the output port has been filtered by the combined action of
-the power recycling cavity and the arm cavities.  Although by moving
-off of the dark fringe we do subject ourselves to some first-order
-coupling of common-mode noises, this filtering action (combined with
-having a sufficiently quiet laser to start with) reduces these noises
-below the fundamental noise floor of the detector.  
-
-As long as the DARM offset is sufficiently small, the degradation of
-power recycling is negligible.
 
 \subsection{Calculation of the optical gain}
 
@@ -252,64 +176,23 @@ S_{DC}\approx2\sqrt{P_{IN}P_{AS}}g_{cr}r_{cp}k\label{eq:dc-readout-optical-gain}
 
 \section{Offset}
 
+As long as the DARM offset is sufficiently small, the degradation of
+power recycling is negligible.
+
 Optical gain and shot noise level both scale like the square root of
 the power at the detection port (for small offsets).  Thus the
 detection SNR is relatively insensitive to the particular offest.
-
-\section{Heterodyne shot noise}
-
-The shot noise limit in homodyne detection is easy to calculate.  The
-power incident on the photodiode is approximately constant.  The noise
-is spectrally white at a level given by the formula.
-
-The shot noise level in a heterodyne readout is a more subtle matter,
-as illustrated by the number of publications on the topic:
-\cite{Niebauer1991Nonstationary, Lyons2000Shot, Mio1992Observation, Meers1991Modulation}.
-
-\begin{figure}
-\includegraphics[width=\columnwidth]{figures/cyclostationary-timeseries.pdf}
-\includegraphics[width=\columnwidth]{figures/cyclostationary-timeseries2.pdf}
-\caption[Illustration of cyclo-stationary shot noise]{\label{fig:cyclostationary-shot-noise} \textbf{(a)} Model of
-  shot noise in the presence of sinusoidal power modulation, as occurs
-  in optical heterodyne detection.  The photodiode sees a power
-  modulation at $2f_{mod}$ (white) due to the beat between the upper
-  and lower modulation sidebands at $f_{carrier} \pm f_{mod}$.
-  The gray levels represent the $1\sigma,\ 2\sigma,
-  \cdots, 5\sigma$ ranges for a Poisson distribution.  The blue dots
-  are a sample realization of this noise. \textbf{(b)} Subtracting the
-  mean from (a) leaves only the noise; its bursty nature is obvious.
-  Shown in black and red are the I and Q demodulation waveforms,
-  respectively.  It is clear that the in-phase demodulation (I)
-  samples regions of the time series with higher variance than the
-  quadrature phase (Q).  This leads to a higher variance (shot noise
-  level) in the I signal and a lower one in the Q signal relative to
-  what one would expect from a na\"ive assumption based on the average
-  power considered over a whole period of the waveform.}
-\end{figure}
-
-\section{Comparison}
-
-In addition to mitigating technical difficulties of RF detection,
-homodyne detection confers a fundamental improvement in SNR by up to a
-factor of ??. The extra noise in heterodyne detection can be
-considered either a result of time dependence in the average power
-leading to correlations in the shot
-noise\cite{Niebauer1991Nonstationary}, or the simple fact that
-demodulation introduces noises from around $2f_{mod}$, giving
-an extra dose of shot noise.  A more sophisticated analysis ascribes
-this noise to the two heterodyne demodulation quadratures acting as
-non-commuting quantum operators\cite{Buonanno2003Quantum}.
 
 \begin{figure}
 \centerline{\includegraphics[width=\columnwidth]{figures/residualDARM.pdf}}
 \caption[Residual DARM motion]{\label{fig:residual-DARM}Residual DARM}
 \end{figure}
 
-\section{Interferometer Sensing and Control}
+\subsection{Decrease in arm power due to off-resonance operation}
 
-The laser light incident on the interferometer is phase-modulated at
-several frequencies, producing optical sidebands on the laser carrier.
-Light extracted from the interferometer at its various ports is
-incident on photodiodes; the photodiode signals are demodulated to
-produce signals.
+The decrease in buildup for a cavity operated off-resonance goes like
+$(2\mathcal{F}/\pi)^2\phi^2$, where $\phi$ is the cavity detuning.
+For $\mathcal{F}=220$ and $\phi=(2\pi/1064\text{ nm})(10\text{ pm})$,
+the fractional power loss is only $7\times10^{-5}$.
 
+\subsection{Decrease in power recycling gain due to power loss at the output port}
