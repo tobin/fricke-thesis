@@ -1,8 +1,8 @@
-\CHAPTER{The LIGO detector}
+\chapter{The LIGO detector}
 \label{chapter2}
 %\doublespace
 
-In this chapter I will explain how the LIGO detectors work.
+In this chapter I explain how the LIGO detectors work.
 
 \section{Arms, cavities, etc}
 
@@ -21,6 +21,7 @@ gravitational wave and phase perturbations inflicted by our light
 source.  We need to eliminate sources of phase variations that would
 be louder than the effect we wish to measure.  
 
+The essential points are:
 \begin{itemize}
 \item We approximate inertial test masses by hanging the optics as
   pendula.  These act as inertial masses above the pendulum resonance.
@@ -34,82 +35,27 @@ be louder than the effect we wish to measure.
   increase the light power in the interferometer by using power
   recycling.
 \end{itemize}
-
-\section{A single cavity}
-
-Our first impulse might be to build a single resonant cavity to use as
-a gravitational wave detector.  Consider the two-mirror system in
-Figure~\ref{fig:fabry-perot}.  By suspending these two mirrors as
-pendula, we can simulate intertial test masses.  The resonant optical
-cavity is of ubiquitous utility in LIGO, so this discussion will be of
-general interest.
-
-Here we will ignore the spatial distribution of light, and its
-polarization.  Despite these simplification, the results will have
-wide applicability.
-
-\includegraphics[]{figures/cavity.pdf}
-
-Solving for the fields, we get the amplitude transmission and
-reflection coefficients for the cavity:
-%
-\begin{align}
-t_c := & \frac{E_t}{E_0} = 
-         \frac{-t_1 t_2 \exp i\phi}
-              {1 - r_1 r_2 \exp i2\phi} \\
-r_c := & \frac{E_r}{E_0} = 
-         \frac{r_1 - \left({r_1}^2 + {t_1}^2\right)r_2 \exp{i2\phi}}
-              {1 - r_1 r_2 \exp i2\phi}
-\label{eq:cavity-reflectivity}
-\end{align}
-%
-where $\phi$ is the phase accumulated by the field as it travels from
-the first mirror to the second mirror.  The phase depends on both the
-laser wavelength and the distance between the mirrors:
-$\phi=2\pi(2L/c)\nu$.  The quantity $fsr=c/(2L)$ is the \emph{free
-  spectral range}.  It is often useful to write the cavity
-reflectivity in the form of a rational transfer function (poles and
-zeros):
-%
-\begin{equation}
-r_c(s) = \mathop{\Huge{\Pi}}\limits_{n=-\infty}^{\infty} \frac {s-z_n} {s-p_n}
-\end{equation}
-
-For the arms of a gravitational wave detector, we set $r_2$ as close
-to unity as possible.  We are interested in the phase of the reflected
-field. 
- 
-Recall that the phase at frequency $\omega$ imparted by a pole at
-frequency $\omega_0$ is $\tan^{-1}\left(-\omega/\omega_0\right)$; a
-zero at the same frequency subtracts this same phase.  For a maximally
-over-coupled cavity (i.e. with $r_2 = 1$), the cavity pole and cavity
-zero are equal and opposite, so contribute equal phase ($\tan^{-1}$ is odd).
-
-Changing the one-way phase of the arm by $\phi$ results in a phase 
-change of
-\begin{equation}
-\phi_r = 2 \tan^{-1} \left( 2 f_{fsr} \frac{\phi}{\omega_0} \right)
-\end{equation}
-where $\omega_0$ is the cavity pole.  Taking the derivative, we find the \emph{phase gain}:
-\begin{equation}
-  \frac{d \phi_r}{d \phi} = 2 \left[1 + \left(\frac{2 f_{fsr} \phi}{\omega_0}\right)^2 \right]^{-1} \frac{2 f_{fsr}}{\omega_0}
-\end{equation}
-The phase gain on resonance is $2 f_{fsr} / \omega_0 \approx 140$. This phase gain decreases as we detune the cavity further from resonance, but it is not seriously diminished until the cavity detuning approaches the cavity pole.
-
+The following sections describe these principles in further detail.
 \section{A Michelson}
 \begin{figure}
-\includegraphics{figures/michelson.pdf}
-\caption[Michelson interferometer]{\label{fig:michelson}Michelson interferometer}
+\centering\includegraphics{figures/michelson.pdf}
+\caption[Michelson interferometer]{\label{fig:michelson}Michelson
+  interferometer.  This figure introduces some of the common
+  nomenclature for the ports and optics of the Michelson
+  interferometer.  ETM stands for `end test mass.'}
 \end{figure}
 
-By a convenient coincidence, a Michelson interferometer is ideally
-suited to gravitational wave detection.  A suitably polarized wave
-directly excites the differential mode of the Michelson, while the
-Michelson simultaneously provides huge level of common mode noise
-rejection.
+Contemplating the effect of a gravitational wave on a ring of test
+particles (figure~\ref{fig:gwave-effect}), it is easy to imagine
+constructing a Michelson interferometer (figure~\ref{fig:michelson})
+with its beamsplitter in the center of the circle and with two of the
+test particles forming the end mirrors of the Michelson.  More
+importantly, the Michelson allows us to separate the differential
+motion of the two arms from the common motion, which is
+indistinguishable from laser frequency changes.
 
-If we assume a perfect beamsplitter, the transmission and reflection
-coefficients for the Michelson are:
+If we assume a perfect (lossless, 50/50) beamsplitter, the
+transmission and reflection coefficients for the Michelson are:
 %
 \begin{align}
 t_M  &= \frac{1}{2}\left(r_x \exp \{i2\phi_x\} - r_y \exp\{i2\phi_y\} \right) \\
@@ -146,10 +92,32 @@ and $r_x = (1/2)(r_+ + r_-)$ and $r_y = (1/2)(r_+ - r_-)$:
 t_M  &= \frac{1}{2} e^{i\phi_+} \left( r_+ i \sin \phi_- + r_- \cos \phi_- \right)\\
 r_M  &= \frac{1}{2} e^{i\phi_+} \left( r_+ i \cos \phi_- + r_- \sin \phi_- \right) 
 \end{align}
+
+The intent is for the arm reflectivities to be identical (so $r_- \to
+0$), and to operate near the \emph{dark fringe} ($\phi_-\to0$) so that
+the input field does not couple directly to the output port
+(i.e. $t_M\to0$).  Given this configuration, there are two salient
+points concerning gravitational wave detection:
 %
-Using $P_{AS} = P_{BS} \left|t_M\right|^2$ and $P_{REFL} = P_{BS}
-\left|r_M\right|^2$ we can compute the power at the antisymmetric and
-reflected ports:
+\begin{itemize}
+\item Variations of the differential phase $\phi_-$ \emph{linearly couple} to the \emph{field amplitude} at the output port.
+\item Variations of the common phase $\phi_+$ do not couple.
+\end{itemize}
+%
+The field at the output port will thus be sensitive to suitably
+polarized graviational waves but insensitive to laser frequency noise.
+(An orthogonally polarized gravitational wave, whose strain ellipse is
+rotated $45^\circ$, will modulate $\phi_+$ but this detector
+sacrifices sensitivity to that polarization in order to gain
+common-mode noise immunity.)  
+
+Ultimately, we can not measure optical field amplitudes directly, but
+only the power, i.e. the envelope of the optical field, as the field
+itself oscillates at at $c/(1064\text{ nm})\approx 300\text{ THz}$,
+much too quickly to measure directly.  We compute the power at the
+anti-symmetric and reflected ports by taking the squared magnitude of
+the field amplitudes.  Using $P_{AS} = P_{BS} \left|t_M\right|^2$ and
+$P_{REFL} = P_{BS} \left|r_M\right|^2$:
 %
 \begin{align}
 P_{AS}   &=  \frac{1}{4}P_{BS}\left( {r_+}^2 \sin^2 \phi_- + {r_-}^2 \cos^2 \phi_-\right) \\
@@ -162,6 +130,123 @@ The power transmitted through the Michelson at the dark fringe is the
 \begin{equation}
 c_d = \frac{P_{AS}}{P_{BS}} = \frac{1}{4}\left(r_-\right)^2.
 \end{equation}
+
+The linear relationship between $\phi_-$ and the electric field at the
+output port has turned into a quadratic relationship between $\phi_-$
+and the output port power.  We will turn to the task of recovering a
+linear signal in section~\ref{sec:isc}, but first we will consider
+methods to magnify the effect of a gravitational wave on $\phi_-$.
+
+\section{Resonant cavities}
+
+One approach to increasing the phase imparted by the GW to the light
+in the arms of the interferometer would be to arrange for the light to
+make multiple traversals of the arm length.  This could be in the form
+of a delay line (where the optical path makes several zig-zags down
+the arm length in a definite number of bounces), or a resonant cavity
+(made by facing two partially-transmissive mirrors at each other,
+resulting in an effective number of bounces).  Resonant cavities were
+chosen for the LIGO arms.  They appear in many other guises within the
+detector too, so the general theory is quite useful.
+
+Consider the two-mirror system in Figure~\ref{fig:fabry-perot}, a
+Fabry-Perot cavity.  Light entering the cavity will interfere with
+light already circulating in the cavity.  If, after making a
+round-trip through the interior of the cavity, the circulating light
+returns to its original phase (and spatial distribution), constructive
+interference will occur and the light will resonate in the cavity.  If
+the mirrors have high reflectivity, then the light inside the cavity
+will survive for many round-trips inside the cavity. Any deviation from the
+required $2\pi$ radians of round-trip phase will be magnified on each
+bounce, making Fabry-Perot cavities extremely frequency-selective
+devices.
+
+\subsection{Fabry-Perot field equations}
+Here I will derive the basic properties of Fabry-Perot cavities, for
+simplicity ignoring the spatial distribution of light (which we will
+revisit in chapter 4), and its polarization.  Despite these
+simplification, the results will have wide applicability.
+
+\begin{figure}
+\includegraphics[]{figures/cavity.pdf}
+\caption[Fabry-Perot Cavity]{\label{fig:fabry-perot}Fabry-Perot
+  cavity.  When used as an arm cavity, the two mirrors are known as
+  the input (ITM) and end (ETM) test masses.  Here $E_0$ indicates the
+  amplitude of the incident electric field, $E_r$ the reflected field,
+  $E_+$ the forward-going intra-cavity field, etc.}
+\end{figure}
+
+We begin by writing down the relationships between the fields at each
+interface.  For simplicity, we treat each mirror as a single (thin)
+interface.  Let $r_1$ and $t_1$ be the amplitude reflectivity and
+transmissivity for the input mirror, and $r_2$ and $t_2$ describe the
+output mirror.  I use the phase convention where transmission through
+a mirror conveys $90^\circ$ of phase, i.e. a factor of $i$ in the
+amplitude:
+%
+\begin{align}
+E_+ &= i t_1 E_0 + r_1 E_- \\
+E_- &= r_2 e^{i 2 \phi} E_+ \\
+E_t &= i t_2 e^{i \phi} E_+ \\
+E_r &= r_1 E_0 + i t_1 E_1
+\end{align}
+%
+Solving these equations algebraically for $E_r$ and $E_t$ in terms of the incident field $E_0$, we find the transmission and reflectivity of the cavity:
+%
+\begin{align}
+t_c \equiv & \frac{E_t}{E_0} = 
+         \frac{-t_1 t_2 \exp i\phi}
+              {1 - r_1 r_2 \exp i2\phi} \\
+r_c \equiv & \frac{E_r}{E_0} = 
+         \frac{r_1 - \left({r_1}^2 + {t_1}^2\right)r_2 \exp{i2\phi}}
+              {1 - r_1 r_2 \exp i2\phi}
+\label{eq:cavity-reflectivity}
+\end{align}
+%
+where $\phi$ is the phase accumulated by the field as it travels from
+the first mirror to the second mirror.  This phase depends on both the
+laser wavelength and the distance between the mirrors:\footnote{There is an additional contribution to the phase, the Guoy phase shift, due to geometric effects; this is described in chapter 4.}
+\begin{align}
+\phi  & = 2\pi \nu / \nu_0 \\
+\nu_0 & = c/(2L)
+\end{align}
+where $\nu=c/\lambda$ is the laser frequency, $L$ is the cavity
+length, and $\nu_0$ is the \emph{free spectral range}, which describes
+the spacing between adjacent resonances.
+
+\subsection{the cavity pole}
+It is often useful to write the cavity reflectivity in the form of a
+rational transfer function,
+\begin{equation}
+r_c(s) = \prod_{n=-\infty}^{\infty} \frac {s-z_n} {s-p_n}
+\end{equation}
+where $s=i\omega$.  Substitute $\phi=$.
+
+\subsection{phase gain}
+For the arms of a gravitational wave detector, we set $r_2$ as close
+to unity as possible.  We are interested in the phase of the reflected
+field. 
+ 
+Recall that the phase at frequency $\omega$ imparted by a pole at
+frequency $\omega_0$ is $\tan^{-1}\left(-\omega/\omega_0\right)$; a
+zero at the same frequency subtracts this same phase.  For a maximally
+over-coupled cavity (i.e. with $r_2 = 1$), the cavity pole and cavity
+zero are equal and opposite, so contribute equal phase ($\tan^{-1}$ is odd).
+
+Changing the one-way phase of the arm by $\phi$ results in a phase 
+change of
+\begin{equation}
+\phi_r = 2 \tan^{-1} \left( 2 f_{fsr} \frac{\phi}{\omega_0} \right)
+\end{equation}
+where $\omega_0$ is the cavity pole.  Taking the derivative, we find the \emph{phase gain}:
+\begin{equation}
+  \frac{d \phi_r}{d \phi} = 2 \left[1 + \left(\frac{2 f_{fsr} \phi}{\omega_0}\right)^2 \right]^{-1} \frac{2 f_{fsr}}{\omega_0}
+\end{equation}
+The phase gain on resonance is $2 f_{fsr} / \omega_0 \approx 140$. This phase gain decreases as we detune the cavity further from resonance, but it is not seriously diminished until the cavity detuning approaches the cavity pole.
+
+\subsection{power buildup}
+
+\subsection{coupling}
 
 \section{Michelson with Fabry-Perot arms}
 
@@ -211,7 +296,7 @@ f_{cc} \approx \frac{1}{2\pi} f_{fsr} \log \left(\frac{r_3 - r_1}{1 - r_1 r_3} r
 
 
 \section{Interferometer Sensing and Control}
-
+\label{sec:isc}
 The laser light incident on the interferometer is phase-modulated at
 several frequencies, producing optical sidebands on the laser carrier.
 Light extracted from the interferometer at its various ports is
@@ -221,26 +306,83 @@ produce signals.
 \cite{Fritschel2001Readout}
 
 
+\section{Heterodyne detection}
+
+The initial LIGO detectors were designed to use, as much as possible,
+proven technologies.  The proven technique for sensing the
+length/frequency mismatch of an optical cavity was the
+Pound-Drever-Hall (PDH)
+technique\cite{Drever1983Laser,Black2001Introduction}, sometimes
+called reflection-locking, which can be used to lock the frequency of
+a laser to the length of a cavity, or vice versa.
+
+In the basic PDH setup, the laser light incident on a resonant cavity
+is first phase-modulated at a frequency well outside of the bandwidth
+of the cavity, such that the sidebands are nearly anti-resonant in the
+cavity when the carrier is resonant.  For small perturbations (in
+laser frequency or cavity length) around this point, the phase of the
+reflected carrier changes quickly, while the phase of the reflected
+sideband field changes more slowly.  The reflected sideband field may
+therefore be used as a local oscillator by which to measure the
+carrier phase.
+
+\subsection{The Pound-Drever-Hall technique}
+
+The phase modulation may be expanded in terms of sidebands using the
+Jacobi-Anger expansion:\footnote{This expansion comes from the 
+generating function 
+$\exp\{\frac{1}{2} z \left(t - t^{-1}\right)\} = \sum_{m=-\infty}^\infty t^m J_m(z)$ with $t = \exp \{i \omega t'\}$}
+
+\begin{equation}
+\begin{array}{rcll}
+\exp\{i\Gamma\cos\Omega t\} & = &\sum_{n=-\infty}^{\infty} \left(i^n\right) & J_n(\Gamma) \exp\{i n \Omega t\} \\
+\exp\{i\Gamma\sin\Omega t\} & = & \sum_{n=-\infty}^{\infty} & J_n(\Gamma) \exp\{i n \Omega t\}
+\end{array}
+\end{equation}
+
+Upon reflection from a cavity the phases of the carrier and the two
+sidebands will be rotated.  This phase rotation converts the phase
+modulation to amplitude modulation, which is observed by the
+photodiodes.  Typically, the carrier is held on resonance, where there
+is a very large change in reflected phase for a small change of
+detuning; the sidebands, on the other hand, are typically far from
+resonance and experience very little phase change.
+
+The reflectivity of a lossless Fabry-Perot cavity is:
+\begin{equation}
+r_c = \frac{r_1 - r_2 \exp i2\phi}{1 - r_1 r_2 \exp i 2\phi}
+\end{equation}
+
+Suppose the carrier and upper and lower sidebands are incident upon this
+cavity, and the reflection from the cavity is incident on a photodiode.
+If the cavity length is $L$ and the optical frequency is $\nu$ then
+$\phi = (2\pi)(L/c)\nu$.  The sideband detunings are offset from this by
+$\pm(2\pi)(L/c)\Omega$.  So, as a function of detuning, we have:
+%
+\begin{equation}
+E_r = J_0 r_c(\phi) 
++ J_1 r_c(\phi - (2\pi L/c)\Omega) 
++ J_1 r_c(\phi + (2\pi L/c)\Omega)
+\end{equation}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Determination of LIGO cavity lengths and mirror reflectivities}
 
-The lengths of cavities and reflectivities of mirrors in LIGO are
-all driven by a small number of design decisions. This document is
-intended to be a brief and friendly derivation of some of these values.
-Definitive references are \cite{LigoFreqResponse97} or \cite{Fritschel2001Readout}.
-A more general reference is \cite{S5InstrumentPaper}.
+The lengths of cavities and reflectivities of mirrors in LIGO are all
+driven by a small number of design decisions.  This section is
+intended to be a brief and friendly derivation of some of these
+values.  Definitive references are \cite{LigoFreqResponse97} or
+\cite{Fritschel2001Readout}; A more general reference is
+\cite{S5InstrumentPaper}.
 
-In this document I simply use the plane-wave approximation for fields
-inside cavities. This introduces certain inaccuracies, as, for example,
-I ignore gouy phase. Nonetheless, comparison to the actual dimenions
-of LIGO shows good agreement. Furthermore, I present cavity equations
-without any derivation. Derivations may be found in almost any LIGO
-thesis or optics book. I have tried to use symbols relatively standard
-within LIGO. My own derivations may be found in the appendix.
+As in the preceeding sections, I simply use the plane-wave
+approximation for fields inside cavities. This introduces certain
+inaccuracies, as, for example, I ignore gouy phase. Nonetheless,
+comparison to the actual dimenions of LIGO shows good agreement.
 
 It is useful to draw a distinction between macroscopic and microscopic
-lengths. Macroscopic lengths are those derived in this document and
+lengths. Macroscopic lengths are those derived here and
 used in detector engineering, with magnitudes ranging from kilometers
 down to centimeters or millimeters. Microscopic lengths are those
 on the order of the wavelength of light and smaller, sometimes \emph{much}
@@ -249,51 +391,47 @@ they are controlled by servo systems to hold cavities on resonance.
 When we say that a cavity is a certain macroscopic length, we retain
 the freedom to adjust the microscopic length to attain resonance.
 
-
 \subsection*{Arm length}
 
 How big a detector can you build? The physical length of the detector
-sets the conversion from displacement to strain. Simply making the
+sets the conversion between displacement and strain. Simply making the
 detector longer will make any fixed displacement noises into smaller
 strain noises-so we want the detector as large as possible. How big
-you can build is usually a result of geography, money, and politics.
+one can build is usually a result of geography, money, and politics.
 LIGO got
-
-\[
+%
+\begin{equation}
 \boxed{{L_{+}=4000\text{{\ meters}}}}
-\]
-
+\end{equation}
 
 The cavity length determines the free-spectral-range:
-
-\[
-f_{fsr}\equiv\frac{c}{2L_{+}}\approx37.5\text{ kHz}
-\]
+%
+\begin{equation}
+\nu_0\equiv\frac{c}{2L_{+}}\approx37.5\text{ kHz}
+\end{equation}
 
 
 
 \subsection*{Bandwidth}
 
-In the absense of a signal extraction mirror, there is a trade-off
-between the detector's sensitivity and its bandwidth. As the storage
+In the Fabry-Perot Michelson interferometer design, there is a trade-off
+between the detector's sensitivity and its bandwidth.\footnote{Advanced LIGO will include an additional mirror, a \emph{signal recycling mirror} at the output of the interferometer, forming an additional resonant cavity at the anti-symmetric port.  This cavity allows the interferometer DC sensitivity to be increased without decreasing its bandwidth.}  As the storage
 time in the arm becomes longer and longer (either by making the arm
 longer, or by increasing its finesse), the sensitivity to gravitational
 waves increases commensurately. However, sensitivity to waves whose
 period is shorter than the storage time of the arm is attenuated.
-Thus there is a trade-off between sensitivity and bandwidth. The first
-order of business is to choose the bandwidth. LIGO chooses:
-
-\[
+Thus there is a trade-off between sensitivity and bandwidth. 
+One must choose a bandwidth. LIGO chooses:
+%
+\begin{equation}
 f_{c}=90\text{\ Hz}
-\]
+\end{equation}
+
 Together, the free spectral range and the arm cavity pole determine
 the cavity finesse:
-
-\[
+\begin{equation}
 \mathcal{F}=\frac{f_{FSR}}{2f_{c}}\approx210
-\]
-
-
+\end{equation}
 
 \subsection*{Test mass reflectivities}
 
@@ -302,10 +440,9 @@ The finesse is uniquely determined by the fraction of circulating
 power that remains in the cavity after each roundtrip, which is given
 by a product of the mirror reflectivities and $r_{L}=\sqrt{1-L}$
 where L represents losses due to scattering, absorption, etc. 
-\[
+\begin{equation}
 \mathcal{F}\approx-\frac{\pi}{\log r_{1}r_{2}r_{L}}
-\]
-
+\end{equation}
 
 This relation fixes the product $r_{1}r_{2}$, leaving the ratio $r_{1}/r_{2}$
 as a free parameter. This ratio determines the coupling of the cavity,
@@ -321,26 +458,19 @@ g^{2}=\frac{1-r_{1}{}^{2}}{\left(1-r_{1}r_{2}\right)^{2}}
 \]
 To maximize this, we want $r_{1}$ as small as possible, so we make
 the ETM as reflective as possible. It turns out that maximal over-coupling
-is the way to go. The best super-polished mirrors we can buy have
+is the way to go. The best super-polished mirrors we could buy have
 transmissivities of 10 ppm, which gives
-
-\[
+\begin{equation}
 r_{2}=\sqrt{{1-10\times10^{-6}}}\approx0.999995
-\]
+\end{equation}
 Solving equation 1, we find:
-\[
+\begin{equation}
 r_{1}\approx0.985
-\]
-\textcolor{blue}{{[}I also need to put in a discussion of losses.
-The cavity losses are not negligible. The Optickle model gives losses
-of 70ppm for each HR surface, which far exceeds the ETM transmission.
-Then I can derive a reasonable value of rc, the cavity reflectivity
-on resonance, which sets the RM reflectivity.{]}}
-
+\end{equation}
 
 \subsection*{Power Recycling - Recycling Mirror}
 
-With the FP Michelson interferometer tuned to the dark fringe, all
+With the Fabry-Perot Michelson interferometer tuned to the dark fringe, all
 of the light not lost in the arm cavities is reflected back towards
 the laser source. To send this light back into the interferometer,
 we add a power recycling mirror, which forms a resonant cavity with
@@ -350,28 +480,18 @@ to make the cavity critically-coupled for the carrier.
 With the Michelson on a dark fringe, the Michelson reflectivity is
 given by the cavity reflectivity on resonance:
 
-\[
-r_{c}=\frac{r_{1}-r_{2}}{1-r_{1}r_{2}}
-\]
-\textcolor{blue}{{[}Need to add losses to that expression in order
-for this to work out.{]} }We choose:
+\begin{equation}
+r_{c}=\frac{r_{1}-r_{2}r_L}{1-r_{1}r_{2}r_L}
+\end{equation}
+where $r_L$ represents losses in the arm cavity.
 
-\[
+We choose:
+\begin{equation}
 r_{RM}{}^{2}=0.97
-\]
-
+\end{equation}
 
 \emph{The recycling mirror transmission is chosen to match the losses
 of the rest of the system.}
-
-
-\subsection*{Length degrees of freedom}
-
-\textcolor{blue}{I should explain that we transform lx, ly, Lx, and
-Ly into l- (Michelson asymmetry), l+ (PRC length), L+ (CARM length),
-and L- (DARM length) degrees of freedom. I should show that the PRC
-{}``sees'' the average distance of the Michelson arms (l-), etc.}
-
 
 \subsection*{Power Recycling - PRC cavity length}
 
@@ -451,50 +571,93 @@ as the second mirror in a resonant cavity. If we want to have perfect
 transmission of the sideband to the output port, then the power recycling
 cavity must be critically coupled for the sideband. This occurs when
 the Michelson transmission of the sideband is equal to the transmissivity
-of the RM.
-
-This scheme for getting the sideband to the {}``dark'' port is attributed
+of the RM. This scheme for getting the sideband to the {}``dark'' port is attributed
 to Lisa Schnupp, and the offset is called the Schnupp asymmetry.
 
 The Michelson reflectivity for the sideband is:
 
-\[
+\begin{equation}
 r_{M}=\cos\frac{2\pi f_{rf}l_{-}}{c}
-\]
+\end{equation}
 
-
-\textcolor{blue}{{[}The fringe of the lower sideband lags that of
+(The fringe of the lower sideband lags that of
 the carrier, and the upper sideband leads the carrier. But because
 the carrier itself is on a dark fringe, the transmission of both the
-upper and lower sidebands turns out to be the same.{]}}
+upper and lower sidebands turns out to be the same.)
 
 Solving $r_{M}{}^{2}=0.97$ in order to match the RM, we find a Schnupp
 asymmetry of
 
-\[
+\begin{equation}
 l_{-}=34\text{\ cm}
-\]
-\textcolor{blue}{{[}The actual situation is more complicated. Sigg
-explains, in \href{http://www.ligo.caltech.edu/docs/T/T030066-00.pdf}{T030066},
-April 2003:}
-\begin{quote}
-\textcolor{blue}{The Schnupp asymmetry of the two 4K interferometer
-is too short by 55 mm. The design required the reflected rf sideband
-amplitude to be +10\% (under-coupled). The current setup indicates
-an amplitude of \textendash{}7\% (over-coupled) when the system is
-fully heated. This results in a sign change of the reflected signal
-used to control the laser frequency during locking or while the thermal
-heating takes effect. Worse, the signal is likely to become useless
-when the rf sideband amplitude goes through zero. It looks like the
-Schnupp asymmetry has been calculated correctly for the 2K interferometer
-and later applied to the 4K interferometers without taking into consideration
-the difference in modulation frequency. }
-\end{quote}
-\textcolor{blue}{M.Evans write-up in \href{http://www.ligo.caltech.edu/docs/T/T030089-00.pdf}{T030089},
-{}``Non-Resonant Sidebands and the 4k Schnupp Asymmetry'' also looks
-useful.{]}}
+\end{equation}
 
-\emph{The Schnupp asymmetry sets the coupling of the sideband to the
+\emph{The Schnupp asymmetry sets the coupling of the RF sidebands to the
 antisymmetric port.}
+
+\section{Heterodyne shot noise}
+
+I conclude this chapter with a discussion of the shot-noise-limited
+sensitivity of a detector using heterodyne readout.
+
+When a constant optical power $P$ is incident upon a photodetector, we
+expect to observe Poisson shot noise in the resulting photocurrent.
+This shot noise has a white (flat) power spectrum, with amplitude
+spectral density $\sqrt{2 P h \nu}$, where $h\nu$ is the energy of an
+individual photon.
+
+In the heterodyne readout system, the power on the photodiode is
+\emph{not} constant; instead, the power varies sinusoidally at a
+frequency $2f_{mod}$ due to the beat between the upper and lower RF
+sidebands.  At any given instant, a measurement of the rate of photon
+arrival will return a value from the Poisson distribution with mean
+$P/(h\nu)$, which has standard deviation $\sqrt{P/(h\nu)}$.  A
+measurement of power therefore will give $P\pm\sqrt{h\nu P}$, where
+$P$ is varying sinusoidally with time.  This is an example of
+cyclostationary noise; a sample realization is depicted in
+figure~\ref{fig:cyclostationary-shot-noise}.  When considering a long
+time series ($t\gg1/f_{mod}$), the signal will appear to have a noise
+floor determined by its average power.  On closer examination,
+however, we see that the noise comes in bursts.
+
+The bursty nature of this noise becomes a problem when we consider
+demodulation.  Comparing the demodulation waveforms ($\cos 2\pi
+f_{mod} t$ and $\sin 2\pi f_{mod} t$) to the envelope of the noise, we
+see that one demodulation quadrature systematically samples the
+highest variance portions of the timeseries, while the other
+quadrature sames the lowest variance portions (see
+figure~\ref{fig:cyclostationary-shot-noise}).  The
+result\cite{Niebauer1991Nonstationary} is that the shot noise ASD in a
+demodulated signal is
+\begin{equation}
+\sqrt{2h\nu\bar{P} \left( \frac{1}{2}-\frac{1}{4}\cos2\theta\right)}
+\end{equation}
+where $\bar{P}$ is the average power on the photodiode and $\theta$ is
+the demodulation phase.
+
+The shot noise level in a heterodyne readout is a more subtle matter,
+as illustrated by the number of publications on the topic:
+\cite{Niebauer1991Nonstationary, Lyons2000Shot, Mio1992Observation, Meers1991Modulation, Buonanno2003Quantum}
+
+\begin{figure}
+\includegraphics[width=\columnwidth]{figures/cyclostationary-timeseries.pdf}
+\includegraphics[width=\columnwidth]{figures/cyclostationary-timeseries2.pdf}
+\caption[Illustration of cyclo-stationary shot noise]{\label{fig:cyclostationary-shot-noise} \textbf{(a)} Model of
+  shot noise in the presence of sinusoidal power modulation, as occurs
+  in optical heterodyne detection.  The photodiode sees a power
+  modulation at $2f_{mod}$ (white) due to the beat between the upper
+  and lower modulation sidebands at $f_{carrier} \pm f_{mod}$.
+  The gray levels represent the $1\sigma,\ 2\sigma,
+  \cdots, 5\sigma$ ranges for a Poisson distribution.  The blue dots
+  are a sample realization of this noise. \textbf{(b)} Subtracting the
+  mean from (a) leaves only the noise; its bursty nature is obvious.
+  Shown in black and red are the I and Q demodulation waveforms,
+  respectively.  It is clear that the in-phase demodulation (I)
+  samples regions of the time series with higher variance than the
+  quadrature phase (Q).  This leads to a higher variance (shot noise
+  level) in the I signal and a lower one in the Q signal relative to
+  what one would expect from a na\"ive assumption based on the average
+  power considered over a whole period of the waveform.}
+\end{figure}
 
 
