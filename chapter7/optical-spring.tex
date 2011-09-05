@@ -131,29 +131,29 @@ The presence of the coupling $k_{1}$ only affects the differential
 mode.
 
 
-\subsection{Damped oscillators}
+%% \subsection{Damped oscillators}
 
-Now consider a mass connected to the wall via a spring with spring
-constant $k$ and a velocity damper with damping constant $\gamma$:
+%% Now consider a mass connected to the wall via a spring with spring
+%% constant $k$ and a velocity damper with damping constant $\gamma$:
 
-\begin{center}
-\includegraphics[width=0.25\paperwidth]{figures/damped-oscillator-diagram}
-\par\end{center}
+%% \begin{center}
+%% \includegraphics[width=0.25\paperwidth]{figures/damped-oscillator-diagram}
+%% \par\end{center}
 
-The equation of motion of the mass is:
-\begin{equation}
-m\ddot{x}=-kx-\gamma\dot{x}+f_{external}
-\end{equation}
-with Laplace transform
-\begin{equation}
-ms^{2}X=-kX-\gamma sX+F_{external}
-\end{equation}
-giving rise to a transfer function of
+%% The equation of motion of the mass is:
+%% \begin{equation}
+%% m\ddot{x}=-kx-\gamma\dot{x}+f_{external}
+%% \end{equation}
+%% with Laplace transform
+%% \begin{equation}
+%% ms^{2}X=-kX-\gamma sX+F_{external}
+%% \end{equation}
+%% giving rise to a transfer function of
 
-\begin{eqnarray*}
-\frac{X}{F} & = & \frac{1}{ms^{2}+\gamma s+k}\\
- & = & \left(\frac{1}{m}\right)\frac{1}{\left(s-s_{+}\right)\left(s-s_{-}\right)}\text{ with }s_{\pm}=-\frac{1}{2}\frac{\gamma}{m}\pm\frac{1}{2}\sqrt{\left(\frac{\gamma}{m}\right)^{2}-4\frac{k}{m}}
-\end{eqnarray*}
+%% \begin{eqnarray*}
+%% \frac{X}{F} & = & \frac{1}{ms^{2}+\gamma s+k}\\
+%%  & = & \left(\frac{1}{m}\right)\frac{1}{\left(s-s_{+}\right)\left(s-s_{-}\right)}\text{ with }s_{\pm}=-\frac{1}{2}\frac{\gamma}{m}\pm\frac{1}{2}\sqrt{\left(\frac{\gamma}{m}\right)^{2}-4\frac{k}{m}}
+%% \end{eqnarray*}
 
 
 %% \subsection{Optical damping}
@@ -175,49 +175,6 @@ giving rise to a transfer function of
 %% \[
 %% \gamma=\frac{2}{c}\frac{1}{fsr}\frac{4\pi}{\lambda}2Fg^{2}\frac{\cos(\phi)\sin(\phi)}{\left(1+F\sin^{2}\phi\right)^{2}}P_{IN}
 %% \]
-
-
-\subsection{Optickle}
-
-In the attached Matlab code, I construct a very simple model in Optickle\cite{Evans2007Optickle}
-consisting of only a laser and two mirrors, forming a resonant cavity.
-Optickle is also supplied with the mechanical (force to position)
-transfer functions of each optic (in isolation). Together these transfer
-functions compose the \emph{reaction matrix}, which is diagonal in
-the sense that force applied to one optic only affects the position
-of that same optic.
-
-After constructing the model, we call Optickle via the tickle function:
-\begin{quote}
-\texttt{{[}fDC, sigDC, sigAC, mMech, noiseAC, noiseMech{]} = tickle(opt,
-pos, f);}
-\end{quote}
-The output we are interested in here is {}``\texttt{mMech},'' which
-gives the modifications to the mechanical transfer functions due to
-the radiation pressure couplings. Its units are {}``meters per meter''--a
-bit perplexing at first but some intuition may be gained by considering
-it as (meters in the presense of radiation pressure)/(meters in the
-absense of radiation pressure). A more sensible approach is to multiply
-\texttt{mMech} with the reaction matrix, which gives the mechanical
-transfer functions (from force applied at some optic to displacement
-of every other optic) including all optomechanical couplings.
-
-To extract the optical spring transfer function, I further transform
-\texttt{mMech} to the basis of common and differential degrees of
-freedom.
-
-Because we know the mass, resonant frequency, and damping coefficient
-(and thus also the equivalent spring constant) of the mechanical transfer
-functions supplied to Optickle, we can compute the expected differential
-mode transfer function in the presence of radiation pressure by adjusting
-the spring constant from $k$ to $k+2k_{opt}$ where $k_{opt}$ is
-the calculated optical spring constant, or simply shifting the resonance
-to $w'=w-\sqrt{2k_{opt}/m}$.
-
-This approach shows good agreement (see Figure~\ref{fig:model-comparison})
-with the results returned by Optickle with the caveat that \textcolor{red}{I've
-omitted that factor of two} and am instead using $k'=k+k_{opt}$.
-I currently believe this is an error in Optickle.
 
 \begin{figure}[H]
 \includegraphics{figures/model-comparison}
