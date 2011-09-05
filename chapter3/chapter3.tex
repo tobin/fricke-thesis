@@ -54,11 +54,10 @@ Some of the motivations of DC readout and an output mode cleaner are:
   mode cleaner can be used to force good overlap in either case.)
 \item The output mode cleaner greatly decreases the amount of power
   that must be detected by the detection photodiodes by removing
-  spurious higher order modes.  
-  
+  spurious higher order modes.    
 \end{itemize}
 
-\begin{figure}
+\begin{figure}[p]
 \includegraphics{figures/fields-picture.pdf}
 \caption[Frequency-domain fields in DC and RF
   readouts]{\label{fig:sideband-picture}Depiction of the fields in DC
@@ -76,116 +75,91 @@ Some of the motivations of DC readout and an output mode cleaner are:
   photodiodes.}
 \end{figure}
 
+\begin{figure}[p]
+\includegraphics[width=\columnwidth]{figures/phasors.pdf}
+\caption[Phasor diagram of DC readout]{\label{fig:mich-phasors}Phasor
+  diagram of the fields at the AS port due to the two arms of the
+  Michelson.  DARM motion causes equal but opposite rotation of the
+  two phasors, which modulates the amplitude of the resultant electric
+  field at the AS port ($E_{AS}$).  If this field has a nonzero
+  nominal value, as in DC readout, then this will also result in
+  linear modulation of $P_{AS}$.}
+\end{figure}
 
 \subsection{Calculation of the optical gain}
 
-To the extent that the introduction of DC offset simply creates a
-nonzero carrier field at the output port and does not otherwise affect
-the interferometer dynamics, the frequency response of the interferometer
-is the same in DC readout as in heterodyne readout, except for an
-overall scaling. This can be seen by considering the sideband picture
-(see Figure \ref{fig:sideband-picture}) and is borne out by the following
-derivation.%
+The ratio of signal produced (in Watts) to displacement of DARM (in
+meters) is the \emph{optical gain}.  In DC readout, we can find the
+optical gain for slow DARM variations by simply taking the derivative
+of the power at the anti-symmetric port with respect to changes in
+DARM.
 
-The optical gain for slow variations of the differential arm length
-can be found by calculating the power at the output port as a function
-of differential arm displacement and taking the derivative. The frequency
-response within the detection band is put in by hand. (Is there a
-nice way to do this in a frequency-dependent manner?)
-
-The amplitude transmission coefficient of a Michelson interferometer
-is:
-
+From the prior chapter, take the expression for the power at the
+output of a Michelson:
 \begin{equation}
-t_{M}=\frac{1}{2}\left(r_{x}\left(\phi_{x}\right)-r_{y}\left(\phi_{y}\right)\right)\end{equation}
-where $r_{x}$ and $r_{y}$ are the amplitude reflectivity coefficients
-of the arms with detunings $\phi_{x}$ and $\phi_{y}$. 
-
-We adopt a change of variable $\phi_{-}=\phi_{x}-\phi_{y}$, $\phi_{+}=\frac{1}{2}\left(\phi_{x}+\phi_{y}\right)$.
-
-For an interferometer with perfectly reflective arms, we have\begin{equation}
-t_{M}=\frac{1}{2}\left(e^{i\phi_{x}}-e^{i\phi_{y}}\right)=\frac{1}{2}\left(e^{+i\phi/2}-e^{-i\phi/2}\right)=i\sin\frac{\phi_{-}}{2}\end{equation}
-The power at the output port is \begin{equation}
-P_{AS}=P_{BS}\sin^{2}\left(\frac{\phi_{-}}{2}\right)\end{equation}
-
-
-The differential phase is equal to the wavenumber $k=(2\pi)/\lambda$
-multiplied by the differential displacement $x$ multiplied by the
-phase gain of the cavity and an additional factor of two, since a
-simple displacement of an end mirror causes 2x path length change.
-For a cavity with amplitude reflectivity $r_{c}(\phi)$, this phase
-multiplier is:\[
-M(\phi)=\mathrm{Im\ }\frac{1}{r_{c}(\phi)}\frac{\partial}{\partial\phi}r_{c}(\phi)=\text{Im\ }\frac{r_{c}'}{r_{c}}\]
-
-
-giving:\[
-\phi_{-}=2kMx_{-}\]
-
-
-So the output power is\begin{equation}
-P_{AS}=P_{BS}\sin^{2}kMx_{-}\end{equation}
- The optical gain at for slow differential motion is simply the derivative
-of $P_{AS}$. Here we assume that the change of $P_{BS}$ and the
-phase gain $M$ are negligible: \begin{equation}
-S_{DC}=\frac{dP_{AS}}{dx_{-}}=P_{BS}2kM\cos()\sin()\end{equation}
-For convenience we can write this in terms of $P_{AS}$:\begin{equation}
-S_{DC}=2\sqrt{P_{BS}P_{AS}}Mk\cos\left(kMx_{-}\right)\end{equation}
-The cosine term is very near unity and can be neglected. We write
-the power at the beamsplitter in terms of the carrier amplitude recycling
-gain $g_{CR}$ and the power at the input to the interferometer: $P_{BS}=g_{CR}^{2}P_{IN}$.
-So we get:\begin{equation}
-S_{DC}=2\sqrt{P_{IN}P_{AS}}g_{CR}(\Delta x)M(k\Delta x+\omega)\end{equation}
-Figure \ref{fig:freq-resp-optical-gain} compares this analytic expression
-to results obtained via a numerical modelling with Optickle. Agreement
-within the LIGO detection band is excellent.
-
-
-\subsubsection{Better expression for $P_{AS}$}
-
-We can substitute $\phi=\phi_{x}=-\phi_{y}$ since we're interested
-in differential motion of the arms, and substitute the Fabry-Perot
-reflection coefficient:
-
+P_{AS} = \frac{1}{4}P_{BS}\left( {r_+}^2 \sin^2 \phi_- + {r_-}^2 \cos^2 \phi_-\right)
+\end{equation}
+Neglecting the difference in reflectivity, we have simply
 \begin{equation}
-r_{c}(\phi)=\frac{r_{1}-r_{2}e^{i2\phi}}{1-r_{1}r_{2}e^{i2\phi}}\end{equation}
-where $\phi=kx$ is the one-way phase accumulated in the arm, $r_{1}$
-is the reflectivity of the ITM, and $r_{2}$ is the reflectivity of
-the ETM.
-
-Working out $t_{M}$ for differential arm displacement, we find:
-
+P_{AS} = P_{BS} \sin^2 137 k x
+\end{equation}
+where $k=2\pi/\lambda$ is the wavenumber, $x$ is the DARM displacement, and $137$ is the phase gain.
+Taking the derivative, we find the optical gain
+\begin{align}
+S_{DC}  & = \frac{\partial P_{AS}}{\partial x}  \\
+       & = 2 P_{BS} \sin (137 k x) \cos(137 k x) 137 k \\
+       & = 2\cdot 137 k \sqrt{P_{BS} P_{AS}} \cos(137 k x)
+\end{align}
+The cosine term is very near unity and can be neglected.  Also, the
+phase gain dies off with the cavity pole; and $P_{BS}$ is related to
+the input power $P_{IN}$ via the power recycling gain ${g_{cr}}^2$.
+Putting this together, we get:
 \begin{equation}
-t_{M}=ir_{2}g^{2}\frac{\sin2\phi}{1+F\sin^{2}\phi}\end{equation}
-where $g$ is the amplitude gain of the arm cavities and F is their
-coefficient of finesse. Taking the modulus-squared of this, and then
-multiplying by the incident power, we get the power at the output
-port:
-
-\begin{equation}
-P_{AS}(\phi)=P_{BS}(\phi)R_{2}\frac{g^{4}}{\left(1+F\sin^{2}\phi\right)^{2}}\sin\phi\cos\phi\end{equation}
-
-
-\emph{{[}steps omitted{]}}
-
-Taking the derivative with respect to $\delta x$, we find the optical
-gain, in Watts/meter, as:
-
-\begin{equation}
-S_{DC}\approx2\sqrt{P_{IN}P_{AS}}g_{cr}r_{cp}k\label{eq:dc-readout-optical-gain}
+S_{DC}(f) = 2 g_{cr} \sqrt{P_{IN} P_{AS}} \left(\frac{r_c'}{r_c}\right) \left(1 + i\frac{f}{f_c}\right)^{-1}
 \end{equation}
 
-\section{Offset}
+%% To the extent that the introduction of DC offset simply creates a
+%% nonzero carrier field at the output port and does not otherwise affect
+%% the interferometer dynamics, the frequency response of the interferometer
+%% is the same in DC readout as in heterodyne readout, except for an
+%% overall scaling. This can be seen by considering the sideband picture
+%% (see Figure \ref{fig:sideband-picture}) and is borne out by the following
+%% derivation.%
 
+We see that the optical gain scales with the square root of both input
+power and the power at the AS port (assuming that the power recycling
+gain $g_{cr}$ remains constant, which is approximately true for small
+offsets).  From this we can conclude several properties of DC readout
+immediately:
+%
+\begin{itemize}
+\item Because the optical gain and the shot noise ASD both scale with
+  $P_{AS}$, the shot-noise-limited sensitivity is insensitive to the
+  particular DARM offset we use.
+\item The sensitivity of the detector improves with the square root of
+  the input power.
+\item The frequency response of the interferometer is the same in DC
+  readout as in RF readout, up to a scaling factor. (Both are shaped
+  simply by the cavity pole.)
+\end{itemize}
+%
 As long as the DARM offset is sufficiently small, the degradation of
 power recycling is negligible.
 
-Optical gain and shot noise level both scale like the square root of
-the power at the detection port (for small offsets).  Thus the
-detection SNR is relatively insensitive to the particular offest.
-
-\begin{figure}
+\begin{figure}[p]
 \centerline{\includegraphics[width=\columnwidth]{figures/residualDARM.pdf}}
-\caption[Residual DARM motion]{\label{fig:residual-DARM}Residual DARM}
+\caption[Residual DARM motion]{\label{fig:residual-DARM}DARM
+  motion. The lower trace shows the residual motion of DARM after
+  stabilization by the DARM control loop.  The upper trace shows the
+  `calibrated' DARM, in which the effect of the control loop has been
+  removed by multiplying by $(1+G)$, where $G$ is the open loop gain;
+  this can be interpreted as `the motion that would be there if there
+  were no control loop.'  The control loop reduces the RMS DARM motion
+  by ten orders of magnitude in order to hold the interferometer
+  within the linear regime around the operating point.  The DARM
+  offset used to implement DC readout must be significantly larger
+  than the RMS residual motion ($\sim10^{-14}$ m) to avoid fringe
+  wrapping and nonlinearity.}
 \end{figure}
 
 \subsection{Decrease in arm power due to off-resonance operation}
@@ -196,3 +170,45 @@ For $\mathcal{F}=220$ and $\phi=(2\pi/1064\text{ nm})(10\text{ pm})$,
 the fractional power loss is only $7\times10^{-5}$.
 
 \subsection{Decrease in power recycling gain due to power loss at the output port}
+
+Allowing power to escape the power recycling cavity (PRC) through the
+AS port effectively increases the losses of the PRC, diminishing the
+power recycling gain.
+
+The carrier power in the PRC is given by
+\begin{equation}
+P_{BS} = P_{IN}\left| \frac{t_{RM}}{1 - r_{RM} r_{IFO}}\right|^2
+\end{equation}
+where $t_{RM}$ is the amplitude transmissivity of the recycling
+mirror, $r_{RM}$ is its reflectivity, and $r_{IFO}$ is the amplitude
+reflectivity of the rest of the Fabry-Perot Michelson interferometer.
+The power-recycling cavity is designed to be critically coupled, so
+$r_{IFO}\approx r_{RM}$.
+
+With a DC offset in place, the reflectivity of the Michelson becomes $r_M = r_{IFO}\cos\phi_-$, so we can write
+\begin{equation}
+P_{BS}(\delta x) \approx P_{IN} 
+\frac{T_{RM}}{\left(1 - R_{RM} \cos\left(2\cdot137\cdot k\cdot\delta x\right)\right)^2}
+\end{equation}
+The loss of power recycling gain becomes significant for large
+offsets.  For a 10 pm offset, the reduction in power recycling gain is
+only 1\%, but for a 50 pm offset it grows to 20\%.
+
+\subsection{DC readout elsewhere}
+DC readout has been implemented previously at the Caltech 40 meter
+prototype \cite{Ward2008DC,RobWardThesis} and the GEO 600
+detector\cite{GeoDC,Prijatelj2010,Degallaix2010Commissioning}.  The
+current configuration of Virgo incorporates an output mode cleaner but
+uses RF heterodyne readout\cite{Acernese2008Virgo}.
+
+\begin{figure}
+\includegraphics[width=\columnwidth]{figures/dc-readout-diagram.pdf}
+\caption[Enhanced LIGO interferometer
+  layout]{\label{fig:dc-readout-ifo}Enhanced LIGO interferometer
+  layout (not to scale).  The dotted line represents the vacuum
+  enclosure. The initial LIGO configuration is modified by adding an
+  output mode cleaner and DC photodiodes.  A beamsplitter directs 97\%
+  of the optical power to this new path and the remaining 3\% to the
+  old RF heterodyne output chain, used for lock acquisition and
+  automatic alignment.}
+\end{figure}
