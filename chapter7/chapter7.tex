@@ -1,5 +1,18 @@
 \chapter{Appendix}
 \label{chapter7}
+\section{Jacobi-Anger identity}
+\label{sec:jacobi-anger}
+Taking the generating function of the Bessel functions
+\begin{equation}
+\exp\left\{\frac{1}{2} z \left(t - t^{-1}\right)\right\} = \sum_{m=-\infty}^\infty t^m J_m(z)
+\end{equation}
+we can make the substitution $t = \exp \{i \omega t'\}$.
+This gives the Jacobi-Anger expansions, which are useful for expanding sinusoidal phase modulation in terms of sidebands around the carrier:
+\begin{align}
+e^{i\Gamma\cos\Omega t} & = \sum_{n=-\infty}^{\infty} \left(i^n\right)  J_n(\Gamma) \exp\{i n \Omega t\} \\
+e^{i\Gamma\sin\Omega t} & = \sum_{n=-\infty}^{\infty} J_n(\Gamma) \exp\{i n \Omega t\}
+\end{align}
+
 
 \section{The difference between PM and AM}
 \label{sec:am-vs-pm}

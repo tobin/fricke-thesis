@@ -146,28 +146,41 @@ of a delay line (where the optical path makes several zig-zags down
 the arm length in a definite number of bounces), or a resonant cavity
 (made by facing two partially-transmissive mirrors at each other,
 resulting in an effective number of bounces).  Resonant cavities were
-chosen for the LIGO arms.  They appear in many other guises within the
-detector too, so the general theory is quite useful.
+chosen for the LIGO arms. 
 
-Consider the two-mirror system in Figure~\ref{fig:fabry-perot}, a
-Fabry-Perot cavity.  Light entering the cavity will interfere with
-light already circulating in the cavity.  If, after making a
-round-trip through the interior of the cavity, the circulating light
-returns to its original phase (and spatial distribution), constructive
-interference will occur and the light will resonate in the cavity.  If
-the mirrors have high reflectivity, then the light inside the cavity
-will survive for many round-trips inside the cavity. Any deviation from the
-required $2\pi$ radians of round-trip phase will be magnified on each
-bounce, making Fabry-Perot cavities extremely frequency-selective
-devices.
+The basic setup of a Fabry-Perot cavity is shown in Figure~\ref{fig:fabry-perot}.
+Light entering the cavity will interfere with light already
+circulating in the cavity.  If, after making a round-trip through the
+interior of the cavity, the circulating light returns to its original
+phase (and spatial distribution), constructive interference will occur
+and the light will resonate in the cavity.  If the mirrors have high
+reflectivity, then the light inside the cavity will survive for many
+round-trips inside the cavity. Any deviation from the required $2\pi$
+radians of round-trip phase will be magnified on each bounce.
+
+The theory of the Fabry-Perot cavity is derived in the appendix
+(chapter~\ref{sec:cavities}).  For the purpose of this chapter, we
+need only the fact that changing the intra-cavity phase results in a
+much greater change in the phase of the light reflected from the
+cavity; the ratio of these phase changes is the \emph{phase gain},
+given by $r_c'/r_c$, where $r_c$ is the cavity reflectivity on
+resonance, and $r_c'$ is its derivative with respect to changes in
+intra-cavity phase.
 
 \section{Michelson with Fabry-Perot arms}
 
-To consider a Michelson interferometer with Fabry Perot cavities for
-arms, we can substitute the cavity reflectivity into our Michelson
-equations.
+By replacing the end mirrors of our Michelson interferometer with
+Fabry-Perot cavities, the sensitivity to phase differences increases
+by a factor of the phase gain.  
 
-It is easier to simply put in the phase gain.
+We now have
+\begin{equation}
+t_M  = \frac{1}{2} e^{i(r_c'/r_c)\phi_+} \left( r_c i \sin \frac{r_c'}{r_c}\phi_- + r_- \cos \frac{r_c'}{r_c}\phi_- \right)
+\end{equation}
+where $r_-$ now gives the difference between the reflectivites of the
+two arm \emph{cavities}.
+
+For Enhanced LIGO, the phase gain is approximately 140.
 
 \section{Power recycling}
 
@@ -190,9 +203,6 @@ mirrors as a single compound mirror with a complex-valued,
 frequency-dependent reflectivity.  In particular, we can model the
 power-recycled Fabry-Perot Michelson as a three mirror cavity.
 
-The dynamics of three-mirror cavities are treated comprehensively in
-chapter 4 of Malik's thesis~\cite{Rakhmanov2000Dynamics}.
-
 To find the transfer function of the coupled cavity, we can simply
 substitute the cavity reflectivity function $r_c(\phi)$ given in
 equation~\ref{eq:cavity-reflectivity} into itself.  
@@ -206,21 +216,31 @@ We get:
 f_{cc} \approx \frac{1}{2\pi} f_{fsr} \log \left(\frac{r_3 - r_1}{1 - r_1 r_3} r_2\right)
 \end{equation}
 
-
+The dynamics of three-mirror cavities are treated comprehensively in
+chapter 4 of Malik Rakhmanov's dissertation~\cite{Rakhmanov2000Dynamics}.
 
 \section{Interferometer Sensing and Control}
 \label{sec:isc}
-The laser light incident on the interferometer is phase-modulated at
-several frequencies, producing optical sidebands on the laser carrier.
-Light extracted from the interferometer at its various ports is
-incident on photodiodes; the photodiode signals are demodulated to
-produce signals.
 
-\cite{Fritschel2001Readout}
+The power-recycled, Fabry-Perot Michelson optical configuration
+(collectively referred to as ``the interferometer'') described above
+exhibits the desired sensitivity to gravitational waves and immunity
+to common mode noise.  However, it only does so when the Fabry-Perot
+cavities are held on resonance, and the Michelson is held to the dark
+fringe.  The need to sense the state of the interferometer and to use
+feedback control to keep it at the desired operating point is known as
+\emph{interferometer sensing and control} (ISC).  The initial LIGO
+sensing and control scheme is described
+in~\cite{Fritschel2001Readout}.
 
-
-\section{Heterodyne detection}
-
+The \emph{control} aspect has not yet been mentioned.  To allow
+actuation on the optics, the test masses are each equipped with five
+small magnets (four on the face and one on the side) which fit into
+solenoids mounted to the suspension structure.  This electromagnetic
+drive allows forces to be exerted on the optics to control their
+position and orientation.
+ 
+%\section{Heterodyne detection}
 The initial LIGO detectors were designed to use, as much as possible,
 proven technologies.  The proven technique for sensing the
 length/frequency mismatch of an optical cavity was the
@@ -242,15 +262,10 @@ carrier phase.
 \subsection{The Pound-Drever-Hall technique}
 
 The phase modulation may be expanded in terms of sidebands using the
-Jacobi-Anger expansion:\footnote{This expansion comes from the 
-generating function 
-$\exp\{\frac{1}{2} z \left(t - t^{-1}\right)\} = \sum_{m=-\infty}^\infty t^m J_m(z)$ with $t = \exp \{i \omega t'\}$}
-
+Jacobi-Anger expansion (see section~\ref{sec:jacobi-anger}):
+%
 \begin{equation}
-\begin{array}{rcll}
-\exp\{i\Gamma\cos\Omega t\} & = &\sum_{n=-\infty}^{\infty} \left(i^n\right) & J_n(\Gamma) \exp\{i n \Omega t\} \\
-\exp\{i\Gamma\sin\Omega t\} & = & \sum_{n=-\infty}^{\infty} & J_n(\Gamma) \exp\{i n \Omega t\}
-\end{array}
+e^{i\Gamma\cos\Omega t} = \sum_{n=-\infty}^{\infty} \left(i^n\right)  J_n(\Gamma) \exp\{i n \Omega t\} 
 \end{equation}
 
 Upon reflection from a cavity the phases of the carrier and the two
@@ -322,8 +337,6 @@ The cavity length determines the free-spectral-range:
 \begin{equation}
 \nu_0\equiv\frac{c}{2L_{+}}\approx37.5\text{ kHz}
 \end{equation}
-
-
 
 \subsection*{Bandwidth}
 
@@ -418,7 +431,6 @@ first harmonic would be resonant, which is undesirable.%
 \[
 f_{RF}\approx24.5\mathrm{{\ MHz}}
 \]
-
 
 The RF sidebands must fit in the power recycling cavity. The resonant
 conditions for the carrier and for the sideband in the PRC are slightly
