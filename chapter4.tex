@@ -3,18 +3,27 @@
 \usepackage{graphicx}
 \usepackage{color}
 \usepackage{amsmath}
-\newcommand{\cftchapfont}{\normalfont}
-\newcommand{\cftchappagefont}{\normalfont}
-\newcommand{\cftdot}{\normalfont.}
+\usepackage{amsfonts}
+%\usepackage{amssymb}
+%\newcommand{\cftchapfont}{\normalfont}
+%\newcommand{\cftchappagefont}{\normalfont}
+%\newcommand{\cftdot}{\normalfont.}
+\usepackage{fullpage}
 \usepackage{textcomp}
 \usepackage{verbatim}
 
 \newcommand{\micron}{\textmu{}m} 
 \newcommand{\Finesse}{$\mathcal{F}$}
+\newcommand{\SECTION}{\section}
+\newcommand{\SUBSECTION}{\subsection}
+\newcommand{\CHAPTER}{\chapter}
 
-\include{lsu_formats}
-\newcommand\checkme[1]{\textcolor{red}{\textbf{#1}}}
+%\include{lsu_formats}
+%\newcommand\checkme[1]{\textcolor{red}{\textbf{#1}}}
 \begin{document}
-\pagestyle{myheadings}
+%\pagestyle{myheadings}
 \include{chapter4/chapter4}
+%\singlespace
+\bibliographystyle{plainurl}
+\bibliography{tobin}
 \end{document}
