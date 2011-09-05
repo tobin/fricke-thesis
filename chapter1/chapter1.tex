@@ -189,9 +189,9 @@ inherently narrow-band devices, sensitive to gravitational waves
 within a narrow linewidth about their fundamental resonance.
 
 Bar detectors do have the advantage that they are small enough that
-they can be moved or re-oriented.  The ALLEGRO bar detector at LSU was
-once rotated to modulate its overlap function with the nearby LIGO
-Livingston observatory.
+they can be moved or re-oriented.  The ALLEGRO bar detector at LSU~\cite{Mauceli1996Allegro} was
+rotated to modulate its overlap function with the nearby LIGO
+Livingston observatory.%\cite{Abbott2007First}
 
 \subsection{Laser interferometers}
 
@@ -236,34 +236,51 @@ faint ``B-modes'' in the microwave polarization.
 
 \section{LIGO}
 
-Construction began on the LIGO observatories in YEAR.  After many
-years of commissioning, the detectors reached their design sensitivity
-in YEAR.  Having met the conditions described in the science
-requirements document, LIGO commenced a long observational run,
-accumulating one year of coincident data over a period of two calendar
-years.
+Ground was broken on the first of the two LIGO observatories in 1994.
+After years of construction and then detector commissioning, the three
+detectors at the two observatories reached their design sensitivity in
+2004.  Having reached this milestone, the attention turned to
+collecting data for astrophysical observation rather than instrument
+development.  By October 2007, the LIGO project accomplished the goals
+of what is now known as ``initial LIGO,'' having collected 1 year of
+observational data with all three detectors online simultaneously.
 
-\section{Summary of changes made for Enhanced LIGO}
+It had always been intended that this initial generation of LIGO would
+be followed by a programme of improvements.  The next generation of
+LIGO detectors is ``Advanced LIGO,'' which will feature significantly
+more effective (and more complex) seismic isolation, an increase of
+$20\times$ in laser power, in addition to other improvements.
 
-After the successful completion of the Initial LIGO science goals, it
-was decided
-\cite{Adhikari2006Enhanced,T050252,JoshSmithEnhancedAdvanced} to
-attempt to further improve the detector sensitivity by aggressively
-implementing a few prototype Advanced LIGO technologies.
+Rather than spend the entire time before the onset of Advanced LIGO
+taking observational data in the Initial LIGO configuration, it was
+decided to implement an intermediate series of upgrades in a project
+that came to be called ``Enhanced
+LIGO''\cite{Adhikari2006Enhanced,T050252,JoshSmithEnhancedAdvanced}.
+The goals of enhanced LIGO were to both increase the changes of an
+early discovery (by increasing the detector sensitivity), and to gain
+early experience with Advanced LIGO technologies.
 
-Changes included:
+\subsection{Summary of changes made for Enhanced LIGO}
+
+Detector upgrades during Enhanced LIGO included:
 \begin{itemize}
-\item Fancy new laser
-\item Renovation of the input optics to handle higher power operation, including new electro-optic modulators \cite{Quetschke2008ElectroOptic}
-\item Installation of an output mode cleaner, supported by a prototype of the advanced LIGO in-vacuum seismic isolation system
-\item New Thermal Compensation System to handle the higher power
+\item An increase in laser power.  The initial LIGO laser, an Nd:YAG
+  NPRO capable of producing $< 10$ Watts of laser power at a
+  wavelength of 1064 nm, was replaced with the Advanced LIGO laser
+  front-end, built by Laser-Zentrum Hannover, with an output power of 35 W.
+\item The input optics were redesigned to handle the higher input
+  power~\cite{Dooley2011Characterization,Quetschke2008ElectroOptic}.  
+\item A new thermal compensation system was implemented to compensate
+  for the greater amount of thermal lensing that would be induced by
+  the higher operating power.
+\item An output mode cleaner was installed, supported by a prototype
+  of the advanced LIGO in-vacuum seismic isolation system
+\item The Angular Sensing and Control system was redesigned to cope
+  with angular instabilities introduced at high
+  power~\cite{Sidles2006Optical,DooleyAngular}
+\item Readout of the gravitational wave channel was changed from RF
+  readout to DC readout.
 \end{itemize}
-
-DC readout has been implemented previously at the Caltech 40 meter
-prototype \cite{Ward2008DC,RobWardThesis} and the GEO 600
-detector\cite{GeoDC,Prijatelj2010,Degallaix2010Commissioning}.  The
-current configuration of Virgo incorporates an output mode cleaner but
-uses RF heterodyne readout\cite{Acernese2008Virgo}.
 
 \section{The Future}
 
@@ -302,26 +319,27 @@ to $10^{-1}$ Hz (period of 3 hours down to 10 seconds).
 
 \section{This Dissertation}
 
-This dissertation describes modifications to the initial LIGO
-detectors that were undertaken between 2008 and 2010.  The state of
-the LIGO detectors before these modifications is described in
-\cite{S5InstrumentPaper} as well as numerous PhD dissertations,
-notably Rana Adhikari's \cite{RanaThesis} and and Stefan Ballmer's
-\cite{Ballmer2006LIGO}.  Robert Ward's dissertation details the
-implementation and evaluation of DC readout at the LIGO 40 meter
-prototype interferometer in Pasadena \cite{RobWardThesis}.
+This dissertation describes the implementation of DC readout and an
+output mode cleaner during Enhanced LIGO.
+
+The state of the LIGO detectors before these modifications is
+described in \cite{S5InstrumentPaper} as well as numerous PhD
+dissertations, notably Rana Adhikari's \cite{RanaThesis} and and
+Stefan Ballmer's \cite{Ballmer2006LIGO}.  Robert Ward's dissertation
+details the implementation and evaluation of DC readout at the LIGO 40
+meter prototype interferometer in Pasadena \cite{RobWardThesis}.
 
 In Chapter 2, I explain the principles and practice behind the
 sensitivity of the LIGO detectors.  I show how the machine converts
 gravitational wave-induced phase modulation into a modulated optical
 field while offering a large amount of immunity to other effects.
 
-In Chapter 3, I introduce two mechanisms of detecting this field and
-converting it to an electrical signal:  homodyne and heterodyne
-detection.
+In Chapter 3, I describe DC readout.
 
 Chapter 4 introduces the Output Mode Cleaner, its design and control,
 and the general idea of mode cleaners.
 
 Finally, in Chapter 5, I present results demonstrating the performance
 of this system.
+
+Additional derivations and background are given in the appendicies.
