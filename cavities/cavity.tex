@@ -1,4 +1,5 @@
 \chapter{Fabry-Perot cavities}
+\label{sec:cavities}
 In this appendix I derive the basic properties of Fabry-Perot
 cavities in the plane wave approximation.
 
@@ -64,9 +65,9 @@ $\phi=-is/(2\nu_0)$ and solve for the zeroes of the numerator and
 denominator of equation~\ref{eq:cavity-reflectivity} separately.  We find:
 \begin{align}
 p_n &= - \omega_{fsr} \left(\log\left(r_1 r_2\right) +  i n\right)  & \forall n\in \mathbb{Z}\\
-z_n &= + \omega_{fsr} \left(\log\left(r_1/r_2\right) +  i n\right)  & \forall n\in \mathbb{Z}\\
+z_n &= + \omega_{fsr} \left(\log\left(r_1/r_2\right) +  i n\right)  & \forall n\in \mathbb{Z}
 \end{align}
-where $\omega_{fsr}=2\pi\nu_0$.
+where $\omega_{fsr}\equiv2\pi\nu_0$.
 
 Because this function is periodic in $i\omega$, we can in many
 circumstances regard the laser carrier as having a frequency
@@ -125,7 +126,7 @@ We can find the phase gain of a Fabry-Perot cavity by applying this expression t
 \begin{equation}
 \text{phase gain} = \text{Im\ } \frac{r_c'}{r_c}
 \end{equation}
-where $r_c'(\phi)\equiv(\partial/\partial\phi)r_c(\phi)$.  Furthermore, because the derivative of the amplitude of $r_c$ vanishes on resonance, we can simply take the magnitude of $r_c'/r_c$ rather than the imaginary part.
+where $r_c'(\phi)\equiv(1/2)(\partial/\partial\phi)r_c(\phi)$; the factor of $1/2$ is to convert from round-trip phase to one-way phase.  Furthermore, because the derivative of the amplitude of $r_c$ vanishes on resonance, we can simply take the magnitude of $r_c'/r_c$ rather than the imaginary part.
 
 Another way to calculate the phase gain is to use the rational transfer function expression, equation~\ref{eq:rational-function}.  To model the situation near resonance, we need only consider the nearest pole and zero:
 \[
@@ -134,22 +135,26 @@ r_c(s) \approx \frac{s - z_0}{s - p_0}
         {s + \omega_{fsr}\log \left(r_1 \cdot r_2\right)}
 \]
 Recall that the phase at frequency $\omega$ imparted by a pole at
-frequency $\omega_0$ is $\arctan\left(-\omega/\omega_0\right)$; a zero
+frequency $\omega_c$ is $\arctan\left(-\omega/\omega_c\right)$; a zero
 at the same frequency subtracts this same phase.  For a maximally
 over-coupled cavity (i.e. with $r_2 = 1$), the cavity pole and cavity
 zero are equal and opposite, so contribute equal phase ($\arctan$ is
-odd).  Use $\omega = 2\nu_0\phi$ to express the detuning phase $\phi$ as an equivalent detuning frequency.
+odd).  Use $\omega = 2\nu_0\phi$ to express the detuning phase $\phi$
+as an equivalent detuning frequency.
 
 Changing the one-way phase of the arm by $\phi$ results in a phase 
 change of
 \begin{equation}
-\phi_r = 2 \tan^{-1} \left( 2 f_{fsr} \frac{\phi}{\omega_0} \right)
+\phi_r   = 2 \tan^{-1} \left( 2 \nu_0 \frac{\phi}{\omega_c} \right)
+%   = 2 \tan^{-1} \left( \frac{2}{\pi}\mathcal{F}\phi\right)
 \end{equation}
-where $\omega_0$ is the cavity pole.  Taking the derivative, we find the \emph{phase gain}:
+where $\omega_c\equiv2\pi f_c$ is the cavity pole and $\mathcal{F}=(1/2)(\nu_0/f_c)$ is the cavity finesse (which will be introduced in section~\ref{sec:finesse}).  Taking the derivative, we find the \emph{phase gain}:
 \begin{equation}
-  \frac{d \phi_r}{d \phi} = 2 \left[1 + \left(\frac{2 f_{fsr} \phi}{\omega_0}\right)^2 \right]^{-1} \frac{2 f_{fsr}}{\omega_0}
+  \frac{1}{2} \frac{d \phi_r}{d \phi} 
+= \frac{2 \nu_0}{\omega_c} \left[1 + \left(\frac{2 \nu_0 \phi}{\omega_c}\right)^2 \right]^{-1} 
+= \frac{2 \mathcal{F}}{\pi} \left[1 + \left(\frac{\omega}{\omega_c}\right)^2 \right]^{-1} 
 \end{equation}
-The phase gain on resonance is $2 f_{fsr} / \omega_0 \approx 140$. This phase gain decreases as we detune the cavity further from resonance, but it is not seriously diminished until the cavity detuning approaches the cavity pole.
+The phase gain on resonance is $2 \nu_0 / \omega_c = 2\mathcal{F}/\pi \approx 140$. This phase gain decreases as we detune the cavity further from resonance, but it is not seriously diminished until the cavity detuning approaches the cavity pole.
 
 \subsection{intra-cavity power buildup}
 
@@ -174,6 +179,7 @@ function of the same name.  Making the small angle approximation
 $\sin\phi\approx\phi$ we see that each resonance is locally Lorentzian.
 
 \subsection{finesse ($\mathcal{F}$)}
+\label{sec:finesse}
 The tightness of the resonance is quantified as the
 \emph{finesse} ($\mathcal{F}$), which is defined as the ratio of the
 cavity free spectral range to the full-width-half-max of the
@@ -259,7 +265,7 @@ the cavity must be $P_{IN}/T$.
 
 \subsubsection{Over-coupled cavities}
 
-The LIGO arms are strongly over-coupled cavities. A maximally over-coupled
+The LIGO arms are strongly over-coupled cavities. A lossless maximally over-coupled
 cavity (i.e. with $t_{2}=0$) acts as a perfect reflector. 
 
 For high-finesse, highly-overcoupled cavities, the cavity power buildup
@@ -273,9 +279,9 @@ for $x\approx1$:
 \begin{equation}
 g^{2}\bigg|_{r_{2}\to1}=\frac{1-r_{1}^{2}}{\left(1-r_{1}\right)^{2}}=\frac{1+r_{1}}{1-r_{1}}\approx\frac{2\sqrt{r_{1}}}{1-r_{1}}=\sqrt{F}\bigg|_{r_{2\to1}}
 \end{equation}
-
-
-Another useful approxmiation is:
+%
+%
+Another useful approximation is:
 \[
 g^{2}\approx\frac{4}{T_{1}}
 \]
