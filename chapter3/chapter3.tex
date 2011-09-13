@@ -11,16 +11,21 @@ readout.
 
 \section{Principle of DC readout}
 A homodyne readout system differs from a heterodyne system by using a
-local oscillator at the same (optical) frequency as the field we wish
-to measure.  In DC readout we bring this 
+local oscillator at the same (optical) frequency as the field being measured.
 
-DC readout creates a homodyne local oscillator by putting a small
+DC readout creates the homodyne local oscillator by putting a small
 offset into the Michelson or DARM degree of freedom, moving the
-interferometer slightly off of the DARM fringe at DC.  In this
-``fringe'' view, the operation is very simple to understand: moving
-off of the null point introduces a non-zero first derivative.  
+interferometer slightly off of the dark fringe.
 
-The true beauty of this technique is that it exploits the filtering
+One way to intuitively understand DC readout is that simply moving
+away from the quadratic point of the fringe, a linear coupling is
+introduced.  In the frequency domain we might ask how phase modulation
+induced in the arms is converted to amplitude modulation at the AS
+port; the answer is that the Michelson rotates the carrier by 90
+degrees due to the $i$ in the Michelson transmission
+(equation~\ref{eq:michelson-transmission}).
+
+The true beauty of DC readout is that it exploits the filtering
 action of the compound interferometer to produce the local oscillator;
 any fluctuations in the amplitude or frequency of the input laser
 field are attenuated by the coupled cavity pole before reaching the
@@ -43,8 +48,8 @@ Some of the motivations of DC readout and an output mode cleaner are:
 \item The shot noise level may be further reduced through the
   injection of squeezed quantum vacuum.  This is much more technically
   feasible with homodyne detection than heterodyne detection.  This
-  has recently been demonstrated at the GEO600 detector and a
-  prototype implementation is underway at Hanford.
+  has recently been demonstrated at the GEO600 detector~\cite{Vahlbruch2010GEO} and a
+  prototype implementation is underway at Hanford~\cite{H1SqueezerProposal}.
 \item In DC readout, the signal field and the local oscillator are
   guaranteed to have perfect spatial overlap, since they come from the
   same place.  By contrast, in the conventional heterodyne
@@ -97,25 +102,30 @@ DARM.
 From the prior chapter, take the expression for the power at the
 output of a Michelson:
 \begin{equation}
-P_{AS} = \frac{1}{4}P_{BS}\left( {r_+}^2 \sin^2 \phi_- + {r_-}^2 \cos^2 \phi_-\right)
+P_{AS} = P_{BS}\left({r_c}^2 \sin^2 \phi_- + (\Delta r/2)^2 \cos^2 \phi_-\right)
 \end{equation}
-Neglecting the difference in reflectivity, we have simply
+Taking the derivative with respect to $\phi_-$, we find
 \begin{equation}
-P_{AS} = P_{BS} \sin^2 137 k x
+\frac{d P_{AS}}{d \phi_-} = 2 P_{BS}\left({r_c}^2 - {(\Delta r/2)}^2\right)\cos\phi_- \sin\phi_-
 \end{equation}
-where $k=2\pi/\lambda$ is the wavenumber, $x$ is the DARM displacement, and $137$ is the phase gain.
+Immediately we see that any contrast defect ($\Delta r \neq 0$) will diminish the optical gain.  Assuming $r \gg \Delta r$, we can neglect the contrast defect and get simply
+\begin{equation}
+P_{AS} = P_{BS} {r_c}^2 \sin^2 g_\phi k x
+\end{equation}
+where $k=2\pi/\lambda$ is the wavenumber, $x$ is the DARM displacement, and $g_\phi$ is the phase gain.
 Taking the derivative, we find the optical gain
 \begin{align}
 S_{DC}  & = \frac{\partial P_{AS}}{\partial x}  \\
-       & = 2 P_{BS} \sin (137 k x) \cos(137 k x) 137 k \\
-       & = 2\cdot 137 k \sqrt{P_{BS} P_{AS}} \cos(137 k x)
+       & = 2 P_{BS} {r_c}^2 \sin (g_\phi k x) \cos(g_\phi k x) g_\phi k \\
+       & = 2 r_c g_\phi k \sqrt{P_{BS} P_{AS}} \cos(g_\phi k x) \\
+       & = 2 {r_c}' k \sqrt{P_{BS} P_{AS}} \cos(g_\phi k x) 
 \end{align}
 The cosine term is very near unity and can be neglected.  Also, the
 phase gain dies off with the cavity pole; and $P_{BS}$ is related to
 the input power $P_{IN}$ via the power recycling gain ${g_{cr}}^2$.
 Putting this together, we get:
 \begin{equation}
-S_{DC}(f) = 2 g_{cr} \sqrt{P_{IN} P_{AS}} \left(\frac{r_c'}{r_c}\right) \left(1 + i\frac{f}{f_c}\right)^{-1}
+\boxed{S_{DC}(f) = 2 g_{cr} {r_c}' k \sqrt{P_{IN} P_{AS}} \left(1 + i\frac{f}{f_c}\right)^{-1}}
 \end{equation}
 
 %% To the extent that the introduction of DC offset simply creates a
@@ -142,9 +152,42 @@ immediately:
   readout as in RF readout, up to a scaling factor. (Both are shaped
   simply by the cavity pole.)
 \end{itemize}
-%
-As long as the DARM offset is sufficiently small, the degradation of
-power recycling is negligible.
+
+\section{Selecting the DARM offset}
+
+The particular DARM offset used to implement DC readout must satisfy a
+number of conditions.  On one hand, the DARM offset cannot be too small:
+\begin{itemize}
+\item The LO field should be of much greater magnitude than the contrast
+  defect field, i.e. we must have ${r_c}^2\sin^2\phi_- \gg (\Delta
+  r/2)^2 \cos^2\phi_-$, i.e. $\tan \phi_- \gg (\Delta r)/(2r)$.  If this condition is not met, then the SNR
+  will suffer from the contrast defect shot noise contribution.
+\item The phase offset must be sufficiently large that the response to
+  a normal range of DARM motion remains linear.  In particular, the
+  DARM offset must be much larger than any expected DARM excursion.
+\item The power on the detection photodiode must be large enough such
+  that the shot noise exceeds the electronics noise of the readout.
+\end{itemize}
+and, on the other hand, it can't be too big either:
+\begin{itemize}
+\item The power loss at the AS port must be sufficiently small such
+  that the power recycling gain is not diminished excessively.  Excess
+  power loss will lead to diminished shot-noise-limited SNR.
+\item The power on the detection photodiodes cannot be too high.  Too
+  much power on the photodiodes usually produces excess noise or
+  reduced quantum efficiency, or will even burn the photodiode.
+\item Larger offsets generally increase all of the (laser and
+  oscillator) noise couplings and increase the magnitude of optical
+  spring effects.  To keep noise couplings small, offsets should
+  generally be kept as small as possible.
+\item The cavity detuning should be small compared to the cavity pole,
+  to avoid losing phase gain.  In practice, all of the other criteria
+  will become limiting before this one.
+\end{itemize}
+Several of these criteria are examined in greater detail below.  In
+practice, the space of allowed offsets is explored emirically;
+colloquially, we turn the knobs in whatever direction makes the noise
+go down.
 
 \begin{figure}[p]
 \centerline{\includegraphics[width=\columnwidth]{figures/residualDARM.pdf}}
@@ -212,3 +255,16 @@ uses RF heterodyne readout\cite{Acernese2008Virgo}.
   old RF heterodyne output chain, used for lock acquisition and
   automatic alignment.}
 \end{figure}
+
+\section{Nonlinearity of the DC error signal}
+
+Although we operate sufficiently far from the dark fringe that the
+linear coupling of residual DARM motion to output power is dominant,
+sufficiently large motion could produce second-order coupling. Fortunately,
+this turns out to be totally negligible.
+
+
+
+More references to cite:
+\cite{Adhikari2009DC} % DC readout Normalization for Enhanced LIGO
+\cite{Hild2007Novel} % Crazy detuning

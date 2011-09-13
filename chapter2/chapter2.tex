@@ -4,7 +4,8 @@
 
 In this chapter I explain how the LIGO detectors work.
 
-\section{Arms, cavities, etc}
+Additional references to cite: \cite{Black2003Introduction,Regehr1994Signal}
+\section{An interferometric gravitational wave detector}
 
 The purpose of the LIGO detectors is to measure the faint
 oscillations of spacetime imparted by far-away astrophysical
@@ -36,7 +37,7 @@ The essential points are:
   recycling.
 \end{itemize}
 The following sections describe these principles in further detail.
-\section{A Michelson}
+\section{the Michelson interferometer}
 \begin{figure}
 \centering\includegraphics{figures/michelson.pdf}
 \caption[Michelson interferometer]{\label{fig:michelson}Michelson
@@ -64,36 +65,24 @@ r_M  &= \frac{1}{2}\left(r_x \exp \{i2\phi_x\} + r_y \exp\{i2\phi_y\} \right)
 where $r_{\{x,y\}}$ are the amplitude reflectivities of the x- and y-arm mirrors, and $\phi_{\{x,y\}}$ are 
 the phases accumulated as the light travels from the beamsplitter to end mirrors.  It is useful to change
 our variables to express these quantities in terms of the differential and common reflectivies and phases.
-Make the substitutions
-%$\phi_- = \phi_x - \phi_y$ and 
-%$\phi_+ = \phi_x + \phi_y$, i.e. 
-$\phi_x = (1/2)\left(\phi_+ + \phi_-\right)$
-$\phi_y = (1/2)\left(\phi_+ - \phi_-\right)$
-%% which gives
-%% \begin{align}
-%% t_M  &= \frac{1}{2}\left(r_x e^{i2\phi_x} - r_y e^{i2\phi_y} \right) \\
-%% r_M  &= \frac{1}{2}\left(r_x e^{i2\phi_x} + r_y e^{i2\phi_y} \right)
-%% \end{align}
-%%
-%% \begin{align}
-%% t_M  &= \frac{1}{2}\left(r_x e^{i\left(\phi_+ + \phi_- \right)} - r_y e^{i\left(\phi_+ - \phi_-\right)} \right) \\
-%% r_M  &= \frac{1}{2}\left(r_x e^{i\left(\phi_+ + \phi_- \right)} + r_y e^{i\left(\phi_+ - \phi_-\right)} \right) 
-%% \end{align}
-%%
-%% \begin{align}
-%% t_M  &= \frac{1}{2} e^{i\phi_+} \left(r_x e^{i \phi_- } - r_y e^{-i \phi_-} \right) \\
-%% r_M  &= \frac{1}{2} e^{i\phi_+} \left(r_x e^{i \phi_- } + r_y e^{-i \phi_-} \right) 
-%% \end{align}
-%%
-%% Now we can also separate the arm reflectivity into common and differential reflectivity, using 
-and $r_x = (1/2)(r_+ + r_-)$ and $r_y = (1/2)(r_+ - r_-)$:
-%
+Making the substitutions
 \begin{align}
-t_M  &= \frac{1}{2} e^{i\phi_+} \left( r_+ i \sin \phi_- + r_- \cos \phi_- \right)\\
-r_M  &= \frac{1}{2} e^{i\phi_+} \left( r_+ i \cos \phi_- + r_- \sin \phi_- \right) 
+\phi_- &= \phi_x - \phi_y       &  \phi_x &= \phi_+ + (1/2)\phi_- \\
+\phi_+ &= (\phi_x + \phi_y)/2   &  \phi_y &= \phi_+ - (1/2)\phi_-
+\end{align}
+and
+\begin{align}
+  \Delta r & = r_x - r_y        &  r_x   &= r + (1/2)\Delta r \\
+       r & = (r_x + r_y)/2      &  r_y   &= r - (1/2)\Delta r
+\end{align}
+yields
+\begin{align}
+t_M  &= e^{i2\phi_+} \left( i r\sin \phi_- + (\Delta r/2) \cos \phi_- \right) 
+\label{eq:michelson-transmission}\\
+r_M  &= e^{i2\phi_+} \left( i r \cos \phi_- + (\Delta r/2) \sin \phi_- \right) 
 \end{align}
 
-The intent is for the arm reflectivities to be identical (so $r_- \to
+The intent is for the arm reflectivities to be identical (so $\Delta r \to
 0$), and to operate near the \emph{dark fringe} ($\phi_-\to0$) so that
 the input field does not couple directly to the output port
 (i.e. $t_M\to0$).  Given this configuration, there are two salient
@@ -120,15 +109,15 @@ the field amplitudes.  Using $P_{AS} = P_{BS} \left|t_M\right|^2$ and
 $P_{REFL} = P_{BS} \left|r_M\right|^2$:
 %
 \begin{align}
-P_{AS}   &=  \frac{1}{4}P_{BS}\left( {r_+}^2 \sin^2 \phi_- + {r_-}^2 \cos^2 \phi_-\right) \\
-P_{REFL} &=  \frac{1}{4}P_{BS}\left( {r_+}^2 \cos^2 \phi_- + {r_-}^2 \sin^2 \phi_-\right) 
+P_{AS}   &=  P_{BS}\left( {r}^2 \sin^2 \phi_- + (\Delta r/2)^2 \cos^2 \phi_-\right) \\
+P_{REFL} &=  P_{BS}\left( {r}^2 \cos^2 \phi_- + (\Delta r/2)^2 \sin^2 \phi_-\right) 
 \end{align}
 
 The power transmitted through the Michelson at the dark fringe is the
 \emph{contrast defect},
 %
 \begin{equation}
-c_d = \frac{P_{AS}}{P_{BS}} = \frac{1}{4}\left(r_-\right)^2.
+c_d = \frac{P_{AS}}{P_{BS}} = \frac{1}{4}\left(\Delta r\right)^2.
 \end{equation}
 
 The linear relationship between $\phi_-$ and the electric field at the
@@ -158,14 +147,29 @@ reflectivity, then the light inside the cavity will survive for many
 round-trips inside the cavity. Any deviation from the required $2\pi$
 radians of round-trip phase will be magnified on each bounce.
 
-The theory of the Fabry-Perot cavity is derived in the appendix
-(chapter~\ref{sec:cavities}).  For the purpose of this chapter, we
+The theory of the Fabry-Perot cavity is derived in 
+appendix~\ref{sec:cavities}.  For the purpose of this chapter, we
 need only the fact that changing the intra-cavity phase results in a
 much greater change in the phase of the light reflected from the
 cavity; the ratio of these phase changes is the \emph{phase gain},
-given by $r_c'/r_c$, where $r_c$ is the cavity reflectivity on
+given by $g_\phi = r_c'/r_c$, where $r_c$ is the cavity reflectivity on
 resonance, and $r_c'$ is its derivative with respect to changes in
-intra-cavity phase.
+intra-cavity phase.  The numerical values for $r_c$ and $r_c'$ in terms of the individual mirror reflectivities (for a lossless cavity) are (as derived in appendix~\ref{sec:cavities} or given in \cite{LigoFreqResponse97}):
+%
+\begin{align}
+r_c & = \frac{r_1 - r_2}{1 - r_1 r_2} &
+r_c'& = \frac{\left(1 - {r_1}^2\right)r_2}{\left(1 - r_1 r_2\right)^2}
+\end{align}
+
+\label{sec:long-wavelength}We typically work in the \emph{long wavelength approximation}, in
+which we assume that the gravitational wave strain (or cavity length)
+changes slowly compared to the time required by light to travel from
+one mirror of the cavity to the other.  Because light and
+gravitational waves travel at the same speed, this requires that the
+GW wavelength be much longer than the interferometer arm length.  (At
+higher frequencies, the response of the interferometer is modified;
+this is discussed in appendix~\ref{sec:antenna-pattern}.)
+
 
 \section{Michelson with Fabry-Perot arms}
 
@@ -175,9 +179,11 @@ by a factor of the phase gain.
 
 We now have
 \begin{equation}
-t_M  = \frac{1}{2} e^{i(r_c'/r_c)\phi_+} \left( r_c i \sin \frac{r_c'}{r_c}\phi_- + r_- \cos \frac{r_c'}{r_c}\phi_- \right)
+t_M  = e^{i 2 g_\phi \phi_+} 
+\left( r_c i \sin g_\phi \phi_- + 
+        \frac{\Delta r}{2} \cos g_\phi \phi_- \right)
 \end{equation}
-where $r_-$ now gives the difference between the reflectivites of the
+where $\Delta r$ now gives the difference between the reflectivites of the
 two arm \emph{cavities}.
 
 For Enhanced LIGO, the phase gain is approximately 140.
@@ -249,6 +255,7 @@ technique\cite{Drever1983Laser,Black2001Introduction}, sometimes
 called reflection-locking, which can be used to lock the frequency of
 a laser to the length of a cavity, or vice versa.
 
+\subsection{The Pound-Drever-Hall technique}
 In the basic PDH setup, the laser light incident on a resonant cavity
 is first phase-modulated at a frequency well outside of the bandwidth
 of the cavity, such that the sidebands are nearly anti-resonant in the
@@ -259,14 +266,16 @@ sideband field changes more slowly.  The reflected sideband field may
 therefore be used as a local oscillator by which to measure the
 carrier phase.
 
-\subsection{The Pound-Drever-Hall technique}
-
 The phase modulation may be expanded in terms of sidebands using the
 Jacobi-Anger expansion (see section~\ref{sec:jacobi-anger}):
 %
-\begin{equation}
-e^{i\Gamma\cos\Omega t} = \sum_{n=-\infty}^{\infty} \left(i^n\right)  J_n(\Gamma) \exp\{i n \Omega t\} 
-\end{equation}
+\begin{align}
+\exp\left\{i\Gamma\cos\Omega t\right\} 
+  &= \sum_{n=-\infty}^{\infty} \left(i^n\right)  J_n(\Gamma) \exp\{i n \Omega t\} \\
+  &= J_0(\Gamma) + i J_{1}(\Gamma) e^{i\Omega t} - i J_{-1}(\Gamma) e^{i \Omega t}+\cdots \\
+%  &= J_0(\Gamma) + i J_{1}(\Gamma) e^{i\Omega t} + i J_{1}(\Gamma) e^{i \Omega t}+\cdots\\
+  &= J_0 + 2 i J_{1} \cos \Omega t + \cdots
+\end{align}
 
 Upon reflection from a cavity the phases of the carrier and the two
 sidebands will be rotated.  This phase rotation converts the phase
@@ -306,7 +315,7 @@ values.  Definitive references are \cite{LigoFreqResponse97} or
 
 As in the preceeding sections, I simply use the plane-wave
 approximation for fields inside cavities. This introduces certain
-inaccuracies, as, for example, I ignore gouy phase. Nonetheless,
+inaccuracies, as, for example, I ignore Gouy phase. Nonetheless,
 comparison to the actual dimenions of LIGO shows good agreement.
 
 It is useful to draw a distinction between macroscopic and microscopic
@@ -441,10 +450,12 @@ in the PRC until the arms come into resonance and this extra sign
 flip comes into play. The minimum length of the PRC that satisfies
 this requirement occurs when the carrier accumulates $\pi$ radians
 more phase than the lower sideband over a round-trip traversal of
-the cavity. (The upper sideband, in turn, acquires $\pi$ radians
+the cavity. The upper sideband, in turn, acquires $\pi$ radians
 more than the carrier, putting it $2\pi$ above the lower sideband,
 making them simultaneously resonant. The carrier gets its final $\pi$
-radians on reflection from the over-coupled arm.) Instead of relying
+radians on reflection from the over-coupled arm.
+
+Instead of relying
 on intuitive arguments, we can write down equations for the conditions
 of resonance:
 
@@ -461,9 +472,7 @@ wavelength $\lambda_{rf}=c/f_{rf}\approx12\text{ meters}$:
 2l_{+}=\lambda_{rf}\left(m+\frac{1}{2}\right)
 \]
 where m is any integer. The length corresponding to $m=0$ is inconveniently
-short%
-\footnote{I assume this is the reason...%
-}, so we choose $m=1$, giving a power recycling cavity length of:
+short, so we choose $m=1$, giving a power recycling cavity length of:
 
 \[
 \boxed{{l_{+}=9.18\text{{\ meters}}}}

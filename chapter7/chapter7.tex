@@ -60,6 +60,13 @@ the Bessel functions.
 \section{The difference between PM and FM}
 \input{chapter7/PM_vs_FM.tex}
 
+\section{Displaced and misaligned beams}
+
+References to cite: \cite{Anderson1984Alignment,Hauck1980Misalignment}.
+
+\section{Calibration}
+\cite{KisselCalibrationPaper,Goetz2010Gravitational}
+
 \section{Only the signal field matters}
 
 Suppose we have two electric fields incident on a photodiode: the
@@ -102,7 +109,6 @@ t & r\\
 \end{array}\right)
 \]
 
-
 In the engineering convention, reflection from either side of a mirror
 has the same real, positive reflectivity ($+r$), but transmission
 through the mirror gives a phase of 90 degrees, a coefficient of $it$:
@@ -144,7 +150,7 @@ Suppose mirror 1 has curvature $R_1$ and coordinate $z_1$, and
 similarly for mirror 2.  We would like to solve for the waist location
 and Rayleigh range.
 
-References: Kogelnik and Li \cite{Kogelnik1966Laser}, Siegman \cite{Siegman1990Lasers}.
+References: Kogelnik and Li \cite{Kogelnik1966Laser}, Siegman \cite{Siegman1990Lasers}, \cite{Rudiger1998Phase,Fox1961Resonant}.
 
 \section{Laser modes}
 
@@ -156,10 +162,10 @@ polynomial.  These are exactly the same familes of functions as the
 energy eigenstate wavefunctions of the simple harmonic oscillator in
 quantum mechanics.
 
-\section{Control theory basics}
+\section{Feedback control}
 
 Operation of the LIGO detectors relies crucially on feedback control
-systems.  In general, the response of the optical plant is very
+systems.  In general, the response of the optical plant is completely
 nonlinear; in order to produce a valid readout, the plant must be held
 very close to its operating point.  The use of feedback control allows
 us to attain linear response from an otherwise very nonlinear machine.
@@ -169,15 +175,15 @@ Here is a basic diagram of a feedback system:
 Algebraically, one can derive a relationship giving the transfer function
 of the closed-loop system in the Laplace domain:
 
-\section{The Antenna Pattern}
-
+\section{The Antenna Pattern and the FSR}
+\label{sec:antenna-pattern}
 Gravitational waves come in two polarizations; for waves impinging
 from a given direction, the second polarization represents an ellipse
 of oscillating transverse strains rotated 45 degrees relative to the
 first.  
 
 Fundamentally, a Michelson interferometer is sensitive to two
-polarizations of gravitational waves.  However, as seen in FIXME, we
+polarizations of gravitational waves.  However, as discussed in chapter~\ref{chapter2}, we
 elect to throw away sensitivity to one polarization in return for
 common-mode noise immunity in the second polarization.
 
@@ -191,6 +197,23 @@ that shows up in DARM, and $h_\times$ as the polarization that would
 show up in CARM.  Immediately (again due to the hairy ball theorem) we
 see that there must be nulls in the sensitivity pattern of a single
 interferometer.
+
+In section~\ref{sec:long-wavelength}, we introduced the \emph{long
+  wavelength approximation}, in which we assume that the gravitational
+wave phase changes slowly compared to the time required for light to
+travel from one end of an interferometer arm to the other end.  This
+approximation holds in the LIGO detection band ($f \lesssim 7000$ Hz
+corresponds to $\lambda \gtrsim 40$ km) but fails completely for GW
+frequencies equal to the free spectral range of the arm cavities,
+where the GW wavelength exactly matches the arm length.  For a
+normally incident GW at this frequency, a photon traversing the arm
+will see an elongated optical path length on its trip down the arm but
+a contracted path length on its return trip, yielding zero net effect.
+The antenna pattern is therefore a frequency-dependent function; to
+calculate it, we must consider the spatial extent and time evolution
+of the gravitational wave.
+
+References to cite: \cite{Giampanis2008Search,Schilling1997Angular,Rakhmanov2008Highfrequency,Butler2004Characterization,Fricke2007HighFrequency}
 
 \section{Shot Noise}
 The root-mean-square of a Poisson process with current $I$ and quantum
@@ -219,5 +242,6 @@ for a relative intensity noise of $\sqrt{2 h\nu/P}$.
 \caption{\label{fig:inverting-amp}Basic active filter in the inverting amplifier configuration.} 
 \end{figure}
 
-\section{References}
-\cite{Quetschke2007Complex}
+Cite: Art of Electronics
+%\cite{Quetschke2007Complex}
+%\cite{Williams1972Optics}

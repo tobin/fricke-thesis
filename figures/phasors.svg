@@ -157,6 +157,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -172,13 +173,15 @@
        style="stroke:#000000;stroke-opacity:1;opacity:0.5;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:4, 1;stroke-dashoffset:0"
        id="g3159">
       <path
-         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:4, 1;stroke-dashoffset:0"
-         d="M 65,2.8421709e-14 L 65,135"
-         id="path2385" />
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:4, 1;stroke-dashoffset:0"
+         d="m 65,0 c 0,45 0,90 0,135"
+         id="path2385"
+         inkscape:connector-curvature="0" />
       <path
-         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:4, 1;stroke-dashoffset:0"
-         d="M 5,110 L 310,110"
-         id="path2387" />
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:4, 1;stroke-dashoffset:0"
+         d="m 5,110 c 101.66667,0 203.33333,0 305,0"
+         id="path2387"
+         inkscape:connector-curvature="0" />
     </g>
     <g
        style="stroke:#ff0000;stroke-opacity:1;opacity:0.65705128"

@@ -381,35 +381,6 @@ motion of the input beam into variations in transmission. The resulting
 variation in the transmitted light level is indistinguishable from
 DARM motion.
 
-
-
-\section{Electronics noise}
-
-An optical power of 100 mW on the readout photodiodes will produce a
-photocurrent of $i = q_e\lambda/(hc)\cdot 100\text{ mW } = 86\text{ mA}$, which
-in turn has a shot noise floor of $\sqrt{2 q_e i}\approx 500 \text{
-  pA}/\sqrt{\text{Hz}}$.  Across $100\ \Omega$ transimpedance, this becomes $50
-\text{ nV}/\sqrt{\text{Hz}}$.  The noise floor of the readout electronics must
-be below this level and not be polluted by any baseband $1/f$ flicker noise.
-
-The main strategy is to aggressively amplify the electronic signal as close to
-the photodiodes as possible, so that noises added downstream become
-insignificant.  To eliminate even triboelectric effects, the first preamp stages
-are placed in-vacuum.  The in-vacuum preamps consist of active filter stages
-with two zeros at 8 Hz and two poles at 80 Hz, for a factor of 100 amplification
-at 100 Hz.  This is followed by two more pole-zero pairs in satellite amplifiers
-on the floor outside the vacuum chamber, for a total gain of 10,000 before the
-long run to the racks.
-
-\begin{comment}
-h = 6.626068e-34;
-c = 299792458;
-lambda = 1064e-9;
-qe = 1.60217646e-19;
-I = qe * lambda / (h * c)
-sqrt(2* qe * I)
-\end{comment}
-
 \section{Optical spring}
 %
 Detuning the arm cavities from their resonance introduces a big optical
@@ -438,13 +409,6 @@ The intensity noise to displacement transfer function is
   P_{IN} {g_{rc}}^2 {g_{cav}}^2 \frac{1}{s_{cc}} 
 \end{equation}
 
-\section{Nonlinearity  of the DC error signal}
-
-Although we operate sufficiently far from the dark fringe that the
-linear coupling of residual DARM motion to output power is dominant,
-sufficiently large motion could produce second-order coupling. Fortunately,
-this turns out to be totally negligible.
-
 \section{Digital effects}
 
 The realtime digital signal processing system through which our
@@ -461,3 +425,4 @@ order to avoid being caught by surprise by ``digital noises''.
 \end{itemize}
 
 \section{Conclusion}
+\cite{Smith2008Measurement,Smith2005Oscillator}

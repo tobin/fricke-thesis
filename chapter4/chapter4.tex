@@ -1,125 +1,20 @@
 \chapter{Output Mode Cleaner}
 \label{chapter4}
 \section{Introduction}
-Any fields present on the detection photodiode other than the signal
-field and the local oscillator will lead to additional shot noise but
-no additional signal: a degredation of SNR.  The additional fields can
-be either distinct in frequency or in spatial mode. 
+Any optical fields present at the detection photodiodes which do not
+produce optical gain will degrade the signal-to-noise ratio of the
+readout, by contributing shot noise and technical noise but no signal.
 
-To remove these spurious fields, we employ an optical filter cavity at
-the interferometer's output. This is the \emph{output mode cleaner}
-(OMC).  
+To prevent this SNR degredation, we install an \emph{output mode
+  cleaner}, an an optical filter cavity whose resonant mode is matched
+to the field of interest.
 
-\section{General theory of mode cleaners}
+The light arises from RF sidebands, junk light, and the contrast
+defect.  The OMC consists of a Fabry-Perot cavity with length,
+g-factor, and finesse chosen to optimally filter the sidebands and
+junk light from the desired DARM signal.
 
-Critically-coupled resonant cavities act as optical filters, allowing
-the resonant mode to be transmitted while all orthogonal modes are
-highly attenuated.  These cavities can be not only
-frequency-selective, but also select a single spatial mode.
-
-Gaussian beams and higher-order modes accumulate phase slightly faster
-than plane waves.  The extra phase (beyond the $\phi=kz$ expected for
-a plane wave) is the Guoy phase.  It accumulates most rapidly as a
-beam goes through a focus (waist). A Gaussian beam accumulates
-$180^o$ as one moves from $z=-\infty$ to $z=+\infty$ through the
-waist; a higher-order Hermite Gauss mode accumulates more.  The Guoy
-phase shift as a function of beam axis coordinate is given by
-%
-\begin{equation}
-\phi_g(z) = \left(1 + n + m\right) \tan^{-1} \left( \frac{z - z_0}{z_R} \right)
-\label{eq:guoy-phase}
-\end{equation}
-%
-where $z$ is the coordinate along the beam axis, $z_0$ is the location
-of the waist, $z_R$ is the Rayleigh range of the beam, and $n$ and $m$
-are the mode indices of the Hermite Gauss mode.
-
-A two-mirror symmetric cavity of length $L$ with mirrors of radius of
-curvature $R$ has a $g$-factor of $g = 1 - L/R$; from this we can
-calculate the Rayleigh range of the mode in the cavity:
-
-\begin{equation}
-z_R = \frac{L}{2}\sqrt{\frac{1 + g}{1 - g}}
-\end{equation}
-
-\begin{align}
-\phi^{cav}_n & =  \left(n+1/2\right)\left(\tan^{-1} (L/2)/z_R - \tan^{-1} (-L/2)/z_R\right) \\
-            & = \left(n+1/2\right)\cos^{-1} g
-\end{align}
-
-The higher order modes have the same wavefront curvature as the lowest
-order gaussian mode.  They differ only in experiencing the extra Guoy
-phase.  The result is that higher order modes resonate at a slightly
-different (shorter) cavity length than the fundamental mode of the
-same frequency.
-
-For resonance to occur, the total phase shift from one mirror to the
-other, including both the plane wave propagation phase
-$kL=\pi\nu/\nu_0$ and the Guoy phase shift, must be a multiple of
-$\pi$ (so that the roundtrip phase is a multiple of $2\pi$):
-%
-\begin{equation}
-kL - 2\left(m+n+1\right)\cos^{-1} g = \pi(q+1),
-\quad q\in\mathbb{Z}
-\end{equation}
-
-For the special case of $L = 2 z_R$, the increase in the Guoy phase as
-$m$ or $n$ is increased is exactly $\pi$ radians.  For this special
-case--a \emph{confocal cavity}--all of the spatial modes at a given
-frequency resonate simultaneously.  For a mode cleaner cavity, we want
-precisely the opposite; we will carefully choose the cavity geometry
-to separate higher-order spatial modes from the fundamental mode of
-the laser carrier.
-
-We can express the additional Guoy phase shift of higher order modes
-as an equivalent frequency shift that would allow them to resonate at
-the same cavity length as the carrier.  The effective frequency shift is
-%
-\begin{equation}
-\Delta\nu = \frac{2}{\pi} \nu_0 \cos^{-1} g
-\label{eq:hom-frequency-shift}
-\end{equation}
-%
-where $\nu_0$ is the free spectral range.
-
-\begin{figure}[t]
-\centerline{\includegraphics[width=0.5\columnwidth]{figures/as_spot.png}}
-\caption[Beam spot at anti-symmetric port]{\label{fig:as-spot}Image of
-  the beam spot at the output port taken using a CCD camera. Although
-  this image is saturated in the central portion, it shows the messy
-  junk light surrounding the central gaussian beam.  This includes
-  contributions from both the carrier and the 25 MHz sidebands.}
-\end{figure}
-
-\section{Eigenmodes}
-
-A phase-front that returns to its original state after making a
-round-trip through the optical cavity will interfere constructively
-with itself, resonating in the cavity.  The set of such amplitude
-distributions which are stable in the cavity and do not mix with one
-another are collectively the \emph{eigenmodes} of the cavity.  The
-eigenmodes of a cavity made with spherical mirrors are parametrized by
-either the Hermite-Gauss or Laguerre Gauss modes.  (The same functions
-also describe the energy eigenfunctions of the quantum harmonic
-oscillator.)
-
-The Hermite-Gauss modes are given by:
-
-\begin{equation}
-E_{nm}(x,y) = E_0 
-\sqrt{ 
-  \frac{2}{\pi w n! m! 2^n 2^m}
-}
-\exp \left\{-\frac{x^2+y^2}{w^2}\right\}
-H_m\left( \frac{\sqrt{2}x}{w} \right)
-H_n\left( \frac{\sqrt{2}y}{w} \right)
-\end{equation}
-
-\begin{figure}
-\includegraphics[width=\columnwidth]{figures/hgmodes.pdf}
-\caption[Hermite-Gauss TEM modes]{Hermite-Gauss modes. Positive amplitude is indicated in red and negative amplitude in blue.}
-\end{figure}
-
+The contrast defect is in the same mode as the field we want to keep.
 
 \section{Physical design of the cavity}
 
@@ -218,8 +113,9 @@ least a factor of 10 margin, so we'll want maximum attenuation of
 10000. This means we need a finesse of at least 160.
 
 
+\section{OMC feedback control systems}
 
-\section{Length control (LSC)}
+\subsection{Length control (LSC)}
 
 The cavity length must be controlled to maintain the resonance of the
 laser carrier.  To sense the mismatch between the laser carrier and
@@ -274,7 +170,7 @@ The fast PZT actuator is dithered at 10 kHz and this signal is
 synchronously demodulated in the transmitted light.  The bandwidth of
 the servo is about 100 Hz.
 
-\section{Input beam control (ASC)}
+\section{Input beam alignment control (ASC)}
 
 In addition to controlling the cavity length to keep the carrier
 resonant, we must control the pointing of the beam incident on the
@@ -317,7 +213,9 @@ Junk light, however, will lead the dither alignment astray.
 
 \begin{figure}
 \includegraphics{figures/drumhead-dither.pdf}
-\caption[Drumhead dither system]{Drumhead dither}
+\caption[Drumhead dither system]{The `Drumhead dither' OMC alignment
+  system.}
+  
 \end{figure}
 
 RF Wavefront sensing.  We did not really consider this.
@@ -331,8 +229,31 @@ error signals.
 Beacon dither.  
 
 SNR dither.  Nicolas's scheme.
+\subsection{Drumhead dither OMC alignment system}
 
-\section{Automatic gain control}
+\begin{enumerate}
+\item One of the arm cavity lengths is modulated at high frequency, 9
+  kHz.  Intuitively, this modulation `tags' the carrier light emerging
+  from the arm.  The modulation is accomplished with a small drive by
+  feeding the mechanical drumhead mode of the test mass.
+\item The spectral power of the 9 kHz line in the OMC photodiode
+  signal is measured by bandpassing the signal around 9 kHz, squaring
+  the result, and then low pass filtering.
+\item The four degrees of freedom of the two beam steering mirrors are
+  modulated (dithered) at a frequency slow compared to the low pass
+  filtering in step (2).
+\item The measured power in the 9 kHz line is demodulated at the
+  steering mirror dither frequencies, producing alignment error
+  signals which are fed back to the mirrors.
+\end{enumerate}
+
+\subsection{Optimal OMC alignment}
+
+It has been pointed out~\cite{Smith2011Optimal} that even the drumhead
+dither alignment scheme is not optimal in the sense of producing the
+best shot-noise-limited SNR.
+
+\section{Automatic gain control (UGF servo)}
 
 The optical gain of the interferometer naturally varies slowly as
 alignment drifts and the thermal state of the mirrors changes.  The
@@ -349,7 +270,9 @@ was a nice convenience.
 
 \section{Residual fluctuations}
 
-\section{Optical characterization}
+\section{Scattering}
+
+The OMC is the largest scattering source in the AS port path.
 
 \subsection{Mode scan}
 
@@ -386,7 +309,7 @@ interferometer, and interfere with the other fields there.
 
 Initial lock acquisition of the Enhanced LIGO interferometers is the
 same as in Initial LIGO\cite{Evans2002Lock}. Once the interferometer is locked using the
-heterodyne readout schemes, a DARM offset is introduced to allow carrier
+heterodyne readout schemes, the DARM offset is introduced to allow carrier
 light to be transmitted to the output port. The Output Mode Cleaner
 is then locked to this carrier light. Once the OMC is locked to the
 carrier, control of DARM is transferred to the DC readout system.
@@ -419,6 +342,8 @@ is sufficiently strong to burn the detection photodiodes. In order
 to prevent this, one of the steering mirrors is used as a fast shutter.
 It is able to zero the transmission through the OMC in approx 2 ms.
 
+\section{Observed beam motion}
+
 \section{The Front End}
 
 \begin{quote}
@@ -429,5 +354,89 @@ instruments. Measure it, and make sure you can explain every half
 decibel. -- Phil Hobbs, \emph{Building Electro-Optical Systems} \cite{Hobbs2009Building}
 \end{quote}
 
-(Insert electronics discussion here)
+\noindent To achieve the touted SNR improvement of DC readout it is
+imperative that the signal not be lost to optical losses, non-optimal
+photodiode quantum efficiency, or electronics noise.
 
+\subsection{Photodiodes}
+% H1 OMC DC PDs
+% https://dcc.ligo.org/DocDB/0005/T0900420/001/T0900420-v1.pdf
+
+Sub-optimal photodiode efficiency counts as a loss just like any other
+optical loss. 
+
+The OMC photodiodes are configured in a reverse-biased,
+photoconductive arrangement.  An ideal photodiode in such a
+configuration will allow one charge carrier to cross the junction for
+each incident photon.  The ratio of photocurrent to incident power on
+the photodiode is its \emph{responsivity}.  The ratio of a
+photodiode's actual responsivity to the ideal is its \emph{quantum
+  efficiency}.  At 1064 nm the ideal responsivity is
+%
+\begin{equation}
+\frac{q_e}{h \nu} = \frac{q_e \lambda}{h c} \approx 0.86 \text{ Amps/Watt}
+\end{equation}
+where $q_e\approx 1.6\times10^{-19}\text{ C}$ is the electron charge.
+
+\begin{comment}
+ h = 6.626068e-34;
+ c = 299792458;
+ lambda = 1064e-9;
+ qe = 1.60217646e-19;
+ responsivity = qe * lambda / (h * c)
+\end{comment}
+
+One lesson (re-)learned during Enhanced LIGO is the need to measure
+the characteristics of every individual noise-sensitive component
+installed in the final machine rather than relying on measurements of
+test samples or typical values.  The photodiodes we originally
+installed turned out to have quantum efficiency $\lesssim$ 0.60 while
+the test articles of the same part number had quantum efficiency
+within a few percent of unity.  Clearly there had been some change in
+the manufacturing process that resulted in a greatly diminished
+quantum efficiency.  Even for parts which do not show such a dramatic
+systematic change, characteristics of individual parts come from some
+distribution, and by measuring a batch of parts, the lowest noise
+components can be hand picked.
+
+In September 2009 we replaced the bad phototdiodes.  The replacement
+photodiodes are Perkin Elmer 3mm InGaAs diodes, part number C30665GH.
+The measured quantum efficiency was consistent with unity~\cite{Rollins2009H1}.
+
+\subsection{Electronics}
+An optical power of 100 mW on the readout photodiodes will produce a
+photocurrent of $i = q_e\lambda/(hc)\cdot 100\text{ mW } = 86\text{ mA}$, which
+in turn has a shot noise floor of $\sqrt{2 q_e i}\approx 500 \text{
+  pA}/\sqrt{\text{Hz}}$.  Across $100\ \Omega$ transimpedance, this becomes $50
+\text{ nV}/\sqrt{\text{Hz}}$.  The noise floor of the readout electronics must
+be below this level and not be polluted by any baseband $1/f$ flicker noise.
+
+The main strategy is to aggressively amplify the electronic signal as close to
+the photodiodes as possible, so that noises added downstream become
+insignificant.  To eliminate even triboelectric effects, the first preamp stages
+are placed in-vacuum.  The in-vacuum preamps consist of active filter stages
+with two zeros at 8 Hz and two poles at 80 Hz, for a factor of 100 amplification
+at 100 Hz.  This is followed by two more pole-zero pairs in satellite amplifiers
+on the floor outside the vacuum chamber, for a total gain of 10,000 before the
+long run to the racks.
+
+\begin{comment}
+h = 6.626068e-34;
+c = 299792458;
+lambda = 1064e-9;
+qe = 1.60217646e-19;
+I = qe * lambda / (h * c)
+sqrt(2* qe * I)
+\end{comment}
+
+\begin{figure}
+\includegraphics[width=\columnwidth]{figures/D0901817.pdf}
+\caption[Output Mode Cleaner photograph]{Photograph of the Output Mode
+  Cleaner used at Livingston, taken \emph{ex situ}.  Photometry by Sam
+  Waldman.  This diagram has document number \href{https://dcc.ligo.org/cgi-bin/private/DocDB/ShowDocument?docid=4713}{D0901817}.  Only one of
+  the two DC photodiodes is installed in this photo.}
+\end{figure}
+% Hanford: 
+% https://dcc.ligo.org/cgi-bin/private/DocDB/ShowDocument?docid=4714
+
+Additional references: \cite{Prijatelj2010,Bork2009ELIGO,Betzwieser2004Study}

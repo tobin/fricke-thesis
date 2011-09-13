@@ -1,8 +1,9 @@
 \chapter{Fabry-Perot cavities}
 \label{sec:cavities}
 In this appendix I derive the basic properties of Fabry-Perot
-cavities in the plane wave approximation.
+cavities~\cite{Fabry1892Theorie,Fabry1901New} in the plane wave approximation.
 
+\cite{Butler2004Characterization}
 \subsection{Fabry-Perot field equations}
 
 \begin{figure}
@@ -124,9 +125,21 @@ This gives us an expression for the rate of change of the phase of a function:
 
 We can find the phase gain of a Fabry-Perot cavity by applying this expression to the cavity reflectivity as a function of intra-cavity phase, $r_c(\phi)$:
 \begin{equation}
-\text{phase gain} = \text{Im\ } \frac{r_c'}{r_c}
+g_\phi = \text{Im\ } \frac{r_c'}{r_c}
 \end{equation}
-where $r_c'(\phi)\equiv(1/2)(\partial/\partial\phi)r_c(\phi)$; the factor of $1/2$ is to convert from round-trip phase to one-way phase.  Furthermore, because the derivative of the amplitude of $r_c$ vanishes on resonance, we can simply take the magnitude of $r_c'/r_c$ rather than the imaginary part.
+where $r_c'(\phi)\equiv(1/2)(\partial/\partial\phi)r_c(\phi)$; the factor of $1/2$ is to convert from round-trip phase to one-way phase.  Because the derivative of the amplitude of $r_c$ vanishes on resonance, we can simply take the magnitude of $r_c'/r_c$ rather than the imaginary part. Explicitly taking the derivative of equation~\ref{eq:cavity-reflectivity}, we find
+\begin{equation}
+r_c'(\phi) = \frac{1}{2}\frac{d}{d\phi} r_c(\phi) = 
+-i \frac{\left(1-{r_1}^2\right) r_2 \exp 2 i \phi}
+     {\left(1 - r_1 r_2 \exp 2 i \phi\right)^2}\\
+\end{equation}
+%
+Conventionally the symbol $r_c'$ (as in \cite{LigoFreqResponse97}) indicates the magnitude of this expression at resonance ($\phi=0$):
+\begin{equation}
+r_c' = 
+ \frac{\left(1-{r_1}^2\right) r_2 }
+     {\left(1 - r_1 r_2 \right)^2}
+\end{equation}
 
 Another way to calculate the phase gain is to use the rational transfer function expression, equation~\ref{eq:rational-function}.  To model the situation near resonance, we need only consider the nearest pole and zero:
 \[
@@ -148,9 +161,9 @@ change of
 \phi_r   = 2 \tan^{-1} \left( 2 \nu_0 \frac{\phi}{\omega_c} \right)
 %   = 2 \tan^{-1} \left( \frac{2}{\pi}\mathcal{F}\phi\right)
 \end{equation}
-where $\omega_c\equiv2\pi f_c$ is the cavity pole and $\mathcal{F}=(1/2)(\nu_0/f_c)$ is the cavity finesse (which will be introduced in section~\ref{sec:finesse}).  Taking the derivative, we find the \emph{phase gain}:
+where $\omega_c\equiv2\pi f_c$ is the cavity pole and $\mathcal{F}=(1/2)(\nu_0/f_c)$ is the cavity finesse (which will be introduced in section~\ref{sec:finesse}).  Taking the derivative, we find the phase gain:
 \begin{equation}
-  \frac{1}{2} \frac{d \phi_r}{d \phi} 
+g_\phi =  \frac{1}{2} \frac{d \phi_r}{d \phi} 
 = \frac{2 \nu_0}{\omega_c} \left[1 + \left(\frac{2 \nu_0 \phi}{\omega_c}\right)^2 \right]^{-1} 
 = \frac{2 \mathcal{F}}{\pi} \left[1 + \left(\frac{\omega}{\omega_c}\right)^2 \right]^{-1} 
 \end{equation}

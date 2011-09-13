@@ -109,6 +109,13 @@ categorized as \emph{continuous} or \emph{transient}, and as
 \emph{modeled} or \emph{unmodeled}.  There is some overlap in this
 division.  Sources are paired with associated search efforts.
 
+The data produced by a gravitational wave detector consist of the
+calibrated strain time series $h(t)$ along with auxiliary data streams
+which convey the state of the detector and its environment.  These
+auxiliary data streams are used for both detector debugging and for
+vetoing of candidate signals which are coincident with local
+environmental disturbances.
+
 \begin{itemize}
 
 \item \textbf{compact binary coalescence} --- Pairs of compact objects
@@ -121,7 +128,7 @@ division.  Sources are paired with associated search efforts.
 \item \textbf{continuous wave} --- Rapidly spinning objects will
   generate essentially monochromatic signals, which are in turn
   doppler-shifted by the relative motion of the Earth and the source.
-  This is sometimes called the pulsar search, since the primary source
+  The search for these signals is sometimes called the pulsar search, since the primary source
   in this category is expected to be rapidly spinning neutron stars
   (such as pulsars).  The search, in turn, is divided into searches
   for known pulsars and unknown pulsars.  Pulsars which are known
@@ -156,7 +163,9 @@ division.  Sources are paired with associated search efforts.
   gravitational wave detectors.  This can be done in either an all-sky
   search or in a sky-position-dependent search.  Typically, some
   power-law gravitational wave spectrum is assumed.
-
+  
+  The signal processing strategy for the detection of a stochastic background
+  is described by Allen and Romano in \cite{Allen1999Detecting}.
 \end{itemize}
 
 Improvements in search sensitivity can be achieved by incorporating
@@ -208,7 +217,7 @@ In terrestrial interferometers, large\footnote{10 kg in Initial LIGO,
 mirrors and inertial test masses.  These optics are hung as pendula to
 allow inertial freedom of the pendular resonance frequency.
 
-References to cite in this section: \cite{Weiss1972Electromagnetically,Forward1978Wideband}
+References to cite in this section: \cite{Weiss1972Electromagnetically,Forward1978Wideband,Saulson1994Fundamentals,Acernese2008Virgo}
 
 \subsection{Other detectors}
 
@@ -274,7 +283,7 @@ Detector upgrades during Enhanced LIGO included:
   for the greater amount of thermal lensing that would be induced by
   the higher operating power.
 \item An output mode cleaner was installed, supported by a prototype
-  of the advanced LIGO in-vacuum seismic isolation system
+  of the advanced LIGO in-vacuum seismic isolation system~\cite{KisselThesis}
 \item The Angular Sensing and Control system was redesigned to cope
   with angular instabilities introduced at high
   power~\cite{Sidles2006Optical,DooleyAngular}
@@ -291,7 +300,7 @@ era of regular detection.
 Several next-generation interferometers are in the works. 
 
 The Einstein telescope~\cite{EinsteinTelescopeDesignStudy2011} is a
-planned system of three interferometers with arms forming an
+proposed system of three interferometers with arms forming an
 equilateral triangle, to be installed in tunnels deep under Europe.
 
 In the meantime, technological development of terrestrial laser
@@ -312,22 +321,28 @@ Space Antenna (LISA) design is composed of three spacecraft forming an
 equilateral triangle, the whole constellation in solar orbit.  These
 spacecraft will house truly inertial test-masses, floating within an
 internal vacuum enclosure while external microthrusters keep the
-spacecraft centered around the test mass.  The gravitational wave
+spacecraft centered around the test mass, a configuration known as a drag-free satellite~\cite{Lange1964DragFree}.  The gravitational wave
 channel is derived using time-delay interferometery.  The proposed
 LISA design is sensitive to gravitational waves in the range $10^{-4}$
 to $10^{-1}$ Hz (period of 3 hours down to 10 seconds).
 
 \section{This Dissertation}
 
-This dissertation describes the implementation of DC readout and an
-output mode cleaner during Enhanced LIGO.
-
+% \cite{StatusS5} ?
 The state of the LIGO detectors before these modifications is
 described in \cite{S5InstrumentPaper} as well as numerous PhD
 dissertations, notably Rana Adhikari's \cite{RanaThesis} and and
 Stefan Ballmer's \cite{Ballmer2006LIGO}.  Robert Ward's dissertation
 details the implementation and evaluation of DC readout at the LIGO 40
 meter prototype interferometer in Pasadena \cite{RobWardThesis}.
+
+GEO DC\cite{GeoDC,Degallaix2010Commissioning}
+
+
+This dissertation describes the implementation of DC readout and an
+output mode cleaner during Enhanced LIGO.
+
+
 
 In Chapter 2, I explain the principles and practice behind the
 sensitivity of the LIGO detectors.  I show how the machine converts
@@ -342,4 +357,4 @@ and the general idea of mode cleaners.
 Finally, in Chapter 5, I present results demonstrating the performance
 of this system.
 
-Additional derivations and background are given in the appendicies.
+Additional references to cite: \cite{Garfinkle2005Gauge, Heinzel1999Advanced,Saulson1994Fundamentals, Harris1996Gravitational,Melissinos2010Response}.
