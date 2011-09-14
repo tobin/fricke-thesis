@@ -237,6 +237,73 @@ The loss of power recycling gain becomes significant for large
 offsets.  For a 10 pm offset, the reduction in power recycling gain is
 only 1\%, but for a 50 pm offset it grows to 20\%.
 
+\subsection{Nonlinearity of the DC error signal}
+
+Although we operate sufficiently far from the dark fringe that the
+linear coupling of residual DARM motion to output power is dominant,
+sufficiently large motion could produce second-order coupling. 
+
+To find the nonlinear contribution, we can expand the power at the AS
+port to include the quadratic term, and then we can compare the
+quadratic term to the linear term.  Here it is easiest to simply work
+in terms of the phase difference at the beamsplitter, $\phi$.
+Expanding the fringe around the phase offset $\phi_0$,
+%
+\begin{equation}
+\sin^2\phi \approx \sin^2 \phi_0 
+             + 2 (\cos\phi_0 \sin\phi_0) \delta\phi
+             + (\cos^2\phi_0-\sin^2\phi_0) (\delta\phi)^2
+             + \cdots
+\end{equation}
+%
+where $\delta\phi=\phi-\phi_0$,
+we find that the ratio of the quadratic term to the linear term is
+%
+\begin{equation}
+\frac{\cos^2\phi_0-\sin^2\phi_0}{ 2 \cos\phi_0 \sin\phi_0}
+\approx
+\frac{1}{2}\cot \phi_0 .
+\end{equation}
+We are interested in the frequency domain contribution of the
+quadratic part.  The spectrum of $(\delta\phi(t))^2$ is the
+autoconvolution of the spectrum of $\delta\phi(t)$.  In practice, most
+of the spectral power in $\delta\phi(t)$ is at very low frequency
+(below 1 Hz).  Rather than actually compute the autocorrelation, it
+suffices in practice to multiply the amplitude spectral density of
+$\delta\phi(t)$ by twice the standard deviation
+$\delta\phi_{RMS}=\sqrt{\langle(\delta\phi(t))^2\rangle}$ to estimate
+the amplitude spectral density of $(\delta\phi(t))^2$:
+\begin{equation}
+\delta\phi(f) * \delta\phi(f) \approx 2 \delta\phi_{RMS} \delta\phi(f)
+\end{equation}
+Using this we can estimate the spectrum of the quadratic contribution as
+\begin{equation}
+\frac{\text{quadratic}}{\text{linear}} \approx \delta\phi_{RMS} \cot \phi_0 .
+\end{equation}
+DARM motion of 0.1 pm RMS is equivalent to a $\delta\phi_{RMS}$ of
+\begin{align}
+\delta\phi_{RMS} &= \delta x_{RMS}  \times g_\phi \times 2\pi / \lambda \\
+                &\approx 0.1 \times 10^{-12}\text{ m} \times 137 \times 2\pi / \lambda \\
+                &\approx 80  \times 10^{-6} \text{ radians} 
+\end{align}
+while the static DARM offset of 10 pm becomes
+\begin{align}
+\phi_0          &\approx 10  \times 10^{-12}\text{ m} \times 137 \times 2\pi / \lambda\\
+                &\approx  8  \times 10^{-3} \text{ radians}.
+\end{align}
+and the ratio of the quadratic contribution to the linear contribution is
+\begin{equation}
+\frac{\text{quadratic}}{\text{linear}} \approx \delta\phi_{RMS} \cot \phi_0 \approx \frac{\phi_{RMS}}{\phi_0} \approx \frac{1}{1000}.
+\end{equation}
+
+The ratio of the quadratic contribution to the linear contribution is
+approximately equal to the ratio of the RMS DARM motion to the static
+DARM offset.  For a reasonable DARM offset, the quadratic contribution
+is a factor of 1000 below the linear contribution.  We would need to
+worry about fringe wrapping before the quadratic contribution would
+become significant; the nonlinear response of DC readout due to fringe
+curvature is negligible.
+
 \subsection{DC readout elsewhere}
 DC readout has been implemented previously at the Caltech 40 meter
 prototype \cite{Ward2008DC,RobWardThesis} and the GEO 600
@@ -255,15 +322,6 @@ uses RF heterodyne readout\cite{Acernese2008Virgo}.
   old RF heterodyne output chain, used for lock acquisition and
   automatic alignment.}
 \end{figure}
-
-\section{Nonlinearity of the DC error signal}
-
-Although we operate sufficiently far from the dark fringe that the
-linear coupling of residual DARM motion to output power is dominant,
-sufficiently large motion could produce second-order coupling. Fortunately,
-this turns out to be totally negligible.
-
-
 
 More references to cite:
 \cite{Adhikari2009DC} % DC readout Normalization for Enhanced LIGO
