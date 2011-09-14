@@ -161,6 +161,11 @@ r_c & = \frac{r_1 - r_2}{1 - r_1 r_2} &
 r_c'& = \frac{\left(1 - {r_1}^2\right)r_2}{\left(1 - r_1 r_2\right)^2}
 \end{align}
 
+% FIXME: Should mention the idea of the cavity averaging the field.
+
+% FIXME Gaby says: You should mention this is a frequency dependent gain,
+% and explain the long wavelength appoximation.
+
 \label{sec:long-wavelength}We typically work in the \emph{long wavelength approximation}, in
 which we assume that the gravitational wave strain (or cavity length)
 changes slowly compared to the time required by light to travel from
@@ -212,6 +217,9 @@ power-recycled Fabry-Perot Michelson as a three mirror cavity.
 To find the transfer function of the coupled cavity, we can simply
 substitute the cavity reflectivity function $r_c(\phi)$ given in
 equation~\ref{eq:cavity-reflectivity} into itself.  
+
+% FIXME Gaby says: You have not introduced a cavity pole yet - think
+% of the dean's rep as the audience when you write.
 
 To find the cavity pole of the combined cavity, a good approximation
 results if we first compute the reflectivity of the shorter cavity on
@@ -316,7 +324,7 @@ values.  Definitive references are \cite{LigoFreqResponse97} or
 As in the preceeding sections, I simply use the plane-wave
 approximation for fields inside cavities. This introduces certain
 inaccuracies, as, for example, I ignore Gouy phase. Nonetheless,
-comparison to the actual dimenions of LIGO shows good agreement.
+comparison of the values derived here to the actual LIGO design shows good agreement.
 
 It is useful to draw a distinction between macroscopic and microscopic
 lengths. Macroscopic lengths are those derived here and
@@ -329,6 +337,9 @@ When we say that a cavity is a certain macroscopic length, we retain
 the freedom to adjust the microscopic length to attain resonance.
 
 \subsection*{Arm length}
+% FIXME - Gaby says: You should choose either the third person for
+% "LIGO" choosing the parameters, or the first person "we" as you use
+% later.
 
 How big a detector can you build? The physical length of the detector
 sets the conversion between displacement and strain. Simply making the
@@ -347,6 +358,7 @@ The cavity length determines the free-spectral-range:
 \nu_0\equiv\frac{c}{2L_{+}}\approx37.5\text{ kHz}
 \end{equation}
 
+% FIXME - Gaby says: You should define L_+=(L_x+L_y)/2
 \subsection*{Bandwidth}
 
 In the Fabry-Perot Michelson interferometer design, there is a trade-off
@@ -573,6 +585,7 @@ the demodulation phase.
 %% as illustrated by the number of publications on the topic:
 %% \cite{Niebauer1991Nonstationary, Lyons2000Shot, Mio1992Observation, Meers1991Modulation, Buonanno2003Quantum}
 
+% Gaby says: ``Very nice!''
 \begin{figure}
 \includegraphics[width=\columnwidth]{figures/cyclostationary-timeseries.pdf}
 \includegraphics[width=\columnwidth]{figures/cyclostationary-timeseries2.pdf}
