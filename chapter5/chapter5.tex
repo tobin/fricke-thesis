@@ -3,35 +3,36 @@
 
 The coupling of noises from the laser source and RF oscillators to the
 gravitational wave readout channel differ considerably in RF and DC
-readouts.  In addition, DC readout with an OMC is generally much more
-sensitive to beam motion (jitter).  These couplings are of primary
-interest in designing the optical readout of a gravitational wave
-detector.
+readouts.  In addition, the combination of DC readout with an OMC
+introduces a greater sensitivity to beam motion (jitter).  These
+couplings are of primary interest in designing the optical readout of
+a gravitational wave detector.  
 
-Furthermore we should verify that the touted sensitivity improvements
-of DC readout are realized.
-
-In this chapter, I will sketch the technique for calculating expected
-noise couplings analytically and numerically, and I will present
+In this chapter, I sketch the technique for calculating expected noise
+couplings analytically and numerically, and I will present
 measurements of these noise coupling measurements made on the two
-Enhanced LIGO interferometers.
+Enhanced LIGO interferometers.  I compare the expected and achieved
+shot-noise-limited sensitivity, verifying that the fundamental and
+technical shot noise improvements due to homodyne detection and the OMC
+are realized.
 
 \section{Sensitivity}
 
 The primary figure of merit of a gravitational wave detector is its
-noise floor, calibrated as a strain spectral density.  When evaluating
-DC readout in Enhanced LIGO, we can begin by looking at the noise
-floor: was the promised sensitivity delivered?  For the readout, the
-answer is a resounding yes.  Given the input power and other known
-parameters of the interferometer, the noise floor is accurately
-modeled.
-
-The shot-noise-limited sensitivity of a power-recycled interferometer
-is given by a small number of parameters:
+noise floor, calibrated as a strain spectral density; the noise floor
+is often referred to as simply the \emph{sensitivity} (despite a lower
+noise floor indicating better sensitivity).  When evaluating DC
+readout in Enhanced LIGO, we can begin by looking at the noise floor:
+do we understand the achieved sensitivity?  At low frequencies
+($f\lesssim200\text{ Hz}$), the interferometer noise floor is limited
+by displacement noises which will be independent of any readout, while
+at high frequencies, the noise floor is set by shot noise.  The
+shot-noise-limited sensitivity of a power-recycled interferometer
+using DC readout is given by a small number of parameters:
 
 \begin{itemize}
-\item the length of the arm cavities ($L = 3995$ m)\\
-or, equivalently, the free spectral range ($\nu_0 = c/(2L)$)
+\item the length of the arm cavities ($L = 3995$ m)\\ or,
+  equivalently, the free spectral range ($\nu_0 = c/(2L)$)
 \item the input power to the interferometer ($P_{IN}$)
 \item the power recycling gain ($g_{cr}^2$)
 \item the arm cavity finesse ($\mathcal{F} = 220$)
@@ -44,13 +45,13 @@ $\epsilon$.
 
 The predicted curve is produced by dividing the amplitude spectral density of
 the shot noise on the detection photodiode ($A_{shot})$ by the optical gain of
-the interferometer ($S_{DC}$). The optical gain is (as derived earlier) simply
+the interferometer ($S_{DC}$). The DC optical gain is (as derived earlier) simply
 the derivative of the power at the output port with respect to changes in
-differential arm length, evaluated at the operating DARM offset.
+differential arm length, evaluated at the operating DARM offset:
 %
 \begin{align}
 A_{shot}(f) &= \sqrt{2 h (c/\lambda) P_{AS}} \\
-S_{DC}(f) &= 2 \sqrt{\epsilon P_{IN} P_{AS}}\ g_{cr}^2\ r_{cp}\ \left(1 + i f/f_c\right)^{-1}
+S_{DC}(f) &= 2 \sqrt{\epsilon P_{IN} P_{AS}}\ g_{cr}^2\ r_c'\ k\left(1 + i f/f_c\right)^{-1}
 \end{align}
 %
 where $f_c = \nu_0 / (2\mathcal{F})$ is the cavity pole, $h$ is Planck's
@@ -58,13 +59,13 @@ constant, and $c$ is the speed of light.  This expression for $S_{DC}$ is in the
 approximation, which is valid for frequencies much lower than the arm cavities'
 free spectral range ($f\ll \nu_0)$, and for frequencies above the test mass
 suspension's pendulum resonance (which may be increased due to radiation
-pressue).
+pressure).
 
 Combining these two expressions gives the noise floor due to shot noise,
-calibrated in meters; dividing by $L$ gives the noise floor in strain:
+calibrated in meters; dividing by the arm length $L$ gives the noise floor in strain:
 %
 \begin{align}
-x_{shot}(f) & = \sqrt{\frac{h c}{2\ \lambda\ \epsilon\ P_{IN}}}\ \frac{1}{g_{cr}^2\ r_{cp}}
+x_{shot}(f) & = \frac{1}{2\pi} \sqrt{\frac{\lambda h c}{2 \epsilon P_{IN}}}\ \frac{1}{g_{cr}^2\ r_c'}
 \ \left|1 + i \frac{f}{f_c}\right| \\
 h_{shot}(f) &= (1/L)\ x_{shot}(f)
 \label{eq:expected-shot-noise}
@@ -100,10 +101,12 @@ writing, under active investigation.
 \begin{figure}
 \includegraphics[width=\columnwidth]{figures/L1-965543700-thesis.pdf}
 \includegraphics[width=\columnwidth]{figures/H1-962268780-thesis.pdf}
-\caption[Shot noise sensitivity limit (measured and expected)]{\label{fig:shot-noise-limited-sensitivity}Shot noise limited sensitivity of the Livingston and Hanford detectors.}
+\caption[Shot noise sensitivity limit (measured and
+  expected)]{\label{fig:shot-noise-limited-sensitivity}Shot noise
+  limited sensitivity of the Livingston and Hanford detectors.  The
+  uncertainty in the measured displacement spectra is $\sim10\%$, and
+  in the modeled curves is $\sim20\%$.}
 \end{figure}
-
-
 
 %% Cavity properties [Table]
 % These values are all from Sam's document T080144:
@@ -133,19 +136,34 @@ PD quantum efficiency       & 0.98           &             \\
 
 \section{Laser and oscillator noise coupling mechanisms}
 
-For the purpose of computing the frequency response of the interferometer and
-the expected laser and oscillator noise couplings, it is convenient to regard
-the electric field at any given location in the interferometer as a comb of
-discrete spectral lines.  Generically, we refer to any spectral line as a
-`sideband'.  The sidebands are divided into radio-frequency (RF) sidebands and
-audio-frequency (AF) sidebands. The distinction is not actually the frequency of
-the lines but their magnitude; RF sidebands have some finite amplitude, while
-audio-frequency sidebands are infinitessimal.  When the electric field is
-incident upon a photodiode, the photodiode will see a beat signal between every
-pair of sidebands.  In our formalism we make the approximation that the product
-of any two audio-frequency sidebands is zero.  Audio-frequency sidebands are
-used simply as test fields to evaluate linear transfer functions.  They produce
-signals at PDs by beating against the finite-amplitude RF sidebands.
+
+To compute the frequency response of the interferometer and the
+expected laser and oscillator noise couplings, we first calculate the
+amplitudes of the static fields at all points in the interferometer,
+and then we compute the propagation of small GW signal or noise fields
+through the interferometer.  In general, the small amplitude fields
+due to GW waves or noises appear in the photodiode signals by beating
+against the strong static fields, i.e. the laser carrier or the RF
+sidebands.  In other words, the strong laser carrier field or RF
+sidebands act as local oscillators not just for the intended
+GW-induced sidebands, but audio-frequency (AF) sidebands introduced
+through other mechanisms too, including AF sidebands that originate on
+the light at the input to the interferometer.  These noises originating
+at the input are the subject of this section.
+
+
+Generically, we refer to any spectral line as a `sideband'.  The
+sidebands are divided into radio-frequency (RF) sidebands and
+audio-frequency (AF) sidebands. The distinction is not actually the
+frequency of the lines but their magnitude; RF sidebands have some
+finite amplitude, while audio-frequency sidebands are infinitessimal.
+When the electric field is incident upon a photodiode, the photodiode
+will see a beat signal between every pair of sidebands.  In our
+formalism we make the approximation that the product of any two
+audio-frequency sidebands is zero.  Audio-frequency sidebands are used
+simply as test fields to evaluate linear transfer functions.  They
+produce signals at PDs by beating against the finite-amplitude RF
+sidebands.
 
 As detailed in the preceeding chapter, the state of the LIGO interferometer is
 determined by sampling the electric field at various ports using photodiodes.
@@ -156,6 +174,7 @@ there are two pairs of RF sidebands, each produced through phase modulation: the
 \emph{resonant sideband} at $\sim$25 MHz, which enters the interferometer and
 emerges at the output port; and the \emph{non-resonant sideband} at $\sim$61
 MHz, which is mostly reflected by the power recycling mirror.
+
 
 For an intuitive understanding of the noise couplings to DC readout, we will
 consider only the resonant sideband, an ignore the residual non-resonant
@@ -233,6 +252,14 @@ large\cite{ChaibiOptomechanical}) coupling of technical radiation pressure noise
 to DARM.
 
 \subsubsection{Laser frequency noise}
+
+Frequency modulation of a field incident on a photodiode will produce
+no signal; in order for frequency modulation of the interferometer
+input field to couple to the DC readout photodiode signal, the
+frequency modulation must be converted to amplitude modulation as the
+fields travel from the interferometer input to its output.  FM to AM
+conversion is accomplished by rotating sidebands differentially or by
+rotating the parent carrier.
 
 \subsection{Oscillator noises}
 
@@ -381,6 +408,21 @@ motion of the input beam into variations in transmission. The resulting
 variation in the transmitted light level is indistinguishable from
 DARM motion.
 
+\begin{figure}[t]
+\includegraphics[width=0.32\columnwidth]{figures/jitter2.pdf}
+\includegraphics[width=0.32\columnwidth]{figures/jitter1.pdf}
+\includegraphics[width=0.32\columnwidth]{figures/jitter12.pdf}
+\caption{\label{fig:jitter-mechanism}Example of linear and bilinear
+  beam jitter coupling in the L1 OMC.  Left: the light incident on the
+  OMC shows motion at $\sim 130$ Hz.  Center: the incident light
+  contains intensity modulations at $\sim 0.87$ and $\sim 1.6$
+  Hz. Right: the light transmitted through the OMC contains intensity
+  modulations at $130$ Hz, $130 \pm 0.87$ Hz, and $ 130 \pm 1.6$ Hz.
+  (The sources of the incident beam motion and intensity fluctuations
+  have not been identified.)}
+\end{figure}
+
+\begin{comment}
 \section{Optical spring}
 %
 Detuning the arm cavities from their resonance introduces a big optical
@@ -424,5 +466,6 @@ order to avoid being caught by surprise by ``digital noises''.
 \item Synchronized communications
 \end{itemize}
 
-\section{Conclusion}
-\cite{Smith2008Measurement,Smith2005Oscillator}
+%\cite{Smith2005Oscillator}
+%\cite{Smith2008Measurement}
+\end{comment}

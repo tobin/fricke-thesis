@@ -4,17 +4,17 @@
 Any optical fields present at the detection photodiodes which do not
 produce optical gain will degrade the signal-to-noise ratio of the
 readout, by contributing shot noise and technical noise but no signal.
-
+%
 To prevent this SNR degredation, we install an \emph{output mode
   cleaner}, an an optical filter cavity whose resonant mode is matched
-to the field of interest.
+to the field of interest--the optical mode of the arm cavities.
 
-The light arises from RF sidebands, junk light, and the contrast
-defect.  The OMC consists of a Fabry-Perot cavity with length,
-g-factor, and finesse chosen to optimally filter the sidebands and
-junk light from the desired DARM signal.
-
-The contrast defect is in the same mode as the field we want to keep.
+The unwanted light which the OMC removes includes the Gaussian mode of
+the RF sidebands and spurious higher order modes of both the carrier
+and the RF sidebands.  The OMC consists of a Fabry-Perot cavity with
+length, g-factor, and finesse chosen to optimally filter the RF
+sidebands and spurious higher order modes from the desired DARM
+signal.
 
 \section{Physical design of the cavity}
 
@@ -32,6 +32,18 @@ The output of the OMC is split via a 50/50 beamsplitter and directed
 onto two high-quantum-efficiency InGaAs photodiodes. The two photodiode
 signals allow the formation of sum and difference signals, the difference
 providing a diagnostic `nullstream'.
+
+\begin{figure}
+\includegraphics[width=\columnwidth]{figures/D0901817.pdf}
+\caption[Output Mode Cleaner photograph]{Photograph of the Output Mode
+  Cleaner used at Livingston (\emph{ex situ}).  Only one of the two DC
+  photodiodes is installed in this photo.  Photometry by Sam Waldman;
+  this diagram has document number
+  \href{https://dcc.ligo.org/cgi-bin/private/DocDB/ShowDocument?docid=4713}{D0901817}.
+}
+\end{figure}
+% Hanford: 
+% https://dcc.ligo.org/cgi-bin/private/DocDB/ShowDocument?docid=4714
 
 %% Cavity properties [Table]
 % These values are all from Sam's document T080144:
@@ -129,10 +141,8 @@ the first derivative of the transmission with respect to cavity
 length.  
 
 \begin{figure}[t]
-\centerline{\includegraphics[width=0.5\columnwidth]{figures/ditherdoodle.pdf}
-\hfill
-\includegraphics[width=0.5\columnwidth]{figures/ditherdoodle.pdf}}
-\caption[Cartoon view of dither locking]{\label{fig:dither-doodle}Cartoon view of dither locking}
+\centerline{\includegraphics[width=0.5\columnwidth]{figures/ditherdoodle.pdf}}
+\caption[Cartoon view of dither locking]{\label{fig:dither-doodle}Cartoon view of dither locking.  The dither locking technique allows a system to be locked to a quadratic operating point.  For example, dither locking is used to control the OMC cavity length, where, near resonance, transmission is a quadratic function of cavity displacements.  A sinusoidal modulation is injected into the parameter we wish to tune (i.e. cavity length), and the output (i.e. transmitted light intensity) is demodulated at the same frequency, producing an error signal.  The figure shows the phase-flip that occurs as the system moves through the quadratic point.  At the quadratic point, the error signal is zero, while on either side it attains nonzero values with opposite signs.}
 \end{figure}
 
 \subsubsection{Modeling the dither locking}
@@ -175,6 +185,9 @@ the servo is about 100 Hz.
 In addition to controlling the cavity length to keep the carrier
 resonant, we must control the pointing of the beam incident on the
 OMC.
+Aligning the input beam to the OMC is a significant problem, since the OMC
+can only clean the light insofar as we can identify the mode we want to
+keep.
 
 The decomposition of a given optical field into Hermite-Gauss
 eigenmodes is dependent upon a choice of origin and spot size.  The
@@ -182,60 +195,88 @@ OMC cavity will select the projection of the incident field onto its
 eigenmode.  The optics directing the interferometer output beam to the
 OMC
 
-Aligning the input beam to the OMC is a significant problem.  The OMC
-can only clean the mode insofar as we can identify the mode we want to
-keep.
-
 Several OMC alignment schemes were implemented and utilized.
 
-The simplest alignment control simply uses the two QPDs mounted on the
-OMC breadboard.  This has the advantage of being very robust and not
-requiring that the OMC already be locked, and so it is ideal for
-initial alignment of the OMC before locking the cavity.  The QPD
-alignment, however, has no notion of the ideal DC pointing of the beam
-and is sensitive not just to the carrier, but also the RF sidebands.
+\subsection{QPD alignment}
+
+The simplest alignment control simply uses the two quadrant
+photodiodes (QPDs) mounted on the OMC breadboard.
+These are simply photodiodes whose surfaces are divided into
+four quadrants.  By subtracting the power seen on one half
+of the QPD face from the power seen on the other half, we 
+can measure the position of the incident beam.
+
+Alignment servos based on the QPDs have the advantage of being very
+robust and not requiring that the OMC already be locked, and so are
+ideal for initial alignment of the OMC before locking the cavity.  The
+QPD alignment, however, has no notion of the ideal DC pointing of the
+beam and is sensitive not just to the carrier, but also the RF
+sidebands.
+
+\subsection{Dither alignment}
 
 A second alignment scheme is to dither the two steering mirrors each
 in pitch and yaw, demodulate the OMC transmitted signal at these
-frequencies, and feed back to the mirrors.  This produces an alignment
-system which maximizes power transmitted through the OMC.  Because
-this is a quadratic point, linear beam jitter coupling is nulled.
+frequencies, and feed back to the mirrors--exactly analogous to the
+operation of the OMC length control system. 
 
-Junk light, however, will lead the dither alignment astray.
+The basic dither alignment scheme has some attractive features, but
+does not work properly in the presence of spurious higher order
+modes--the exact problem which motivates the use of the OMC in the 
+first place.
+
+Dither alignment works maximizes the power transmitted through the
+OMC; because this is a quadratic maximum of transmission versus
+pointing, the linear coupling of beam jitter to the transmitted
+intensity is nulled.  However, this technique cannot distinguish
+between the optical field coming from the interferometer arms, and any
+higher order modes of the carrier resonant in the PRC.  If there is
+carrier power in the TEM01 mode, this servo will misalign the input
+beam slightly, to convert the incident TEM01 mode into the TEM00 mode
+of the cavity.  (The conversion of TEM01 to TEM00 via beam displacement
+is depicted in figure~\ref{fig:dithermax}.)
 
 \begin{figure}
 \includegraphics{figures/dithermax.pdf}
-\caption[Modal decomposition of a displaced Gaussian]{The sum of a gaussian and a first-order higher order mode
+\caption[Modal decomposition of a displaced Gaussian]{\label{fig:dithermax}The sum of a gaussian and a first-order higher order mode
   resembles a displaced gaussian.  A basic dither alignment scheme,
   which maximizes the power transmitted through the OMC, would
   operate near point B, rather than point A.}
 \end{figure}
 
+%% RF Wavefront sensing.  We did not really consider this.
+
+%% AF IM WFS.  The same OMC length dither which is used to lock the cavity
+%% length produces an audio-frequency sidebands of the OMC mode in
+%% reflection.  The beats between this light and the light rejected from
+%% the OMC on a pair of photodiodes can be used to produce alignment
+%% error signals.
+
+%% Beacon dither.  
+
+%% SNR dither.  Nicolas's scheme.
+\subsection{Drumhead dither OMC alignment system}
+
 \begin{figure}
 \includegraphics{figures/drumhead-dither.pdf}
 \caption[Drumhead dither system]{The `Drumhead dither' OMC alignment
-  system.}
-  
+  system.\label{fig:drumhead-dither}}
 \end{figure}
 
-RF Wavefront sensing.  We did not really consider this.
+From the experience with basic dither alignment, it is clear that what is
+needed is some alignment system which can specifically detect the arm
+cavity mode.  To accomplish this, we `tag' the light in the arm cavity by
+modulating the arm length at high frequency and looking for this modulation
+in the light transmitted through the OMC. 
 
-AF IM WFS.  The same OMC length dither which is used to lock the cavity
-length produces an audio-frequency sidebands of the OMC mode in
-reflection.  The beats between this light and the light rejected from
-the OMC on a pair of photodiodes can be used to produce alignment
-error signals.
-
-Beacon dither.  
-
-SNR dither.  Nicolas's scheme.
-\subsection{Drumhead dither OMC alignment system}
+The system was implemented as follows:
 
 \begin{enumerate}
 \item One of the arm cavity lengths is modulated at high frequency, 9
   kHz.  Intuitively, this modulation `tags' the carrier light emerging
   from the arm.  The modulation is accomplished with a small drive by
-  feeding the mechanical drumhead mode of the test mass.
+  feeding the mechanical drumhead mode of the test mass. (This gives
+  rise to the nickname of the method, `drumhead dither'.)
 \item The spectral power of the 9 kHz line in the OMC photodiode
   signal is measured by bandpassing the signal around 9 kHz, squaring
   the result, and then low pass filtering.
@@ -246,6 +287,8 @@ SNR dither.  Nicolas's scheme.
   steering mirror dither frequencies, producing alignment error
   signals which are fed back to the mirrors.
 \end{enumerate}
+
+This system is depicted in figure~\ref{fig:drumhead-dither}.
 
 \subsection{Optimal OMC alignment}
 
@@ -456,7 +499,11 @@ is sufficiently strong to burn the detection photodiodes. In order
 to prevent this, one of the steering mirrors is used as a fast shutter.
 It is able to zero the transmission through the OMC in approx 2 ms.
 
+\begin{comment}
 \section{Observed beam motion}
+
+FIXME: Put in plots of the measured beam motion, for posterity.
+\end{comment}
 
 \section{The Front End}
 \begin{comment}
@@ -548,14 +595,4 @@ I = qe * lambda / (h * c)
 sqrt(2* qe * I)
 \end{comment}
 
-\begin{figure}
-\includegraphics[width=\columnwidth]{figures/D0901817.pdf}
-\caption[Output Mode Cleaner photograph]{Photograph of the Output Mode
-  Cleaner used at Livingston, taken \emph{ex situ}.  Photometry by Sam
-  Waldman.  This diagram has document number \href{https://dcc.ligo.org/cgi-bin/private/DocDB/ShowDocument?docid=4713}{D0901817}.  Only one of
-  the two DC photodiodes is installed in this photo.}
-\end{figure}
-% Hanford: 
-% https://dcc.ligo.org/cgi-bin/private/DocDB/ShowDocument?docid=4714
-
-Additional references: \cite{Prijatelj2010,Bork2009ELIGO,Betzwieser2004Study}
+%Additional references: \cite{Prijatelj2010,Bork2009ELIGO,Betzwieser2004Study}

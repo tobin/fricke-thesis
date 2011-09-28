@@ -12,7 +12,7 @@ readout.
 \section{Principle of DC readout}
 A homodyne readout system differs from a heterodyne system by using a
 local oscillator at the same (optical) frequency as the field being measured.
-
+%
 DC readout creates the homodyne local oscillator by putting a small
 offset into the Michelson or DARM degree of freedom, moving the
 interferometer slightly off of the dark fringe.
@@ -144,7 +144,7 @@ immediately:
 %
 \begin{itemize}
 \item Because the optical gain and the shot noise ASD both scale with
-  $P_{AS}$, the shot-noise-limited sensitivity is insensitive to the
+  $\sqrt{P_{AS}}$, the shot-noise-limited sensitivity is insensitive to the
   particular DARM offset we use.
 \item The sensitivity of the detector improves with the square root of
   the input power.
@@ -187,7 +187,8 @@ and, on the other hand, it can't be too big either:
 Several of these criteria are examined in greater detail below.  In
 practice, the space of allowed offsets is explored emirically;
 colloquially, we turn the knobs in whatever direction makes the noise
-go down.
+go down.  During Enhanced LIGO, we operated with a DARM offset of
+approximately 10 picometers.
 
 \begin{figure}[p]
 \centerline{\includegraphics[width=\columnwidth]{figures/residualDARM.pdf}}
@@ -201,13 +202,13 @@ go down.
   by ten orders of magnitude in order to hold the interferometer
   within the linear regime around the operating point.  The DARM
   offset used to implement DC readout must be significantly larger
-  than the RMS residual motion ($\sim10^{-14}$ m) to avoid fringe
-  wrapping and nonlinearity.}
-% FIXME - Gaby says: Nobody will know what's fringe wrapping...
+  than the RMS residual motion ($\sim10^{-14}$ m) to avoid
+  nonlinear effects.}
 \end{figure}
 
-\subsection{Decrease in arm power due to off-resonance operation}
 
+\subsection{Decrease in arm power due to off-resonance operation}
+% FIXME: Change this to 'decrease in phase gain...'
 The decrease in buildup for a cavity operated off-resonance goes like
 $(2\mathcal{F}/\pi)^2\phi^2$, where $\phi$ is the cavity detuning.
 For $\mathcal{F}=220$ and $\phi=(2\pi/1064\text{ nm})(10\text{ pm})$,
@@ -305,25 +306,15 @@ worry about fringe wrapping before the quadratic contribution would
 become significant; the nonlinear response of DC readout due to fringe
 curvature is negligible.
 
+\begin{comment}
 \subsection{DC readout elsewhere}
 DC readout has been implemented previously at the Caltech 40 meter
 prototype \cite{Ward2008DC,RobWardThesis} and the GEO 600
 detector\cite{GeoDC,Prijatelj2010,Degallaix2010Commissioning}.  The
 current configuration of Virgo incorporates an output mode cleaner but
 uses RF heterodyne readout\cite{Acernese2008Virgo}.
+\end{comment}
 
-\begin{figure}
-\includegraphics[width=\columnwidth]{figures/dc-readout-diagram.pdf}
-\caption[Enhanced LIGO interferometer
-  layout]{\label{fig:dc-readout-ifo}Enhanced LIGO interferometer
-  layout (not to scale).  The dotted line represents the vacuum
-  enclosure. The initial LIGO configuration is modified by adding an
-  output mode cleaner and DC photodiodes.  A beamsplitter directs 97\%
-  of the optical power to this new path and the remaining 3\% to the
-  old RF heterodyne output chain, used for lock acquisition and
-  automatic alignment.}
-\end{figure}
-
-More references to cite:
-\cite{Adhikari2009DC} % DC readout Normalization for Enhanced LIGO
-\cite{Hild2007Novel} % Crazy detuning
+% More references to cite:
+% \cite{Adhikari2009DC} % DC readout Normalization for Enhanced LIGO
+% \cite{Hild2007Novel} % Crazy detuning

@@ -59,13 +59,18 @@ the Bessel functions.
 
 \section{The difference between PM and FM}
 \input{chapter7/PM_vs_FM.tex}
-
+\begin{comment}
 \section{Displaced and misaligned beams}
 
 References to cite: \cite{Anderson1984Alignment,Hauck1980Misalignment}.
-
+\end{comment}
 \section{Calibration}
-\cite{KisselCalibrationPaper,Goetz2010Gravitational}
+
+The calibration of the LIGO interferometers into real units (of mirror
+displacement or gravitational wave strain) during Initial LIGO is
+described in~\cite{KisselCalibrationPaper}; the Enhanced LIGO procedure
+was essentially the same.  An alternate calibration procedure using
+radiation pressure is described in \cite{Goetz2010Gravitational}.
 
 \section{Only the signal field matters}
 
@@ -133,7 +138,7 @@ side is very near zero.%
 
 The general picture of Gaussian beams is shown here:
 
-It is convenient to introduce teh complex beam parameter $q$.  In terms of $q$:
+It is convenient to introduce the complex beam parameter $q$.  In terms of $q$:
 \begin{equation}
 \frac{1}{q(z)} = \frac{1}{R(z)} - i \frac{\lambda}{\pi w^2(z)}
 \end{equation}
@@ -162,6 +167,7 @@ polynomial.  These are exactly the same familes of functions as the
 energy eigenstate wavefunctions of the simple harmonic oscillator in
 quantum mechanics.
 
+\begin{comment}
 \section{Feedback control}
 
 Operation of the LIGO detectors relies crucially on feedback control
@@ -174,6 +180,7 @@ Here is a basic diagram of a feedback system:
 
 Algebraically, one can derive a relationship giving the transfer function
 of the closed-loop system in the Laplace domain:
+\end{comment}
 
 \section{The Antenna Pattern and the FSR}
 \label{sec:antenna-pattern}
@@ -213,7 +220,8 @@ The antenna pattern is therefore a frequency-dependent function; to
 calculate it, we must consider the spatial extent and time evolution
 of the gravitational wave.
 
-References to cite: \cite{Giampanis2008Search,Schilling1997Angular,Rakhmanov2008Highfrequency,Butler2004Characterization,Fricke2007HighFrequency}
+%% FIXME: References to cite:
+%% \cite{Giampanis2008Search,Schilling1997Angular,Rakhmanov2008Highfrequency,Butler2004Characterization,Fricke2007HighFrequency}
 
 \section{Shot Noise}
 The root-mean-square of a Poisson process with current $I$ and quantum
@@ -227,14 +235,14 @@ energy per photon.
 
 The amplitude spectral density of this process is white, with
 amplitude $\sqrt{2qI}$ in units of [I] per square root of Hz.
-
-So, for power $P$, the shot noise amplitude spectral density is 
+For power $P$, the shot noise amplitude spectral density is 
 \begin{equation}
 \text{shot noise ASD} = \sqrt{2 h\nu P}\quad [\text{Watts}/\sqrt{\text{Hz}]}
 \label{eq:shotnoise-asd}
 \end{equation}
-for a relative intensity noise of $\sqrt{2 h\nu/P}$.
+which gives a relative intensity noise of $\sqrt{2 h\nu/P}$.
 
+\begin{comment}
 \section{Noise analysis of opamp circuits}
 
 \begin{figure}
@@ -242,6 +250,7 @@ for a relative intensity noise of $\sqrt{2 h\nu/P}$.
 \caption{\label{fig:inverting-amp}Basic active filter in the inverting amplifier configuration.} 
 \end{figure}
 
-Cite: Art of Electronics
+Cite: Art of Electronics\cite{ArtOfElectronics}
+\end{comment}
 %\cite{Quetschke2007Complex}
 %\cite{Williams1972Optics}
