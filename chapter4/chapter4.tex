@@ -66,8 +66,8 @@ anti-resonant in the cavity, which yields minimum transmission.
 
 \section{Choosing the OMC finesse}
 
-All things being equal, we want the best possible filtering capability
-from the OMC.  
+All else being equal, we want the best possible filtering capability
+from the OMC.
 
 The transmission of a lossless critically-coupled cavity is given by
 \begin{equation}
@@ -269,19 +269,13 @@ The flexibility of the realtime code generator allowed us to implement
 an automatic gain control servo directly in the OMC front-end.  This
 was a nice convenience. 
 
-\section{Residual fluctuations}
+%% \subsection{Mode scan}
 
-\section{Scattering}
-
-The OMC is the largest scattering source in the AS port path.
-
-\subsection{Mode scan}
-
-With the interferometer controlled using the heterodyne readout, the
-Output Mode Cleaner can be used as a mode analyzer cavity by varying
-the cavity length by at least a free-spectral-range. Because this
-range is more than the fast PZT actuator, this is accomplished by
-putting a large step into the thermal actuator.
+%% With the interferometer controlled using the heterodyne readout, the
+%% Output Mode Cleaner can be used as a mode analyzer cavity by varying
+%% the cavity length by at least a free-spectral-range. Because this
+%% range is more than the fast PZT actuator, this is accomplished by
+%% putting a large step into the thermal actuator.
 %%  These mode scans can
 %% address questions such as:
 %% \begin{itemize}
@@ -298,27 +292,146 @@ putting a large step into the thermal actuator.
 %% the arms vs carrier mode junk light.
 
 
-\subsection{Scattering}
+\section{Scattering}
 
-From the output port, the interferometer appears almost perfectly
-reflective.  Any light scattered by the output optics at a small angle
-could scatter into the interferometer mode, reflect off of the
-interferometer, and interfere with the other fields there.
+Viewed from the output port, the interferometer appears almost
+perfectly reflective.  Any light scattered (i.e. retroreflected) by
+the output optics at a small angle could scatter into the
+interferometer mode, reflect off of the interferometer, joining (and
+interfering with) the main interferometer signal and LO beam.  Any
+modulation of the path length between the main interferometer and the
+backscatterer will change the interference condition, producing
+intensity variations in the OMC transmitted beam and contaminating the
+DARM readout.
 
+\subsubsection{Measuring the OMC scattering reflectivity}
+
+The backscattering reflectivity of the OMC can be experimentally
+measured by intentionally modulating the path length between the
+interferometer and the OMC.  This produces phase modulation in the
+backscattered field.  This phase-modulated field reflects from the
+interferometer and combines with the local oscillator field.   
+
+\begin{figure}[t]
+\includegraphics[width=\columnwidth]{figures/scat_fd.pdf}
+\caption[Measurement of OMC
+  backscatter]{\label{fig:scattering}Measurement of effective OMC
+  backscattering reflectivity.  With the interferometer operating in
+  low-noise mode, we excited (modulated) the position of the OMC in
+  the direction of the incident beam, thus modulating the path length
+  between the interferometer and the OMC.  This produces the
+  characteristic `scattering shelf' spectrum in the power at the OMC
+  photodiodes.  Integrating the area under the shelf and dividing by
+  the DC power gives the effective backscattering reflectivity. (The
+  photocurrent has been corrected for the suppression of the DARM
+  control loop.)}
+\end{figure}
+
+The backscattered beam has an electric field amplitude of
+%
+\begin{equation}
+E_s = a E_0 \exp\left\{ i \frac{2 A}{\lambda} (2 \pi) \sin \Omega t \right\}
+\end{equation}
+%
+where $A$ is the amplitude (in meters) of motion of the scatterer,
+$\Omega$ is the frequency of motion, and $a$ is the amplitude
+reflectivity of the scattering source (the scattering
+coefficient). This is phase modulation with a modulation depth of
+%
+$\Gamma = 4 \pi (A/\lambda)$
+%
+radians, assuming normal incidence on the scatterer.  The photodiode
+detects the power in the resulting field, which is
+%
+\begin{align}
+P &= |E_t + E_s|^2 \\
+  &= |E_t|^2 + |E_s|^2 + 2 \text{ Re } E_t E_s \\
+  &= |E_0|^2 + 2 \text{ Re } E_t E_s
+\end{align}
+where $E_t = (1 - a) E_0$ is the field that's transmitted rather than
+scattered.
+%
+Using the Jacobi-Anger identity, $E_s$ can be expanded in terms of
+sinusoids to find the power spectrum of the photodiode signal:
+%
+\begin{align}
+P &= |E_0|^2 + 2 \text{ Re } E_s {E_t}^* \sum_{n=-\infty}^{\infty} i^n J_n(\Gamma) \exp{i n \Omega t} \\
+  &= |E_0|^2 + 2 |E_0|^2 a (1 - a) \text{ Re } \sum i^n J_n(\Gamma) \exp{i n \Omega t} 
+\end{align}
+%
+We are interested not only in the case of small modulation depth
+(i.e. small motion of the scatterer), but also very large modulation
+depths, greater than the wavelength of the light, which produces many
+higher order harmonics.  Spectrally, this looks like a comb of delta
+functions at integer multiples of $\Omega$, whose amplitudes are given
+by bessel functions $J_N(\Gamma)$ with $N=f/\Omega$.  Any noise on the
+carrier will get superimposed on each of these spikes, smoothing out
+the observed spectrum.
+
+Large motion of a backscatterer produces a characteristic `shelf'
+feature in the PD spectrum (c.f. figure~\ref{fig:scattering}).  This
+is because the amplitude of Bessel functions $J_N(\Gamma)$ dies off
+very steeply with $N$ after $N>\Gamma$, creating the characteristic
+`scattering shelf'.  The cutoff (`knee') frequency therefore occurs
+when $N \approx \Gamma$; the knee frequency may be calculated as
+follows:
+%
+\begin{align}
+f_{knee} & = \Omega N_{knee} \\
+       & = \Omega \Gamma \\
+       & = 4 \pi \Omega (A / \lambda)
+\end{align}
+
+Another way of seeing this is to consider the (time dependent) phase
+induced by the scatterer and take its derivative to find the maximum
+frequency shift due of the backscattered light:
+%
+\begin{align}\
+\phi &= \Gamma \sin \Omega t\\
+f_\text{instantaneous} &= d \phi/dt = \Omega \Gamma \sin \Omega t\\
+\max f_\text{instantaneous} &= \Omega \Gamma
+\end{align}
+%
+which gets the same result. An excitation of amplitude $A$
+and frequency $\Omega$ has maximum velocity $v = A \Omega$. This can be
+used to eliminate both $A$ and $\Omega$ from the knee frequency:
+%
+\begin{equation}
+f_{knee} = 4 \pi (v / \lambda)
+\end{equation}
+
+Of course, we are more interested in determining the backscattering
+reflectivity than details of the resulting spectrum.  There are two
+principle ways to recover the scattering reflectivity: (1) Because
+$\sum J_N(\Gamma)^2$ over all N equals 1, we can integrate the power
+spectrum of the photodiode signal to directly measure $2 |E_0|^2 a (1
+- a)$. We can then divide by the DC term ($|E_0|^2$) to get the
+scattering coefficient.  (2) We can simulate the scattering process in 
+the time domain, find the spectral density of the resulting signal,
+and fit the model to the observed spectrum.
+
+This procedure was carried out using the actuators in the table
+supporting the OMC to produce modulations in the direction of the
+incoming beam of 16 microns at 0.3 Hz and 33 microns at 0.3 Hz; the
+resulting OMC transmitted spectra are shown in
+figure~\ref{fig:scattering} along with a quiescent spectrum for
+reference.  (The experiment was repeated with modulations in
+orthogonal directions; as expected, the effect was much less than the
+modulation in the beam direction.)
 
 \section{Interferometer lock acquisition}
 
 Initial lock acquisition of the Enhanced LIGO interferometers is the
-same as in Initial LIGO\cite{Evans2002Lock}. Once the interferometer is locked using the
-heterodyne readout schemes, the DARM offset is introduced to allow carrier
-light to be transmitted to the output port. The Output Mode Cleaner
-is then locked to this carrier light. Once the OMC is locked to the
-carrier, control of DARM is transferred to the DC readout system.
-After this transition, a few other changes are made to engage the
-OMC alignment servoes and to put the readout electronics into low
-noise mode. At this point the interferometer has reached its operation
-configuration and astrophysical data-taking ({}``science mode'')
-begins.
+same as in Initial LIGO\cite{Evans2002Lock}. Once the interferometer
+is locked using the heterodyne readout schemes, the DARM offset is
+introduced to allow carrier light to be transmitted to the output
+port. The Output Mode Cleaner is then locked to this carrier
+light. Once the OMC is locked to the carrier, control of DARM is
+transferred to the DC readout system.  After this transition, a few
+other changes are made to engage the OMC alignment servoes and to put
+the readout electronics into low noise mode. At this point the
+interferometer has reached its operation configuration and
+astrophysical data-taking ({}``science mode'') begins.
 
 
 \begin{figure}
@@ -346,6 +459,10 @@ It is able to zero the transmission through the OMC in approx 2 ms.
 \section{Observed beam motion}
 
 \section{The Front End}
+\begin{comment}
+% FIXME - Gaby says: This is very cute, but it may take too long to do
+% a proper job... again, in the interest of time, you may just skip a
+% description of the front end.
 
 \begin{quote}
 \emph{Be exhorted:} you really can predict the noise floor accurately--to
@@ -354,10 +471,11 @@ mistakes you can make in designing sensitive optical
 instruments. Measure it, and make sure you can explain every half
 decibel. -- Phil Hobbs, \emph{Building Electro-Optical Systems} \cite{Hobbs2009Building}
 \end{quote}
+\end{comment}
 
-\noindent To achieve the touted SNR improvement of DC readout it is
-imperative that the signal not be lost to optical losses, non-optimal
-photodiode quantum efficiency, or electronics noise.
+To achieve the touted SNR improvement of DC readout it is imperative
+that the signal not be lost to optical losses, non-optimal photodiode
+quantum efficiency, or electronics noise.
 
 \subsection{Photodiodes}
 % H1 OMC DC PDs
