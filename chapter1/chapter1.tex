@@ -227,26 +227,31 @@ Livingston observatory.%\cite{Abbott2007First}
 
 \subsection{Laser interferometers}
 
-Laser interferometers are now the instrument of choice in the search
+Inaugurated by an initial study by Rai
+Weiss\cite{Weiss1972Electromagnetically} and experiments by Robert
+Forward\cite{Forward1978Wideband} in the 1970's, 
+laser interferometers are now the instrument of choice in the search
 for gravitational waves.  A gravitational wave will modulate the
-optical path length of light traveling transversely through it between
-inertial test masses.  This path length modulation can be detected by
-a laser interferometer.  The operation of laser interferometer
-gravitational wave detectors is the focus of this work and is detailed
-in the following chapters.
+optical path length of light traveling between inertial test masses.
+This path length modulation can be detected by a laser interferometer.
+%
+In terrestrial interferometers, large ($\sim10$kg) glass cylinders
+serve as both super-polished mirrors and inertial test masses.  These
+optics are hung as pendula to allow inertial freedom of the pendular
+resonance frequency and enclosed in a large, high-vacuum enclosure.
 
-In terrestrial interferometers, large glass cylinders serve as both
-super-polished mirrors and inertial test masses.  These optics are
-hung as pendula to allow inertial freedom of the pendular resonance
-frequency.
-
-References to cite in this section:
-\cite{Weiss1972Electromagnetically,Forward1978Wideband,Acernese2008Virgo}
+Large laser-interferometer gravitational wave detector installations
+include LIGO\cite{S5InstrumentPaper} in the United States,
+VIRGO\cite{Acernese2008Virgo} in Italy, and GEO600\cite{GeoStatus2008}
+in Germany.
+%
+The operation of laser interferometer gravitational wave detectors is
+the focus of this work and is detailed in the following chapters.
 
 \subsection{Other detectors}
 
 There are a few other mechanisms by which gravitational waves may be
-detected.
+detected, or by which their influence may be observed.
 
 Pulsars serve as extremely reliable clocks, beaming a sequence of
 pulses towards earth whose arrival times can typically be predicted to
@@ -307,11 +312,11 @@ source.
   pulsars require a brute-force search of the parameter space.
 
   Currently this is attacked in part through the distributed computing
-  project Einstein@Home.  One nicety of the pulsar search is that the
-  process works equally well for analyzing radio telescope data--this
-  has been done, resulting in the discovery of several previously
-  unknown radio pulsars\cite{Knispel2010Pulsar}.  It is an open
-  problem to find a more efficient search algorithm.
+  project Einstein@Home.  Interestingly, the pulsar search 
+  works equally well for analyzing radio telescope data; 
+  several previously
+  unknown radio pulsars have been discovered by feeding Aricebo data
+  into the Einstein@home project\cite{Knispel2010Pulsar}.  
 
 \item \textbf{bursts} --- Transient cataclysmic events such as
   supernovae will generate bursts of gravitational waves whose
@@ -351,8 +356,8 @@ sensor array, an interferometer composed of many interferometers.
 
 Ground was broken on the first of the two LIGO observatories in 1994.
 After years of construction and then detector commissioning, the three
-detectors at the two observatories reached their design sensitivity in
-2004.  Having reached this milestone, the attention turned to
+detectors at the two observatories reached their design sensitivity\cite{LigoSRD} in
+2004\cite{Ballmer2006LIGO}.  Having reached this milestone, the attention turned to
 collecting data for astrophysical observation rather than instrument
 development.  By October 2007, the LIGO project accomplished the goals
 of what is now known as ``initial LIGO,'' having collected 1 year of
@@ -360,7 +365,7 @@ observational data with all three detectors online simultaneously, over
 the course of the 5th science run (known as S5).
 
 It had always been intended that this initial generation of LIGO would
-be followed by a programme of improvements.  The next generation of
+be followed by a programme of improvements\cite{Abramovici1992LIGO}.  The next generation of
 LIGO detectors is ``Advanced LIGO,'' which will feature significantly
 more effective (and more complex) seismic isolation, an increase of
 $20\times$ in laser power, in addition to other improvements.
@@ -374,15 +379,20 @@ The goals of enhanced LIGO were to both increase the chances of an
 early discovery (by increasing the detector sensitivity), and to gain
 early experience with Advanced LIGO technologies.
 
+The observational data collected so far has been analyzed (and
+continues to be analyzed) for evidence of gravitational waves.
+Although no gravitational waves have yet been detected, these searches
+have set the tightest upper limits to date on GW emission.  Results of
+searches for compact binary inspirals\cite{S5CBCnospin, S5CBC5months},
+unmodeled bursts\cite{S5burst}, known pulsars\cite{S5knownpulsars},
+GWs associated with a gamma-ray burst\cite{S5GRB070201},
+and the stochastic backround\cite{S5NatureStochastic} have recently
+been published.
+
 \subsection{Summary of changes made for Enhanced LIGO}
 
 % FIXME Gaby says: You need a better description of initial
 % detectors' technology so that the next section makes sense.  
-
-The S5 data was searched and did not yield discoveries of any GW
-events but provided the strictest experimental upper limits to
-date\cite{S5CBCnospin, S5CBC5months, S5burst, S5knownpulsars,
-  S5GRB070201, S5NatureStochastic}.
 
 Detector upgrades during Enhanced LIGO included:
 \begin{itemize}
@@ -411,14 +421,19 @@ dissertations, notably Rana Adhikari's \cite{RanaThesis} and and
 Stefan Ballmer's \cite{Ballmer2006LIGO}.  Robert Ward's dissertation
 details the implementation and evaluation of DC readout at the LIGO 40
 meter prototype interferometer in Pasadena \cite{RobWardThesis}.
+%
+During the same time as Enhanced LIGO, DC readout was simultaneously
+and independently implemented at GEO\cite{GeoDC,Degallaix2010Commissioning}.
 
 \section{The Future}
 
-It is hoped that Advanced LIGO, currently under construction, will
-bring the first direct detection of gravitational waves and begin the
-era of regular detection.
+It is hoped that Advanced LIGO and Advanced VIRGO, currently under
+construction, will bring the first direct detection of gravitational
+waves and begin the era of regular detection and gravitational wave
+astronomy.
 %
-Several next-generation interferometers are in the works. 
+Beyond the `Advanced' detectors, several next-generation
+interferometers are also in the works.
 
 Technological development of terrestrial laser
 interferometers is a vibrant field.  The Advanced detectors are
@@ -455,8 +470,6 @@ to $10^{-1}$ Hz (period of 3 hours down to 10 seconds).
 % unique contributions and measurements that will be highlighted in
 % the thesis.
 
-%GEO DC\cite{GeoDC,Degallaix2010Commissioning}
-
 This dissertation describes the implementation of DC readout and an
 output mode cleaner during Enhanced LIGO.
 
@@ -476,3 +489,13 @@ of this system.
 %Additional references to cite: \cite{Garfinkle2005Gauge,
 %  Heinzel1999Advanced,Saulson1994Fundamentals,
 %  Harris1996Gravitational,Melissinos2010Response}.
+
+\section{Acknowledgement}
+
+This work was supported by the National Science Foundation under grant
+\href{http://www.nsf.gov/awardsearch/showAward.do?AwardNumber=0905184}{PHY-0905184}.
+LIGO was constructed by the California Institute of Technology and
+Massachusetts Institute of Technology with funding from the National
+Science Foundation and operates under cooperative agreement
+\href{http://www.nsf.gov/awardsearch/showAward.do?AwardNumber=0757058}{PHY-0757058}.
+This dissertation has LIGO Document number LIGO-P1000010.
