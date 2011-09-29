@@ -2,7 +2,7 @@
 
 c = 299792458;
 
-f = logspace(log10(0.001), log10(10e3), 100);
+f = logspace(log10(0.1), log10(10e3), 100);
 %f = linspace(37521-10, 37521+10, 600);
 
 omega = 2*pi*f;
@@ -44,3 +44,15 @@ loglog(f, abs(r_rc), 'o-',...           % full numerical thing
 % subplot(2,1,2);
 % semilogx(f, angle(r_rc)*180/pi,'.');
 % set(gca,'YTick', 45*(-4:4));
+
+%%
+subplot(1,1,1);
+semilogx(f, 10*log10(1 - abs(r_rc).^2), 'linewidth', 2);
+xlabel('frequency [Hz]');
+ylabel(sprintf('transmission into\n power recycling cavity [dB]'));
+ylim([-80 5])
+lgrid(cgrid);
+papersize = (470/72)*[1 0.37];
+margins = [50 36 -9 -1]/72;
+filename = '../figures/ccpole.pdf';
+print_for_publication(filename, papersize, margins)

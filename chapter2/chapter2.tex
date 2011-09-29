@@ -205,6 +205,22 @@ interferometer until it is lost to scattering or absorption.
 
 \section{The coupled cavity pole}
 
+\begin{figure}
+\includegraphics[width=\columnwidth]{figures/three-mirror-cavity.pdf}
+\caption[Three mirror cavity]{It is sometimes convenient to condense the
+two arms of the Power-Recycled Fabry-Perot Michelson interferometer into
+a single `virtual arm' for the purpose of analysis.
+\label{fig:three-mirror-cavity}}
+\end{figure}
+
+\begin{figure}
+\includegraphics[width=\columnwidth]{figures/ccpole.pdf}
+\caption[The coupled-cavity pole]{Transfer function from laser intensity
+fluctuations incident on the interferometer to laser intensity fluctuations
+inside the power recycling cavity.  Fluctuations around the laser carrier
+above the coupled-cavity pole are attenuated.\label{fig:cctf}}
+\end{figure}
+
 The combination of the arm cavities and the power recycling cavity acts
 in some ways like a single cavity with a much longer storage time than
 either the arms or the PRC individually.  This produces a filtering 
@@ -213,20 +229,21 @@ effect that will prove essential when we discuss DC readout later on.
 Because the two arm cavities are made to be as nearly identical as
 possible, and because the Michelson is operated very close to the dark
 fringe, we can condense the two arm cavities into a single cavity for
-the purpose of analysis.  In considering the effect of amplitude or
-frequency perturbations of the input field, the power-recycled
-Fabry-Perot Michelson can be considered as a three mirror cavity.
+the purpose of analysis (depicted in figure~\ref{fig:three-mirror-cavity}.  
+In considering the effect of amplitude or frequency perturbations of the 
+input field, the power-recycled Fabry-Perot Michelson can be considered 
+as a three mirror cavity.
 
 It is useful to regard the cavity as acting as a linear operator on
 the input fields.  To find the transfer function of the coupled
 cavity, we can simply substitute the cavity reflectivity function
 $r_c(\phi)$ given in equation~\ref{eq:cavity-reflectivity} into
 itself, with suitable substitutions.
-
+%
 When this is done, it is found that the transfer function from fields at
 the interferometer input to the field just inside the PRC can be well
 described by a single pole at low frequency, the coupled cavity pole.
-
+%
 There is no closed-form solution for the exact value of the coupled-cavity
 pole\cite{Rakhmanov2000Dynamics}, but a very good approximation 
 results if we first compute the reflectivity of the shorter cavity on
@@ -243,10 +260,11 @@ reflectivities of the ITMs, ETMs, and recycling mirror, respectively.
 The coupled cavity pole in Initial/Enhanced LIGO is approximately 1
 Hz.  Astoundingly, this means that any amplitude or phase noise around
 the laser carrier (itself oscillating at 300 THz!) will be attenuated
-by $1/f$ above 1 Hz, making the carrier light circulating in the
-interferometer some of the `quietest' light available anywhere.  One
-of the motivations of DC Readout (chapter 5) is to exploit this effect
-fully.  % By comparison, the RF sidebands are resonant only in the PRC
+by $1/f$ above 1 Hz (see figure~\ref{fig:cctf}), making the carrier
+light circulating in the interferometer some of the `quietest' light
+available anywhere.  One of the motivations of DC Readout (chapter 5)
+is to exploit this effect fully.  % By comparison, the RF sidebands
+are resonant only in the PRC
 %and not the arms, so they are affected by the coupled cavity pole.
 
 \section{Interferometer Sensing and Control}
@@ -652,3 +670,4 @@ the demodulation phase.
 \end{figure}
 
 
+The columnwidth is \the\columnwidth.
