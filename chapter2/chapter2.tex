@@ -2,9 +2,6 @@
 \label{chapter2}
 %\doublespace
 
-In this chapter I explain how the LIGO detectors work.
-
-%FIXME: Additional references to cite: \cite{Black2003Introduction,Regehr1994Signal}
 \section{An interferometric gravitational wave detector}
 
 The purpose of the LIGO detectors is to measure the faint
@@ -249,8 +246,8 @@ the laser carrier (itself oscillating at 300 THz!) will be attenuated
 by $1/f$ above 1 Hz, making the carrier light circulating in the
 interferometer some of the `quietest' light available anywhere.  One
 of the motivations of DC Readout (chapter 5) is to exploit this effect
-fully.  By comparison, the RF sidebands are resonant only in the PRC
-and not the arms, so they are affected by the coupled cavity pole.
+fully.  % By comparison, the RF sidebands are resonant only in the PRC
+%and not the arms, so they are affected by the coupled cavity pole.
 
 \section{Interferometer Sensing and Control}
 \label{sec:isc}
@@ -263,8 +260,9 @@ cavities are held on resonance, and the Michelson is held to the dark
 fringe.  The need to sense the state of the interferometer and to use
 feedback control to keep it at the desired operating point is known as
 \emph{interferometer sensing and control} (ISC).  The initial LIGO
-sensing and control scheme is described
-in~\cite{Fritschel2001Readout}.
+sensing and control scheme is described in~\cite{Fritschel2001Readout}
+and \cite{Regehr1994Signal}.  A pedagogical introduction is provided
+in \cite{Black2003Introduction}.
 
 The \emph{control} aspect has not yet been mentioned.  To allow
 actuation on the optics, the test masses are each equipped with five
@@ -281,6 +279,18 @@ Pound-Drever-Hall (PDH)
 technique\cite{Drever1983Laser,Black2001Introduction}, sometimes
 called reflection-locking, which can be used to lock the frequency of
 a laser to the length of a cavity, or vice versa.
+
+\begin{figure}
+\includegraphics[width=\columnwidth]{figures/pdh-diagram.pdf}
+\caption[Pound-Drever-Hall setup]{\label{fig:pdh-diagram}In the basic
+Pound-Drever-Hall setup, a phase modulator is used to produce RF sidebands well 
+outside of the cavity bandwidth.  The light reflected from the cavity
+is incident on a photodiode, the signal from which is demodulated to
+produce an error signal indicating the mismatch between cavity length
+and laser carrier frequency.  Through feedback, the cavity can be `locked' 
+to the resonance.  The technique can be generalized to sense and control
+much more complex interferometers.}
+\end{figure}
 
 \subsection{The Pound-Drever-Hall technique}
 In the basic PDH setup, the laser light incident on a resonant cavity
@@ -307,11 +317,13 @@ Jacobi-Anger expansion (see section~\ref{sec:jacobi-anger}):
 Upon reflection from a cavity the phases of the carrier and the two
 sidebands will be rotated.  This phase rotation converts the phase
 modulation to amplitude modulation, which is observed by the
-photodiodes.  Typically, the carrier is held on resonance, where there
+photodiodes.  Typically, the laser frequency or the cavity length is
+adjusted to hold the carrier on resonance.  Near the resonance, there
 is a very large change in reflected phase for a small change of
-detuning; the sidebands, on the other hand, are typically far from
+detuning; the RF sidebands, on the other hand, are typically far from
 resonance and experience very little phase change.
 
+\begin{comment}
 The reflectivity of a lossless Fabry-Perot cavity is:
 \begin{equation}
 r_c = \frac{r_1 - r_2 \exp i2\phi}{1 - r_1 r_2 \exp i 2\phi}
@@ -328,7 +340,7 @@ E_r = J_0 r_c(\phi)
 + J_1 r_c(\phi - (2\pi L/c)\Omega) 
 + J_1 r_c(\phi + (2\pi L/c)\Omega)
 \end{equation}
-
+\end{comment}
 
 \begin{figure}
 \includegraphics[width=\columnwidth]{figures/dc-readout-diagram.pdf}
