@@ -263,9 +263,10 @@ the laser carrier (itself oscillating at 300 THz!) will be attenuated
 by $1/f$ above 1 Hz (see figure~\ref{fig:cctf}), making the carrier
 light circulating in the interferometer some of the `quietest' light
 available anywhere.  One of the motivations of DC Readout (chapter 5)
-is to exploit this effect fully.  % By comparison, the RF sidebands
-are resonant only in the PRC
-%and not the arms, so they are affected by the coupled cavity pole.
+is to exploit this effect fully.  
+
+% By comparison, the RF sidebands are resonant only in the PRC and not
+% the arms, so they are affected by the coupled cavity pole.
 
 \section{Interferometer Sensing and Control}
 \label{sec:isc}
@@ -310,6 +311,20 @@ to the resonance.  The technique can be generalized to sense and control
 much more complex interferometers.}
 \end{figure}
 
+\begin{figure}
+\includegraphics[width=0.5\columnwidth]{figures/cav-power.pdf}
+\includegraphics[width=0.5\columnwidth]{figures/cav-pdh.pdf}
+\caption[Pound-Drever-Hall error signal]{\label{fig:pdh-error}
+(a) Power buildup inside a resonant cavity relative to the incident
+power, as a function of cavity detuning (deviation from resonance).
+(b) The Pound-Drever-Hall error signal as as a function of detuning
+(in watts relative to the incident power and the modulation depth).
+The dashed lines indicate the region in which PDH provides a usable
+error signal with which to lock the cavity.  The cavity modeled here
+has parameters similar to the initial LIGO arm cavities.
+}
+\end{figure}
+
 \subsection{The Pound-Drever-Hall technique}
 In the basic PDH setup, the laser light incident on a resonant cavity
 is first phase-modulated at a frequency well outside of the bandwidth
@@ -338,27 +353,39 @@ modulation to amplitude modulation, which is observed by the
 photodiodes.  Typically, the laser frequency or the cavity length is
 adjusted to hold the carrier on resonance.  Near the resonance, there
 is a very large change in reflected phase for a small change of
-detuning; the RF sidebands, on the other hand, are typically far from
-resonance and experience very little phase change.
+detuning (change in cavity length or laser frequency); the RF
+sidebands, on the other hand, are typically far from resonance and
+experience very little phase change.  As a result, a small perturbation
+from resonance will turn the cavity into an FM-to-AM converter.  The
+resulting amplitude modulation can be sensed by a photodiode and
+demodulated to produce an error signal indicating how far the cavity
+is from resonance.
 
 \begin{comment}
-The reflectivity of a lossless Fabry-Perot cavity is:
+The reflectivity of a lossless Fabry-Perot cavity is
 \begin{equation}
-r_c = \frac{r_1 - r_2 \exp i2\phi}{1 - r_1 r_2 \exp i 2\phi}
+r_c(\phi) = \frac{r_1 - r_2 \exp i2\phi}{1 - r_1 r_2 \exp i 2\phi}
 \end{equation}
-
+for an optical field that is $\phi$ radians from resonance.
 Suppose the carrier and upper and lower sidebands are incident upon this
 cavity, and the reflection from the cavity is incident on a photodiode.
-If the cavity length is $L$ and the optical frequency is $\nu$ then
-$\phi = (2\pi)(L/c)\nu$.  The sideband detunings are offset from this by
-$\pm(2\pi)(L/c)\Omega$.  So, as a function of detuning, we have:
-%
+
 \begin{equation}
 E_r = J_0 r_c(\phi) 
-+ J_1 r_c(\phi - (2\pi L/c)\Omega) 
-+ J_1 r_c(\phi + (2\pi L/c)\Omega)
++ J_1 r_c(\phi - \Omega/\nu_0) 
++ J_1 r_c(\phi + \Omega/\nu_0)
 \end{equation}
 \end{comment}
+
+\subsection{Generalization of the PDH technique}
+
+To sense and control the entire Power-Recycled, Fabry-Perot Michelson
+interferometer, the PDH scheme can be generalized to sense all degrees
+of freedom by providing one or more pairs of RF sidebands, and sensing
+and demodulating the light at various interferometer ports.  In the
+remainder of this dissertation, however, we are concerned only with
+sensing the differential arm degree of freedom (DARM), which contains
+the gravitational wave signal.
 
 \begin{figure}
 \includegraphics[width=\columnwidth]{figures/dc-readout-diagram.pdf}
@@ -372,7 +399,7 @@ E_r = J_0 r_c(\phi)
   automatic alignment.}
 \end{figure}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagebreak
 
 \section{Determination of LIGO cavity lengths and mirror reflectivities}
 
@@ -406,7 +433,7 @@ the freedom to adjust the microscopic length to attain resonance.
 How big a detector can you build? The physical length of the detector
 sets the conversion between displacement and strain. Simply making the
 detector longer will make any fixed displacement noises into smaller
-strain noises-so we want the detector as large as possible. How big
+strain noises--so we want the detector as large as possible. How big
 one can build is usually a result of geography, money, and politics.
 LIGO got
 %
@@ -424,7 +451,7 @@ The cavity length determines the free-spectral-range:
 \subsection*{Bandwidth}
 
 In the Fabry-Perot Michelson interferometer design, there is a trade-off
-between the detector's sensitivity and its bandwidth.\footnote{Advanced LIGO will include an additional mirror, a \emph{signal recycling mirror} at the output of the interferometer, forming an additional resonant cavity at the anti-symmetric port.  This cavity allows the interferometer DC sensitivity to be increased without decreasing its bandwidth.}  As the storage
+between the detector's sensitivity and its bandwidth.\footnote{Advanced LIGO will include an additional mirror, a \emph{signal recycling mirror}\cite{Meers1988Recycling} at the output of the interferometer, forming an additional resonant cavity at the anti-symmetric port.  This cavity allows the interferometer DC sensitivity to be increased without decreasing its bandwidth.}  As the storage
 time in the arm becomes longer and longer (either by making the arm
 longer, or by increasing its finesse), the sensitivity to gravitational
 waves increases commensurately. However, sensitivity to waves whose
@@ -668,6 +695,3 @@ the demodulation phase.
   what one would expect from a na\"ive assumption based on the average
   power considered over a whole period of the waveform.}
 \end{figure}
-
-
-The columnwidth is \the\columnwidth.
