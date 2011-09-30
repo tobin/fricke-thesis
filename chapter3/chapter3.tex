@@ -33,6 +33,77 @@ output port.
 
 \section{Motivation for DC readout}
 
+The RF readout technique was used successfully in initial LIGO to
+achieve the instruments' design sensitivity.  A number of reasons,
+outlined below, motivated the switch to DC readout with an OMC:
+
+\subsubsection*{Improved noise couplings} 
+The combination of the power recycling cavity and the arm cavities
+acts as a single resonant cavity with an effective linewidth of
+approximately 1 Hz around the laser carrier.  Intensity and frequency
+noise around the laser carrier are reflected from the
+interferometer.  The RF sidebands, which are not resonant in the arms,
+experience no such filtering in the band of interest.  DC readout
+exploits this filtering by using the carrier light that has circulated
+in the interferometer as the local oscillator.  The result is that
+coupling of noises on the input beam to the gravitational wave readout
+can be greatly reduced.
+
+\subsubsection*{Spatial overlap}  
+Imperfect spatial overlap of the signal beam (resonant in the arm
+cavities) and the RF sideband beam (resonant in the power recycling
+cavity) reduced the optical gain, elevating the shot-noise-limited
+noise floor. For instance, a measurement in 2003 found only half the
+expected optical gain\cite{Fritschel2003Shot}.  This was alleviated in
+part through the use of a thermal compensation system (TCS), which
+projected light from a CO$_2$ laser onto optics to adjust their
+effective radii of curvature, compensating for thermal lensing.  By
+the start of S5 in 2005, no elevation in the shot noise level was
+observed\cite{Ballmer2006LIGO}.  However, spurious fields still caused
+problems by producing a large signal in the uncontrolled quadrature of
+the heterodyne readout (AS\_I); left uncontrolled, this signal would
+saturate the photodiode electronics.  This was partially mitigated by
+an electronic servo which cancelled this signal in the photodiode
+head.
+
+Both DC readout and an OMC mitigate problems with the spatial overlap
+of the LO and signal beams.  In DC readout, the local oscillator and
+the signal beams are resonate in the same cavities, so spatial overlap
+comes naturally.  With either DC or RF readout, an OMC, matched to the
+spatial mode of the signal beam, can be used to select the signal beam
+and the part of the LO with good spatial overlap.
+
+\subsubsection*{Excess power}
+To cope with the excess power due to higher-order modes at the
+interferometer output port, initial LIGO split the light at the
+detection port onto four detection photodiodes.  Scaling the
+interferometer input power would require a commensurate increase in
+the number of photodiodes at the output port and their associated
+electronics.  An output mode cleaner reduces the power that needs to
+be detected.
+
+\subsubsection*{Homodyne SNR advantage} 
+Homodyne detection confers a fundamental improvement in
+signal-to-noise ratio compared to RF readout at shot-noise-limited
+frequencies by a factor $\sqrt{3/2}$ (for the same power circulating
+in the interferometer).  The extra noise in heterodyne detection is a
+result of cyclostationary shot noise\cite{Niebauer1991Nonstationary}
+due to the interference between the upper and lower RF sidebands.
+
+\subsubsection*{Squeezed vacuum injection} 
+Squeezed vacuum injection is an attractive means to decrease the
+photon quantum noise in future interferometers by manipulating the
+quantum state of the vacuum field that enters the interferometer
+through the output port.  Squeezed vacuum injection is more feasible
+in conjunction with homodyne detection than with RF readout, since it
+requires squeezing in only the audio band rather than at both audio
+and RF frequencies\cite{GeaBanacloche1987Squeezed,
+  Chelkowski2007Coherent}.  Shot noise reduction via squeezed vacuum
+injection has been demonstrated at GEO\cite{GeoSqueezingNature2011}
+and an effort is currently underway to implement it at LIGO
+Hanford\cite{H1SqueezerProposal}.
+
+\begin{comment}
 Some of the motivations of DC readout and an output mode cleaner are:
 
 \begin{itemize}
@@ -61,6 +132,7 @@ Some of the motivations of DC readout and an output mode cleaner are:
   that must be detected by the detection photodiodes by removing
   spurious higher order modes.    
 \end{itemize}
+\end{comment}
 
 \begin{figure}[p]
 \includegraphics{figures/fields-picture.pdf}
@@ -318,3 +390,18 @@ uses RF heterodyne readout\cite{Acernese2008Virgo}.
 % More references to cite:
 % \cite{Adhikari2009DC} % DC readout Normalization for Enhanced LIGO
 % \cite{Hild2007Novel} % Crazy detuning
+\section{Interferometer lock acquisition}
+
+Initial lock acquisition of the Enhanced LIGO interferometers is the
+same as in Initial LIGO\cite{Evans2002Lock}. Once the interferometer
+is locked using the heterodyne readout schemes, the DARM offset is
+introduced to allow carrier light to be transmitted to the output
+port. The Output Mode Cleaner is then locked to this carrier
+light. Once the OMC is locked to the carrier, control of DARM is
+transferred to the DC readout system.  After this transition, a few
+other changes are made to engage the OMC alignment servoes and to put
+the readout electronics into low noise mode. At this point the
+interferometer has reached its operation configuration and
+astrophysical data-taking ({}``science mode'') begins.
+
+

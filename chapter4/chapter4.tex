@@ -1,38 +1,60 @@
 \chapter{Output Mode Cleaner}
 \label{chapter4}
 \section{Introduction}
-Any optical fields present at the detection photodiodes which do not
-produce optical gain will degrade the signal-to-noise ratio of the
-readout, by contributing shot noise and technical noise but no signal.
-%
-To prevent this SNR degredation, we install an \emph{output mode
-  cleaner}, an an optical filter cavity whose resonant mode is matched
-to the field of interest--the optical mode of the arm cavities.
 
-The unwanted light which the OMC removes includes the Gaussian mode of
-the RF sidebands and spurious higher order modes of both the carrier
-and the RF sidebands.  The OMC consists of a Fabry-Perot cavity with
-length, g-factor, and finesse chosen to optimally filter the RF
-sidebands and spurious higher order modes from the desired DARM
-signal.
+
+The optical fields in the interferometer are intended to exist in only
+the fundamental Gaussian spatial mode.  A critically coupled resonant
+cavity, the input mode cleaner, is used to attenuate any higher order
+spatial modes produced by the laser before the field is incident on
+the interferometer.  Despite having an essentially pure input beam,
+imperfections in the interferometer optics leads to the production of
+higher order spatial modes in the interferometer; this effect is
+particularly egregious for the RF sidebands in the power recycling
+cavity\cite{Gretarsson2007Effects}.  As a result, the output beam
+(depicted in figure~\ref{fig:as-spot}) is no longer in the pure
+Gaussian mode, but also contains spurious higher order modes.
+
+The spurious higher order spatial modes in the output beam are
+detrimental to interferometer performance as they generally produce no
+useful signal, but contribute additional photon shot noise, increase
+the power that needs to be detected, and exacerbate noise couplings.
+To mitigate these effects, an \emph{output mode cleaner} (OMC) was
+installed at the output port.  This critically-coupled optical filter
+cavity attenuates higher order spatial modes before the beam is
+detected by a pair of photodiodes.  In DC readout, the OMC is also
+used to remove the RF sidebands, which are still needed in the
+interferometer to sense other degrees of freedom, but would only be
+detrimental to the DC readout signal.
+
+\begin{figure}[t]
+\centerline{\includegraphics[width=0.5\columnwidth]{figures/as_spot.png}}
+\caption[Beam spot at the interferometer output port]{
+\label{fig:as-spot}Image of the beam spot at the L1 output
+  port taken using a CCD camera.  This image is saturated in the
+  central portion but emphasizes the spurious higher order modes
+  surrounding the fundamental Gaussian, including contributions
+  from both the carrier and the 25 MHz sidebands.}
+\end{figure}
 
 \section{Physical design of the cavity}
 
-The output mode cleaner (OMC) consists of a four-mirror bowtie cavity
-with a finesse of approximately 350. The cavity optics and detection
-photodiodes are attached to tombstones which are bonded to a glass
-slab. This entire optical bench is suspended by a double pendulum,
-which in turn rests on an active seismic isolation platform, all of
-which is contained within the vacuum envelope. For convenience the
-chamber containing the OMC is isolated from the rest of the LIGO vacuum
-envelope via a septum window, allowing the independent venting of
-this chamber for easier access.
-
-The output of the OMC is split via a 50/50 beamsplitter and directed
-onto two high-quantum-efficiency InGaAs photodiodes. The two photodiode
-signals allow the formation of sum and difference signals, the difference
-providing a diagnostic `nullstream'.
-
+\begin{figure}[t]
+  \subfloat[][Schematic of OMC bench]{
+  \includegraphics[width=0.5\columnwidth]{figures/omc-diagram.pdf}
+  \label{fig:omc-diagram}
+}
+\subfloat[][\label{fig:OMC-chamber}Photograph of installed OMC and suspension]{
+  \includegraphics[width=0.5\columnwidth]{figures/chamber-picture-smaller.pdf}
+}
+\caption[OMC diagram and photograph of installation]{
+  (a) Diagram illustrating the design of the monolithic OMC
+  bench; (b) Photograph of the installed output mode cleaner,
+  suspension, and seismic isolation platform. The OMC is located in a
+  dedicated vacuum chamber, separated from the main vacuum enclosure
+  by a septum window, allowing rapid venting cycles during
+  commissioning.}
+\end{figure}
 \begin{figure}
 \includegraphics[width=\columnwidth]{figures/D0901817.pdf}
 \caption[Output Mode Cleaner photograph]{Photograph of the Output Mode
@@ -44,6 +66,30 @@ providing a diagnostic `nullstream'.
 \end{figure}
 % Hanford: 
 % https://dcc.ligo.org/cgi-bin/private/DocDB/ShowDocument?docid=4714
+
+
+A four-mirror bow-tie arrangement was chosen for the mode cleaner
+design\footnote{The Enhanced LIGO OMC design and construction was lead by
+  Sam Waldman as part of LIGO's Interferometer Sensing and Control (ISC)
+  group.}.  This non-colinear design prevents direct reflection of
+rejected light back into the interferometer.  A design with an even
+number of mirrors was preferred so that odd-parity transverse modes
+are degenerate, reducing the density of higher-order-mode resonances.
+A sufficiently high angle of incidence of the beam on the mirrors is
+necessary to minimize the effects of small-angle scattering, subject
+to the constraint that too great an angle of incidence will introduce
+excessive astigmatism to the beam.
+
+The cavity was constructed by rigidly mounting the cavity optics and
+photodetectors to a baseplate, similar to the LISA optical bench
+design.  The baseplate is a slab of Corning ULE glass $450 \mathrm{mm}
+\times 150 \mathrm{mm} \times \mathrm{39}\mathrm{mm}$; components were
+bonded using Optocast {\sffamily 3553LV-UTF-HM} UV-cure epoxy.
+
+Two of the cavity mirrors are outfitted with position actuators: a
+fast, short-range ($\lesssim0.1$ \micron) PZT, and a slow, long-range
+($\approx 20$\micron) thermal actuator consisting of a 1 inch long segment
+of aluminum tube warmed by a resistive heater.
 
 %% Cavity properties [Table]
 % These values are all from Sam's document T080144:
@@ -67,6 +113,29 @@ transmission       & 1           & $\geq$0.95  & $\geq$0.90    &         \\
 \caption[Output mode cleaner properties (designed and measured)]{Designed and measured properties of the Hanford and Livingston output mode cleaners.}
 \label{tab:OMCproperties}
 \end{table}
+
+%% OMC Suspension
+To isolate the mode cleaner from environmental disturbances, the
+optical bench was hung from an actively-damped double-pendulum
+suspension system\cite{Robertson2006Conceptual,Robertson2009OMC},
+which was in turn suspended by an in-vacuum active isolation
+system\cite[Chapter 5]{KisselThesis}.
+
+%% OMC Photodiodes
+The photodiodes were also mounted on the OMC baseplate, and read out
+by in-vacuum preamplifiers.  The output from the mode cleaner was
+split via a 50/50 beamsplitter and directed to two Perkin Elmer 3mm
+diameter InGaAs photodiodes (part number C30665GH), with measured
+quantum efficiency $> 0.95$ at 1064 nm.  The photocurrent was
+converted to voltage across $100 \Omega$ transimpedance. Subtraction
+of the signals from the two photodiodes produces a diagnostic
+``nullstream'' containing the anti-correlated component of the PD
+signals.
+%
+The rigid mounting of the PDs to the OMC baseplate reduces the
+possibility of beam motion coupling to photocurrent through photodiode
+nonuniformities, and the in-vacuum preamplifiers reduce the liklihood of
+electronic or triboelectric noises.
 
 \section{Requirements}
 
@@ -124,8 +193,51 @@ attenuation is diminished by approximately $\sin^{-2} (0.1 \pi)
 least a factor of 10 margin, so we'll want maximum attenuation of
 10000. This means we need a finesse of at least 160.
 
+On the other hand, higher finesses lead to greater net power loss as
+the beam travels through the cavity, as the intra-cavity loss is
+multiplied by each effective roundtrip in the cavity.  To choose the
+finesse, we assume a roundtrip intra-cavity power loss of 100pm and
+set the constraint that the net power efficiency of the OMC should
+exceed 99\%\footnote (not actually achieved).  This leads to the design choice
+of a finesse of 400.
+
+\section{Choosing the OMC length and geometry}
+
+The cavity length is chosen to provide adequate attenuation of the RF
+sidebands, and its geometry ($g$-factor) is chosen to sufficiently
+attenuate higher-order modes.  The optimal g-factor depends on the
+specific details of the frequency and spatial spectrum of modes at the
+output port.  These depend strongly on the details of the
+interferometer optics, alignment, and thermal state. 
+
+To deal with these unknown factors, we designed the OMC using a model
+in which the power in each higher order mode (of order $n$) was proportional to
+$1/n^2$ and the RF sidebands had their nominal power.  The designed
+and as-built properties of the output mode cleaner cavities are given
+in Table~\ref{tab:OMCproperties}.
+%
+One disadvantage of the chosen design is that the 4-th order mode is
+nearly degenerate with the fundamental mode.  We did experience
+problems with accidental degeneracy in one of the mode cleaners, which
+was addressed by changing the operating temperature of the thermal
+actuator (which had a small coupling to the effective radius of
+curvature of the mirror).  The next version of the output mode cleaner
+will be designed with a slightly different g-factor to avoid this
+problem.
+
 
 \section{OMC feedback control systems}
+
+%% Front-end Computers 
+The mode cleaner was controlled and the DC readout signals were
+acquired using a prototype of the advanced LIGO real-time digital
+signal processing system, consisting of a Linux-based computer
+equipped with analog-to-digital and digital-to-analog converters and
+interfaced to other systems via reflected memory over a fiber ring and
+EPICS over ethernet, operating at 32768 samples per second (Hz) The
+LIGO Realtime Code Generator\cite{Bork2009ELIGO,Bork2009AdvLigo}
+allowed fast prototyping and implementation of complex servos.  All
+servos involving the OMC were implemented using this digital system.
 
 \subsection{Length control (LSC)}
 
@@ -296,6 +408,7 @@ It has been pointed out~\cite{Smith2011Optimal} that even the drumhead
 dither alignment scheme is not optimal in the sense of producing the
 best shot-noise-limited SNR.
 
+\begin{comment}
 \section{Automatic gain control (UGF servo)}
 % FIXME - Gaby says: This is very obscure - if you don't have time to
 % explain more, just skip it...
@@ -311,6 +424,7 @@ nominal.
 The flexibility of the realtime code generator allowed us to implement
 an automatic gain control servo directly in the OMC front-end.  This
 was a nice convenience. 
+\end{comment}
 
 %% \subsection{Mode scan}
 
@@ -461,21 +575,6 @@ figure~\ref{fig:scattering} along with a quiescent spectrum for
 reference.  (The experiment was repeated with modulations in
 orthogonal directions; as expected, the effect was much less than the
 modulation in the beam direction.)
-
-\section{Interferometer lock acquisition}
-
-Initial lock acquisition of the Enhanced LIGO interferometers is the
-same as in Initial LIGO\cite{Evans2002Lock}. Once the interferometer
-is locked using the heterodyne readout schemes, the DARM offset is
-introduced to allow carrier light to be transmitted to the output
-port. The Output Mode Cleaner is then locked to this carrier
-light. Once the OMC is locked to the carrier, control of DARM is
-transferred to the DC readout system.  After this transition, a few
-other changes are made to engage the OMC alignment servoes and to put
-the readout electronics into low noise mode. At this point the
-interferometer has reached its operation configuration and
-astrophysical data-taking ({}``science mode'') begins.
-
 
 \begin{figure}
 \includegraphics[width=\columnwidth]{figures/L1LSC.png}
