@@ -356,13 +356,23 @@ sensor array, an interferometer composed of many interferometers.
 
 Ground was broken on the first of the two LIGO observatories in 1994.
 After years of construction and then detector commissioning, the three
-detectors at the two observatories reached their design sensitivity\cite{LigoSRD} in
+detectors at the two observatories (at Hanford, WA; and Livingston, LA, 
+pictured in figure~\ref{fig:aerial-photo}) reached their design sensitivity\cite{LigoSRD} in
 2004\cite{Ballmer2006LIGO}.  Having reached this milestone, the attention turned to
 collecting data for astrophysical observation rather than instrument
 development.  By October 2007, the LIGO project accomplished the goals
 of what is now known as ``initial LIGO,'' having collected 1 year of
 observational data with all three detectors online simultaneously, over
 the course of the 5th science run (known as S5).
+
+\begin{figure}
+\centerline{\includegraphics[width=0.8\columnwidth]{figures/5413583267_69eb527273_z.jpg}}
+\caption{
+\label{fig:aerial-photo}Aerial photo of the LIGO Livingston Observatory, 
+containing the L1 detector.  The main building in the center of the photo
+contains the beamsplitter; the two 4 km arms reach out to the right of the 
+photo.  Photo by Greg Grabeel and the author.  }
+\end{figure}
 
 It had always been intended that this initial generation of LIGO would
 be followed by a programme of improvements\cite{Abramovici1992LIGO}.  The next generation of
@@ -470,24 +480,37 @@ to $10^{-1}$ Hz (period of 3 hours down to 10 seconds).
 % unique contributions and measurements that will be highlighted in
 % the thesis.
 
-This dissertation describes the implementation of DC readout and an
-output mode cleaner during Enhanced LIGO.
+LIGO, is, of course, a team effort, conducted by the LIGO Laboratory,
+and by the LIGO Scientific Collaboration, of which I am a member.  The
+success of LIGO is due to the hard work of hundreds of people over the
+course of several decades.  I came to LIGO Livingston Observatory in
+January 2008 where I worked with the commissioning team to commission
+the enhancements to the L1 detector (i.e. make it work) with a
+specific focus on DC readout and the output mode cleaner (OMC), which
+are the focus of this work.  This dissertation describes the
+implementation of DC readout and an output mode cleaner during
+Enhanced LIGO.  My personal scientific contributions to the project
+are concentrated in chapter 5.
 
 In Chapter 2, I explain the principles and practice behind the
 sensitivity of the LIGO detectors.  I show how the machine converts
 gravitational wave-induced phase modulation into a modulated optical
 field while offering a large amount of immunity to other effects.
 
-In Chapter 3, I describe DC readout.
+In Chapter 3, I describe DC readout, the newly implemented scheme
+for recovering the gravitational wave signal from the optical fields
+exiting the interferometer.
 
 Chapter 4 introduces the Output Mode Cleaner, its design and control,
 and the general idea of mode cleaners.
 
 Finally, in Chapter 5, I present results demonstrating the performance
-of this system.
+of this system, including measurements and models of the transfer functions
+of laser and oscillator noises, and verification that the noise floor
+of the enhanced detector is well understood.
 
 %Additional references to cite: \cite{Garfinkle2005Gauge,
-%  Heinzel1999Advanced,Saulson1994Fundamentals,
+%  Heinzel1999Advanced
 %  Harris1996Gravitational,Melissinos2010Response}.
 
 \section{Acknowledgement}
