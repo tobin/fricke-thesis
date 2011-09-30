@@ -399,6 +399,65 @@ the gravitational wave signal.
   automatic alignment.}
 \end{figure}
 
+\section{Noises}
+
+No discussion of detector operation is complete without mention of the
+noises which limit detection.  The noise sources relevant to laser
+interferometer gravitational wave detectors are articulated in Rai
+Weiss's original design study\cite{Weiss1972Electromagnetically} and
+Rana Adhikari's dissertation\cite{RanaThesis}.  It is often useful to
+divide noises into \emph{displacement noises} (which correspond to
+real displacement of the mirrors or intra-cavity phase modulation) and
+\emph{sensing noises} (which arise in the sensing of the interferometer 
+state).  Displacement noises include:
+
+\begin{itemize}
+\item \textbf{seismic noise} -- this refers to any motion of the mirrors due to
+  local ground motion.  Below $\sim40$~Hz, the initial/enhanced LIGO
+  noise floor is entirely limited by seismic noise (the so-called `seismic wall').
+\item \textbf{thermal noise} -- thermally excited motion in the test mass
+  suspensions and the high-reflectivity coatings limits the
+  sensitivity in the range 40 - 100 Hz.
+\item \textbf{quantum radiation pressure noise} -- the Poisson statistics of
+  the light circulating in the arm cavities generates a white-noise
+  random force, producing a $1/f^2$ displacement spectrum.  This noise
+  source has not yet been observed, since its influence is masked by
+  the other low-frequency noises.
+\item \textbf{technical radiation pressure noise} -- variations in
+  light intensity create varying radiation pressure forces.
+\item \textbf{residual gas noise} -- any residual gas in the vacuum
+  enclosure will displace the optics through Brownian motion, in addition to
+  creating spurious phase modulation of the light.
+
+\end{itemize}
+Sensing noises include:
+\begin{itemize}
+\item \textbf{shot noise} -- white noise due to Poisson statistics of
+  light arriving at the detection photodiode.  This is the limiting
+  noise source at high frequency ($f\gtrsim$200 Hz).
+\item \textbf{dark noise} -- This is the name given to any electronics
+  noise present when there is no light incident on the photodetectors.
+  The electronics are generally designed such that dark noise is never
+  limiting.
+\end{itemize}
+Some difficult-to-categorize noises:
+\begin{itemize}
+\item \textbf{upconversion} -- for instance, the magnetic actuation
+  system appears to suffer from Barkhausen noise.  Large actuations
+  lead to random noise due to the random, quantized flipping of
+  magnetic domains. The result is that large actuations at low
+  frequency lead to elevated noise at higher frequencies.  Nonlinear
+  effects such as this are lumped into the category of `upconversion'.
+\item \textbf{cross-couplings} -- Imperfections in the diagonalization
+  of the control system lead to noise in one degree of freedom being
+  impressed on another.  For example, actuation on the angular degrees
+  of freedom can lead to perturbations of the differential arm length
+  via imperfect angular actuation.  As a result, there is the hazard
+  of the angular control signal contaminating the gravitational wave
+  channel with noise.  One way to cope with this is to steeply cut off
+  feedback of the offending control signal below the detection band.
+\end{itemize}
+
 \pagebreak
 
 \section{Determination of LIGO cavity lengths and mirror reflectivities}
