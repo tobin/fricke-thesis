@@ -151,8 +151,8 @@ through other mechanisms too, including AF sidebands that originate on
 the light at the input to the interferometer.  These noises originating
 at the input are the subject of this section.
 
-
-Generically, we refer to any spectral line as a `sideband'.  The
+Generically, we refer to any spectral line as a `sideband'. For the
+purpose of analysis, 
 sidebands are divided into radio-frequency (RF) sidebands and
 audio-frequency (AF) sidebands. The distinction is not actually the
 frequency of the lines but their magnitude; RF sidebands have some
@@ -174,7 +174,6 @@ there are two pairs of RF sidebands, each produced through phase modulation: the
 \emph{resonant sideband} at $\sim$25 MHz, which enters the interferometer and
 emerges at the output port; and the \emph{non-resonant sideband} at $\sim$61
 MHz, which is mostly reflected by the power recycling mirror.
-
 
 For an intuitive understanding of the noise couplings to DC readout, we will
 consider only the resonant sideband, an ignore the residual non-resonant
@@ -259,8 +258,10 @@ input field to couple to the DC readout photodiode signal, the
 frequency modulation must be converted to amplitude modulation as the
 fields travel from the interferometer input to its output.  FM to AM
 conversion is accomplished by rotating sidebands differentially or by
-rotating the parent carrier.
-
+rotating the parent carrier, which occurs due to asymmetries between
+the arms, including the intentional DARM offset (for DC readout), the
+intentional Michelson (Schnupp) asymmetry, and differences in finesse
+and losses in the two arms.
 
 \subsection{Oscillator noises}
 
@@ -290,15 +291,13 @@ given by
 where $\Gamma_0$ is the nominal modulation depth, $J_n(z)$ is the $n$th Bessel
 function, and $J_n'(z)=(\partial/\partial z)J_n(z)$ is the derivative of the Bessel function.
 
-Measured coupling is shown in figure~\ref{fig:osc-AM}.
-
 \subsubsection{Oscillator phase noise}
 
-Phase noise on the RF oscillator produces phase noise on the resulting RF
-sidebands, but does not affect the laser carrier.  Its direct coupling to DC
-readout is therefore quite small; to couple to DC readout, the phase noise
-sidebands must be converted to AM through Michelson asymmetries, and then
-survive attentuation by the OMC.
+Phase noise on the RF oscillator produces phase noise on the resulting
+RF sidebands, but does not affect the laser carrier.  Its direct
+coupling to DC readout is therefore quite small; to couple to DC
+readout, the phase noise sidebands must be converted to AM through
+Michelson asymmetries, and then survive attentuation by the OMC.
 
 \section{Laser and oscillator noise coupling measurements}
 
@@ -364,6 +363,23 @@ to CARM, as follows:
 \caption[Laser frequency noise coupling (measured and modeled)]{Laser frequency noise coupling to DARM}
 \end{figure}
 
+\subsubsection*{Discussion}
+In general, the measured laser noise couplings are much higher than
+the expectations from the Optickle models.  The most likely
+explanation for this disagreement is that the Optickle models include
+only plane-wave effects; there is no modeling of higher order spatial
+modes, imperfect mode-matching, etc.  The experience with the
+difficulty of designing an effective alignment servo for the OMC
+demonstrates the importance of these higher-order modes.  Any
+deviation from perfect alignment of the interferometer itself or the
+beam into the OMC will lead to coupling of spurious higher-order modes
+from the power-recycling cavity into the OMC, leading to excess laser
+noise coupling.  These modes are not resonant in the arms so would not
+experience filtering by the coupled-cavity pole, leading to a
+broadband increase in the coupling, as observed.  To explore this
+hypothesis, more modeling should be conducted, using a tool which can
+model higher-order spatial modes.
+
 \subsection{Oscillator noise coupling measurements}
 
 To measure oscillator noise couplings we temporarily switched the
@@ -388,6 +404,13 @@ depth on the function generator.  This was checked separately at a few
 individual frequencies by connecting the output of the function
 generator directly to an RF spectrum analyzer.
 
+The measured oscillator AM coupling is shown in
+figure~\ref{fig:osc-AM}.  The level of the coupling is well described
+by the Optickle model.  Phase noise coupling measurements are given in
+figure~\ref{fig:osc-PM}, compared with measurements made in initial
+LIGO's RF readout\cite{Smith2005Oscillator}.  We see a distinct
+(factor of 10) advantage of DC readout over RF readout.
+
 \begin{figure} % Oscillator AM
 \includegraphics[]{figures/oscAM-L1.pdf}
 \includegraphics[]{figures/oscAM-H1.pdf}
@@ -402,12 +425,7 @@ generator directly to an RF spectrum analyzer.
 
 \section{Beam jitter noise}
 
-Beam jitter noise is perhaps the most important new noise source in
-DC readout and is tied to alignment of the OMC, which has proved to
-be one of the most subtle new issues. The output mode cleaner converts
-motion of the input beam into variations in transmission. The resulting
-variation in the transmitted light level is indistinguishable from
-DARM motion.
+
 
 \begin{figure}[t]
 \includegraphics[width=0.32\columnwidth]{figures/jitter2.pdf}
@@ -416,13 +434,66 @@ DARM motion.
 \caption[Example of linear and bilinear beam jitter
   coupling]{\label{fig:jitter-mechanism}Example of linear and bilinear
   beam jitter coupling in the L1 OMC.  Left: the light incident on the
-  OMC shows motion at $\sim 130$ Hz.  Center: the incident light
+  OMC shows motion at $\sim 130$ Hz (arbitrary units).  Center: the incident light
   contains intensity modulations at $\sim 0.87$ and $\sim 1.6$
-  Hz. Right: the light transmitted through the OMC contains intensity
-  modulations at $130$ Hz, $130 \pm 0.87$ Hz, and $ 130 \pm 1.6$ Hz.
+  Hz (units: $\log_{10} (\delta{}P/P)$). Right: the light transmitted through the OMC contains intensity
+  modulations at $130$ Hz, $130 \pm 0.87$ Hz, and $ 130 \pm 1.6$ Hz (units: $\log_{10} (\delta{}P/P)$).
   (The sources of the incident beam motion and intensity fluctuations
   have not been identified.)}
 \end{figure}
+Beam jitter is perhaps the most important new noise source introduced
+in the DC readout system.  The cavity converts motion of the incident
+beam into amplitude modulation, which pollutes the readout.  In the
+ideal case, this would be a quadratic effect, but the presence of
+spurious higher order modes introduces both linear and bilinear contributions.
+
+We have several means of controlling the beam jitter contribution to the
+readout.  In practice, we utilize all of them:
+
+\begin{itemize}
+\item \emph{Remove mechanical resonances and increase isolation.}  Several
+  prominent beam-jitter peaks in the readout spectrum were removed by
+  replacing a fixed steering mirror with a suspended one; and by
+  adding blade-springs to the steering mirrors for additional vertical isolation.
+
+\item \emph{Cancel the motion.}  Motion at the 60 Hz power-line
+  frequency is introduced via magnetic coupling to the magnets used to
+  actuate on the suspended steering mirrors.  We implemented a feed-forward
+  correction using signals derived from a magnetometer located just outside
+  the vacuum chamber.
+
+\item \emph{Place steering optics where their coupling to beam jitter
+  is small.}
+  Beam propagation geometry can magnify the effects of optic motion to 
+  beam motion.
+  For a given amount of optic jitter, the coupling to readout noise can
+  be reduced by proper design of the mode-matching telescope.
+  This constraint is at odds with the desire for maximum controllability
+  of the input beam pointing.  
+  In practice the requirement is that sufficient actuation range be 
+  provided, and that the optics be well separated in Gouy phase to
+  create a non-degenerate control matrix.
+
+\item \emph{Reshape the beam.}  Linear beamjitter coupling arises due
+  to the presence of carrier-mode junk light in the HG01 mode incident
+  on the mode cleaner.  The transmission of this light through the OMC
+  is linearly dependent on the position of the incident beam.  By
+  introducing offsets into the interferometer's global angular sensing
+  and control (ASC) system\cite{Barsotti2010Alignment}, this HG01 mode light can be cancelled out,
+  nulling the linear sensitivity to beam motion.
+  During Enhanced LIGO this was found to be a highly effective
+  technique, but it was not automated.
+\end{itemize}
+
+An example of the observed beam jitter coupling is shown in
+Figure~\ref{fig:jitter-mechanism}.  A prominent spectral line at
+$\sim130$ Hz appears in quadrant photodiode (QPD) signal, indicating
+relative motion in yaw between the incident beam and the OMC.  This
+line also appears in the signal of the light transmitted through the
+OMC, indicating some linear coupling of beam jitter to transmission.
+The transmitted spectrum also contains sidebands around the 130 Hz
+line at separations of $\pm0.875$ Hz and $\pm1.6$ Hz which arise due
+to gain modulation.
 
 \begin{comment}
 \section{Optical spring}
@@ -468,6 +539,6 @@ order to avoid being caught by surprise by ``digital noises''.
 \item Synchronized communications
 \end{itemize}
 
-%\cite{Smith2005Oscillator}
+%
 %\cite{Smith2008Measurement}
 \end{comment}
