@@ -11,11 +11,41 @@ readout.
 
 \section{Principle of DC readout}
 A homodyne readout system differs from a heterodyne system by using a
-local oscillator at the same (optical) frequency as the field being measured.
-%
+local oscillator at the same (optical) frequency as the field being
+measured.  A typical homodyne detection system combines a local
+oscillator field and a signal field via two different ports of a
+beamsplitter (depicted in figure~\ref{fig:balanced-homodyne}(a)).  The
+two PD signals are subtracted to recover the signal.  This arrangement
+suffers from a number of technical
+difficulties\cite{McKenzie2007Technical}, including the need to
+control the phase of the LO beam, and to maintain the alignment of the
+signal and LO beams.
+
 DC readout creates the homodyne local oscillator by putting a small
 offset into the Michelson or DARM degree of freedom, moving the
-interferometer slightly off of the dark fringe.
+interferometer slightly off of the dark fringe.  The resulting carrier
+light at the interferometer output port acts as a local oscillator.
+This differs from the typical homodyne arrangement in that the two
+fields are automatically coincident.  It is no longer necessary to use
+two photodiodes, but doing so allows greater power handling capacity,
+and allows for the formation of a diagnostic `nullstream'.  The
+nullstream is formed from the difference of the two PD signals and
+ideally contains only the uncorrelated component of the PD signals.
+The sum of the two PD signals provides the intended signal.  The
+principle disadvantages of DC readout over the 2-port homodyne
+arrangement are that DC readout requires introducing an intentional
+microscopic offset of the arms, which can increase noise couplings,
+and that DC readout provides little control of the phase of the local
+oscillator.
+
+\begin{figure}
+\includegraphics[width=0.5\columnwidth]{figures/homodyne-standard.pdf}
+\includegraphics[width=0.5\columnwidth]{figures/homodyne-dc.pdf}
+\caption{Left: a traditional `balanced photodiode' homodyne detection
+  arrangement. Right: DC readout with two photodiodes.
+  \label{fig:balanced-homodyne}
+}
+\end{figure}
 
 One way to intuitively understand DC readout is that simply moving
 away from the quadratic point of the fringe, a linear coupling is
