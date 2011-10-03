@@ -1,0 +1,23 @@
+ 
+ [ ] better GR introduction
+ [ ] Fit mode scan data
+ [ ] Cavity length noise
+ [ ] nullstream
+ [ ] drumhead amplitude
+ [ ] jitter contribution to noise budget
+ [ ] frequency noise contribution to noise budget
+ [ ] re-make jitter bilinear coupling plot with real units
+ [ ] PDH explanation
+ [ ] Generalization of PDH to the Michelson
+ [X] discussion of interferometer noises
+
+Plots to make:
+ [X] PDH error signal
+ [ ] cavity reflectivity/ phase gain
+ [ ] OMC higher-order mode resonances
+
+Doodle-figures to make:
+ [ ] DARM fringe
+ [X] Homodyne detection
+ [X] coupled cavity
+
