@@ -342,15 +342,24 @@ Jacobi-Anger expansion (see section~\ref{sec:jacobi-anger}):
 \begin{align}
 \exp\left\{i\Gamma\cos\Omega t\right\} 
   &= \sum_{n=-\infty}^{\infty} \left(i^n\right)  J_n(\Gamma) \exp\{i n \Omega t\} \\
-  &= J_0(\Gamma) + i J_{1}(\Gamma) e^{i\Omega t} - i J_{-1}(\Gamma) e^{i \Omega t}+\cdots \\
+  &= J_0(\Gamma) + i J_{1}(\Gamma) e^{i\Omega t} - i J_{-1}(\Gamma) e^{i -\Omega t}+\cdots %\\
 %  &= J_0(\Gamma) + i J_{1}(\Gamma) e^{i\Omega t} + i J_{1}(\Gamma) e^{i \Omega t}+\cdots\\
-  &= J_0 + 2 i J_{1} \cos \Omega t + \cdots
+%  &= J_0 + 2 i J_{1} \cos \Omega t + \cdots
 \end{align}
+From this expansion we see that phase modulation at a frequency
+$\Omega$ results in the creation of an infinite number of sidebands
+around the laser carrier, spaced at multiples of $\Omega$, and whose
+amplitudes are given by the Bessel functions.  The magnitude of the
+modulation ($\Gamma$, in radians) is known as the \emph{modulation
+depth}.  We typically use a small modulation depth, so that only the
+first-order sidebands are significant.  These first-order sidebands
+are displaced from the carrier by the modulation frequency $\pm\Omega$
+and have amplitude $J_1(\Gamma)$.
 
 Upon reflection from a cavity the phases of the carrier and the two
 sidebands will be rotated.  This phase rotation converts the phase
 modulation to amplitude modulation, which is observed by the
-photodiodes.  Typically, the laser frequency or the cavity length is
+photodiode.  Typically, the laser frequency or the cavity length is
 adjusted to hold the carrier on resonance.  Near the resonance, there
 is a very large change in reflected phase for a small change of
 detuning (change in cavity length or laser frequency); the RF
@@ -367,13 +376,49 @@ The reflectivity of a lossless Fabry-Perot cavity is
 r_c(\phi) = \frac{r_1 - r_2 \exp i2\phi}{1 - r_1 r_2 \exp i 2\phi}
 \end{equation}
 for an optical field that is $\phi$ radians from resonance.
-Suppose the carrier and upper and lower sidebands are incident upon this
-cavity, and the reflection from the cavity is incident on a photodiode.
+The field reflected from the optical cavity is
+%
+\begin{equation}
+E_r = \underbrace{E_0 e^{i\omega t}}_{\text{laser source}} \left(
+\underbrace{J_0(\Gamma) r_c(\phi)}_{\text{carrier}}
++ 
+\underbrace{\overbrace{i J_1(\Gamma) e^{-i\Omega t}}^{\text{incident field}}
+            \overbrace{r_c(\phi - \Omega/\nu_0)}^{\text{cavity action}}}_{\text{lower sideband}}
++ 
+\underbrace{i J_1(\Gamma) e^{ +i\Omega t} r_c(\phi + \Omega/\nu_0)}_{\text{upper sideband}}
+\right)
+\end{equation}
+where $\phi$ now indicates the detuning of the carrier in the cavity
+(i.e. its deviation from resonance) in radians, $\nu_0$ is the
+cavity's free spectral range, and $\omega=2\pi c/\lambda$ is the
+optical frequency.  Here we have assumed that higher order harmonics
+($J_2(\Gamma)$, etc) are negligible.
+
+A photodiode is sensitive only to power and not field amplitude; when
+this field is incident on a photodiode, the photodiode will see the
+squared magnitude of the field, i.e. $|E_r|^2 = {E_r}^* E_r$, where
+$*$ indicates complex conjugation.  The interference of the carrier
+and the sideband terms results in a DC (i.e. unchanging) power in
+addition to power modulations at frequencies $\Omega$ and $2\Omega$.
+
+\begin{align}
+E = &E_0 + E_- e^{-i\Omega t} + E_+ e^{+i\Omega t} \\
+P = & \left(E_0   + E_- e^{-i\Omega t} +  E_+ e^{+i\Omega t}\right)
+      \left(E_0^* +   E_-* e^{+i\Omega t} + E_+^* e^{-i\Omega t}\right) \\
+  = & |E_0|^2 + |E_-|^2 + |E_+|^2 \\
+    & + E_0 E_+^* e^{-i\Omega t} + E_0^* E_- e^{-i\Omega t} \\
+    & + E_0 E_-^* e^{+i\Omega t} + E_0^* E_+ e^{+i\Omega t} \\
+    & + E_- E_+^* e^{-2i\Omega t} + E_-^* E_+ e^{+2i\Omega t} \\
+  = & \\
+    & + 2 \text{ Re } E_-^* E_+ e^{2i\Omega t}
+\end{align}
 
 \begin{equation}
-E_r = J_0 r_c(\phi) 
-+ J_1 r_c(\phi - \Omega/\nu_0) 
-+ J_1 r_c(\phi + \Omega/\nu_0)
+\begin{split}
+P_r = |E_0|^2 [ & {J_0}^2 |r_c(\phi)|^2 + {J_{-1}}^2  |r_c(\phi-\Omega/\nu_0)|^2 + {J_{1}}^2  |r_c(\phi+\Omega/\nu_0)|^2 + \\
+             & \left(\right)e^{i\Omega t} \\
+             & 2 {J_1}^2 \left(\text{Re } r_c(\phi-\Omega/\nu_0)^* r_c(\phi+\Omega/\nu_0)\right) \cos 2\Omega t
+\end{split}
 \end{equation}
 \end{comment}
 
