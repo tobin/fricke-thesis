@@ -1,4 +1,3 @@
- 
  [ ] better GR introduction
  [ ] Fit mode scan data
  [ ] Cavity length noise
@@ -10,6 +9,12 @@
  [ ] PDH explanation
  [ ] Generalization of PDH to the Michelson
  [X] discussion of interferometer noises
+ [ ] put in the AM vs PM doodles
+ [ ] antenna pattern
+ [ ] put in laser modes picture
+ [ ] add dark noise to noise budget
+ [ ] put in noisebudget
+ [ ] fix style of 'direct contributions of AM...' plot
 
 Plots to make:
  [X] PDH error signal
