@@ -15,6 +15,8 @@
  [ ] add dark noise to noise budget
  [ ] put in noisebudget
  [ ] fix style of 'direct contributions of AM...' plot
+ [ ] add binary inspiral radiation pattern plot
+ [ ] mention fluctuation-dissipation theorem
 
 Plots to make:
  [X] PDH error signal
