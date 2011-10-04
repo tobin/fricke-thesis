@@ -51,27 +51,33 @@ oscillator.
   \label{fig:balanced-homodyne}
 }
 \end{figure}
-%
+
 \begin{figure}
 \includegraphics[width=0.5\columnwidth]{figures/darmfringe-1000.pdf}
 \includegraphics[width=0.5\columnwidth]{figures/darmfringe-15.pdf}
-\caption[The DARM fringe]{Power at the output port ($P_{AS}$) relative
-  to the interferometer input power ($P_{IN}$), as a function of the
-  DARM offset.  Left: The DARM fringe differs from the $P_{BS} \sin^2
-  kx$ of a simple Michelson since $P_{BS}$ itself depends on the DARM
-  offset.  Right: For small offsets, the fringe appears quadratic.  DC
-  readout operates with an intentional static DARM offset in order to
-  create a linear relationship between DARM perturbations and
-  $P_{AS}$.  The nonzero minimum power (at zero offset) is the
-  contrast defect.}
+\caption[DARM fringe]{Power at the output port ($P_{AS}$) relative to
+  the interferometer input power ($P_{IN}$), as a function of the DARM
+  offset, in picometers (1 pm = $10^{-12}$ m).  Left: The DARM fringe
+  differs from the $P_{BS} \sin^2 kx$ of a simple Michelson since
+  $P_{BS}$ itself depends on the DARM offset.  For comparison recall
+  that the full fringe width (from one resonance to the next) is
+  $\lambda\approx10^{-6}$ m.  Right: Detail. For small offsets, the
+  fringe appears quadratic.  DC readout operates with an intentional
+  static DARM offset in order to create a linear relationship between
+  DARM perturbations and $P_{AS}$.  The small but nonzero minimum
+  power at zero offset is the contrast defect.
+  \label{fig:darm-fringe}
+}
 \end{figure}
 
 One way to intuitively understand DC readout is that simply moving
-away from the quadratic point of the fringe, a linear coupling is
-introduced.  In the frequency domain we might ask how phase modulation
-induced in the arms is converted to amplitude modulation at the AS
-port; the answer is that the Michelson rotates the carrier by 90
-degrees due to the $i$ in the Michelson transmission
+away from the quadratic point of the fringe (depicted in
+figure~\ref{fig:darm-fringe}), a linear relationship from DARM
+variations to power variationsis introduced.  On the other hand,
+considering the frequency domain picture, we might ask how phase
+modulation induced in the arms is converted to amplitude modulation at
+the AS port.  The answer is that the Michelson rotates the carrier by
+90 degrees due to the $i$ in the Michelson transmission
 (equation~\ref{eq:michelson-transmission}).
 
 The true beauty of DC readout is that it exploits the filtering
