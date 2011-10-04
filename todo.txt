@@ -28,7 +28,7 @@ Plots to make:
  [ ] OMC higher-order mode resonances
 
 Doodle-figures to make:
- [ ] DARM fringe
+ [X] DARM fringe
  [X] Homodyne detection
  [X] coupled cavity
 
