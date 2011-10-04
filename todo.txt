@@ -17,6 +17,10 @@
  [ ] fix style of 'direct contributions of AM...' plot
  [ ] add binary inspiral radiation pattern plot
  [ ] mention fluctuation-dissipation theorem
+ [ ] quantum-optical approach to shot noise
+ [ ] add tip-tilt picture
+ [x] describe Optickle
+ [ ] Explore the possibility of using a MICH offset for DC readout.
 
 Plots to make:
  [X] PDH error signal
