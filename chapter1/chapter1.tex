@@ -1,11 +1,11 @@
 \chapter{Introduction}
 \label{chapter1}
 
-\section{Gravitational Waves}
+\section{Gravitational waves}
 
 Almost all of humanity's knowledge of the universe is derived from
 observations of electromagnetic waves.  The effort to detect
-gravitational waves seeks to expand this knowledge by observing an
+gravitational waves (GWs) seeks to expand this knowledge by observing an
 entirely different field, and to further verify the correctness of the
 theory of general relativity.
 
@@ -64,9 +64,9 @@ $$ [\mathsf{h}(z,t)] = \left(
 $$
 Here we see several of the essential points of gravitational waves:
 \begin{itemize}
-\item There are two independent components (polarizations)
-\item They travel at the speed of light 
-\item They are manifest as a transverse tidal force on inertial objects
+\item there are two independent components (polarizations),
+\item they travel at the speed of light, and
+\item they are manifest as a transverse tidal force on inertial objects.
 \end{itemize}
 
 In the transverse traceless gauge, inertial objects reside at fixed
@@ -150,13 +150,13 @@ points to note include:
 \item The gravitational wave frequency is twice the orbital frequency.
 \item The emission is surprisingly isotropic.
 \item Most of the GW emission is along the rotational axis of the
-  binary system; these GW's are circularly polarized.  Emission in the
+  binary system; these GWs are circularly polarized.  Emission in the
   plane of the binary system is linearly polarized.  This is as one
   would expect from basic symmetry considerations.
 \end{itemize}
 
 To get a sense of the scale of the phenomenon, we can plug in some
-numbers.  A binary system in the Virgo cluster orbitting at 50 Hz
+numbers.  A binary system in the Virgo cluster orbiting at 50 Hz
 where each object is a one-solar-mass star would produce an expected
 strain on earth of the order $h\sim10^{-21}$-- an almost
 preposterously small effect, making GW detection a significant
@@ -179,10 +179,10 @@ r   &= 16 \text{ MPc} \approx 5 \times 10^{23} \text{ m} \\
 R   & = \left(2 \mu / (G \omega^2)\right)^{1/3}
 \end{align}
 \end{comment}
-\section{The Hulse-Taylor Pulsar}
+\section{The Hulse-Taylor pulsar}
 
 The emission of gravitational waves by a binary star system has
-already been confirmed--indirectly.  In 1974, Hulse and Taylor
+already been confirmed through indirect observation.  In 1974, Hulse and Taylor
 discovered a radio pulsar that is a member of a binary star
 system\cite{Hulse1975Discovery,Weisberg2005Relativistic}.  The
 electromagnetic emissions of the pulsar allowed the orbital parameters
@@ -215,7 +215,7 @@ In such a detector, a large cylinder of a metal alloy with
 a very high mechanical Q-factor is suspended in a vacuum chamber and
 cooled to cryogenic temperatures.  A passing gravitational wave
 couples mechanical energy into the bar, ringing up the fundamental
-mechanical mode of the bar.  Sensitive detectors (latter bars used
+mechanical mode of the bar.  Sensitive displacement sensors (later bars used
 SQUIDs) read out this mechanical displacement.  Resonant bars are
 inherently narrow-band devices, sensitive to gravitational waves
 within a narrow linewidth about their fundamental resonance.
@@ -225,6 +225,8 @@ they can be moved or re-oriented.  The ALLEGRO bar detector at LSU~\cite{Mauceli
 rotated to modulate its overlap function with the nearby LIGO
 Livingston observatory, and the data was analyzed for coincident
 events between LIGO and Allegro\cite{Abbott2007First}.
+A typical cryogenic resonant bar detector setup is depicted in
+figure~\ref{fig:explorer-bar}.
 
 \subsection{Laser interferometers}
 
@@ -282,9 +284,9 @@ to only a single polarization) along with auxiliary data streams which
 convey the state of the detector and its environment.  These auxiliary
 data streams are used for both detector debugging and for vetoing of
 candidate signals which are coincident with local environmental
-disturbances.
+disturbances\cite{SlutskyThesis,Slutsky2010Methods}.
 
-\section{Sources of Gravitational Waves}
+\section{Sources of gravitational waves}
 Anticipated sources of gravitational waves can be conveniently
 categorized as \emph{continuous} or \emph{transient}, and as
 \emph{modeled} or \emph{unmodeled}.  There is some overlap in this
@@ -321,7 +323,7 @@ source.
 
 \item \textbf{bursts} --- Transient cataclysmic events such as
   supernovae will generate bursts of gravitational waves whose
-  waveforms is not known in advance.  
+  waveforms are not known in advance.  
 
 \item \textbf{stochastic background} --- In the same manner as the
   cosmic microwave background radiation, a cosmological background of
@@ -332,7 +334,7 @@ source.
   background is almost certainly too weak to detect in the forseeable
   future.
 
-  The cacophony of unresolved astrophysical sources will also combine
+  The cacophony of unresolved astrophysical sources also combines
   to produce a gravitational wave stochastic background.   
 
   The stochastic background search is fully coherent.  In its simplest
@@ -340,7 +342,7 @@ source.
   gravitational wave detectors.  This can be done in either an all-sky
   search or in a sky-position-dependent search.  Typically, some
   power-law gravitational wave spectrum is assumed.
-  
+  %
   The signal processing strategy for the detection of a stochastic background
   is described by Allen and Romano in \cite{Allen1999Detecting}.
 \end{itemize}
@@ -403,7 +405,7 @@ been published.  The gamma-ray burst paper\cite{S5GRB070201} illustrates
 the value of the LIGO observational results despite not having actually
 detected any GWs.  The electromagnetically observed sky position of gamma
 ray burst 070201 was coincident with the spiral arms of the Andromeda galaxy (M31);
-the \emph{non-detection} of GWs associated with the event lead to the conclusion that it did not occur in M31, but much further away.
+the \emph{non-detection} of GWs associated with the event led to the conclusion that it did not occur in M31, but much further away.
 
 
 \subsection{Summary of changes made for Enhanced LIGO}
@@ -416,7 +418,7 @@ Detector upgrades during Enhanced LIGO included:
 \item An increase in laser power.  The initial LIGO laser, an Nd:YAG
   NPRO capable of producing $< 10$ Watts of laser power at a
   wavelength of 1064 nm, was replaced with the Advanced LIGO laser
-  front-end, built by Laser-Zentrum Hannover, with an output power of 35 W.
+  front-end, built by Laser-Zentrum Hannover\cite{Frede2007Fundamental}, with an output power of 35 W.
 \item The input optics were redesigned to handle the higher input
   power~\cite{DooleyCharacterization,Quetschke2008ElectroOptic}.  
 \item A new thermal compensation system was implemented to compensate
@@ -442,7 +444,7 @@ meter prototype interferometer in Pasadena \cite{RobWardThesis}.
 During the same time as Enhanced LIGO, DC readout was simultaneously
 and independently implemented at GEO\cite{GeoDC,Degallaix2010Commissioning}.
 
-\section{The Future}
+\section{The future}
 
 It is hoped that Advanced LIGO and Advanced VIRGO, currently under
 construction, will bring the first direct detection of gravitational
@@ -455,7 +457,7 @@ interferometers are also in the works.
 Technological development of terrestrial laser
 interferometers is a vibrant field.  The Advanced detectors are
 anticipated to be limited almost everywhere by quantum mechanical
-noises, making gravitational wave detectors a verdant field for work
+noises, making gravitational wave detectors an active field for work
 in quantum optics.  The next generation of terrestrial gravitational
 wave detectors will be limited by near-field gravity--``Newtonian
 noise'' from density waves in the surrounding environment.  The ways
@@ -464,7 +466,7 @@ measure, predict, and subtract the Newtonian noise contribution using
 a seismic sensor array; or to move into space.
 %
 The Einstein telescope~\cite{EinsteinTelescopeDesignStudy2011} is a
-proposed syst of three interferometers with arms forming an
+proposed system of three interferometers with arms forming an
 equilateral triangle, to be installed in tunnels deep under Europe.
 
 Going into space makes feasible the use of extraordinarily long arms
@@ -479,7 +481,7 @@ channel is derived using time-delay interferometery.  The proposed
 LISA design is sensitive to gravitational waves in the range $10^{-4}$
 to $10^{-1}$ Hz (period of 3 hours down to 10 seconds).
 
-\section{This Dissertation}
+\section{This dissertation}
 % FIXME Gaby says: You need to introduce the LIGO project as
 % NSF-funded, and the LIGO Scientific Collaboration of which yu are a
 % member. You should also say that although the work is done in
@@ -487,7 +489,7 @@ to $10^{-1}$ Hz (period of 3 hours down to 10 seconds).
 % unique contributions and measurements that will be highlighted in
 % the thesis.
 
-LIGO, is, of course, a team effort, conducted by the LIGO Laboratory,
+LIGO, is, of course, a team effort, conducted by the LIGO Laboratory
 and by the LIGO Scientific Collaboration, of which I am a member.  The
 success of LIGO is due to the hard work of hundreds of people over the
 course of several decades.  I came to LIGO Livingston Observatory in
@@ -508,7 +510,7 @@ In Chapter 3, I describe DC readout, the newly implemented scheme
 for recovering the gravitational wave signal from the optical fields
 exiting the interferometer.
 
-Chapter 4 introduces the Output Mode Cleaner, its design and control,
+Chapter 4 introduces the output mode cleaner, its design and control,
 and the general idea of mode cleaners.
 
 Finally, in Chapter 5, I present results demonstrating the performance
