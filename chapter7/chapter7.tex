@@ -101,29 +101,44 @@ conservation of energy. There are two such conventions in common
 use. We can call them the ``engineers' convention'' and the
 ``physicists' convention.''
 
+\begin{figure}
+\centerline{\includegraphics{figures/Smatrix.pdf}}
+\caption[Scattering matrix]{\label{fig:Smatrix}The scattering matrix $S$ 
+gives the amplitudes of the outgoing fields $b_1$ and $b_2$ in terms of
+the in-going fields $a_1$ and $a_2$.}
+\end{figure}
+
+The complex reflection and transmission coefficients are encoded in
+the S-matrix, which gives the amplitudes of the fields going
+\emph{out} of some optical element in terms of the fields going
+\emph{in} (depicted in figure~\ref{fig:Smatrix}).
+
 In the physics convention, transmission through a mirror conveys no
 phase; reflection from one direction is real and positive ($+r$),
 but reflection from the other direction gives a minus sign ($-r$).
 The physics convention essentially models a mirror as a single dielectric
-boundary.
-
-\[
+boundary.  The S-matrix for the physics convention is:
+%
+\begin{equation}
 S_{physics}=\left(\begin{array}{cc}
-t & r\\
--r & t
+-r & t\\
+ t & r
 \end{array}\right)
-\]
+\label{eq:Smatrix-physics}
+\end{equation}
 
 In the engineering convention, reflection from either side of a mirror
 has the same real, positive reflectivity ($+r$), but transmission
-through the mirror gives a phase of 90 degrees, a coefficient of $it$:
-
-\[
+through the mirror gives a phase of 90 degrees, a coefficient of $it$, 
+giving an $S$-matrix of:
+%
+\begin{equation}
 S_{engineering}=\left(\begin{array}{cc}
-it & r\\
-r & it
+ r & it\\
+it & r
 \end{array}\right)
-\]
+\label{eq:Smatrix-engr}
+\end{equation}
 
 The (initial) LIGO test masses actually have amplitude reflectivity
 coefficients close to $-1$ at the high-reflectivity (HR) side, so
