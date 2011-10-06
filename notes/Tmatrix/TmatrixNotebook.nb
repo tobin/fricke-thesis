@@ -1,0 +1,414 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 7.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[     12499,        405]
+NotebookOptionsPosition[     10937,        352]
+NotebookOutlinePosition[     11506,        373]
+CellTagsIndexPosition[     11463,        370]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["resonant cavity using scattering transfer matrices", "Title",
+ CellChangeTimes->{{3.492099458829699*^9, 3.492099469590785*^9}, {
+  3.4921218385386343`*^9, 3.492121842127202*^9}}],
+
+Cell["", "Text",
+ CellChangeTimes->{{3.492099479256563*^9, 3.492099499858824*^9}, 
+   3.492123468730748*^9}],
+
+Cell["\<\
+Here I define two functions which convert between S - parameters and T - \
+parameters.  These functions only work for 2\[Cross]2 matrices; I don' t know \
+the general form of the transformation nor whether it really makes sense to \
+use T - parameters for devices with more than two ports (maybe 2N ports?).
+
+Tobin Fricke 2010-08-29\
+\>", "Text",
+ CellChangeTimes->{{3.492097870113104*^9, 3.492097928062606*^9}, {
+   3.492098785344679*^9, 3.4920987909223824`*^9}, {3.49209944600731*^9, 
+   3.492099451256917*^9}, 3.492121810603323*^9, 3.4921234727885513`*^9, {
+   3.49212371137403*^9, 3.492123715732141*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"StoT", "[", "S_", "]"}], ":=", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"-", 
+        RowBox[{"Det", "[", "S", "]"}]}], "/", 
+       RowBox[{"S", "[", 
+        RowBox[{"[", 
+         RowBox[{"2", ",", "1"}], "]"}], "]"}]}], ",", " ", 
+      RowBox[{
+       RowBox[{"S", "[", 
+        RowBox[{"[", 
+         RowBox[{"1", ",", "1"}], "]"}], "]"}], "/", 
+       RowBox[{"S", "[", 
+        RowBox[{"[", 
+         RowBox[{"2", ",", "1"}], "]"}], "]"}]}]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"-", 
+        RowBox[{"S", "[", 
+         RowBox[{"[", 
+          RowBox[{"2", ",", "2"}], "]"}], "]"}]}], "/", 
+       RowBox[{"S", "[", 
+        RowBox[{"[", 
+         RowBox[{"2", ",", "1"}], "]"}], "]"}]}], ",", " ", 
+      RowBox[{"1", "/", 
+       RowBox[{"S", "[", 
+        RowBox[{"[", 
+         RowBox[{"2", ",", "1"}], "]"}], "]"}]}]}], "}"}]}], "}"}]}]], "Input",\
+
+ CellChangeTimes->{{3.4920946442950687`*^9, 3.492094685700303*^9}, {
+  3.492094720464967*^9, 3.4920947531434402`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"TtoS", "[", "T_", "]"}], ":=", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"T", "[", 
+        RowBox[{"[", 
+         RowBox[{"1", ",", "2"}], "]"}], "]"}], "/", 
+       RowBox[{"T", "[", 
+        RowBox[{"[", 
+         RowBox[{"2", ",", "2"}], "]"}], "]"}]}], ",", " ", 
+      RowBox[{
+       RowBox[{"Det", "[", "T", "]"}], "/", 
+       RowBox[{"T", "[", 
+        RowBox[{"[", 
+         RowBox[{"2", ",", "2"}], "]"}], "]"}]}]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"1", "/", 
+       RowBox[{"T", "[", 
+        RowBox[{"[", 
+         RowBox[{"2", ",", "2"}], "]"}], "]"}]}], ",", 
+      RowBox[{
+       RowBox[{"-", 
+        RowBox[{"T", "[", 
+         RowBox[{"[", 
+          RowBox[{"2", ",", "1"}], "]"}], "]"}]}], "/", 
+       RowBox[{"T", "[", 
+        RowBox[{"[", 
+         RowBox[{"2", ",", "2"}], "]"}], "]"}]}]}], "}"}]}], "}"}]}]], "Input",\
+
+ CellChangeTimes->{{3.492094755806061*^9, 3.492094805824277*^9}, {
+  3.492094998470299*^9, 3.492094999119894*^9}}],
+
+Cell["\<\
+Make sure that the composition of these operations is the identity :\
+\>", "Text",
+ CellChangeTimes->{{3.4920980273438587`*^9, 3.4920980385812893`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"With", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"S", "=", 
+     RowBox[{"Array", "[", 
+      RowBox[{"s", ",", 
+       RowBox[{"{", 
+        RowBox[{"2", ",", "2"}], "}"}]}], "]"}]}], "}"}], ",", 
+   RowBox[{
+    RowBox[{"TtoS", "[", 
+     RowBox[{"StoT", "[", "S", "]"}], "]"}], "\[Equal]", "S"}]}], " ", 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.492098522455344*^9, 3.492098598679501*^9}, {
+  3.492098678942444*^9, 3.4920987304310102`*^9}}],
+
+Cell[BoxData["True"], "Output",
+ CellChangeTimes->{{3.492098523378996*^9, 3.492098599010709*^9}, {
+   3.4920987077863894`*^9, 3.4920987308767757`*^9}, 3.4921237763744183`*^9}]
+}, Open  ]],
+
+Cell["\<\
+Now I define the S - matrices for a lossless mirror and for free - space :\
+\>", "Text",
+ CellChangeTimes->{{3.492097989349224*^9, 3.492098004558701*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"Smirror", "=", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"r", ",", 
+      RowBox[{"I", " ", "t"}]}], "}"}], ",", " ", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"I", " ", "t"}], ",", " ", "r"}], "}"}]}], 
+   "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{"Sfreespace", " ", "=", " ", 
+  RowBox[{
+   RowBox[{"Exp", "[", 
+    RowBox[{"I", " ", "\[Phi]"}], "]"}], 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"0", ",", "1"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "0"}], "}"}]}], "}"}]}]}]}], "Input",
+ CellChangeTimes->{{3.4920950157688923`*^9, 3.4920950267519283`*^9}, {
+  3.492097944265668*^9, 3.4920979754369507`*^9}, {3.4920990641031113`*^9, 
+  3.492099067886712*^9}, {3.4921116646634617`*^9, 3.492111666219597*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"r", ",", 
+     RowBox[{"\[ImaginaryI]", " ", "t"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\[ImaginaryI]", " ", "t"}], ",", "r"}], "}"}]}], 
+  "}"}]], "Output",
+ CellChangeTimes->{3.4921116677587337`*^9, 3.492123776381559*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"0", ",", 
+     SuperscriptBox["\[ExponentialE]", 
+      RowBox[{"\[ImaginaryI]", " ", "\[Phi]"}]]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     SuperscriptBox["\[ExponentialE]", 
+      RowBox[{"\[ImaginaryI]", " ", "\[Phi]"}]], ",", "0"}], "}"}]}], 
+  "}"}]], "Output",
+ CellChangeTimes->{3.4921116677587337`*^9, 3.492123776383884*^9}]
+}, Open  ]],
+
+Cell["Convert the S - matrices to T - matrices :", "Text",
+ CellChangeTimes->{{3.492098308938572*^9, 3.49209831355116*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"Tmirror", " ", "=", " ", 
+  RowBox[{"StoT", "[", "Smirror", "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"Tfreespace", " ", "=", " ", 
+  RowBox[{"StoT", "[", "Sfreespace", "]"}]}]}], "Input",
+ CellChangeTimes->{{3.492095794635858*^9, 3.492095800095739*^9}, {
+  3.492098252462386*^9, 3.492098279385914*^9}, {3.492111676478981*^9, 
+  3.492111677611322*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", 
+      FractionBox[
+       RowBox[{"\[ImaginaryI]", " ", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"-", 
+           SuperscriptBox["r", "2"]}], "-", 
+          SuperscriptBox["t", "2"]}], ")"}]}], "t"]}], ",", 
+     RowBox[{"-", 
+      FractionBox[
+       RowBox[{"\[ImaginaryI]", " ", "r"}], "t"]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     FractionBox[
+      RowBox[{"\[ImaginaryI]", " ", "r"}], "t"], ",", 
+     RowBox[{"-", 
+      FractionBox["\[ImaginaryI]", "t"]}]}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.492111678410833*^9, 3.4921237764768744`*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     SuperscriptBox["\[ExponentialE]", 
+      RowBox[{"\[ImaginaryI]", " ", "\[Phi]"}]], ",", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", 
+     SuperscriptBox["\[ExponentialE]", 
+      RowBox[{
+       RowBox[{"-", "\[ImaginaryI]"}], " ", "\[Phi]"}]]}], "}"}]}], 
+  "}"}]], "Output",
+ CellChangeTimes->{3.492111678410833*^9, 3.492123776500217*^9}]
+}, Open  ]],
+
+Cell["Define a Fabry - Perot cavity using the T - matrices :", "Text",
+ CellChangeTimes->{{3.492098420650666*^9, 3.492098433181669*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Tmirror1", " ", "=", " ", 
+   RowBox[{"Tmirror", " ", "/.", " ", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"r", " ", "\[Rule]", " ", "r1"}], ",", " ", 
+      RowBox[{"t", "\[Rule]", "t1"}]}], "}"}]}]}], ";", 
+  RowBox[{"Tmirror2", " ", "=", " ", 
+   RowBox[{"Tmirror", " ", "/.", " ", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"r", " ", "\[Rule]", " ", "r2"}], ",", " ", 
+      RowBox[{"t", "\[Rule]", "t2"}]}], "}"}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Tfp", " ", "=", " ", 
+   RowBox[{
+   "Tmirror1", " ", ".", " ", "Tfreespace", " ", ".", " ", "Tmirror2"}]}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.492096032245425*^9, 3.492096042588307*^9}, {
+  3.4920983798227577`*^9, 3.4920984107460546`*^9}}],
+
+Cell["\<\
+To extract the cavity reflection coefficient, we transform back to the S - \
+matrix :\
+\>", "Text",
+ CellChangeTimes->{{3.49209881605731*^9, 3.4920988276894836`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Sfp", " ", "=", 
+   RowBox[{"TtoS", "[", "Tfp", "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.492095931115217*^9, 3.492095961619748*^9}, 
+   3.492098867287607*^9}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"rc", " ", "=", " ", 
+   RowBox[{"FullSimplify", "[", 
+    RowBox[{"Sfp", "[", 
+     RowBox[{"[", 
+      RowBox[{"1", ",", "1"}], "]"}], "]"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"tc", " ", "=", 
+   RowBox[{"FullSimplify", "[", 
+    RowBox[{"Sfp", "[", 
+     RowBox[{"[", 
+      RowBox[{"2", ",", "1"}], "]"}], "]"}], "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.4920959712550507`*^9, 3.492095973633366*^9}, {
+  3.4920988731111517`*^9, 3.492098892347806*^9}, {3.4921001029887466`*^9, 
+  3.492100126416465*^9}, {3.49210048610817*^9, 3.492100486337624*^9}}],
+
+Cell["Check whether this is equal to the usual form of rc :", "Text",
+ CellChangeTimes->{{3.4920992547298603`*^9, 3.492099266439684*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"rc", " ", "\[Equal]", " ", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"r1", " ", "-", " ", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"r1", "^", "2"}], " ", "+", " ", 
+         RowBox[{"t1", "^", "2"}]}], ")"}], "r2", " ", 
+       RowBox[{"Exp", "[", 
+        RowBox[{"I", " ", "2", " ", "\[Phi]"}], "]"}]}]}], ")"}], " ", "/", 
+    " ", 
+    RowBox[{"(", 
+     RowBox[{"1", " ", "-", " ", 
+      RowBox[{"r1", " ", "r2", " ", 
+       RowBox[{"Exp", "[", 
+        RowBox[{"I", " ", "2", " ", "\[Phi]"}], "]"}]}]}], ")"}]}]}], "//", 
+  "Simplify"}]], "Input",
+ CellChangeTimes->{{3.4920992693746157`*^9, 3.4920993275171947`*^9}}],
+
+Cell[BoxData["True"], "Output",
+ CellChangeTimes->{{3.49209931988623*^9, 3.492099328010006*^9}, 
+   3.4921237772183867`*^9}]
+}, Open  ]],
+
+Cell["It is.", "Text",
+ CellChangeTimes->{{3.492099331994947*^9, 3.4920993328389797`*^9}}]
+}, Open  ]]
+},
+WindowSize->{875, 752},
+WindowMargins->{{1, Automatic}, {70, Automatic}},
+PrintingPageRange->{Automatic, Automatic},
+PrintingOptions->{"Magnification"->1.,
+"PaperOrientation"->"Portrait",
+"PaperSize"->{611.28, 789.57},
+"PostScriptOutputFile"->"/home/tobin/notebook/2010/08/29/nb.pdf"},
+ShowSelection->True,
+FrontEndVersion->"7.0 for Linux x86 (64-bit) (February 25, 2009)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[567, 22, 184, 2, 141, "Title"],
+Cell[754, 26, 108, 2, 31, "Text"],
+Cell[865, 30, 618, 11, 111, "Text"],
+Cell[1486, 43, 1107, 36, 32, "Input"],
+Cell[2596, 81, 1074, 35, 32, "Input"],
+Cell[3673, 118, 162, 3, 31, "Text"],
+Cell[CellGroupData[{
+Cell[3860, 125, 471, 14, 32, "Input"],
+Cell[4334, 141, 175, 2, 31, "Output"]
+}, Open  ]],
+Cell[4524, 146, 164, 3, 31, "Text"],
+Cell[CellGroupData[{
+Cell[4713, 153, 797, 23, 55, "Input"],
+Cell[5513, 178, 316, 10, 31, "Output"],
+Cell[5832, 190, 410, 12, 33, "Output"]
+}, Open  ]],
+Cell[6257, 205, 123, 1, 31, "Text"],
+Cell[CellGroupData[{
+Cell[6405, 210, 377, 7, 55, "Input"],
+Cell[6785, 219, 680, 22, 52, "Output"],
+Cell[7468, 243, 431, 13, 33, "Output"]
+}, Open  ]],
+Cell[7914, 259, 136, 1, 31, "Text"],
+Cell[8053, 262, 772, 21, 55, "Input"],
+Cell[8828, 285, 176, 4, 31, "Text"],
+Cell[9007, 291, 200, 5, 32, "Input"],
+Cell[9210, 298, 622, 16, 55, "Input"],
+Cell[9835, 316, 137, 1, 31, "Text"],
+Cell[CellGroupData[{
+Cell[9997, 321, 692, 20, 32, "Input"],
+Cell[10692, 343, 124, 2, 31, "Output"]
+}, Open  ]],
+Cell[10831, 348, 90, 1, 31, "Text"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

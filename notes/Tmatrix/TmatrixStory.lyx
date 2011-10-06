@@ -1,0 +1,366 @@
+#LyX 1.6.4 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass dinbrief
+\begin_preamble
+\usepackage{fullpage}
+\end_preamble
+\use_default_options true
+\begin_modules
+theorems-ams
+\end_modules
+\language english
+\inputencoding auto
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\leftmargin 0cm
+\topmargin 0cm
+\rightmargin 0cm
+\bottommargin 0cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Title
+
+\series bold
+Solving an optical cavity using scattering transfer matrices
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Tobin Fricke, 2010-08-29
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The S-matrix (scattering matrix, S-parameters) is a common way to specify
+ the amplitude reflection and transmission coefficients of a system (optical
+ component, radio-frequency electronic device, quantum mechanical scattering
+ scenario, etc).
+ The S-matrix gives the amplitudes of waves scattering 
+\emph on
+out
+\emph default
+ of the system in terms of the amplitudes scattering 
+\emph on
+in
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Suppose the system looks like this, with amplitude 
+\begin_inset Formula $a_{1}$
+\end_inset
+
+ incident from the left, 
+\begin_inset Formula $a_{2}$
+\end_inset
+
+ incident from the right, and 
+\begin_inset Formula $b_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $b_{2}$
+\end_inset
+
+ emitted to the left and right, respectively:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename scatter.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align left
+Then the S-matrix is defined as the operator which takes 
+\begin_inset Formula $\mathbf{a}$
+\end_inset
+
+ and gives you 
+\begin_inset Formula $\mathbf{b}$
+\end_inset
+
+:
+\begin_inset Formula \[
+\left[\begin{array}{c}
+b_{1}\\
+b_{2}\end{array}\right]=S\left[\begin{array}{c}
+a_{1}\\
+a_{2}\end{array}\right]\]
+
+\end_inset
+
+For instance, possible
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+There is some freedom in the choice of phase, but you must have 
+\begin_inset Formula $\det S=1$
+\end_inset
+
+ for energy conservation or 
+\begin_inset Formula $\det S=1-L$
+\end_inset
+
+ if an element has loss.
+\end_layout
+
+\end_inset
+
+ S-matrices for a mirror and for propagation through free space are:
+\begin_inset Formula \[
+\begin{array}{lcr}
+S_{\text{mirror}}=\left(\begin{array}{cc}
+r & it\\
+it & r\end{array}\right) & \hspace{1em} & S_{\text{space}}=e^{i\omega\frac{L}{c}}\left(\begin{array}{cc}
+0 & 1\\
+1 & 0\end{array}\right)\end{array}\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The S matrix is easy to measure and to calculate, but sometimes it is convenient
+ to use a different matrix, which gives the amplitudes on the left side
+ of a component in terms of the amplitudes on the right side.
+ This matrix is called the scattering transfer matrix, or simply the T-parameter
+s or T-matrix.
+ The nice property of the T matrix is that the T matrix for a sequence of
+ components is simply the product of the T matrices for the individual component
+s
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+It would seem that the T matrix is not so useful for branching structures,
+ such as a Michelson interferometer.
+\end_layout
+
+\end_inset
+
+.
+ For example, to find the T-matrix for a cavity consisting of two mirrors
+ separated by free space, you would simply multiply together the T-matrices
+ for the first mirror, the free space, and the second mirror.
+\end_layout
+
+\begin_layout Standard
+The T-matrix relates the amplitudes like this:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \[
+\left[\begin{array}{c}
+b_{1}\\
+a_{1}\end{array}\right]=T\left[\begin{array}{c}
+b_{2}\\
+a_{2}\end{array}\right]\]
+
+\end_inset
+
+The transformations between T and S are a little strange
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Is there a nicer, more abstract way to write the transformations between
+ S and T?
+\end_layout
+
+\end_inset
+
+, kind of like half an inverse:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 1
+width "45col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula \begin{eqnarray*}
+T_{11} & = & -\det(S)/S_{21}\\
+T_{12} & = & S_{11}/S_{21}\\
+T_{21} & = & -S_{22}/S_{21}\\
+T_{22} & = & 1/S_{21}\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 1
+width "40col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula \begin{eqnarray*}
+S_{11} & = & T_{12}/T_{22}\\
+S_{12} & = & (\det T)/T_{22}\\
+S_{21} & = & 1/T_{22}\\
+S_{22} & = & -T_{21}/T_{22}\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Applynig the 
+\begin_inset Formula $S\rightarrow T$
+\end_inset
+
+ transformation to the S matrices for a mirror and for free space, we find:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \[
+\begin{array}{lcr}
+T_{\text{mirror}}=-\frac{i}{t}\left(\begin{array}{cc}
+-(r^{2}+t^{2}) & r\\
+-r & 1\end{array}\right) & \text{ \ \ \ } & T_{\text{space}}=\left(\begin{array}{cc}
+e^{i\omega\frac{L}{c}} & 0\\
+0 & e^{-i\omega\frac{L}{c}}\end{array}\right)\end{array}\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now we can compute the T matrix for a Fabry Perot cavity just by multiplying
+ these guys together (this is the whole point!): 
+\begin_inset Formula $T_{\text{cavity}}=T_{\text{mirror1}}\cdot T_{\text{free space}}\cdot T_{\text{mirror2}}$
+\end_inset
+
+.
+ Assuming 
+\begin_inset Formula $r^{2}+t^{2}=1$
+\end_inset
+
+ (lossless optics) due to laziness, and letting 
+\begin_inset Formula $\phi\equiv\omega L/c$
+\end_inset
+
+ for brevity:
+\begin_inset Formula \begin{eqnarray*}
+T_{\text{cavity}} & = & \frac{-1}{t_{1}t_{2}}\left(\begin{array}{cc}
+-1 & r_{1}\\
+-r_{1} & 1\end{array}\right)\left(\begin{array}{cc}
+e^{i\omega\frac{L}{c}} & 0\\
+0 & e^{-i\omega\frac{L}{c}}\end{array}\right)\left(\begin{array}{cc}
+-1 & r_{2}\\
+-r_{2} & 1\end{array}\right)\\
+ & = & \frac{-1}{t_{1}t_{2}}\left(\begin{array}{cc}
+e^{i\phi}-e^{-i\phi}r_{1}r_{2} & e^{-i\phi}r_{1}-e^{i\phi}r_{2}\\
+e^{i\phi}r_{1}-e^{-i\phi}r_{2} & e^{-i\phi}-e^{i\phi}r_{1}r_{2}\end{array}\right)\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now, to get the cavity reflectivity and transmission coefficients, we transform
+ the whole thing back to S and extract 
+\begin_inset Formula $S_{11}$
+\end_inset
+
+ and 
+\begin_inset Formula $S_{21}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \[
+r_{c}\equiv S_{11}=\frac{e^{-i\phi}r_{1}-e^{i\phi}r_{2}}{e^{-i\phi}-e^{i\phi}r_{1}r_{2}}=\frac{r_{1}-r_{2}e^{i2\phi}}{1-r_{1}r_{2}e^{i2\phi}},\hspace{1em}t_{c}\equiv S_{21}=\frac{-t_{1}t_{2}}{e^{-i\phi}-r_{1}r_{2}e^{i\phi}}=\frac{-t_{1}t_{2}e^{i\phi}}{1-r_{1}r_{2}e^{2i\phi}}\]
+
+\end_inset
+
+which are, of course, the usual results.
+\end_layout
+
+\begin_layout Standard
+The above calculations are also computed in the attached Mathematica program
+ (on the following page).
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\end_body
+\end_document
