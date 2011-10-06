@@ -358,9 +358,9 @@ FUNCTION {format.names}
     { s nameptr "{ff~}{vv~}{ll}{, jj}" format.name$ 't :=
       nameptr #1 >
        {
-          nameptr #3
+          nameptr #1      % number of authors to list in truncated lists
           #1 + =
-          numnames #5
+          numnames #25    % if number of authors exceeds this, truncate
           > and
             { "others" 't :=
               #1 'namesleft := }
