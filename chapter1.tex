@@ -1,18 +1,20 @@
 \documentclass[12pt]{report}
 \usepackage{hyperref}
 \usepackage{graphicx}
-\usepackage{color}
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usepackage{setspace}
+\usepackage{fullpage}
 \newcommand{\cftchapfont}{\normalfont}
 \newcommand{\cftchappagefont}{\normalfont}
 \newcommand{\cftdot}{\normalfont.}
 
-\include{lsu_formats}
-\newcommand\checkme[1]{\textcolor{red}{\textbf{#1}}}
+%\include{lsu_formats}
 \begin{document}
-\pagestyle{myheadings}
-\include{chapter1/chapter1}
+%\pagestyle{myheadings}
+\input{chapter1/chapter1}
 \singlespace
-\bibliographystyle{plainurl}
+\bibliographystyle{unsrturletal}
 \bibliography{tobin}
 \end{document}
 

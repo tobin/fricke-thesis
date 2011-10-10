@@ -51,7 +51,7 @@ differential arm length, evaluated at the operating DARM offset:
 %
 \begin{align}
 A_{shot}(f) &= \sqrt{2 h (c/\lambda) P_{AS}} \\
-S_{DC}(f) &= 2 \sqrt{\epsilon P_{IN} P_{AS}}\ g_{cr}^2\ r_c'\ k\left(1 + i f/f_c\right)^{-1}
+S_{DC}(f) &= 2 \sqrt{\epsilon P_{IN} P_{AS}}\ g_{cr}\ r_c'\ k\left(1 + i f/f_c\right)^{-1}
 \end{align}
 %
 where $f_c = \nu_0 / (2\mathcal{F})$ is the cavity pole, $h$ is Planck's
@@ -65,7 +65,7 @@ Combining these two expressions gives the noise floor due to shot noise,
 calibrated in meters; dividing by the arm length $L$ gives the noise floor in strain:
 %
 \begin{align}
-x_{shot}(f) & = \frac{1}{2\pi} \sqrt{\frac{\lambda h c}{2 \epsilon P_{IN}}}\ \frac{1}{g_{cr}^2\ r_c'}
+x_{shot}(f) & = \frac{1}{2\pi} \sqrt{\frac{\lambda h c}{2 \epsilon P_{IN}}}\ \frac{1}{g_{cr}\ r_c'}
 \ \left|1 + i \frac{f}{f_c}\right| \\
 h_{shot}(f) &= (1/L)\ x_{shot}(f)
 \label{eq:expected-shot-noise}
