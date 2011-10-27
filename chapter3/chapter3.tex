@@ -4,8 +4,8 @@
 The initial LIGO detectors used RF heterodyne detection, inspired by
 the Pound-Drever-Hall technique, to sense all interferometer length
 degrees of freedom and most angular degrees of freedom.  During
-Enhanced LIGO, the sensing of the gravitational wave channel (DARM)
-was changed to a form of homodyne detection called DC readout.  In
+Enhanced LIGO, we changed the sensing of the gravitational wave channel (DARM)
+to a form of homodyne detection called DC readout.  In
 this chapter I explain the motivation for and theory behind DC
 readout.
 
@@ -13,7 +13,7 @@ readout.
 A homodyne readout system differs from a heterodyne system by using a
 local oscillator at the same (optical) frequency as the field being
 measured.  A typical homodyne detection system combines a local
-oscillator field and a signal field via two different ports of a
+oscillator (LO) field and a signal field via two different ports of a
 beamsplitter (depicted in figure~\ref{fig:balanced-homodyne}(a)).  The
 two PD signals are subtracted to recover the signal.  This arrangement
 suffers from a number of technical
@@ -295,7 +295,8 @@ number of conditions.  On one hand, the DARM offset cannot be too small:
 \item The power on the detection photodiode must be large enough such
   that the shot noise exceeds the electronics noise of the readout.
 \end{itemize}
-and, on the other hand, it can't be too big either:
+On the other hand, there are also upper limits to the magnitude of the
+DARM offset, including:
 \begin{itemize}
 \item The power loss at the AS port must be sufficiently small such
   that the power recycling gain is not diminished excessively.  Excess
@@ -307,7 +308,7 @@ and, on the other hand, it can't be too big either:
   oscillator) noise couplings and increase the magnitude of optical
   spring effects.  To keep noise couplings small, offsets should
   generally be kept as small as possible.
-\item The cavity detuning should be small compared to the cavity pole,
+\item The cavity detuning should be small compared to the cavity pole
   to avoid losing phase gain.  In practice, all of the other criteria
   will become limiting before this one.
 \end{itemize}
