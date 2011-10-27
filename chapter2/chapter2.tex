@@ -10,7 +10,7 @@ processes.  Through clever design and careful engineering, these
 machines are capable of resolving these tiny perturbations from the
 much louder sea of noise on the surface of the Earth\cite{Saulson1994Fundamentals}.
 
-As we have seen, a passing gravitational wave modulates the optical
+As described in the preceding chapter, a passing gravitational wave modulates the optical
 path length of light passing between inertial test
 masses.  To exploit this effect and build a detector around it, we
 need to arrange to have inertial test masses.  We need to be able to
@@ -92,19 +92,19 @@ points concerning gravitational wave detection:
 \item Variations of the common phase $\phi_+$ do not couple.
 \end{itemize}
 %
-The field at the output port will thus be sensitive to suitably
+The field at the output port is thus sensitive to suitably
 polarized graviational waves but insensitive to laser frequency noise\footnote{An orthogonally polarized gravitational wave, whose strain ellipse is
 rotated $45^\circ$, will modulate $\phi_+$ but this detector
 sacrifices sensitivity to that polarization in order to gain
 common-mode noise immunity.}. 
 
-Ultimately, we can not measure optical field amplitudes directly, but
-only the power, i.e. the envelope of the optical field, as the field
-itself oscillates at at $c/(1064\text{ nm})\approx 300\text{ THz}$,
-much too quickly to measure directly.  We compute the power at the
-anti-symmetric and reflected ports by taking the squared magnitude of
-the field amplitudes.  Using $P_{AS} = P_{BS} \left|t_M\right|^2$ and
-$P_{REFL} = P_{BS} \left|r_M\right|^2$:
+Ultimately, we can not measure optical field amplitudes directly,
+because the field itself oscillates at $c/(1064\text{ nm})\approx
+300\text{ THz}$, much too quickly to measure directly.  Instead we
+measure the power, i.e. the envelope of the optical field. We compute the
+power at the anti-symmetric and reflected ports by taking the squared
+magnitude of the field amplitudes.  Using $P_{AS} = P_{BS}
+\left|t_M\right|^2$ and $P_{REFL} = P_{BS} \left|r_M\right|^2$:
 %
 \begin{align}
 P_{AS}   &=  P_{BS}\left( {r}^2 \sin^2 \phi_- + (\Delta r/2)^2 \cos^2 \phi_-\right) \\
@@ -119,7 +119,7 @@ c_d = \frac{P_{AS}}{P_{BS}} = \frac{1}{4}\left(\Delta r\right)^2.
 \end{equation}
 
 The linear relationship between $\phi_-$ and the electric field at the
-output port has turned into a quadratic relationship between $\phi_-$
+output port leads to a quadratic relationship between $\phi_-$
 and the output port power.  We will turn to the task of recovering a
 linear signal in section~\ref{sec:isc}, but first we will consider
 methods to magnify the effect of a gravitational wave on $\phi_-$.
@@ -136,7 +136,7 @@ resulting in an effective number of bounces).  Resonant cavities were
 chosen for the LIGO arms. 
 
 The basic setup of a Fabry-Perot cavity is shown in Figure~\ref{fig:fabry-perot}.
-Light entering the cavity will interfere with light already
+Light entering the cavity interfered with light already
 circulating in the cavity.  If, after making a round-trip through the
 interior of the cavity, the circulating light returns to its original
 phase (and spatial distribution), constructive interference will occur
@@ -498,238 +498,6 @@ Some difficult-to-categorize noises:
   channel with noise.  One way to cope with this is to steeply cut off
   feedback of the offending control signal below the detection band.
 \end{itemize}
-
-\pagebreak
-
-\section{Determination of LIGO Cavity Lengths and Mirror Reflectivities}
-
-The lengths of cavities and reflectivities of mirrors in LIGO are all
-driven by a small number of design decisions.  This section is
-intended to be a brief and friendly derivation of some of these
-values.  Definitive references are \cite{LigoFreqResponse97} or
-\cite{Fritschel2001Readout}; A more general reference is
-\cite{S5InstrumentPaper}.
-
-As in the preceeding sections, I simply use the plane-wave
-approximation for fields inside cavities. This introduces certain
-inaccuracies, as, for example, I ignore Gouy phase. Nonetheless,
-comparison of the values derived here to the actual LIGO design shows good agreement.
-
-It is useful to draw a distinction between macroscopic and microscopic
-lengths. Macroscopic lengths are those derived here and
-used in detector engineering, with magnitudes ranging from kilometers
-down to centimeters or millimeters. Microscopic lengths are those
-on the order of the wavelength of light and smaller, sometimes \emph{much}
-smaller. Microscopic lengths are never determined explicitly; instead
-they are controlled by servo systems to hold cavities on resonance.
-When we say that a cavity is a certain macroscopic length, we retain
-the freedom to adjust the microscopic length to attain resonance.
-
-\subsection*{Arm Length}
-% FIXME - Gaby says: You should choose either the third person for
-% "LIGO" choosing the parameters, or the first person "we" as you use
-% later.
-
-How big a detector can you build? The physical length of the detector
-sets the conversion between displacement and strain. Simply making the
-detector longer will make any fixed displacement noises into smaller
-strain noises--so we want the detector as large as possible. How big
-one can build is usually a result of geography, money, and politics.
-LIGO got
-%
-\begin{equation}
-\boxed{{L_{+}=4000\text{{\ meters}}}}
-\end{equation}
-where $L_+=(1/2)(L_x + L_y)$ is the average arm length.
-
-The cavity length determines the free-spectral-range:
-%
-\begin{equation}
-\nu_0\equiv\frac{c}{2L_{+}}\approx37.5\text{ kHz}
-\end{equation}
-
-% FIXME - Gaby says: You should define L_+=(L_x+L_y)/2
-\subsection*{Bandwidth}
-
-In the Fabry-Perot Michelson interferometer design, there is a trade-off
-between the detector's sensitivity and its bandwidth.\footnote{Advanced LIGO will include an additional mirror, a \emph{signal recycling mirror}\cite{Meers1988Recycling} at the output of the interferometer, forming an additional resonant cavity at the anti-symmetric port.  This cavity allows the interferometer DC sensitivity to be increased without decreasing its bandwidth.}  As the storage
-time in the arm becomes longer and longer (either by making the arm
-longer, or by increasing its finesse), the sensitivity to gravitational
-waves increases commensurately. However, sensitivity to waves whose
-period is shorter than the storage time of the arm is attenuated.
-Thus there is a trade-off between sensitivity and bandwidth. 
-One must choose a bandwidth. LIGO chooses:
-%
-\begin{equation}
-f_{c}=90\text{\ Hz}
-\end{equation}
-
-Together, the free spectral range and the arm cavity pole determine
-the cavity finesse:
-\begin{equation}
-\mathcal{F}=\frac{f_{FSR}}{2f_{c}}\approx210
-\end{equation}
-
-\subsection*{Test Mass Reflectivities}
-
-Knowing our desired finesse allows us to choose the mirror reflectivities.
-The finesse is uniquely determined by the fraction of circulating
-power that remains in the cavity after each roundtrip, which is given
-by a product of the mirror reflectivities and $r_{L}=\sqrt{1-L}$
-where L represents losses due to scattering, absorption, etc. 
-\begin{equation}
-\mathcal{F}\approx-\frac{\pi}{\log r_{1}r_{2}r_{L}}
-\end{equation}
-
-This relation fixes the product $r_{1}r_{2}$, leaving the ratio $r_{1}/r_{2}$
-as a free parameter. This ratio determines the coupling of the cavity,
-from maximally over-coupled ($r_{2}\rightarrow1$), to critically
-coupled ($r_{1}=r_{2}$), or to cavity at all ($r_{1}\rightarrow1$).
-How do we choose the coupling? Intuitively, we want to couple as much
-light as possible into the cavity. In one point of view, this is so
-there is as much light as possible present inside the cavity to be
-phase modulated by the gravitational wave. The power gain inside the
-cavity is given by
-\[
-g^{2}=\frac{1-r_{1}{}^{2}}{\left(1-r_{1}r_{2}\right)^{2}}
-\]
-To maximize this, we want $r_{1}$ as small as possible, so we make
-the ETM as reflective as possible. It turns out that maximal over-coupling
-is the way to go. The best super-polished mirrors we could buy have
-transmissivities of 10 ppm, which gives
-\begin{equation}
-r_{2}=\sqrt{{1-10\times10^{-6}}}\approx0.999995
-\end{equation}
-Solving equation 1, we find:
-\begin{equation}
-r_{1}\approx0.985
-\end{equation}
-
-\subsection*{Power Recycling and the Recycling Mirror}
-
-With the Fabry-Perot Michelson interferometer tuned to the dark fringe, all
-of the light not lost in the arm cavities is reflected back towards
-the laser source. To send this light back into the interferometer,
-we add a power recycling mirror, which forms a resonant cavity with
-the FP Michelson. We choose the reflectivity of the recycling mirror
-to make the cavity critically-coupled for the carrier. 
-
-With the Michelson on a dark fringe, the Michelson reflectivity is
-given by the cavity reflectivity on resonance:
-
-\begin{equation}
-r_{c}=\frac{r_{1}-r_{2}r_L}{1-r_{1}r_{2}r_L}
-\end{equation}
-where $r_L$ represents losses in the arm cavity.
-
-We choose:
-\begin{equation}
-r_{RM}{}^{2}=0.97
-\end{equation}
-
-\emph{The recycling mirror transmission is chosen to match the losses
-of the rest of the system.}
-
-\subsection*{Power Recycling Cavity Length}
-
-We need to have some radio-frequency sidebands in order to implement
-the heterodyne scheme that is used to control most of the interferometer.
-Its frequency is chosen to be several tens of MHz, and to be approximately%
-\footnote{If the sideband were perfectly anti-resonant in the arms, then the
-first harmonic would be resonant, which is undesirable.%
-} anti-resonant in the arm cavities. We choose:
-
-\[
-f_{RF}\approx24.5\mathrm{{\ MHz}}
-\]
-
-The RF sidebands must fit in the power recycling cavity. The resonant
-conditions for the carrier and for the sideband in the PRC are slightly
-different. Because the carrier is resonant in the (strongly over-coupled)
-arm cavities, it sees a sign flip in reflection from the arms that
-is not seen by the sideband. The carrier is actually \emph{anti-}resonant
-in the PRC until the arms come into resonance and this extra sign
-flip comes into play. The minimum length of the PRC that satisfies
-this requirement occurs when the carrier accumulates $\pi$ radians
-more phase than the lower sideband over a round-trip traversal of
-the cavity. The upper sideband, in turn, acquires $\pi$ radians
-more than the carrier, putting it $2\pi$ above the lower sideband,
-making them simultaneously resonant. The carrier gets its final $\pi$
-radians on reflection from the over-coupled arm.
-
-Instead of relying
-on intuitive arguments, we can write down equations for the conditions
-of resonance:
-
-\begin{eqnarray}
-\exp \left\{i (2l/c)\omega_{0}  \right\} &=& -1 \\
-\exp \left\{i (2l/c)(\omega_{0} \pm \omega_{rf}) \right\} &=& +1
-\end{eqnarray}Solving these%
-\footnote{Remember the multivaluedness of the logarithm, i.e. $\log1=i2\pi n$
-for all integers $n$.%
-}, we find a nice relationship between the cavity length and the RF
-wavelength $\lambda_{rf}=c/f_{rf}\approx12\text{ meters}$:
-
-\[
-2l_{+}=\lambda_{rf}\left(m+\frac{1}{2}\right)
-\]
-where m is any integer. The length corresponding to $m=0$ is inconveniently
-short, so we choose $m=1$, giving a power recycling cavity length of:
-
-\[
-\boxed{{l_{+}=9.18\text{{\ meters}}}}
-\]
-
-
-\emph{The PRC length is set to allow simultaneous resonance of the
-carrier and sidebands in the power recycling cavity.}
-
-
-\subsection*{The Schnupp Asymmetry}
-
-Now that we have the RF sidebands resonant in the recycling cavity,
-we need to get them to the output port. 
-
-A Michelson with identical arms has no frequency selectivity; in principle
-even white light would experience bright and dark fringes. Introducing
-an offset breaks this degeneracy, as the offset allows higher frequency
-waves to accumulate more phase than slower frequencies. Introducing
-a macroscopic difference in the arm lengths separates the carrier
-fringes from the sideband fringes. In the longer arm, now, the lower
-sideband accumulates less phase than the carrier, and the upper sideband
-accumulates a bit more. When the beams from the two arms recombine,
-the phase difference now depends on the frequency. With such an asymmetry,
-the Michelson can be simultaneously reflective of the carrier and
-partially transmissive of the sidebands. 
-
-How much sideband transmission do we need? The Michelson is acting
-as the second mirror in a resonant cavity. If we want to have perfect
-transmission of the sideband to the output port, then the power recycling
-cavity must be critically coupled for the sideband. This occurs when
-the Michelson transmission of the sideband is equal to the transmissivity
-of the RM. This scheme for getting the sideband to the {}``dark'' port is attributed
-to Lisa Schnupp, and the offset is called the Schnupp asymmetry.
-
-The Michelson reflectivity for the sideband is:
-
-\begin{equation}
-r_{M}=\cos\frac{2\pi f_{rf}l_{-}}{c}
-\end{equation}
-
-(The fringe of the lower sideband lags that of
-the carrier, and the upper sideband leads the carrier. But because
-the carrier itself is on a dark fringe, the transmission of both the
-upper and lower sidebands turns out to be the same.)
-
-Solving $r_{M}{}^{2}=0.97$ in order to match the RM, we find a Schnupp
-asymmetry of
-
-\begin{equation}
-l_{-}=34\text{\ cm}
-\end{equation}
-
-\emph{The Schnupp asymmetry sets the coupling of the RF sidebands to the
-antisymmetric port.}
 
 \section{Heterodyne Shot Noise}
 
