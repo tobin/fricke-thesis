@@ -9,7 +9,7 @@ was changed to a form of homodyne detection called DC readout.  In
 this chapter I explain the motivation for and theory behind DC
 readout.
 
-\section{Principle of DC readout}
+\section{Principle of DC Readout}
 A homodyne readout system differs from a heterodyne system by using a
 local oscillator at the same (optical) frequency as the field being
 measured.  A typical homodyne detection system combines a local
@@ -86,13 +86,13 @@ any fluctuations in the amplitude or frequency of the input laser
 field are attenuated by the coupled cavity pole before reaching the
 output port.
 
-\section{Motivation for DC readout}
+\section{Motivation for DC Readout}
 
 The RF readout technique was used successfully in initial LIGO to
 achieve the instruments' design sensitivity.  A number of reasons,
 outlined below, motivated the switch to DC readout with an OMC:
 
-\subsubsection*{Improved noise couplings} 
+\subsubsection*{Improved Noise Couplings} 
 The combination of the power recycling cavity and the arm cavities
 acts as a single resonant cavity with an effective linewidth of
 approximately 1 Hz around the laser carrier.  Intensity and frequency
@@ -104,7 +104,7 @@ in the interferometer as the local oscillator.  The result is that
 coupling of noises on the input beam to the gravitational wave readout
 can be greatly reduced.
 
-\subsubsection*{Spatial overlap}  
+\subsubsection*{Spatial Overlap}  
 Imperfect spatial overlap of the signal beam (resonant in the arm
 cavities) and the RF sideband beam (resonant in the power recycling
 cavity) reduced the optical gain, elevating the shot-noise-limited
@@ -128,7 +128,7 @@ comes naturally.  With either DC or RF readout, an OMC, matched to the
 spatial mode of the signal beam, can be used to select the signal beam
 and the part of the LO with good spatial overlap.
 
-\subsubsection*{Excess power}
+\subsubsection*{Excess Power}
 To cope with the excess power due to higher-order modes at the
 interferometer output port, initial LIGO split the light at the
 detection port onto four detection photodiodes.  Scaling the
@@ -137,7 +137,7 @@ the number of photodiodes at the output port and their associated
 electronics.  An output mode cleaner reduces the power that needs to
 be detected.
 
-\subsubsection*{Homodyne SNR advantage} 
+\subsubsection*{Homodyne SNR Advantage} 
 Homodyne detection confers a fundamental improvement in
 signal-to-noise ratio compared to RF readout at shot-noise-limited
 frequencies by a factor $\sqrt{3/2}$ (for the same power circulating
@@ -145,7 +145,7 @@ in the interferometer).  The extra noise in heterodyne detection is a
 result of cyclostationary shot noise\cite{Niebauer1991Nonstationary}
 due to the interference between the upper and lower RF sidebands.
 
-\subsubsection*{Squeezed vacuum injection} 
+\subsubsection*{Squeezed Vacuum Injection} 
 Squeezed vacuum injection is an attractive means to decrease the
 photon quantum noise in future interferometers by manipulating the
 quantum state of the vacuum field that enters the interferometer
@@ -218,7 +218,7 @@ Some of the motivations of DC readout and an output mode cleaner are:
   linear modulation of $P_{AS}$.}
 \end{figure}
 
-\subsection{Calculation of the optical gain}
+\subsection{Calculation of the Optical Gain}
 
 The ratio of signal produced (in Watts) to displacement of DARM (in
 meters) is the \emph{optical gain}.  In DC readout, we can find the
@@ -280,7 +280,7 @@ immediately:
   simply by the cavity pole.)
 \end{itemize}
 
-\section{Selecting the DARM offset}
+\section{Selecting the DARM Offset}
 
 The particular DARM offset used to implement DC readout must satisfy a
 number of conditions.  On one hand, the DARM offset cannot be too small:
@@ -334,14 +334,14 @@ approximately 10 picometers.
 \end{figure}
 
 
-\subsection{Decrease in arm power due to off-resonance operation}
+\subsection{Decrease in Arm Power Due to Off-Resonance Operation}
 % FIXME: Change this to 'decrease in phase gain...'
 The decrease in buildup for a cavity operated off-resonance goes like
 $(2\mathcal{F}/\pi)^2\phi^2$, where $\phi$ is the cavity detuning.
 For $\mathcal{F}=220$ and $\phi=(2\pi/1064\text{ nm})(10\text{ pm})$,
 the fractional power loss is only $7\times10^{-5}$.
 
-\subsection{Decrease in power recycling gain due to power loss at the output port}
+\subsection{Decrease in Power Recycling Gain Due to Power Loss at the Output Port}
 
 Allowing power to escape the power recycling cavity (PRC) through the
 AS port effectively increases the losses of the PRC, diminishing the
@@ -366,7 +366,7 @@ The loss of power recycling gain becomes significant for large
 offsets.  For a 10 pm offset, the reduction in power recycling gain is
 only 1\%, but for a 50 pm offset it grows to 20\%.
 
-\subsection{Nonlinearity of the DC error signal}
+\subsection{Nonlinearity of the DC Error Signal}
 
 Although we operate sufficiently far from the dark fringe that the
 linear coupling of residual DARM motion to output power is dominant,
@@ -434,7 +434,7 @@ become significant; the nonlinear response of DC readout due to fringe
 curvature is negligible.
 
 \begin{comment}
-\subsection{DC readout elsewhere}
+\subsection{DC Readout Elsewhere}
 DC readout has been implemented previously at the Caltech 40 meter
 prototype \cite{Ward2008DC,RobWardThesis} and the GEO 600
 detector\cite{GeoDC,Prijatelj2010,Degallaix2010Commissioning}.  The
@@ -445,7 +445,7 @@ uses RF heterodyne readout\cite{Acernese2008Virgo}.
 % More references to cite:
 % \cite{Adhikari2009DC} % DC readout Normalization for Enhanced LIGO
 % \cite{Hild2007Novel} % Crazy detuning
-\section{Interferometer lock acquisition}
+\section{Interferometer Lock Acquisition}
 
 Initial lock acquisition of the Enhanced LIGO interferometers is the
 same as in Initial LIGO\cite{Evans2002Lock}. Once the interferometer

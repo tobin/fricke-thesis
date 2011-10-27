@@ -1,4 +1,4 @@
-\chapter{DC readout performance and noise couplings}
+\chapter{DC Readout Performance and Noise Couplings}
 \label{chapter5}
 
 The coupling of noises from the laser source and RF oscillators to the
@@ -77,7 +77,7 @@ calibration (i.e. the optical gain) which in turn is shaped only by the cavity
 pole.  Interferometers using signal recycling will have a more complicated
 response function.
 
-\subsection{Measured and expected sensitivity}
+\subsection{Measured and Expected Sensitivity}
 The measured detector noise floors, calibrated as a displacement amplitude
 spectral density ($m/\sqrt{\text{Hz}}$), along with the expected performance
 based on equation~\ref{eq:expected-shot-noise} and measured detector parameters,
@@ -134,7 +134,7 @@ PD quantum efficiency       & 0.98           &             \\
 \end{table}
 
 
-\section{Laser and oscillator noise coupling mechanisms}
+\section{Laser and Oscillator Noise Coupling Mechanisms}
 
 
 To compute the frequency response of the interferometer and the
@@ -199,9 +199,11 @@ developed by Matt Evans and implemented in Matlab.  Optickle uses the
 first-order approximation described above, and also simulates the
 effect of optomechanical couplings due to radiation pressure.
 Optickle was used to make predictions of the laser and oscillator
-noise couplings in Enhanced LIGO.
+noise couplings in Enhanced LIGO.  Optickle was extended to include
+the effects of couplings due to servo controls systems by Lisa
+Barsotti, Nicol\'as Smith, and myself.
 
-\subsection{Laser noises}
+\subsection{Laser Noises}
 
 The Michelson-based design of laser interferometer gravitational wave detectors
 is attractive due to its high common mode noise rejection.  A Michelson
@@ -213,7 +215,7 @@ finesse or reflectivity of the arms; intentional DARM and MICH asymmetries are
 introduced in order to allow the local oscillator (RF or carrier) to read the
 output port.
 
-\subsubsection{Laser intensity noise}
+\subsubsection{Laser Intensity Noise}
 
 Coupling of laser intensity noise to the output port is one of the easiest
 couplings to understand.  The dominant mechanims (in the absence of radiation
@@ -258,7 +260,7 @@ intentional differential detuning of the arm cavities produce a (potentially
 large\cite{ChaibiOptomechanical}) coupling of technical radiation pressure noise
 to DARM.
 
-\subsubsection{Laser frequency noise}
+\subsubsection{Laser Frequency Noise}
 
 Frequency modulation of a field incident on a photodiode will produce
 no signal; in order for frequency modulation of the interferometer
@@ -271,7 +273,7 @@ the arms, including the intentional DARM offset (for DC readout), the
 intentional Michelson (Schnupp) asymmetry, and differences in finesse
 and losses in the two arms.
 
-\subsection{Oscillator noises}
+\subsection{Oscillator Noises}
 
 Reduced coupling of noises from the RF oscillator is one of the
 motivations for implementing DC readout. Despite not relying on the RF
@@ -299,7 +301,7 @@ given by
 where $\Gamma_0$ is the nominal modulation depth, $J_n(z)$ is the $n$th Bessel
 function, and $J_n'(z)=(\partial/\partial z)J_n(z)$ is the derivative of the Bessel function.
 
-\subsubsection{Oscillator phase noise}
+\subsubsection{Oscillator Phase Noise}
 
 Phase noise on the RF oscillator produces phase noise on the resulting
 RF sidebands, but does not affect the laser carrier.  Its direct
@@ -307,14 +309,14 @@ coupling to DC readout is therefore quite small; to couple to DC
 readout, the phase noise sidebands must be converted to AM through
 Michelson asymmetries, and then survive attentuation by the OMC.
 
-\section{Laser and oscillator noise coupling measurements}
+\section{Laser and Oscillator Noise Coupling Measurements}
 
 Laser and oscillator noise couplings were measured at both the H1 and
 L1 detectors\footnote{Measurements at Hanford were made by Nicol\'as
   Smith.}, at a selection of DARM offsets.  In this section I explain
 how the measurements were made and discuss the results.
 
-\subsection{Laser noise coupling measurements}
+\subsection{Laser Noise Coupling Measurements}
 
 The LIGO laser source contains an intensity stabilization servo (ISS)
 which reduces the relative intensity noise (RIN) of the laser power
@@ -388,7 +390,7 @@ broadband increase in the coupling, as observed.  To explore this
 hypothesis, more modeling should be conducted, using a tool which can
 model higher-order spatial modes.
 
-\subsection{Oscillator noise coupling measurements}
+\subsection{Oscillator Noise Coupling Measurements}
 
 To measure oscillator noise couplings we temporarily switched the
 source of the 25 MHz oscillator from the Wenzel crystal oscillator to
@@ -431,7 +433,7 @@ LIGO's RF readout\cite{Smith2005Oscillator}.  We see a distinct
 \caption[Oscillator phase noise coupling (measured)]{\label{fig:osc-PM}Oscillator phase noise coupling to DARM.}
 \end{figure}
 
-\section{Beam jitter noise}
+\section{Beam Jitter Noise}
 
 
 
@@ -504,7 +506,7 @@ line at separations of $\pm0.875$ Hz and $\pm1.6$ Hz which arise due
 to gain modulation.
 
 \begin{comment}
-\section{Optical spring}
+\section{Optical Spring}
 %
 Detuning the arm cavities from their resonance introduces a big optical
 spring.
@@ -513,7 +515,7 @@ spring.
 k_{opt}\approx\frac{64\mathcal{F}^{2}g^{2}P_{IN}}{c\lambda^{2}}\left(\delta x\right) 
 \end{equation}
 
-\section{Technical radiation pressure noise}
+\section{Technical Radiation Pressure Noise}
 
 Amplitude noise on the input laser field produces modulation radiation
 pressure on the optics, in particular in the arm cavities.  If the arm
@@ -532,7 +534,7 @@ The intensity noise to displacement transfer function is
   P_{IN} {g_{rc}}^2 {g_{cav}}^2 \frac{1}{s_{cc}} 
 \end{equation}
 
-\section{Digital effects}
+\section{Digital Effects}
 
 The realtime digital signal processing system through which our
 control systems are implemented provide the illusion of a continuous,

@@ -2,7 +2,6 @@
 \label{chapter4}
 \section{Introduction}
 
-
 The optical fields in the interferometer are intended to exist in only
 the fundamental Gaussian spatial mode.  A critically coupled resonant
 cavity, the input mode cleaner, is used to attenuate any higher order
@@ -37,7 +36,7 @@ detrimental to the DC readout signal.
   from both the carrier and the 25 MHz sidebands.}
 \end{figure}
 
-\section{Physical design of the cavity}
+\section{Physical Design of the Cavity}
 
 \begin{figure}[t]
   \subfloat[][Schematic of OMC bench]{
@@ -145,7 +144,7 @@ spatial modes become negligible. To exclude the RF sidebands, the
 cavity length is chosen such that the RF sideband frequencies are
 anti-resonant in the cavity, which yields minimum transmission.
 
-\section{Choosing the OMC finesse}
+\section{Choosing the OMC Finesse}
 
 All else being equal, we want the best possible filtering capability
 from the OMC.
@@ -201,7 +200,7 @@ set the constraint that the net power efficiency of the OMC should
 exceed 99\% (not actually achieved).  This leads to the design choice
 of a finesse of 400.
 
-\section{Choosing the OMC length and geometry}
+\section{Choosing the OMC Length and Geometry}
 
 The cavity length is chosen to provide adequate attenuation of the RF
 sidebands, and its geometry ($g$-factor) is chosen to sufficiently
@@ -226,7 +225,7 @@ will be designed with a slightly different g-factor to avoid this
 problem.
 
 
-\section{OMC feedback control systems}
+\section{OMC Feedback Control Systems}
 
 %% Front-end Computers 
 The mode cleaner was controlled and the DC readout signals were
@@ -239,7 +238,7 @@ LIGO Realtime Code Generator\cite{Bork2009ELIGO,Bork2009AdvLigo}
 allowed fast prototyping and implementation of complex servos.  All
 servos involving the OMC were implemented using this digital system.
 
-\subsection{Length control (LSC)}
+\subsection{Length Sensing and Control (LSC)}
 
 The cavity length must be controlled to maintain the resonance of the
 laser carrier.  To sense the mismatch between the laser carrier and
@@ -257,7 +256,7 @@ length.
 \caption[Cartoon view of dither locking]{\label{fig:dither-doodle}Cartoon view of dither locking.  The dither locking technique allows a system to be locked to a quadratic operating point.  For example, dither locking is used to control the OMC cavity length, where, near resonance, transmission is a quadratic function of cavity displacements.  A sinusoidal modulation is injected into the parameter we wish to tune (i.e. cavity length), and the output (i.e. transmitted light intensity) is demodulated at the same frequency, producing an error signal.  The figure shows the phase-flip that occurs as the system moves through the quadratic point.  At the quadratic point, the error signal is zero, while on either side it attains nonzero values with opposite signs.}
 \end{figure}
 
-\subsubsection{Modeling the dither locking}
+\subsubsection{Modeling the Dither Locking}
 
 Suppose $f(x)$ is a function we wish to maximize; in this case, $f$
 gives the power transmitted through the OMC as a function of length
@@ -292,7 +291,7 @@ The fast PZT actuator is dithered at 10 kHz and this signal is
 synchronously demodulated in the transmitted light.  The bandwidth of
 the servo is about 100 Hz.
 
-\section{Input beam alignment control (ASC)}
+\section{Input Beam Alignment Sensing and Control (ASC)}
 
 In addition to controlling the cavity length to keep the carrier
 resonant, we must control the pointing of the beam incident on the
@@ -309,7 +308,7 @@ OMC
 
 Several OMC alignment schemes were implemented and utilized.
 
-\subsection{QPD alignment}
+\subsection{QPD Alignment}
 
 The simplest alignment control simply uses the two quadrant
 photodiodes (QPDs) mounted on the OMC breadboard.
@@ -325,7 +324,7 @@ QPD alignment, however, has no notion of the ideal DC pointing of the
 beam and is sensitive not just to the carrier, but also the RF
 sidebands.
 
-\subsection{Dither alignment}
+\subsection{Dither Alignment}
 
 A second alignment scheme is to dither the two steering mirrors each
 in pitch and yaw, demodulate the OMC transmitted signal at these
@@ -367,7 +366,7 @@ is depicted in figure~\ref{fig:dithermax}.)
 %% Beacon dither.  
 
 %% SNR dither.  Nicolas's scheme.
-\subsection{Drumhead dither OMC alignment system}
+\subsection{Drumhead Dither OMC Alignment System}
 
 \begin{figure}
 \includegraphics{figures/drumhead-dither.pdf}
@@ -402,14 +401,14 @@ The system was implemented as follows:
 
 This system is depicted in figure~\ref{fig:drumhead-dither}.
 
-\subsection{Optimal OMC alignment}
+%\subsection{Optimal OMC Alignment}
 
 It has been pointed out~\cite{Smith2011Optimal} that even the drumhead
 dither alignment scheme is not optimal in the sense of producing the
 best shot-noise-limited SNR.
 
 \begin{comment}
-\section{Automatic gain control (UGF servo)}
+\section{Automatic Gain Control (UGF servo)}
 % FIXME - Gaby says: This is very obscure - if you don't have time to
 % explain more, just skip it...
 The optical gain of the interferometer naturally varies slowly as
@@ -461,7 +460,7 @@ backscatterer will change the interference condition, producing
 intensity variations in the OMC transmitted beam and contaminating the
 DARM readout.
 
-\subsubsection{Measuring the OMC scattering reflectivity}
+\subsubsection{Measuring the OMC Scattering Reflectivity}
 
 The backscattering reflectivity of the OMC can be experimentally
 measured by intentionally modulating the path length between the
@@ -589,7 +588,7 @@ modulation in the beam direction.)
   and are then directed to the individual optics.}
 \end{figure}
 
-\section{Beam diverter}
+\section{Beam Diverter}
 
 When the interferometer loses lock, the stored power must be dumped
 somewhere. Typically, due to the presence of the power recycling mirror,
@@ -599,7 +598,7 @@ to prevent this, one of the steering mirrors is used as a fast shutter.
 It is able to zero the transmission through the OMC in approx 2 ms.
 
 \begin{comment}
-\section{Observed beam motion}
+\section{Observed Beam Motion}
 
 FIXME: Put in plots of the measured beam motion, for posterity.
 \end{comment}
