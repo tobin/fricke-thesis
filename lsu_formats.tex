@@ -33,6 +33,15 @@
 %\addtolength{\abovedisplayshortskip}{-1em}
 \pagestyle{myheadings}
 
+	
+% Eliminate the gaps in the 'List of Figures' between figures from
+% different chapters.
+% Source: 
+% http://stackoverflow.com/questions/3029271/latex-make-listoffigures-look-like-listoftables-or-lstlistoflistings/3029507#3029507
+% http://tex.stackexchange.com/questions/784/how-to-change-the-line-spacing-in-my-list-of-figures/793#793
+\newcommand*{\noaddvspace}{\renewcommand*{\addvspace}[1]{}}
+\addtocontents{lof}{\protect\noaddvspace}
+
 \newcommand{\CHAPTER}[1]{%
 \refstepcounter{chapter}%
 \addcontentsline{toc}{chapter}{\thechapter . #1}%
