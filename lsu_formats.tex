@@ -41,6 +41,7 @@
 % http://tex.stackexchange.com/questions/784/how-to-change-the-line-spacing-in-my-list-of-figures/793#793
 \newcommand*{\noaddvspace}{\renewcommand*{\addvspace}[1]{}}
 \addtocontents{lof}{\protect\noaddvspace}
+\addtocontents{lot}{\protect\noaddvspace}
 
 \newcommand{\CHAPTER}[1]{%
 \refstepcounter{chapter}%
