@@ -25,9 +25,6 @@
 \usepackage{setspace}
 %\usepackage{fullpage}
 \include{lsu_formats}
-%% Need to do this to trick LaTeX into setting the Bibliography closer to
-%% what TOPPER does.
-\renewcommand{\bibname}{\vspace{-0.9in} \begin{center} \LARGE \textbf{Bibliography} \normalsize \end{center}}
 %\setlength{\oddsidemargin}{0.2in}
 %\setlength{\evensidemargin}{0in}
 %\setlength{\topmargin}{0.8in}
@@ -71,17 +68,20 @@
 \include{chapter4/chapter4}
 \include{chapter5/chapter5}
 \include{conclusion/conclusion}
+
+%% Bibliography
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Bibliography}
+\singlespace
+\bibliographystyle{unsrturletal}
+\bibliography{tobin}
+
 \appendix
 \include{chapter6/chapter6}
 \include{ligodesign/ligodesign}
 \include{cavities/cavity}
 \include{chapter7/optical-spring}
 \include{chapter7/chapter7}
-
-\singlespace
-\include{bib/references}
-
-\singlespace
-\include{vita}
 
 \end{document}
