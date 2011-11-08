@@ -108,29 +108,32 @@ writing, under active investigation.
   in the modeled curves is $\sim20\%$.}
 \end{figure}
 
-%% Cavity properties [Table]
-% These values are all from Sam's document T080144:
-% https://dcc.ligo.org/cgi-bin/private/DocDB/ShowDocument?docid=5416
-\begin{table}
+\begin{table}[t]
 \centering
 \begin{tabular}{l l l l l}
 \hline 
-\textbf{parameter}          &\textbf{Hanford}&\textbf{Livingston}  \\
+parameter           &  symbol           &  H1          & L1       \\ 
 \hline
-arm cavity phase gain       & 137            & 137         \\
-input optics efficiency     & 0.82           & 0.75        \\
-interferometer mode-matching&                & 0.92        \\
-carrier recycling gain      & $59\pm6$       & 41          \\
-modulation depth            & 0.34           & 0.33        \\
-OMC transmission            & 0.97           &             \\
-OMC mode-matching           & 0.70           & 0.95        \\
-Output Faraday transmission & $0.94\pm0.02$  & 0.9805      \\
-DC-readout path pickoff     & 0.953          & 0.972       \\
-PD quantum efficiency       & 0.98           &             \\
+input power         &  $P_{IN}$         & 20.27 W      & 11.65 W  \\
+arm cavity pole     &  $f_c$            &  83.7 Hz     & 85.6  Hz \\
+finesse    & $\mathcal{F}_\textrm{arm}$ &  224         & 219      \\
+power recycling gain&  ${g_{cr}}^2$     &  59          & 41       \\
+\hline
+carrier fraction after
+phase modulation    &  $J_0(\Gamma)^2$  & 0.94         & 0.95 \\
+input optics        &                   & 0.82         & 0.75  \\
+interferometer mode-matching &          & 0.92         & 0.92  \\
+output faraday isolator transmission &  & 0.94         & 0.98  \\
+DC readout pickoff fraction  &          & 0.953        & 0.972 \\
+OMC mode-matching            &          & 0.70         & 0.95  \\
+OMC transmission and 
+PD quantum efficiency        &          & 0.95         & 0.95  \\
+\hline
+net power efficiency         &$\epsilon$& 0.42         & 0.56  \\
 \hline
 \end{tabular}
-\caption[Interferometer properties (designed and measured)]{Designed and measured properties of the Hanford and Livingston interferometers.}
-\label{tab:ifo-properties}
+\caption{\label{tab:ifo-properties}Interferometer parameters used in the
+  shot noise model.}
 \end{table}
 
 
