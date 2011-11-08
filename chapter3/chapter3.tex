@@ -30,12 +30,12 @@ offset into the Michelson or DARM degree of freedom, moving the
 interferometer slightly off of the dark fringe.  The resulting carrier
 light at the interferometer output port acts as a local oscillator.
 This differs from the typical homodyne arrangement in that the two
-fields are automatically coincident.  It is no longer necessary to use
+fields are automatically coincident\footnote{It is no longer necessary to use
 two photodiodes, but doing so allows greater power handling capacity,
 and allows for the formation of a diagnostic `nullstream'.  The
 nullstream is formed from the difference of the two PD signals and
 ideally contains only the uncorrelated component of the PD signals.
-The sum of the two PD signals provides the intended signal.  The
+The sum of the two PD signals provides the intended signal.}  The
 principle disadvantages of DC readout over the 2-port homodyne
 arrangement are that DC readout requires introducing an intentional
 microscopic offset of the arms, which can increase noise couplings,
@@ -73,12 +73,17 @@ oscillator.
 One way to intuitively understand DC readout is that simply moving
 away from the quadratic point of the fringe (depicted in
 figure~\ref{fig:darm-fringe}), a linear relationship from DARM
-variations to power variationsis introduced.  On the other hand,
-considering the frequency domain picture, we might ask how phase
-modulation induced in the arms is converted to amplitude modulation at
-the AS port.  The answer is that the Michelson rotates the carrier by
-90 degrees due to the $i$ in the Michelson transmission
-(equation~\ref{eq:michelson-transmission}).
+variations to power variationsis introduced.  The frequency domain
+picture of the fields at the output port in both heterodyne and
+homodyne readouts is depicted in figure~\ref{fig:sideband-picture};
+we see that, in homodyne readout, the baseband signal at the photodiode
+is a result of a beat between the (no longer completely suppressed)
+carrier and the sidebands impressed by the gravitational wave.
+\footnote{ We might ask how phase modulation induced in the arms is
+  converted to amplitude modulation at the AS port.  The answer is
+  that the Michelson rotates the carrier by 90 degrees due to the $i$
+  in the Michelson transmission
+  (equation~\ref{eq:michelson-transmission}).}
 
 The true beauty of DC readout is that it exploits the filtering
 action of the compound interferometer to produce the local oscillator;
@@ -90,7 +95,8 @@ output port.
 
 The RF readout technique was used successfully in initial LIGO to
 achieve the instruments' design sensitivity.  A number of reasons,
-outlined below, motivated the switch to DC readout with an OMC:
+outlined below, motivated the switch to DC readout with an Output Mode
+Cleaner (OMC):
 
 \subsubsection*{Improved Noise Couplings} 
 The combination of the power recycling cavity and the arm cavities
@@ -158,38 +164,7 @@ injection has been demonstrated at GEO\cite{GeoSqueezingNature2011}
 and an effort is currently underway to implement it at LIGO
 Hanford\cite{H1SqueezerProposal}.
 
-\begin{comment}
-Some of the motivations of DC readout and an output mode cleaner are:
-
-\begin{itemize}
-\item The filtering action of the compound interferometer produces an
-  extremely quiet local oscillator.  This reduces the coupling of
-  laser noises to the readout.
-\item Contributions from noise on the electronic oscillator used to
-  create the RF sidebands are greatly reduced.
-\item The shot-noise-limited sensitivity of homodyne detection is
-  inherently better than that of heterodyne detection, for a fixed
-  amount of power on the detection photodiodes, by a factor of at
-  least $\sqrt{3/2}$.
-\item The shot noise level may be further reduced through the
-  injection of squeezed quantum vacuum.  This is much more technically
-  feasible with homodyne detection than heterodyne detection.  This
-  has recently been demonstrated at the GEO600 detector~\cite{GeoSqueezingNature2011,Vahlbruch2010GEO} and a
-  prototype implementation is underway at Hanford~\cite{H1SqueezerProposal}.
-\item In DC readout, the signal field and the local oscillator are
-  guaranteed to have perfect spatial overlap, since they come from the
-  same place.  By contrast, in the conventional heterodyne
-  arrangement, the RF fields and the carrier are resonant in different
-  cavities and may occupy slightly different spatial modes.  This
-  leads to a reduction of shot-noise-limited SNR.  (However, an output
-  mode cleaner can be used to force good overlap in either case.)
-\item The output mode cleaner greatly decreases the amount of power
-  that must be detected by the detection photodiodes by removing
-  spurious higher order modes.    
-\end{itemize}
-\end{comment}
-
-\begin{figure}[p]
+\begin{figure}
 \includegraphics{figures/fields-picture.pdf}
 \caption[Frequency-domain fields in DC and RF
   readouts]{\label{fig:sideband-picture}Depiction of the fields in DC
@@ -207,18 +182,40 @@ Some of the motivations of DC readout and an output mode cleaner are:
   photodiodes.}
 \end{figure}
 
-\begin{figure}[p]
-\includegraphics[width=\columnwidth]{figures/phasors.pdf}
-\caption[Phasor diagram of DC readout]{\label{fig:mich-phasors}Phasor
-  diagram of the fields at the AS port due to the two arms of the
-  Michelson.  DARM motion causes equal but opposite rotation of the
-  two phasors, which modulates the amplitude of the resultant electric
-  field at the AS port ($E_{AS}$).  If this field has a nonzero
-  nominal value, as in DC readout, then this will also result in
-  linear modulation of $P_{AS}$.}
+\section{Implementation of DC readout}
+
+The Enhanced LIGO optical plant is depicted in
+figure~\ref{fig:enhanced-ifo}.  The initial LIGO configuration was
+modified by adding an output mode cleaner (described in the next
+chapter) and DC photodiodes.  A beamsplitter directs 97\% to this new
+path and the remaining 3\% to the old RF heterodyne output chain,
+which was still used for lock acquisition and automatic alignment.
+An additional computer system was added to acquire the signals from
+the DC photodiodes and to control the OMC.
+
+\subsection{Interferometer Lock Acquisition}
+
+Initial lock acquisition of the Enhanced LIGO interferometers is the
+same as in Initial LIGO\cite{Evans2002Lock}. Once the interferometer
+is locked using the heterodyne readout schemes, the DARM offset is
+introduced to allow carrier light to be transmitted to the output
+port. The Output Mode Cleaner is then locked to this carrier
+light. Once the OMC is locked to the carrier, control of DARM is
+transferred to the DC readout system.  After this transition, a few
+other changes are made to engage the OMC alignment servoes and to put
+the readout electronics into low noise mode. At this point the
+interferometer has reached its operation configuration and
+astrophysical data-taking ({}``science mode'') begins.
+
+\begin{figure}
+\includegraphics[width=\columnwidth]{figures/dc-readout-diagram.pdf}
+\caption[Enhanced LIGO interferometer
+  layout]{\label{fig:enhanced-ifo}Enhanced LIGO interferometer
+  layout (not to scale).  The dotted line represents the vacuum
+  enclosure.}
 \end{figure}
 
-\subsection{Calculation of the Optical Gain}
+\section{Calculation of the Optical Gain}
 
 The ratio of signal produced (in Watts) to displacement of DARM (in
 meters) is the \emph{optical gain}.  In DC readout, we can find the
@@ -292,6 +289,10 @@ number of conditions.  On one hand, the DARM offset cannot be too small:
 \item The phase offset must be sufficiently large that the response to
   a normal range of DARM motion remains linear.  In particular, the
   DARM offset must be much larger than any expected DARM excursion.
+  The observed residual DARM motion is depicted in
+  figure~\ref{fig:residual-DARM}; we use 0.1 pm as an upper limit on
+  the residual DARM motion.
+
 \item The power on the detection photodiode must be large enough such
   that the shot noise exceeds the electronics noise of the readout.
 \end{itemize}
@@ -318,7 +319,7 @@ colloquially, we turn the knobs in whatever direction makes the noise
 go down.  During Enhanced LIGO, we operated with a DARM offset of
 approximately 10 picometers.
 
-\begin{figure}[p]
+\begin{figure}
 \centerline{\includegraphics[width=\columnwidth]{figures/residualDARM.pdf}}
 \caption[Residual DARM motion]{\label{fig:residual-DARM}DARM
   motion. The lower trace shows the residual motion of DARM after
@@ -342,7 +343,7 @@ $(2\mathcal{F}/\pi)^2\phi^2$, where $\phi$ is the cavity detuning.
 For $\mathcal{F}=220$ and $\phi=(2\pi/1064\text{ nm})(10\text{ pm})$,
 the fractional power loss is only $7\times10^{-5}$.
 
-\subsection{Decrease in Power Recycling Gain Due to Power Loss at the Output Port}
+\subsection{Decrease in Power Recycling Gain Due to Intentional Offset}
 
 Allowing power to escape the power recycling cavity (PRC) through the
 AS port effectively increases the losses of the PRC, diminishing the
@@ -446,18 +447,6 @@ uses RF heterodyne readout\cite{Acernese2008Virgo}.
 % More references to cite:
 % \cite{Adhikari2009DC} % DC readout Normalization for Enhanced LIGO
 % \cite{Hild2007Novel} % Crazy detuning
-\section{Interferometer Lock Acquisition}
 
-Initial lock acquisition of the Enhanced LIGO interferometers is the
-same as in Initial LIGO\cite{Evans2002Lock}. Once the interferometer
-is locked using the heterodyne readout schemes, the DARM offset is
-introduced to allow carrier light to be transmitted to the output
-port. The Output Mode Cleaner is then locked to this carrier
-light. Once the OMC is locked to the carrier, control of DARM is
-transferred to the DC readout system.  After this transition, a few
-other changes are made to engage the OMC alignment servoes and to put
-the readout electronics into low noise mode. At this point the
-interferometer has reached its operation configuration and
-astrophysical data-taking ({}``science mode'') begins.
 
 

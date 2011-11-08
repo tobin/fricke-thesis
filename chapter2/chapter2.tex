@@ -79,7 +79,18 @@ yields
 t_M  &= e^{i2\phi_+} \left( i r\sin \phi_- + (\Delta r/2) \cos \phi_- \right) 
 \label{eq:michelson-transmission}\\
 r_M  &= e^{i2\phi_+} \left( i r \cos \phi_- + (\Delta r/2) \sin \phi_- \right) 
+\label{eq:michelson-reflection}
 \end{align}
+
+\begin{figure}
+\includegraphics[width=\columnwidth]{figures/phasors.pdf}
+\caption[Phasor diagram of DC readout]{\label{fig:mich-phasors}Phasor
+  diagram of the fields at the output port due to the two arms of the
+  Michelson.  Differential motion of the mirrors at the ends of the
+  arms causes equal but opposite rotation of the two phasors, which
+  modulates the amplitude of the resultant electric field at the
+  output port ($E_{AS}$).}
+\end{figure}
 
 The intent is for the arm reflectivities to be identical (so $\Delta r \to
 0$), and to operate near the \emph{dark fringe} ($\phi_-\to0$) so that
@@ -88,8 +99,8 @@ the input field does not couple directly to the output port
 points concerning gravitational wave detection:
 %
 \begin{itemize}
-\item Variations of the differential phase $\phi_-$ \emph{linearly couple} to the \emph{field amplitude} at the output port.
-\item Variations of the common phase $\phi_+$ do not couple.
+\item Variations of the differential phase $\phi_-$ \emph{linearly couple} to the \emph{field amplitude} at the output port.  This can be seen via equation~\ref{eq:michelson-transmission} or the phasor diagram in figure~\ref{fig:mich-phasors}.
+\item Variations of the common phase $\phi_+$ do not couple to the field at the output port, so long as we operate near $\phi_-=0$ and the contrast defect ($\Delta r$) is small.
 \end{itemize}
 %
 The field at the output port is thus sensitive to suitably
@@ -330,7 +341,10 @@ has parameters similar to the initial LIGO arm cavities.
 In the basic PDH setup, the laser light incident on a resonant cavity
 is first phase-modulated at a frequency well outside of the bandwidth
 of the cavity, such that the phase-modulation sidebands are nearly
-anti-resonant in the cavity when the carrier is resonant.
+anti-resonant in the cavity when the carrier is resonant.  The light
+reflected from the cavity is directed onto a photodiode and an error
+signal is produced by demodulating this photodiode signal.  The basic
+setup is depicted in figure~\ref{fig:pdh-diagram}.
 
 The phase modulation may be expanded in terms of sidebands using the
 Jacobi-Anger expansion (see section~\ref{sec:jacobi-anger}):
@@ -358,13 +372,13 @@ modulation to amplitude modulation, which is observed by the
 photodiode.  Typically, the laser frequency or the cavity length is
 adjusted to hold the carrier on resonance.  Near the resonance, there
 is a very large change in reflected phase for a small change of
-detuning (change in cavity length or laser frequency); the RF
+detuning (mismatch between the cavity length and laser frequency); the RF
 sidebands, on the other hand, are typically far from resonance and
 experience very little phase change.  As a result, a small perturbation
 from resonance will turn the cavity into an FM-to-AM converter.  The
 resulting amplitude modulation can be sensed by a photodiode and
 demodulated to produce an error signal indicating how far the cavity
-is from resonance.
+is from resonance.  The PDH error signal is depicted in figure~\ref{fig:pdh-error}.
 
 \begin{comment}
 The reflectivity of a lossless Fabry-Perot cavity is
@@ -427,18 +441,6 @@ and demodulating the light at various interferometer ports.  In the
 remainder of this dissertation, however, we are concerned only with
 sensing the differential arm degree of freedom (DARM), which contains
 the gravitational wave signal.
-
-\begin{figure}
-\includegraphics[width=\columnwidth]{figures/dc-readout-diagram.pdf}
-\caption[Enhanced LIGO interferometer
-  layout]{\label{fig:dc-readout-ifo}Enhanced LIGO interferometer
-  layout (not to scale).  The dotted line represents the vacuum
-  enclosure. The initial LIGO configuration is modified by adding an
-  output mode cleaner and DC photodiodes.  A beamsplitter directs 97\%
-  of the optical power to this new path and the remaining 3\% to the
-  old RF heterodyne output chain, used for lock acquisition and
-  automatic alignment.}
-\end{figure}
 
 \section{Noises}
 

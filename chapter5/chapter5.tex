@@ -243,7 +243,12 @@ frequency the residual RF sidebands dominate.  This is depicted in
 figure~\ref{fig:laser-AM-contributions}.
 
 \begin{figure}
-\includegraphics[width=\columnwidth]{notes/figures/srcam_contributions.pdf}
+\subfloat[without radiation pressure ($m\to\infty$)]{
+\includegraphics[width=\columnwidth]{figures/intensity_noise_contributions_without_rp.pdf}
+}\\
+\subfloat[with radiation pressure ($m=10.5$ kg)]{
+\includegraphics[width=\columnwidth]{figures/intensity_noise_contributions.pdf}
+}
 \caption[Components of laser intensity noise contribution to DC readout]{\label{fig:laser-AM-contributions}Direct contributions of
   amplitude modulation of the laser carrier and RF sidebands to DC
   readout, in the absence of radiation pressure.  The carrier

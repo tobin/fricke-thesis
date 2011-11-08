@@ -43,7 +43,7 @@ detrimental to the DC readout signal.
   \includegraphics[width=0.5\columnwidth]{figures/omc-diagram.pdf}
   \label{fig:omc-diagram}
 }
-\subfloat[][\label{fig:OMC-chamber}Photograph of installed OMC and suspension]{
+\subfloat[][\label{fig:omc-chamber}Photograph of installed OMC and suspension]{
   \includegraphics[width=0.5\columnwidth]{figures/chamber-picture-smaller.pdf}
 }
 \caption[OMC diagram and photograph of installation]{
@@ -70,7 +70,7 @@ detrimental to the DC readout signal.
 A four-mirror bow-tie arrangement was chosen for the mode cleaner
 design\footnote{The Enhanced LIGO OMC design and construction was lead by
   Sam Waldman as part of LIGO's Interferometer Sensing and Control (ISC)
-  group.}.  This non-colinear design prevents direct reflection of
+  group.}, depicted in figure~\ref{fig:omc-diagram}.  This non-colinear design prevents direct reflection of
 rejected light back into the interferometer.  A design with an even
 number of mirrors was preferred so that odd-parity transverse modes
 are degenerate, reducing the density of higher-order-mode resonances.
@@ -122,7 +122,7 @@ To isolate the mode cleaner from environmental disturbances, the
 optical bench was hung from an actively-damped double-pendulum
 suspension system\cite{Robertson2006Conceptual,Robertson2009OMC},
 which was in turn suspended by an in-vacuum active isolation
-system\cite[Chapter 5]{KisselThesis}.
+system\cite[Chapter 5]{KisselThesis}. 
 
 %% OMC Photodiodes
 The photodiodes were also mounted on the OMC baseplate, and read out
@@ -139,6 +139,10 @@ The rigid mounting of the PDs to the OMC baseplate reduces the
 possibility of beam motion coupling to photocurrent through photodiode
 nonuniformities, and the in-vacuum preamplifiers reduce the liklihood of
 electronic or triboelectric noises.
+
+A photograph showing the installed OMC, suspension, and in-vacuum
+seismic isolation platform is presented in
+figure~\ref{fig:omc-chamber}.
 
 \section{Requirements}
 
@@ -245,15 +249,21 @@ servos involving the OMC were implemented using this digital system.
 \subsection{Length Sensing and Control (LSC)}
 
 The cavity length must be controlled to maintain the resonance of the
-laser carrier.  To sense the mismatch between the laser carrier and
+laser carrier.  To sense the mismatch between the laser carrier frequency and
 the cavity length, we modulate the cavity length by a small
 displacement at high (audio) frequency and monitor the transmitted light
-intensity for a signal at the same frequency.  Cavity transmission is
-a quadratic function of the frequency/length mismatch; if the
-modulation is perfectly symmetric around the point of peak
-transmission, there will be no linear coupling.  Effectively, we sense
-the first derivative of the transmission with respect to cavity
-length.  
+intensity for a signal at the same frequency.   Because cavity transmission is
+a quadratic function of the frequency/length mismatch, there will be no
+first-order response in the transmission when the laser light is perfectly
+resonant in the cavity.  If, on the other hand, the cavity is slightly off
+resonance, there will be linear dependence of the transmitted intensity on
+the modulation of the cavity length; a cartoon of this effect is shown in
+figure~\ref{fig:dither-doodle}.
+Because the sign of this linear coupling
+changes as the cavity goes through resonance, the signed amplitude of the
+modulation in the transmitted light provides an error signal for the cavity
+tuning. Effectively, we sensethe first derivative of the transmission with
+respect to cavity length.
 
 \begin{figure}[t]
 \centerline{\includegraphics[width=0.5\columnwidth]{figures/ditherdoodle.pdf}}
