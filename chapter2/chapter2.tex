@@ -49,36 +49,59 @@ Contemplating the effect of a gravitational wave on a ring of test
 particles (figure~\ref{fig:gwave-effect}), it is easy to imagine
 constructing a Michelson interferometer (figure~\ref{fig:michelson})
 with its beamsplitter in the center of the circle and with two of the
-test particles forming the end mirrors of the Michelson.  More
-importantly, the Michelson allows us to separate the differential
-motion of the two arms from the common motion, which is
-indistinguishable from laser frequency changes.
+test particles forming the end mirrors of the Michelson.  A suitably
+polarized gravitational wave will modulate the difference between the
+lengths of the two arms of the Michelson, producing a signal at its
+output port.  The motivation for this particular configuration is that
+variations in the laser frequency (i.e. noise) are equivalent to
+\emph{common-mode} changes to the two arm lengths.  The Michelson
+configuration allows us to sense gravitational waves and laser
+frequency noise separately.
 
-If we assume a perfect (lossless, 50/50) beamsplitter, the
-transmission and reflection coefficients for the Michelson are:
+To study this configuration, we first derive the effect of the
+Michelson on the incident laser field.  By inspection, we can write
+down expressions for the transmission and reflection coefficients of
+the Michelson.  We do this by following the paths that light can take
+through the interferometer, keeping track of how the field amplitude
+changes as it encounters each optic.  With a field of amplitude $E_0$
+incident from the left (c.f. figure~\ref{fig:michelson}), a field with
+amplitude $E_0/\sqrt{2}$ is reflected into the Y arm (assuming a
+perfect beamsplitter), and a field with equal amplitude is transmitted
+into the X arm.  The light in the Y arm acquires a phase $e^{i\phi_x}$
+as it travels the length of the arm, then sees the amplitude
+reflectivity $r_x\approx 1$ of the test mass, and acquires another
+$\phi_x$ radians of phase as it travels down the arm on the way back
+to the beamsplitter.  A fraction $1/\sqrt{2}$ of this light will be
+transmitted through the beamsplitter, adding to the field that arrives
+via the Y arm.  Likewise, a fraction $1/\sqrt{2}$ will be reflected by
+the beamsplitter and travel back towards the laser source.  Putting
+this story into equations, we arrive at the effective transmissivity
+and reflectivity of the Michelson:
 %
 \begin{align}
-t_M  &= \frac{1}{2}\left(r_x \exp \{i2\phi_x\} - r_y \exp\{i2\phi_y\} \right) \\
-r_M  &= \frac{1}{2}\left(r_x \exp \{i2\phi_x\} + r_y \exp\{i2\phi_y\} \right)
+t_M &\equiv \frac{E_{AS}}{E_0}   = \frac{1}{2}\left(r_x \exp \{i2\phi_x\} - r_y \exp\{i2\phi_y\} \right) \\
+r_M &\equiv \frac{E_{REFL}}{E_0} = \frac{1}{2}\left(r_x \exp \{i2\phi_x\} + r_y \exp\{i2\phi_y\} \right)
 \end{align}
 where $r_{\{x,y\}}$ are the amplitude reflectivities of the x- and y-arm mirrors, and $\phi_{\{x,y\}}$ are 
-the phases accumulated as the light travels from the beamsplitter to end mirrors.  It is useful to change
-our variables to express these quantities in terms of the differential and common reflectivies and phases.
-Making the substitutions
+the phases accumulated as the light travels from the beamsplitter to end mirrors.  
+
+It is useful to change our variables to express these quantities in
+terms of the differential and common reflectivies and phases.  Making
+the substitutions
 \begin{align}
 \phi_- &= \phi_x - \phi_y       &  \phi_x &= \phi_+ + (1/2)\phi_- \\
 \phi_+ &= (\phi_x + \phi_y)/2   &  \phi_y &= \phi_+ - (1/2)\phi_-
 \end{align}
 and
 \begin{align}
-  \Delta r & = r_x - r_y        &  r_x   &= r + (1/2)\Delta r \\
-       r & = (r_x + r_y)/2      &  r_y   &= r - (1/2)\Delta r
+  \Delta r & = (r_x - r_y)/2      &  r_x   &= r + \Delta r \\
+         r & = (r_x + r_y)/2      &  r_y   &= r - \Delta r
 \end{align}
 yields
 \begin{align}
-t_M  &= e^{i2\phi_+} \left( i r\sin \phi_- + (\Delta r/2) \cos \phi_- \right) 
+t_M  &= e^{i2\phi_+} \left( i r\sin \phi_- + (\Delta r) \cos \phi_- \right) 
 \label{eq:michelson-transmission}\\
-r_M  &= e^{i2\phi_+} \left( i r \cos \phi_- + (\Delta r/2) \sin \phi_- \right) 
+r_M  &= e^{i2\phi_+} \left( i r\cos \phi_- + (\Delta r) \sin \phi_- \right) 
 \label{eq:michelson-reflection}
 \end{align}
 
